@@ -7,6 +7,12 @@ const Router = EmberRouter.extend({
 });
 
 Router.map(function() {
+    
+    /**
+     * 404
+     * @type {String}
+     */
+    this.route('page-not-found', {path: '/*path'});
 });
 
 export default Router;
