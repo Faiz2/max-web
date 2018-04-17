@@ -18,16 +18,18 @@ module.exports = function(defaults) {
                     hexRGBA: false,
                     fallbacks: true
                 })
-
             ]
         },
         'ember-bootstrap': {
-            'bootstrapVsesion': 3,
-            'importBootstrapFont': true,
-            'importBootstrapCSS': true
+            bootstrapVsesion: 3,
+            importBootstrapFont: true,
+            importBootstrapCSS: true
         },
         babel: {
             sourceMaps: sourceMap
+        },
+        flatpickr: {
+          theme: 'material_blue'
         }
     });
 

@@ -1,0 +1,13 @@
+{{#if (has-block)}}
+{{yield}}
+{{else}}
+{{!-- 组件接受`title`文本，以`center`样式 --}}
+<nav local-class="self-navbar"  class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-header" local-class={{if isCenter 'center' 'null'}}>
+      <p local-class="self-navbar-title">{{title}}</p>
+    </div>
+  </div>
+</nav>
+
+{{/if}}

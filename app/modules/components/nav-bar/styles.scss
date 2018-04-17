@@ -1,0 +1,17 @@
+
+@media (min-width: 1200px) {
+    .self-navbar {
+        height: 6rem;
+        background-color: $navbar-bgcolor;
+        color: #fff;
+    }
+    .self-navbar-title {
+        margin: 0;
+        font-size: $max-font-size-title;
+    }
+    .center {
+        display: block;
+        margin: 0 auto;
+    }
+
+}

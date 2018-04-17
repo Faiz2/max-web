@@ -1,0 +1,175 @@
+@import 'bootstrap';
+$navbar-bgcolor: #737373;
+$content-bgcolor: #fafafa;
+$btn-bgcolor: #60b3ad;
+html {
+    font-size: 10px;
+}
+$max-font-size-title:  2.2rem;;
+$max-font-size-content: 1.4rem;
+.wrapper-menu {
+    float: left;
+    height: 100% ;
+    width: 220px;
+    background-color: $navbar-bgcolor;
+    .menu-user {
+        height: 140px;
+        padding: 10px 20px;
+        background-color: rgba(255, 255, 255, .6);
+        font-size: 2.0rem;
+        .user-status {
+            padding-top: 10px;
+            height: 20px;
+            line-height: 20px;
+            font-size: 1.4rem;
+            .status-span {
+                display: inline-block;
+                height: 10px;
+                width: 10px;
+                border-radius: 2px;
+                background-color: #fff;
+
+            }
+        }
+    }
+    .menu-tabs {
+        padding: 20px 0;
+        list-style: none;
+        .item-tab {
+            padding: 0 20px;
+            height: 40px;
+            line-height: 40px;
+            // border-bottom: 1px solid #eee;
+            font-size: 1.8rem;
+            letter-spacing: 2px;
+            color: #fff;
+            &.active {
+                background-color: $btn-bgcolor;
+            }
+        }
+
+    }
+}
+
+.wrapper-content {
+    margin-left: 220px;
+    background-color: $content-bgcolor;
+    .content-title {
+        padding-left: 40px;
+        height: 60px;
+        line-height: 60px;
+        font-size: 2.0rem;
+        color: #000;
+        background-color: #fff;
+        border-bottom: 2px solid #eee;
+
+    }
+    .content-detail {
+        margin: 0 auto;
+        width: 96%;
+        height: 600px;
+        .detail-choosebar {
+            height: 80px;
+            border-radius: 5px;
+            box-shadow: 2px 2px 4px 4px #eee;
+            background-color: #fff;
+            .choosebar-content {
+                display: inline-block;
+                height: 80px;
+                line-height: 80px;
+                .select-title {
+                    font-size: 1.8rem;
+                    letter-spacing: 2px;
+                    padding: 0 10px;
+                }
+                .choose-market {
+                    width: 160px;
+                    height: 40px;
+                    text-align: center;
+                    text-align-last: center;
+                    border: 1px solid #eee;
+                    background-color: #fff;
+                    option {
+                        height: 20px;
+                        text-align: center;
+                    }
+                }
+            }
+            .choosebar-left {
+                float: left;
+                margin-left: 20px;
+                .time-selects {
+                    display: inline-block;
+                    height: 40px;
+                    line-height: 40px;
+                    text-align: center;
+                    border: 1px solid #000;
+                    border-radius: 4px;
+                    font-size: 0;
+                    & input {
+                        width: 100px;
+                        height: 34px;
+                        text-align: center;
+                        border: 0;
+                        font-size: 1.4rem;
+                        letter-spacing: 1.2px;
+                    }
+                    & .middle-text {
+                        display: inline-block;
+                        padding: 0 5px;
+                        height: 38px;
+                        line-height: 38px;
+                        font-size: 1.4rem;
+                        background-color: $btn-bgcolor;
+                    }
+
+                }
+                button[name="btn-output"] {
+                    margin-top: -4px;
+                    margin-left: 40px;
+                    padding: 0;
+                    width: 100px;
+                    height: 40px;
+                    line-height: 40px;
+                    text-align: center;
+                    vertical-align: middle;
+                    font-size: 18px;
+                    background-color: $btn-bgcolor;
+                }
+            }
+            .choosebar-right {
+                float: right;
+                margin-right: 40px;
+                padding-top: 20px;
+                width: 120px;
+                .btn-add-data {
+                    height: 42px;
+                    border: 1px solid #eee;
+                    border-radius: 4px;
+                    cursor: pointer;
+                    background-color: gray;
+                }
+                .add-data-content {
+                    display: inline-block;
+                    height: 40px;
+                    line-height: 40px;
+                    vertical-align: top;
+                    font-size: 1.8rem;
+                    color: #fff;
+                }
+                .left-section {
+                    padding-left: 12px;
+                    width: 30px;
+                    border-radius:0 20px 20px 0;
+                    background-color: $btn-bgcolor;
+                }
+                .right-section {
+
+                }
+            }
+        }
+        .detail-list {
+
+        }
+    }
+}
