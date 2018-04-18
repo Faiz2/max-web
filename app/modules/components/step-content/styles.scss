@@ -1,0 +1,97 @@
+.step-content-wrapper {
+    position: relative;
+    margin: 40px auto 0;
+    width: 80%;
+    height: 600px;
+    background-color: #fff;
+    box-shadow: 2px 2px 4px 4px #eee;
+    border-radius: 5px;
+    .step-left, .step-right {
+        float: left;
+        padding-top: 60px;
+        width: 50%;
+        height: 100%;
+        text-align: center;
+        p {
+            display: inline-block;
+            margin: 0 atuo;
+            margin-bottom: 0;
+            width: 60%;
+            height: 26px;
+            line-height: 26px;
+            font-size: 1.6rem;
+            span:first-child {
+                float: left;
+            }
+            span:last-child {
+                float: right;
+                font-size: 1.2rem;
+
+            }
+        }
+        .upload-area {
+            display: inline-block;
+            margin: 0 auto;
+            width: 60%;
+            height: 360px;
+            border: 1px solid #eee;
+            .dropzone-upload-area {
+                padding-top: 30px;
+                height: 360px;
+                &.active {
+                    border-color: rgb(41,253,54);
+                }
+                img {
+                    width: 70%;
+                    height: 300px;
+                }
+            }
+            .click-upload {
+                position: relative;
+                margin-top: 20px;
+                padding-left: 40px;
+                height: 40px;
+                line-height: 40px;
+                text-align: left;
+                font-size: 1.6rem;
+                border: 1px solid #eee;
+            }
+            a {
+                position: absolute;
+                right: 0;
+                top: 0;
+                display: inline-block;
+                width: 80px;
+                height: 38px;
+                line-height: 38px;
+                text-align: center;
+                color: #fff;
+                background-color: $btn-bgcolor;
+                cursor: pointer;
+            }
+        }
+    }
+    .step-left {
+        background-color: red;
+
+    }
+    .step-right {
+        background-color: orange;
+
+    }
+    .to-second-step {
+        position: absolute;
+        right: 20px;
+        bottom: 20px;
+        width: 80px;
+        height: 40px;
+        line-height: 40px;
+        font-size: 1.8rem;
+        border: 0;
+        color: #fff;
+        background-color: $navbar-bgcolor;
+        &.useable {
+            background-color: $btn-bgcolor;
+        }
+    }
+}
