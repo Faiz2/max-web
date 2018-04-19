@@ -1,11 +1,13 @@
 .step-content-wrapper {
     position: relative;
     margin: 40px auto 0;
-    width: 80%;
+    width: 1200px;
     height: 600px;
     background-color: #fff;
     box-shadow: 2px 2px 4px 4px #eee;
     border-radius: 5px;
+
+    // 第一步的样式
     .step-left, .step-right {
         float: left;
         padding-top: 60px;
@@ -39,7 +41,7 @@
                 padding-top: 30px;
                 height: 360px;
                 &.active {
-                    border-color: rgb(41,253,54);
+                    border-color: $btn-bgcolor;
                 }
                 img {
                     width: 70%;
@@ -71,14 +73,6 @@
             }
         }
     }
-    .step-left {
-        background-color: red;
-
-    }
-    .step-right {
-        background-color: orange;
-
-    }
     .to-second-step {
         position: absolute;
         right: 20px;
@@ -90,8 +84,108 @@
         border: 0;
         color: #fff;
         background-color: $navbar-bgcolor;
+        cursor: pointer;
+        disable: true;
         &.useable {
             background-color: $btn-bgcolor;
         }
     }
+    // end 第一步样式
+
+    // 第二步样式
+    .step-two-content {
+        margin: 0 auto;
+        padding-top: 80px;
+        width: 50%;
+        p.explain {
+            margin: 0;
+            font-size: 1.4rem;
+
+        }
+        p.file-name {
+            margin: 15px 0;
+            height: 20px;
+            line-height: 20px;
+            font-size: 1.8rem;
+            letter-spacing: 2px;
+            span {
+                float: left;
+                width: 50%;
+                text-align: left;
+            }
+
+        }
+        .btn-start {
+            position: relative;
+            margin: 100px auto 0;
+            width: 200px;
+            height: 200px;
+            line-height: 200px;
+            border: 1px solid $btn-bgcolor;
+            border-radius: 50%;
+            font-size: 32px;
+            color: #fff;
+
+            .btn-start-content {
+                position: absolute;
+                left: 50%;
+                top: 50%;
+                transform: translate(-50%, -50%);
+                width: 180px;
+                height: 180px;
+                line-height: 180px;
+                border-radius: 50%;
+                text-align: center;
+                background-color: $btn-bgcolor;
+            }
+        }
+        p.reupload {
+            margin-top: 40px;
+            height: 40px;
+            line-height: 40px;
+            text-align: center;
+            font-size: 18px;
+            cursor: pointer;
+        }
+
+    }
+    // 弹窗样式
+    // .modal {
+    //     position: fixed;
+    //     left: 0;
+    //     top: 0;
+    //     width: 100%;
+    //     height: 100%;
+    //     background-color: rgba(0, 0, 0, .6);
+    //     .modal-content {
+    //         position: absolute;
+    //         top: 50%;
+    //         left: 50%;
+    //         transform: translate(-50%, -50%);
+    //         width: 360px;
+    //         height: 240px;
+    //         background-color: #fff;
+    //         .modal-header p {
+    //             padding: 5px 10px;
+    //             border-bottom: 1px solid #eee;
+    //             font-size: 1.6rem;
+    //         }
+    //         .modal-body {
+    //             p {
+    //                 padding: 15px;
+    //                 font-size: 1.8rem
+    //             }
+    //             div.modal-btn-area {
+    //                 position: absolute;
+    //                 bottom: 10px;;
+    //
+    //             }
+    //         }
+    //     }
+    // }
+    // .hidden {
+    //     display: none;
+    // }
+    // end 第二步样式
+
 }

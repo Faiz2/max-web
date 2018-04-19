@@ -1,82 +1,123 @@
-{{#if hasBlock}}
+{{!-- {{#if hasBlock}}
 {{yield}}
-
-{{else}}
+{{else}} --}}
 <div local-class="step-content-wrapper">
-    <div local-class="step-left">
-        <p><span>请上传CPA文件</span> <span>(仅支持：excel)</span> </p>
-        {{#file-dropzone name="file-one" local-class='upload-area' as |dropzone queue|}}
-          <div local-class="dropzone-upload-area" class={{concat 'upload ' (if dropzone.active 'active')}}>
-            {{#if dropzone.supported}}
-              <div local-class="">
-                {{#if dropzone.active}}
-                  {{#if dropzone.valid}}
-                    <img src="./test.jpg" alt="">
-                  {{else}}
-                    b🐮
-                  {{/if}}
-                {{else}}
-                  <img src="./test.jpg" alt="">
+    {{#if isStepOne}}
+        <div local-class="step-left">
+            <p><span>请上传CPA文件</span> <span>(仅支持：excel)</span> </p>
+            {{#file-dropzone name="file-one" local-class='upload-area' as |dropzone queue|}}
+              <div local-class="dropzone-upload-area" class={{concat 'upload ' (if dropzone.active 'active')}}>
+                {{#if dropzone.supported}}
+                  <div local-class="">
+                    {{#if dropzone.active}}
+                      {{#if dropzone.valid}}
+                        <img src="./test.jpg" alt="">
+                      {{else}}
+                        b🐮
+                      {{/if}}
+                    {{else}}
+                      <img src="./test.jpg" alt="">
+                    {{/if}}
+                  </div>
                 {{/if}}
               </div>
-            {{/if}}
-
-          </div>
-          <div local-class="click-upload">
-              {{#if dropzone.supported}}
-                {{!-- Drag your proof or --}}
-              {{/if}}
-              {{#file-upload name="photos"
-                            multiple=false
-                            onfileadd=(action "clToUploadFiles")
-                            accept="image/*,video/*,audio/*,vnd.ms-excel/*"}}
-                {{#if queue.files.length}}
-                  {{filename}}
-                {{/if}}<a>选择文件</a>
-              {{/file-upload}}
-          </div>
-        {{/file-dropzone}}
-        {{!-- <div local-class="upload-area">
-            {{upload-files index=0}}
-        </div> --}}
-    </div>
-
-    <div local-class="step-right">
-        <p><span>请上传国药诚信文件</span> <span>(仅支持：excel)</span> </p>
-        {{#file-dropzone name="file-two" local-class='upload-area' as |dropzone queue|}}
-          <div local-class="dropzone-upload-area" class={{concat 'upload ' (if dropzone.active 'active')}}>
-            {{#if dropzone.supported}}
-              <div local-class="">
-                {{#if dropzone.active}}
-                  {{#if dropzone.valid}}
-                    <img src="./test.jpg" alt="">
-                  {{else}}
-                    b🐮
+              <div local-class="click-upload">
+                  {{#if dropzone.supported}}
+                    {{!-- Drag your proof or --}}
                   {{/if}}
-                {{else}}
-                  <img src="./test.jpg" alt="">
+                  {{#file-upload name="file-one"
+                                multiple=false
+                                onfileadd=(action "UploadFilesone")
+                                accept="image/*,video/*,audio/*,vnd.ms-excel/*"}}
+                    {{#if filenameone}}
+                      {{filenameone}}
+                    {{/if}}<a>选择文件</a>
+                  {{/file-upload}}
+              </div>
+            {{/file-dropzone }}
+            {{!-- <div local-class="upload-area">
+                {{upload-files index=0}}
+            </div> --}}
+        </div>
+
+        <div local-class="step-right">
+            <p><span>请上传国药诚信文件</span> <span>(仅支持：excel)</span> </p>
+
+            {{#file-dropzone name="file-two" local-class='upload-area' as |dropzone queue|}}
+              <div local-class="dropzone-upload-area" class={{concat 'upload ' (if dropzone.active 'active')}}>
+                {{#if dropzone.supported}}
+                  <div local-class="">
+                    {{#if dropzone.active}}
+                      {{#if dropzone.valid}}
+                        <img src="./test.jpg" alt="">
+                      {{else}}
+                        b🐮
+                      {{/if}}
+                    {{else}}
+                      <img src="./test.jpg" alt="">
+                    {{/if}}
+                  </div>
                 {{/if}}
               </div>
-            {{/if}}
-          </div>
-          <div local-class="click-upload">
-              {{#if dropzone.supported}}
-                {{!-- Drag your proof or --}}
-              {{/if}}
-              {{#file-upload name="photos"
-                            multiple=false
-                            onfileadd=(action "UploadFilesss")
-                            accept="image/*,video/*,audio/*,vnd.ms-excel/*"}}
-                {{#if queue.files.length}}
-                  {{filename}}
-                {{/if}}<a>选择文件</a>
-              {{/file-upload}}
-          </div>
-        {{/file-dropzone}}
-        {{!-- <div local-class="upload-area">
-            {{upload-files index=1}}
-        </div> --}}
-    </div>
-        <button local-class="to-second-step" type="button" name="btn-second-step">下一步</button>
+              <div local-class="click-upload">
+                  {{#if dropzone.supported}}
+                    {{!-- Drag your proof or --}}
+                  {{/if}}
+                  {{#file-upload name="file-two"
+                                multiple=false
+                                onfileadd=(action "UploadFilestwo")
+                                accept="image/*,video/*,audio/*,vnd.ms-excel/*"}}
+                    {{#if filenametwo}}
+                      {{filenametwo}}
+                    {{/if}}<a>选择文件</a>
+                  {{/file-upload}}
+              </div>
+            {{/file-dropzone }}
+            {{!-- <div local-class="upload-area">
+                {{upload-files index=1}}
+            </div> --}}
+        </div>
+        {{!-- 下一步正确逻辑 下方四行--}}
+        {{!-- {{#if isDisabled}}
+            <button disabled=true local-class="to-second-step" type="button" name="btn-second-step">下一步</button>
+        {{else}}
+            <button{{action "toSecond"}} local-class={{unless isDisabled "useable"}} local-class="to-second-step" type="button" name="btn-second-step">下一步</button>
+        {{/if}} --}}
+        {{!-- 下一步正确逻辑 上方四行 --}}
+        {{!-- 下一步测试逻辑 --}}
+        <button {{action "toSecond"}}  local-class="to-second-step useable" type="button" name="btn-second-step">下一步</button>
+    {{else if isStepTwo}}
+        <div local-class="step-two-content">
+            <p  local-class="explain-text">将对你本次上传的源文件</p>
+            <p local-class="file-name"><span>CAP：{{if filenameone filenameone "文件名"}}</span> <span>GYCX： {{if filenametwo filenametwo "文件名"}}</span></p>
+            <p  local-class="explain-text">进行清洗、过滤后，生成本次计算的样本</p>
+            <div local-class="btn-start">
+                <div local-class="btn-start-content">
+                开始
+                </div>
+            </div>
+            <p local-class="reupload">{{#bs-button onClick=(action (mut modal3) true)}}上传错误？重新上传{{/bs-button}}</p>
+            {{#bs-modal open=modal3 onHidden=(action (mut modal3) false) as |modal|}}
+              {{#modal.header}}
+                <h4 class="modal-title">
+                  提示
+                </h4>
+              {{/modal.header}}
+              {{#modal.body}}
+                <p>是否重新上传原文件</p>
+              {{/modal.body}}
+              {{#modal.footer}}
+                {{#bs-button onClick=(action modal.close)}}取消{{/bs-button}}
+                {{#bs-button  onClick=(action 'reUpload')}}重新上传{{/bs-button}}
+              {{/modal.footer}}
+            {{/bs-modal}}
+        </div>
+
+    {{else if isStepThree}}
+    {{else}}
+    {{/if}}
+
 </div>
-{{/if}}
+
+
+{{!-- {{/if}} --}}

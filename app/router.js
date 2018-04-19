@@ -12,7 +12,6 @@ Router.map(function() {
    * @type {String}
    */
   this.route('page-not-found', {path: '/*path'});
-  this.route('application-index', { path: '/' });
   this.route('adddata');
 });
 
