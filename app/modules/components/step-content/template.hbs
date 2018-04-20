@@ -225,9 +225,66 @@
         {{/unless}}
     {{else if isStepThree}}
         <div local-class="step-three-content">
-            third step
+            <p local-class="explain-text">本次计算预估耗时 <span>30</span> 分钟，请确保您的装置电量充足，
+            保持联网，在计算完成前，请勿关闭本界面</p>
+             {{#unless isShowCalcProgress}}
+            <div local-class="btn-start" {{action "startCalcMAX"}}>
+              <div local-class="btn-start-content">
+                开始计算
+              </div>
+            </div>
+            {{else }}
+              {{#unless calcHasDone}}
+                <div local-class="calc-progress">
+                  <div local-class="calc-progress-content">
+                    滚动
+                  </div>
+                </div>
+              {{else }}
+              <div local-class="calc-progress">
+                <div local-class="calc-progress-content">
+                  100%
+                </div>
+              </div>
+              {{/unless}}
+              
+            {{/unless}}
+             {{#unless isShowCalcProgress}}
+              <p local-class="calc-progress-text">准备计算。。。</p>
+            {{else}}
+              {{#unless calcHasDone}}
+                <p local-class="calc-progress-text">正在进行MAX计算。。。</p>
+                {{else}}
+                <p local-class="calc-progress-text">
+                  {{#link-to "adddata.fourth-step"}}
+                    <button local-class="btn-default-max">查看结果></button> 
+                  {{/link-to}}
+                  </p>
+              {{/unless}}
+            {{/unless}}
         </div>
     {{else}}
+        <div local-class="step-four-content">
+            <div local-class="result-choosebar">
+              <div local-class="choosebar-content choosebar-left">
+                <span local-class="select-title">市场</span>
+                <select local-class="choose-select choose-market" name="">
+                  <option>Markone</option>
+                  <option>Markone</option>
+                  <option>Markone</option>
+                </select>
+                <span local-class="select-title">月份</span>
+                <select local-class="choose-select choose-month" name="">
+                  <option>04/2017</option>
+                  <option>04/2017</option>
+                  <option>04/2017</option>
+                </select>
+              </div>
+              <div local-class="choosebar-content choosebar-right">
+                <button local-class="btn-default-max" type="button" name="button">导出</button>
+              </div>
+            </div>
+        </div>
     {{/if}}
 </div>
 {{#bs-modal class="hint-area" open=modal3 onHidden=(action (mut modal3) false) as |modal|}}
