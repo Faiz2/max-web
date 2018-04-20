@@ -18,7 +18,6 @@ module.exports = function(defaults) {
                     hexRGBA: false,
                     fallbacks: true
                 })
-
             ]
         },
         'ember-bootstrap': {
@@ -28,6 +27,9 @@ module.exports = function(defaults) {
         },
         babel: {
             sourceMaps: sourceMap
+        },
+        flatpickr: {
+          theme: 'material_blue'
         }
     });
 

@@ -1,0 +1,38 @@
+// @media (min-width: 1200px) {
+    .self-navbar {
+        height: 60px;
+        line-height: 60px;
+        border: 0;
+        border-radius: 0;
+        background-color: $navbar-bgcolor;
+        color: #fff;
+    }
+    .self-navbar-title {
+        position: relative;
+        margin: 0;
+        font-size: $max-font-size-title;
+    }
+    .center {
+        position: relative;
+        left: 50%;
+        transform: translate(-50%);
+        margin: 0;
+        font-size: $max-font-size-title;
+    }
+    .bnt-close {
+        position: absolute;
+        right: 20px;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 30px;
+        height: 30px;
+        line-height: 30px;
+        border-radius: 50%;
+        text-align: center;
+        background-color: #eee;
+        cursor: pointer;
+    }
+    .hidden {
+        display: none;
+    }
+// }

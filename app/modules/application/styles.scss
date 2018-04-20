@@ -1,0 +1,12 @@
+@import 'bootstrap';
+$navbar-bgcolor: #737373;
+$content-bgcolor: #fafafa;
+$btn-bgcolor: #60b3ad;
+
+$max-font-size-title:  2.2rem;;
+$max-font-size-content: 1.4rem;
+html {
+    height: 100%;
+    background-color: $content-bgcolor;
+    font-size: 10px;
+}
