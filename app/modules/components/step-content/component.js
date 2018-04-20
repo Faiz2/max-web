@@ -1,15 +1,16 @@
 import Component from '@ember/component';
-
+import Route from '@ember/routing/route';
 const { set,get } = Ember;
 
 export default Component.extend({
-    filenameone:null,
-    filenametwo:null,
+    filenameone: "",
+    filenametwo: "",
     isDisabled: true,
-    isStepOne: true,
-    isStepTwo: false,
-    isStepThree: false,
-    isStepFour: false,
+    isShowProgress: false,
+    isUploadRight: true,  // 文件解析过程中是否正确
+    progressRight: false,   // 文件解析正确弹窗
+    progressWrong: false,   // 文件解析错误弹窗
+    hasResult: false,   // 文件解析是否有结果
     actions: {
         // 第一个上传文件按钮
         UploadFilesone(file) {
@@ -45,24 +46,31 @@ export default Component.extend({
             }, () => {});
         },
 
-        // 进入step two的‘下一步’按钮
-        toSecond() {
-            console.log('has clicked and ');
-            set(this,'isStepOne',false);
-            set(this,'isStepTwo',true);
-            // setupController(controller) {
-            //     this._super(...arguments);
-            //     controller.set('stepTwo',true)
-            // };
+        // step two 中的开始按钮
+        startCalc() {
+            set(this, 'isShowProgress', true);
+            set(this, 'isUploadRight', true);
+            if (this.get('isUploadRight') === true) {
+                Ember.run.later(()=> {
+                    set(this, 'progressRight', true);
+                }, 1800);
+            } else {
+                Ember.run.later(()=> {
+                    set(this, 'progressWrong', true);
+                }, 1800);
+            }
         },
 
-        //重新上传文件按钮
-        reUpload() {
-            // set(this, 'showCheckReUpload', true)
-            set(this,'isStepOne',true);
-            set(this,'isStepTwo',false);
-            set(this,'modal3',false)
-        },
+        // 文件解析成功
+        calcRight() {
+            console.log('right');
+            set(this, 'progressRight', false);
+            Ember.run.later(()=> {
+                // set(this, 'isStepTwo', false);
+                // set(this, 'isStepThree', true);
+                set(this, 'hasResult', true);
+            }, 1800);
+        }
 
     }
 });

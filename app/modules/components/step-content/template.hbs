@@ -1,7 +1,7 @@
-{{!-- {{#if hasBlock}}
+{{#if hasBlock}}
 {{yield}}
-{{else}} --}}
-<div local-class="step-content-wrapper">
+{{else}}
+<div local-class={{unless hasResult "step-content-wrapper" "step-content-wrapper-noshadow"}}>
     {{#if isStepOne}}
         <div local-class="step-left">
             <p><span>请上传CPA文件</span> <span>(仅支持：excel)</span> </p>
@@ -11,12 +11,12 @@
                   <div local-class="">
                     {{#if dropzone.active}}
                       {{#if dropzone.valid}}
-                        <img src="./test.jpg" alt="">
+                        <img src="../setup/test.jpg" alt="">
                       {{else}}
                         b🐮
                       {{/if}}
                     {{else}}
-                      <img src="./test.jpg" alt="">
+                      <img src="../setup/test.jpg" alt="">
                     {{/if}}
                   </div>
                 {{/if}}
@@ -42,19 +42,18 @@
 
         <div local-class="step-right">
             <p><span>请上传国药诚信文件</span> <span>(仅支持：excel)</span> </p>
-
             {{#file-dropzone name="file-two" local-class='upload-area' as |dropzone queue|}}
               <div local-class="dropzone-upload-area" class={{concat 'upload ' (if dropzone.active 'active')}}>
                 {{#if dropzone.supported}}
                   <div local-class="">
                     {{#if dropzone.active}}
                       {{#if dropzone.valid}}
-                        <img src="./test.jpg" alt="">
+                        <img src="../setup/test.jpg" alt="">
                       {{else}}
                         b🐮
                       {{/if}}
                     {{else}}
-                      <img src="./test.jpg" alt="">
+                      <img src="../setup/test.jpg" alt="">
                     {{/if}}
                   </div>
                 {{/if}}
@@ -85,39 +84,204 @@
         {{/if}} --}}
         {{!-- 下一步正确逻辑 上方四行 --}}
         {{!-- 下一步测试逻辑 --}}
-        <button {{action "toSecond"}}  local-class="to-second-step useable" type="button" name="btn-second-step">下一步</button>
+        {{#link-to "adddata.second-step"}}
+            <button  local-class="to-second-step useable" type="button" name="btn-second-step">下一步</button>
+        {{/link-to}}
     {{else if isStepTwo}}
-        <div local-class="step-two-content">
-            <p  local-class="explain-text">将对你本次上传的源文件</p>
-            <p local-class="file-name"><span>CAP：{{if filenameone filenameone "文件名"}}</span> <span>GYCX： {{if filenametwo filenametwo "文件名"}}</span></p>
-            <p  local-class="explain-text">进行清洗、过滤后，生成本次计算的样本</p>
-            <div local-class="btn-start">
-                <div local-class="btn-start-content">
-                开始
+        {{#unless hasResult}}
+            <div local-class="step-two-content">
+                <p  local-class="explain-text">将对你本次上传的源文件</p>
+                <p local-class="file-name"><span>CAP：{{if filenameone filenameone "文件名"}}{{filenameone}}</span> <span>GYCX： {{if filenametwo filenametwo "文件名"}}</span></p>
+                <p  local-class="explain-text">进行清洗、过滤后，生成本次计算的样本</p>
+                {{#unless isShowProgress}}
+                <div local-class="btn-start" {{action "startCalc"}}>
+                    <div local-class="btn-start-content">
+                    开始
+                    </div>
+                </div>
+                {{else }}
+                <div local-class="calc-progress">
+                    <div local-class="calc-progress-content">
+                    滚动
+                    </div>
+                </div>
+                {{/unless}}
+                {{#unless isShowProgress}}
+                    <p local-class="reupload">{{#bs-button onClick=(action (mut modal3) true)}}上传错误？重新上传{{/bs-button}}</p>
+                {{else}}
+                    <p local-class="calc-progress-text">正在解析您的原文件。。。</p>
+                {{/unless}}
+            </div>
+        {{else}}
+            <div local-class="step-two-result">
+                <div local-class="result-choosebar">
+                    <div local-class="choosebar-content choosebar-left">
+                        <span local-class="select-title">市场</span><select local-class="choose-select choose-market" name="">
+                            <option>Markone</option>
+                            <option>Markone</option>
+                            <option>Markone</option>
+                        </select>
+                        <span local-class="select-title">月份</span><select local-class="choose-select choose-month" name="">
+                            <option>04/2017</option>
+                            <option>04/2017</option>
+                            <option>04/2017</option>
+                        </select>
+                        <button local-class="btn-default-max" type="button" name="button">导出</button>
+                    </div>
+                    <div local-class="choosebar-content choosebar-right">
+                        <button local-class="btn-default-max" type="button" name="button">重新上传</button>
+                        {{#link-to "adddata.third-step"}}
+                            <button local-class="btn-default-max" type="button" name="button">下一步</button>
+                        {{/link-to}}
+                    </div>
+                </div>
+                <div local-class="result-item hospital-sample">
+                    <p local-class="item-title">INF 市场 医院样本数量</p>
+                    <div local-class="item-legend">
+                      {{!-- <div local-class="legend-left">
+                        <span local-class="legend-left-icon"></span>
+                        <span local-class="legend-left-text">当月样本数</span>
+                        <span local-class="legend-left-icon"></span>
+                        <span local-class="legend-left-text">去年个月样本数趋势</span>
+                      </div> --}}
+                      <div local-class="legend-right">
+                        <div local-class="legend-right-left">
+                          <p>-5%</p>
+                          <p>样本误差率</p>
+                        </div>
+                        <div local-class="legend-right-center">
+                          <p>912个</p>
+                          <p>本月样本数</p>
+                        </div>
+                        <div local-class="legend-right-right">
+                          <p>960个</p>
+                          <p>去年同月样本数</p>
+                        </div>
+                      </div>
+                    </div>
+                    <div local-class="item-chart">
+                      <img src="../setup/test.jpg" width="100%" height="100%" alt="">
+                    </div>
+                </div>
+                <div local-class="result-item prod-sample">
+                    <p local-class="item-title">INF 市场 产品样本数量</p>
+                    <div local-class="item-legend">
+                      {{!--
+                      <div local-class="legend-left">
+                        <span local-class="legend-left-icon"></span>
+                        <span local-class="legend-left-text">当月样本数</span>
+                        <span local-class="legend-left-icon"></span>
+                        <span local-class="legend-left-text">去年个月样本数趋势</span>
+                      </div> --}}
+                      <div local-class="legend-right">
+                        <div local-class="legend-right-left">
+                          <p>-5%</p>
+                          <p>样本误差率</p>
+                        </div>
+                        <div local-class="legend-right-center">
+                          <p>912个</p>
+                          <p>本月样本数</p>
+                        </div>
+                        <div local-class="legend-right-right">
+                          <p>960个</p>
+                          <p>去年同月样本数</p>
+                        </div>
+                      </div>
+                    </div>
+                    <div local-class="item-chart">
+                      <img src="../setup/test.jpg" width="100%" height="100%" alt="">
+                    </div>
+                </div>
+                <div local-class="result-item sample-sales">
+                    <p local-class="item-title">INF 市场 样本销售额</p>
+                    <div local-class="item-legend">
+                      {{!--
+                      <div local-class="legend-left">
+                        <span local-class="legend-left-icon"></span>
+                        <span local-class="legend-left-text">当月样本数</span>
+                        <span local-class="legend-left-icon"></span>
+                        <span local-class="legend-left-text">去年个月样本数趋势</span>
+                      </div> --}}
+                      <div local-class="legend-right">
+                        <div local-class="legend-right-left">
+                          <p>-5%</p>
+                          <p>样本误差率</p>
+                        </div>
+                        <div local-class="legend-right-center">
+                          <p>912个</p>
+                          <p>本月样本数</p>
+                        </div>
+                        <div local-class="legend-right-right">
+                          <p>960个</p>
+                          <p>去年同月样本数</p>
+                        </div>
+                      </div>
+                    </div>
+                    <div local-class="item-chart">
+                      <img src="../setup/test.jpg" width="100%" height="100%" alt="">
+                    </div>
                 </div>
             </div>
-            <p local-class="reupload">{{#bs-button onClick=(action (mut modal3) true)}}上传错误？重新上传{{/bs-button}}</p>
-            {{#bs-modal open=modal3 onHidden=(action (mut modal3) false) as |modal|}}
-              {{#modal.header}}
-                <h4 class="modal-title">
-                  提示
-                </h4>
-              {{/modal.header}}
-              {{#modal.body}}
-                <p>是否重新上传原文件</p>
-              {{/modal.body}}
-              {{#modal.footer}}
-                {{#bs-button onClick=(action modal.close)}}取消{{/bs-button}}
-                {{#bs-button  onClick=(action 'reUpload')}}重新上传{{/bs-button}}
-              {{/modal.footer}}
-            {{/bs-modal}}
-        </div>
-
+        {{/unless}}
     {{else if isStepThree}}
+        <div local-class="step-three-content">
+            third step
+        </div>
     {{else}}
     {{/if}}
-
 </div>
-
-
-{{!-- {{/if}} --}}
+{{#bs-modal class="hint-area" open=modal3 onHidden=(action (mut modal3) false) as |modal|}}
+  {{#modal.header}}
+    <h4 class="modal-title">
+      提示
+    </h4>
+  {{/modal.header}}
+  {{#modal.body}}
+    <p>是否重新上传原文件</p>
+  {{/modal.body}}
+  {{#modal.footer}}
+    {{#bs-button onClick=(action modal.close)}}取消{{/bs-button}}
+    {{#link-to "adddata.first-step"}}
+        {{#bs-button }}重新上传{{/bs-button}}
+    {{/link-to}}
+  {{/modal.footer}}
+{{/bs-modal}}
+  {{#if isUploadRight}}
+      {{#bs-modal class="hint-area" open=progressRight  onHidden=(action (mut progressRight) false) as |modal|}}
+        {{#modal.header}}
+          <h4 class="modal-title">
+            选择月份
+          </h4>
+        {{/modal.header}}
+        {{#modal.body}}
+          <p>本次上传件中含以下几个月份，</p>
+          <p>请选择要进行计算的月份：</p>
+        {{/modal.body}}
+        {{#modal.footer}}
+          {{#bs-button onClick=(action modal.close)}}关闭选择{{/bs-button}}
+          {{#bs-button  onClick=(action 'calcRight')}}确认{{/bs-button}}
+        {{/modal.footer}}
+      {{/bs-modal}}
+  {{else}}
+      {{#bs-modal class="hint-area" open=progressWrong  onHidden=(action (mut progressWrong) false) as |modal|}}
+        {{#modal.header}}
+          <h4 class="modal-title">
+            提示
+          </h4>
+        {{/modal.header}}
+        {{#modal.body}}
+          <p local-class="download-model">下载文件格式范本</p>
+          <p>原因可能为：</p>
+          <p>1.原文件格式可能有误。</p>
+          <p>2.原文件不含有月份的数值。</p>
+          <p>3.原文件上传错误。</p>
+          <p>请检查原文件，并重新上传正确的原文件。</p>
+        {{/modal.body}}
+        {{#modal.footer}}
+          {{#link-to "adddata.first-step"}}
+              {{#bs-button }}重新上传{{/bs-button}}
+          {{/link-to}}
+        {{/modal.footer}}
+      {{/bs-modal}}
+  {{/if}}
+{{/if}}

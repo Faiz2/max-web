@@ -1,3 +1,19 @@
+
+/**
+*
+*为第二步结果页面设置wrapper样式
+*/
+.step-content-wrapper-noshadow {
+    position: relative;
+    margin: 40px auto 0;
+    width: 1200px;
+    background-color: #fff;
+    border-radius: 5px;
+}
+/**
+*
+*基本wrapper样式
+*/
 .step-content-wrapper {
     position: relative;
     margin: 40px auto 0;
@@ -6,186 +22,323 @@
     background-color: #fff;
     box-shadow: 2px 2px 4px 4px #eee;
     border-radius: 5px;
+}
 
-    // 第一步的样式
-    .step-left, .step-right {
-        float: left;
-        padding-top: 60px;
-        width: 50%;
-        height: 100%;
-        text-align: center;
-        p {
-            display: inline-block;
-            margin: 0 atuo;
-            margin-bottom: 0;
-            width: 60%;
-            height: 26px;
-            line-height: 26px;
-            font-size: 1.6rem;
-            span:first-child {
-                float: left;
-            }
-            span:last-child {
-                float: right;
-                font-size: 1.2rem;
-
-            }
+/**
+*
+*第一步的样式
+*/
+.step-left, .step-right {
+    float: left;
+    padding-top: 60px;
+    width: 50%;
+    height: 100%;
+    text-align: center;
+    p {
+        display: inline-block;
+        margin: 0 atuo;
+        margin-bottom: 0;
+        width: 60%;
+        height: 26px;
+        line-height: 26px;
+        font-size: 1.6rem;
+        span:first-child {
+            float: left;
         }
-        .upload-area {
-            display: inline-block;
-            margin: 0 auto;
-            width: 60%;
-            height: 360px;
-            border: 1px solid #eee;
-            .dropzone-upload-area {
-                padding-top: 30px;
-                height: 360px;
-                &.active {
-                    border-color: $btn-bgcolor;
-                }
-                img {
-                    width: 70%;
-                    height: 300px;
-                }
-            }
-            .click-upload {
-                position: relative;
-                margin-top: 20px;
-                padding-left: 40px;
-                height: 40px;
-                line-height: 40px;
-                text-align: left;
-                font-size: 1.6rem;
-                border: 1px solid #eee;
-            }
-            a {
-                position: absolute;
-                right: 0;
-                top: 0;
-                display: inline-block;
-                width: 80px;
-                height: 38px;
-                line-height: 38px;
-                text-align: center;
-                color: #fff;
-                background-color: $btn-bgcolor;
-                cursor: pointer;
-            }
+        span:last-child {
+            float: right;
+            font-size: 1.2rem;
         }
     }
-    .to-second-step {
-        position: absolute;
-        right: 20px;
-        bottom: 20px;
-        width: 80px;
-        height: 40px;
-        line-height: 40px;
+    .upload-area {
+        display: inline-block;
+        margin: 0 auto;
+        width: 60%;
+        height: 360px;
+        border: 1px solid #eee;
+        .dropzone-upload-area {
+            padding-top: 30px;
+            height: 360px;
+            &.active {
+                border-color: $btn-bgcolor;
+            }
+            img {
+                width: 70%;
+                height: 300px;
+            }
+        }
+        .click-upload {
+            position: relative;
+            margin-top: 20px;
+            padding-left: 40px;
+            height: 40px;
+            line-height: 40px;
+            text-align: left;
+            font-size: 1.6rem;
+            border: 1px solid #eee;
+        }
+        a {
+            position: absolute;
+            right: 0;
+            top: 0;
+            display: inline-block;
+            width: 80px;
+            height: 38px;
+            line-height: 38px;
+            text-align: center;
+            color: #fff;
+            background-color: $btn-bgcolor;
+            cursor: pointer;
+        }
+    }
+}
+.to-second-step {
+    position: absolute;
+    right: 20px;
+    bottom: 20px;
+    width: 80px;
+    height: 40px;
+    line-height: 40px;
+    font-size: 1.8rem;
+    border: 0;
+    color: #fff;
+    background-color: $navbar-bgcolor;
+    cursor: pointer;
+    disable: true;
+    &.useable {
+        background-color: $btn-bgcolor;
+    }
+}
+/**
+*
+*end 第一步的样式
+*/
+
+/**
+*
+*第二步样式
+*/
+.step-two-content {
+    margin: 0 auto;
+    padding-top: 80px;
+    width: 50%;
+    p.explain {
+        margin: 0;
+        font-size: 1.4rem;
+
+    }
+    p.file-name {
+        margin: 15px 0;
+        height: 20px;
+        line-height: 20px;
         font-size: 1.8rem;
-        border: 0;
+        letter-spacing: 2px;
+        span {
+            float: left;
+            width: 50%;
+            text-align: left;
+        }
+
+    }
+    .btn-start {
+        position: relative;
+        margin: 100px auto 0;
+        width: 200px;
+        height: 200px;
+        line-height: 200px;
+        border: 1px solid $btn-bgcolor;
+        border-radius: 50%;
+        font-size: 32px;
         color: #fff;
-        background-color: $navbar-bgcolor;
         cursor: pointer;
-        disable: true;
-        &.useable {
+
+        .btn-start-content {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            width: 180px;
+            height: 180px;
+            line-height: 180px;
+            border-radius: 50%;
+            text-align: center;
             background-color: $btn-bgcolor;
         }
     }
-    // end 第一步样式
+    .calc-progress {
+        position: relative;
+        margin: 100px auto 0;
+        width: 200px;
+        height: 200px;
+        line-height: 200px;
+        border: 5px solid #eee;
+        border-radius: 50%;
+        text-align: center;
+        font-size: 32px;
 
-    // 第二步样式
-    .step-two-content {
-        margin: 0 auto;
-        padding-top: 80px;
-        width: 50%;
-        p.explain {
-            margin: 0;
-            font-size: 1.4rem;
+        color: $btn-bgcolor;
+    }
+    p.reupload {
+        margin-top: 40px;
+        height: 40px;
+        line-height: 40px;
+        text-align: center;
+        font-size: 18px;
+        cursor: pointer;
+    }
+    p.calc-progress-text {
+        margin-top: 40px;
+        height: 40px;
+        line-height: 40px;
+        text-align: center;
+        font-size: 18px;
+    }
 
-        }
-        p.file-name {
-            margin: 15px 0;
-            height: 20px;
-            line-height: 20px;
-            font-size: 1.8rem;
-            letter-spacing: 2px;
-            span {
+}
+.step-two-result {
+        .result-choosebar {
+            height: 80px;
+            border-radius: 5px;
+            box-shadow: 2px 2px 4px 4px #eee;
+            background-color: #fff;
+            .choosebar-content {
+                display: inline-block;
+                height: 80px;
+                line-height: 80px;
+                .select-title {
+                    font-size: 1.8rem;
+                    letter-spacing: 2px;
+                    padding: 0 10px;
+                }
+                .choose-select {
+                    width: 160px;
+                    height: 40px;
+                    text-align: center;
+                    text-align-last: center;
+                    border: 1px solid #eee;
+                    background-color: #fff;
+                    option {
+                        height: 20px;
+                        text-align: center;
+                    }
+                }
+            }
+            .choosebar-left {
                 float: left;
-                width: 50%;
-                text-align: left;
+                margin-left: 20px;
             }
-
-        }
-        .btn-start {
-            position: relative;
-            margin: 100px auto 0;
-            width: 200px;
-            height: 200px;
-            line-height: 200px;
-            border: 1px solid $btn-bgcolor;
-            border-radius: 50%;
-            font-size: 32px;
-            color: #fff;
-
-            .btn-start-content {
-                position: absolute;
-                left: 50%;
-                top: 50%;
-                transform: translate(-50%, -50%);
-                width: 180px;
-                height: 180px;
-                line-height: 180px;
-                border-radius: 50%;
-                text-align: center;
-                background-color: $btn-bgcolor;
+            .choosebar-right {
+                float: right;
+                margin-right: 40px;
             }
-        }
-        p.reupload {
-            margin-top: 40px;
-            height: 40px;
-            line-height: 40px;
-            text-align: center;
-            font-size: 18px;
-            cursor: pointer;
         }
 
     }
-    // 弹窗样式
-    // .modal {
-    //     position: fixed;
-    //     left: 0;
-    //     top: 0;
-    //     width: 100%;
-    //     height: 100%;
-    //     background-color: rgba(0, 0, 0, .6);
-    //     .modal-content {
-    //         position: absolute;
-    //         top: 50%;
-    //         left: 50%;
-    //         transform: translate(-50%, -50%);
-    //         width: 360px;
-    //         height: 240px;
-    //         background-color: #fff;
-    //         .modal-header p {
-    //             padding: 5px 10px;
-    //             border-bottom: 1px solid #eee;
-    //             font-size: 1.6rem;
-    //         }
-    //         .modal-body {
-    //             p {
-    //                 padding: 15px;
-    //                 font-size: 1.8rem
-    //             }
-    //             div.modal-btn-area {
-    //                 position: absolute;
-    //                 bottom: 10px;;
-    //
-    //             }
-    //         }
-    //     }
-    // }
-    // .hidden {
-    //     display: none;
-    // }
-    // end 第二步样式
+// 结果条目样式，未来可能会封装成组件
+.result-item {
+    border-radius: 5px;
+    box-shadow: 2px 2px 4px 4px #eee;
+    background-color: #fff;
+    .item-title {
+    margin-top: 20px;
+    padding: 10px 20px;
+    height: 40px;
+    line-height: 20px;
+    font-size: 1.8rem;
+    }
+    .item-legend {
+        height: 50px;
+        .legend-right {
+            float: right;
+            width: 400px;
+            .legend-right-left {
+                display: inline-block;
+                padding: 0 10px;             
+                width: 100px;
+                height: 50px;
+                text-align: center;
+                p:first-child {
+                    margin: 0;
+                    height: 25px;
+                    border-radius: 4px;
+                    font-size: 14px;
+                    background-color: $btn-bgcolor;
+                }
+                p:last-child {
+                    margin: 0;                    
+                    height: 25px;
+                    border-radius: 4px;
+                    font-size: 14px;
+                }
 
+            }
+            .legend-right-center{
+                display: inline-block;
+                padding: 0 10px;
+                width: 100px;
+                height: 50px;
+                text-align: center;
+                p:first-child {
+                    margin: 0;
+                    height: 25px;
+                    border-radius: 4px;
+                    font-size: 14px;
+                }
+                p:last-child {
+                    margin: 0;
+                    height: 25px;
+                    border-radius: 4px;
+                    font-size: 14px;
+                }
+
+
+            }
+
+            .legend-right-right {
+                display: inline-block;
+                padding:0 10px;
+                width: 100x;
+                height: 50px;
+                text-align: center;
+                p:first-child {
+                    margin: 0;
+                    height: 25px;
+                    border-radius: 4px;
+                    font-size: 14px;
+                }
+
+                p:last-child {
+                    margin: 0;
+                    height: 25px;
+                    border-radius: 4px;
+                    font-size: 14px;
+                }
+
+            }
+
+        }
+    }
+    .item-chart {
+        height: 160px;
+    }
+}
+
+/**
+*
+*end 第二步样式
+*/
+
+/**
+*
+*btn 样式
+*/
+.btn-default-max {
+    padding:0 20px;
+    height: 40px;
+    line-height: 40px;
+    border: 0;
+    border-radius: 4px;
+    font-size: 16px;
+    color: #fff;
+    background-color: $btn-bgcolor;
 }
