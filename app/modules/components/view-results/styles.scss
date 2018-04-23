@@ -1,0 +1,77 @@
+/**
+*
+*btn 样式
+*/
+
+.btn-default-max {
+  padding: 0 20px;
+  height: 40px;
+  line-height: 40px;
+  border: 0;
+  border-radius: 4px;
+  font-size: 16px;
+  color: #fff;
+  background-color: $btn-bgcolor;
+}
+
+
+/**
+*
+*view-results样式
+*/
+/**
+*
+*为结果页面设置wrapper样式
+*/
+
+.step-content-wrapper-noshadow {
+  position: relative;
+  margin: 40px auto 0;
+  width: 1200px;
+  background-color: #fff;
+  border-radius: 5px;
+}
+
+.view-results-content {
+  .result-choosebar {
+    height: 80px;
+    border-radius: 5px;
+    box-shadow: 2px 2px 4px 4px #eee;
+    background-color: #fff;
+    .choosebar-content {
+      display: inline-block;
+      height: 80px;
+      line-height: 80px;
+      .select-title {
+        font-size: 1.8rem;
+        letter-spacing: 2px;
+        padding: 0 10px;
+      }
+      .choose-select {
+        width: 160px;
+        height: 40px;
+        text-align: center;
+        text-align-last: center;
+        border: 1px solid #eee;
+        background-color: #fff;
+        option {
+          height: 20px;
+          text-align: center;
+        }
+      }
+    }
+    .choosebar-left {
+      float: left;
+      margin-left: 20px;
+    }
+    .choosebar-right {
+      float: right;
+      margin-right: 40px;
+    }
+  }
+}
+
+/**
+*
+*end view-results样式
+*/
