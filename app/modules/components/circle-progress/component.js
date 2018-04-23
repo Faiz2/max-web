@@ -15,11 +15,11 @@ export default Component.extend({
                 this.get('poll').stopPollByLabel('test');
             }
         }
-        this.get('poll').addPoll({
-            interval: 1 * 1000,
-            callback: callbackFn,
-            label: 'test'
-        })
+        // this.get('poll').addPoll({
+        //     interval: 1 * 1000,
+        //     callback: callbackFn,
+        //     label: 'test'
+        // })
         this.set('option', {
                 title: {
                     text: '0%',
