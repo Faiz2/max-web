@@ -32,7 +32,8 @@ module.exports = function(defaults) {
           theme: 'material_blue'
         }
     });
-
+    app.import("vendor/echarts.js")
+    app.import("vendor/china.js")
       // Use `app.import` to add additional libraries to the generated
       // output files.
       //
