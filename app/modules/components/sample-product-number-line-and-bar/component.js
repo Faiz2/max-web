@@ -1,4 +1,4 @@
-import Component from '@ember/component';
+// import Component from '@ember/component';
 import SampleBaseOptionComponent from '../../common/echarts/sample-modules-base';
 
 import { later } from '@ember/runloop';

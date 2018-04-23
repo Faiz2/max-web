@@ -1,25 +1,9 @@
 import Component from '@ember/component';
-import SetPercent from './setPercent';
-import{ inject } from '@ember/service';
-// import { computed } from '@ember/object';
+
 
 export default Component.extend({
-    poll: inject(),
     init() {
         this._super(...arguments);
-        let objSetPercent = SetPercent.create();
-        const callbackFn = () => {
-            objSetPercent.set('percent', objSetPercent.get('percent') + 1)
-            this.set('option', objSetPercent.get('setOption'))
-            if (objSetPercent.get('percent') === 20) {
-                this.get('poll').stopPollByLabel('test');
-            }
-        }
-        // this.get('poll').addPoll({
-        //     interval: 1 * 1000,
-        //     callback: callbackFn,
-        //     label: 'test'
-        // })
         this.set('option', {
                 title: {
                     text: '0%',
@@ -88,12 +72,6 @@ export default Component.extend({
                                     shadowColor: '#0BBC96'
                                 }
                             }
-
-
-
-
-
-
                         }, {
                             value: 100 - 0,
                             itemStyle: {
