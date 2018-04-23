@@ -18,6 +18,7 @@ Router.map(function() {
     this.route('third-step');
     this.route('fourth-step');
   });
+  this.route('demo');
 });
 
 export default Router;
