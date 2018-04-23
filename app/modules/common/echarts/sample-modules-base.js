@@ -1,6 +1,6 @@
 import {computed} from '@ember/object';
 import Component from '@ember/component';
-
+import echarts from 'echarts';
 
 export default Component.extend({
     chartsName: '',
