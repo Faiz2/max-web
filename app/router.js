@@ -13,10 +13,10 @@ Router.map(function() {
    */
   this.route('page-not-found', {path: '/*path'});
   this.route('adddata', function() {
-    this.route('first-step');
-    this.route('second-step');
-    this.route('third-step');
-    this.route('fourth-step');
+    this.route('uploadfiles');
+    this.route('gsample');
+    this.route('calcmax');
+    this.route('viewresults');
   });
   this.route('demo');
 });

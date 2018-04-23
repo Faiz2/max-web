@@ -127,7 +127,7 @@ export default Route.extend({
     this._super(...arguments);
     controller.set('columns', [
       {propertyName: 'index', title:'序号' ,useSorting: false},
-      {propertyName: 'date', useSorting: false},
+      {propertyName: 'data', useSorting: false},
       {propertyName: 'provice', useSorting: false},
       {propertyName: 'market', useSorting: false},
       {propertyName: 'product', useSorting: false},
