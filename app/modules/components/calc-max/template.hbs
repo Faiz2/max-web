@@ -10,7 +10,8 @@
                 </div>
             </div>
         {{else}} 
-            {{#unless calcHasDone}}
+         {{circle-progress option=option eid="circle-progress"}}
+            {{!-- {{#unless calcHasDone}}
                 <div local-class="calc-progress">
                     <div local-class="calc-progress-content">
                         滚动
@@ -22,7 +23,7 @@
                         100%
                     </div>
                 </div>
-            {{/unless}} 
+            {{/unless}}  --}}
         {{/unless}} 
         {{#unless isShowCalcProgress}}
             <p local-class="calc-progress-text">准备计算。。。</p>

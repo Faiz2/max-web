@@ -32,8 +32,9 @@
   border-radius: 5px;
 }
 
-.view-results-content {
+// .view-results-content {
   .result-choosebar {
+    margin-bottom: 20px;
     height: 80px;
     border-radius: 5px;
     box-shadow: 2px 2px 4px 4px #eee;
@@ -69,7 +70,39 @@
       margin-right: 40px;
     }
   }
-}
+  .market-results {
+    padding:5px 30px;
+    margin-bottom: 25px;
+    border-radius: 5px;
+    box-shadow: 2px 2px 4px 4px #eee;
+    background-color: #fff;
+    .market-target {
+      border-bottom: 1px solid #eee;
+      .small-title {
+        font-size: 1.2rem;
+      }
+      .target-specific {
+        .big-text {
+          padding-top: 16px;
+          padding-left: 0;
+          font-size: 27px;          
+        }
+        span {
+          font-size: 16px;
+        }
+        p {
+          font-size: 14px;
+        }
+      }
+
+    }
+    .result-title {
+      height: 40px;
+      line-height: 40px;
+      font-size: 1.8rem;
+    }
+  }
+// }
 
 /**
 *
