@@ -196,42 +196,42 @@
 
 }
 .step-two-result {
-        .result-choosebar {
+    .result-choosebar {
+        height: 80px;
+        border-radius: 5px;
+        box-shadow: 2px 2px 4px 4px #eee;
+        background-color: #fff;
+        .choosebar-content {
+            display: inline-block;
             height: 80px;
-            border-radius: 5px;
-            box-shadow: 2px 2px 4px 4px #eee;
-            background-color: #fff;
-            .choosebar-content {
-                display: inline-block;
-                height: 80px;
-                line-height: 80px;
-                .select-title {
-                    font-size: 1.8rem;
-                    letter-spacing: 2px;
-                    padding: 0 10px;
-                }
-                .choose-select {
-                    width: 160px;
-                    height: 40px;
+            line-height: 80px;
+            .select-title {
+                font-size: 1.8rem;
+                letter-spacing: 2px;
+                padding: 0 10px;
+            }
+            .choose-select {
+                width: 160px;
+                height: 40px;
+                text-align: center;
+                text-align-last: center;
+                border: 1px solid #eee;
+                background-color: #fff;
+                option {
+                    height: 20px;
                     text-align: center;
-                    text-align-last: center;
-                    border: 1px solid #eee;
-                    background-color: #fff;
-                    option {
-                        height: 20px;
-                        text-align: center;
-                    }
                 }
-            }
-            .choosebar-left {
-                float: left;
-                margin-left: 20px;
-            }
-            .choosebar-right {
-                float: right;
-                margin-right: 40px;
             }
         }
+        .choosebar-left {
+            float: left;
+            margin-left: 20px;
+        }
+        .choosebar-right {
+            float: right;
+            margin-right: 40px;
+        }
+    }
 
     }
 // 结果条目样式，未来可能会封装成组件
@@ -326,6 +326,126 @@
 /**
 *
 *end 第二步样式
+*/
+
+
+/**
+*
+*第三步样式
+*/
+.step-three-content {
+    margin: 0 auto;
+    padding-top: 80px;
+    width: 50%;
+    p.explain-text {
+      margin: 0;
+      padding: 0 30px;
+      height: 30px;
+      line-height: 30px;
+      font-size: 1.6rem;
+      letter-spacing: 2px;
+    }
+    .btn-start {
+        position: relative;
+        margin: 100px auto 0;
+        width: 200px;
+        height: 200px;
+        line-height: 200px;
+        border: 1px solid $btn-bgcolor;
+        border-radius: 50%;
+        font-size: 32px;
+        color: #fff;
+        cursor: pointer;
+        .btn-start-content {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        width: 180px;
+        height: 180px;
+        line-height: 180px;
+        border-radius: 50%;
+        text-align: center;
+        background-color: $btn-bgcolor;
+        }
+    }
+    .calc-progress {
+      position: relative;
+      margin: 100px auto 0;
+      width: 200px;
+      height: 200px;
+      line-height: 200px;
+      border: 5px solid #eee;
+      border-radius: 50%;
+      text-align: center;
+      font-size: 32px;
+      color: $btn-bgcolor;
+    }
+    p.calc-progress-text {
+      margin-top: 40px;
+      height: 40px;
+      line-height: 40px;
+      text-align: center;
+      font-size: 18px;
+    }
+
+
+
+}
+
+/**
+*
+*end 第三步样式
+*/
+
+
+/**
+*
+*第四步样式
+*/
+.step-four-content {
+    .result-choosebar {
+      height: 80px;
+      border-radius: 5px;
+      box-shadow: 2px 2px 4px 4px #eee;
+      background-color: #fff;
+      .choosebar-content {
+        display: inline-block;
+        height: 80px;
+        line-height: 80px;
+        .select-title {
+          font-size: 1.8rem;
+          letter-spacing: 2px;
+          padding: 0 10px;
+        }
+        .choose-select {
+          width: 160px;
+          height: 40px;
+          text-align: center;
+          text-align-last: center;
+          border: 1px solid #eee;
+          background-color: #fff;
+          option {
+            height: 20px;
+            text-align: center;
+          }
+        }
+      }
+      .choosebar-left {
+        float: left;
+        margin-left: 20px;
+      }
+      .choosebar-right {
+        float: right;
+        margin-right: 40px;
+      }
+    }
+
+}
+
+/**
+*
+*end 第四步样式
 */
 
 /**

@@ -6,11 +6,13 @@ export default Component.extend({
     filenameone: "",
     filenametwo: "",
     isDisabled: true,
-    isShowProgress: false,
+    isShowProgress: false,  // step two 中开始按钮控制的进度显示
+    isShowCalcProgress: false, // step three中开始按钮控制的进度显示
     isUploadRight: true,  // 文件解析过程中是否正确
     progressRight: false,   // 文件解析正确弹窗
     progressWrong: false,   // 文件解析错误弹窗
     hasResult: false,   // 文件解析是否有结果
+    calcHasDone: false,    // MAX计算是否完成
     actions: {
         // 第一个上传文件按钮
         UploadFilesone(file) {
@@ -59,6 +61,15 @@ export default Component.extend({
                     set(this, 'progressWrong', true);
                 }, 1800);
             }
+        },
+
+        // step three 中的开始计算按钮
+        startCalcMAX() {
+            set(this, 'isShowCalcProgress', true);
+            Ember.run.later(() => {
+                set(this, 'calcHasDone', true);
+            }, 1800);
+
         },
 
         // 文件解析成功
