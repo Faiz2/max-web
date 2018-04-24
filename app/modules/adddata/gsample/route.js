@@ -1,6 +1,55 @@
 import Route from '@ember/routing/route';
+import { inject } from '@ember/service';
+import rsvp from 'rsvp';
+import SampleGetOption from '../../components/sample-line-and-bar/getOption';
 
 export default Route.extend({
+    ajax: inject(),
+    getAjaxOpt(data) {
+        return {
+            method: 'POST',
+            dataType: "json",
+            cache: false,
+            data: JSON.stringify(data),
+            contentType: "application/json,charset=utf-8",
+            Accept: "application/json,charset=utf-8",
+        }
+    },
+    init() {
+        this._super(...arguments);
+        const ajax = this.get('ajax');
+        let condition = {name: "qp"};
+        let sampleOption = SampleGetOption.create();
+
+        new rsvp.Promise((resolve, reject) => {
+            return ajax.request('/query/sample/hospital-numbers',
+                                    this.getAjaxOpt(condition)).then((data) => {
+                this.set('hospitalOption', sampleOption.getOption(data))
+                return resolve({resule: data});
+            },
+            () => {return reject("Access Error");}
+        );
+        });
+
+        new rsvp.Promise((resolve, reject) => {
+            return ajax.request('/query/sample/product-numbers',
+                                    this.getAjaxOpt(condition)).then((data) => {
+                this.set('productOption', sampleOption.getOption(data))
+                return resolve({resule: data});
+            },() => {return reject("Access Error");});
+        });
+
+
+        new rsvp.Promise((resolve, reject) => {
+            return ajax.request('/query/sample/sales-numbers',
+                                    this.getAjaxOpt(condition)).then((data) => {
+                this.set('salesOption', sampleOption.getOption(data))
+                return resolve({resule: data});
+            },() => {return reject("Access Error");});
+        });
+
+
+    },
     model() {
         return [
             {

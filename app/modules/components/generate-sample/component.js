@@ -24,7 +24,7 @@ export default Component.extend({
             //     later(() => {
             //         set(this, 'progressWrong', true);
             //     }, 1800);
-            // }
+            // } 
         },
         
         // 文件解析成功

@@ -31,7 +31,7 @@ export default Controller.extend({
 
         new rsvp.Promise((resolve, reject) => {
             return ajax.request('/query/sample/hospital-numbers',
-                                    this.getAjaxOpt(condition)).then((data) => {
+                this.getAjaxOpt(condition)).then((data) => {
                 this.set('hospitalOption', sampleOption.getOption(data))
                 return resolve({resule: data});
             },
