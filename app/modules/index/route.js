@@ -17,7 +17,7 @@ export default Route.extend({
                'data': "201804",
                'provice': "shandong",
                'market': "num01",
-               'product': "pro01",
+               'product': "测试字数会不会撑开表格",
                'sales': "man01",
                'units': 'aa'
             },
@@ -26,7 +26,7 @@ export default Route.extend({
                'data': "201804",
                'provice': "shandong",
                'market': "num01",
-               'product': "pro01",
+               'product': "一二三四五六七八九十十一十二十三十四十五",
                'sales': "man01",
                'units': 'aa'
             },
@@ -130,7 +130,7 @@ export default Route.extend({
         { propertyName: 'data', 'className': 'text-center', useSorting: false},
         { propertyName: 'provice', 'className': 'text-center', useSorting: false},
         { propertyName: 'market', 'className': 'text-center', useSorting: false},
-        { propertyName: 'product', 'className': 'text-center', useSorting: false},
+        { propertyName: 'product', 'className': 'text-left', useSorting: false},
         { propertyName: 'sales', 'className': 'text-center',useSorting: false},
         { propertyName: 'units', 'className': 'text-center', useSorting: false}
     ]);

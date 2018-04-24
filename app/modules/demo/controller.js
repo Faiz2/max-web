@@ -34,7 +34,9 @@ export default Controller.extend({
                                     this.getAjaxOpt(condition)).then((data) => {
                 this.set('hospitalOption', sampleOption.getOption(data))
                 return resolve({resule: data});
-            },(error) => {return reject("Access Error");});
+            },
+            () => {return reject("Access Error");}
+        );
         });
 
         new rsvp.Promise((resolve, reject) => {
@@ -42,7 +44,7 @@ export default Controller.extend({
                                     this.getAjaxOpt(condition)).then((data) => {
                 this.set('productOption', sampleOption.getOption(data))
                 return resolve({resule: data});
-            },(error) => {return reject("Access Error");});
+            },() => {return reject("Access Error");});
         });
 
 
@@ -51,7 +53,7 @@ export default Controller.extend({
                                     this.getAjaxOpt(condition)).then((data) => {
                 this.set('salesOption', sampleOption.getOption(data))
                 return resolve({resule: data});
-            },(error) => {return reject("Access Error");});
+            },() => {return reject("Access Error");});
         });
 
         new rsvp.Promise((resolve, reject) => {
@@ -59,7 +61,7 @@ export default Controller.extend({
                                     this.getAjaxOpt(condition)).then((data) => {
                 this.set('trendOption', resultOption.getOption(data))
                 return resolve({resule: data});
-            },(error) => {return reject("Access Error");});
+            },() => {return reject("Access Error");});
         });
 
         new rsvp.Promise((resolve, reject) => {
@@ -67,7 +69,7 @@ export default Controller.extend({
                                     this.getAjaxOpt(condition)).then((data) => {
                 this.set('mirrorOption', mirrorOption.getOption(data))
                 return resolve({resule: data});
-            },(error) => {return reject("Access Error");});
+            },() => {return reject("Access Error");});
         });
 
         new rsvp.Promise((resolve, reject) => {
@@ -75,7 +77,7 @@ export default Controller.extend({
                                     this.getAjaxOpt(condition)).then((data) => {
                 this.set('mapOption', mapOption.getOption(data))
                 return resolve({resule: data});
-            },(error) => {return reject("Access Error");});
+            },() => {return reject("Access Error");});
         });
 
     },

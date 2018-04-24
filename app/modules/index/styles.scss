@@ -15,7 +15,8 @@ body {
     height: 100%;
 }
 .wrapper-menu {
-    float: left;
+    position: fixed;
+    // float: left;
     height: 100%;
     width: 220px;
     background-color: $navbar-bgcolor;

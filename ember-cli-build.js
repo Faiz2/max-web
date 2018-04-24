@@ -29,7 +29,8 @@ module.exports = function(defaults) {
             sourceMaps: sourceMap
         },
         flatpickr: {
-          theme: 'material_blue'
+            theme: 'material_green',
+            locales: ['fr', 'de', 'ru', 'uk','zh'],
         }
     });
     app.import("vendor/echarts.js")

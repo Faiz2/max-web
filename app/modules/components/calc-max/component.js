@@ -1,9 +1,7 @@
 import Component from '@ember/component';
-import { set, get } from '@ember/object';
+import { set} from '@ember/object';
 import { later } from '@ember/runloop';
-// import SetPercent from '../circle-progress/setPercent';
-import { inject } from '@ember/service';
-// const { set,get } = Ember;
+// import { inject } from '@ember/service';
 
 export default Component.extend({
     isShowCalcProgress: false, // scalc-max中开始按钮控制的进度显示
