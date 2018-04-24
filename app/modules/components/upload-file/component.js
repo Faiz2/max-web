@@ -9,28 +9,31 @@ export default Component.extend({
         uploadCpaFile(file) {
             set(this, 'filecpa', get(file, 'name'));
             set(this, 'isDisabled', false)
-            return file.upload('/photos/new').then(({ body: { filename, url, type } }) => {
-                debugger;
-                this.get('imageArray').pushObject({
+            return file.upload('/upload/cpa').then(({ body: { filename, url, type } }) => {
+                let demo = {
                     filename,
-                    preview: url,
+                    data: url,
                     type
-                });
+                }
+                window.console.info(demo);
             }, () => { });
         },
         uploadGycxFile(file) {
             set(this, 'filegycx', get(file, 'name'));
-            set(this, 'isDisabled', false)
-            // return file.upload('/photos/new').then(({ body: { filename, url, type } }) => {
-                // debugger
-                // this.get('imageArray').pushObject({
-                //     filename,
-                //     preview: url,
-                //     type,
-                //     file: null
-                // });
-                // set(this, 'imageArray', this.get('imageArray'));
-            // }, () => { });
+            if (this.get('filecpa') !== '') {
+                set(this, 'isDisabled', false)
+            } else {
+                set(this, 'isDisabled', true)
+            }
+
+            return file.upload('/upload/gycx').then(({ body: { filename, url, type } }) => {
+                let demo = {
+                    filename,
+                    data: url,
+                    type
+                }
+                window.console.info(demo);
+            }, () => { });
         }
     }
 });
