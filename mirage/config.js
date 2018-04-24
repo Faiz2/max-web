@@ -1,12 +1,28 @@
+import { upload } from 'ember-file-upload/mirage';
+
 export default function() {
     //You Code
+    this.post('/upload/cpa', upload((schema, request) => {
+        let { type, name, size, url } = request.requestBody.file;
+        return {
+          filename: name,
+          filesize: size,
+          uploadedAt: new Date(),
+          url,
+          type: type.split('/')[0]
+        };
+    }));
 
-    this.post('upload/cpa', (schema, request) => {
-        
-    });
-    this.post('upload/gycx', (schema, request) => {
-
-    });
+    this.post('/upload/gycx', upload((schema, request) => {
+        let { type, name, size, url } = request.requestBody.file;
+        return {
+          filename: name,
+          filesize: size,
+          uploadedAt: new Date(),
+          url,
+          type: type.split('/')[0]
+        };
+    }));
 
     this.post('/query/sample/hospital-numbers',(schema, request) => {
         window.console.info(request.requestBody);

@@ -20,7 +20,7 @@
                         滚动
                     </div>
                 </div> --}}
-            {{/unless}} 
+            {{/unless}}
             {{#unless isShowProgress}}
                 <p local-class="reupload">{{#bs-button onClick=(action (mut modal3) true)}}上传错误？重新上传{{/bs-button}}</p>
             {{else}}
@@ -174,45 +174,48 @@
         </div>
     {{/unless}}
 </div>
-{{#bs-modal local-class="hint-area" open=modal3 onHidden=(action (mut modal3) false) as |modal|}} 
+{{!-- local-class="hint-area" --}}
+
+{{#bs-modal position='center' backdropClose=false open=modal3 onHidden=(action (mut modal3) false) as |modal|}}
     {{#modal.header}}
         <h4 class="modal-title">
             提示
         </h4>
-    {{/modal.header}} 
+    {{/modal.header}}
     {{#modal.body}}
         <p>是否重新上传原文件</p>
-    {{/modal.body}} 
-    {{#modal.footer}} 
-        {{#bs-button onClick=(action modal.close)}}取消{{/bs-button}} 
+    {{/modal.body}}
+    {{#modal.footer}}
+        {{#bs-button onClick=(action modal.close)}}取消{{/bs-button}}
         {{#link-to "adddata.uploadfiles"}}
-            {{#bs-button }}重新上传{{/bs-button}} 
-        {{/link-to}} 
-    {{/modal.footer}} 
-{{/bs-modal}} 
-{{#if isUploadRight}} 
-    {{#bs-modal local-class="hint-area" open=progressRight onHidden=(action (mut progressRight) false) as |modal|}} 
+            {{#bs-button }}重新上传{{/bs-button}}
+        {{/link-to}}
+    {{/modal.footer}}
+{{/bs-modal}}
+
+{{#if isUploadRight}}
+    {{#bs-modal local-class="hint-area" open=progressRight onHidden=(action (mut progressRight) false) as |modal|}}
         {{#modal.header}}
             <h4 class="modal-title">
                 选择月份
             </h4>
-        {{/modal.header}} 
+        {{/modal.header}}
         {{#modal.body}}
             <p>本次上传件中含以下几个月份，</p>
             <p>请选择要进行计算的月份：</p>
-        {{/modal.body}} 
-        {{#modal.footer}} 
-            {{#bs-button onClick=(action modal.close)}}关闭选择{{/bs-button}} 
-            {{#bs-button onClick=(action 'calcRight')}}确认{{/bs-button}} 
-        {{/modal.footer}} 
-    {{/bs-modal}} 
-{{else}} 
-    {{#bs-modal local-class="hint-area" open=progressWrong onHidden=(action (mut progressWrong) false) as |modal|}} 
+        {{/modal.body}}
+        {{#modal.footer}}
+            {{#bs-button onClick=(action modal.close)}}关闭选择{{/bs-button}}
+            {{#bs-button onClick=(action 'calcRight')}}确认{{/bs-button}}
+        {{/modal.footer}}
+    {{/bs-modal}}
+{{else}}
+    {{#bs-modal local-class="hint-area" open=progressWrong onHidden=(action (mut progressWrong) false) as |modal|}}
         {{#modal.header}}
             <h4 class="modal-title">
                 提示
             </h4>
-        {{/modal.header}} 
+        {{/modal.header}}
         {{#modal.body}}
             <p local-class="download-model">下载文件格式范本</p>
             <p>原因可能为：</p>
@@ -220,12 +223,12 @@
             <p>2.原文件不含有月份的数值。</p>
             <p>3.原文件上传错误。</p>
             <p>请检查原文件，并重新上传正确的原文件。</p>
-        {{/modal.body}} 
-        {{#modal.footer}} 
-            {{#link-to "adddata.uploadfiles"}} 
-                {{#bs-button }}重新上传{{/bs-button}} 
-            {{/link-to}} 
+        {{/modal.body}}
+        {{#modal.footer}}
+            {{#link-to "adddata.uploadfiles"}}
+                {{#bs-button }}重新上传{{/bs-button}}
+            {{/link-to}}
         {{/modal.footer}}
-    {{/bs-modal}} 
+    {{/bs-modal}}
 {{/if}}
 {{yield}}

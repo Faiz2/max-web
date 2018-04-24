@@ -21,9 +21,9 @@ module.exports = function(defaults) {
             ]
         },
         'ember-bootstrap': {
-            'bootstrapVsesion': 3,
-            'importBootstrapFont': true,
-            'importBootstrapCSS': true
+          'bootstrapVsesion': 3,
+          'importBootstrapFont': true,
+          'importBootstrapCSS': true
         },
         babel: {
             sourceMaps: sourceMap
