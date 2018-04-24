@@ -37,7 +37,7 @@ export default Component.extend({
                 {
                     name: this.get('chartsName'),
                     type: 'bar',
-                    data : [],
+                    data : [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
                     lineStyle : {normal : {color : '#60B3AD'}},
                     itemStyle : {normal: {
                         color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
@@ -55,7 +55,7 @@ export default Component.extend({
                 {
                     name: '去年同期',
                     type: 'line',
-                    data : [],
+                    data : [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
                     yAxisIndex: 0,
                     lineStyle : {normal : {color : '#b3312f', type: 'dotted'}},
                     itemStyle : {normal : {color : '#b3312f'}}

@@ -25,7 +25,7 @@ export default Component.extend({
                     name: '日期',
                     nameGap: 40,
                     type: 'category',
-                    data: ['2000', '2001', '2002', '2003', '2004', '2005', '2006', '2007', '2008', '2009', '2010', '2011'],
+                    data: [],
                     splitLine: {
                         show:false
                     }
@@ -57,7 +57,7 @@ export default Component.extend({
                     type:'bar',
                     barWidth: '80%',
                     yAxisIndex: 0,
-                    data: [209, 236, 325, 439, 507, 576, 722, 879, 938, 1364, 1806, 1851],
+                    data: [],
                     label: {
                         normal: {
                             show: false,
@@ -75,7 +75,7 @@ export default Component.extend({
                     name:'份额占比',
                     type:'line',
                     yAxisIndex: 1,
-                    data: [1, 13, 37, 35, 15, 13, 25, 21, 6, 45, 32, 2],
+                    data: [],
                     label: {
                         normal: {
                             show: true,
