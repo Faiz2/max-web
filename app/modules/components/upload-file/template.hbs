@@ -4,42 +4,21 @@
             <span>请上传CPA文件</span>
             <span>(仅支持：excel)</span>
         </p>
-        {{#file-dropzone name="file-one" local-class='upload-area' as |dropzone queue|}}
+        <div local-class="upload-area">
             <div local-class="dropzone-upload-area" class= {{concat 'upload ' (if dropzone.active 'active')}}>
-                {{#if dropzone.supported}}
-                    <div local-class="">
-                        {{#if dropzone.active}}
-                            {{#if dropzone.valid}}
-                                {{#unless filenameone }}
-                                    <img src="../setup/test.jpg" alt="">
-                                {{else}}
-                                    <img src="../setup/pic2.png" alt="">
-                                {{/unless}}
-                                {{!-- <img src="../setup/test.jpg" alt=""> --}}
-                            {{else}}b🐮 {{/if}}
-                        {{else}}
-                            {{!-- <img src="../setup/test.jpg" alt="">  --}}
-                            {{#unless filenameone }}
-                                <img src="../setup/test.jpg" alt="">
-                            {{else}}
-                                <img src="../setup/pic2.png" alt="">
-                            {{/unless}}
-                        {{/if}}
-                    </div>
-                {{/if}}
+                {{#unless filecpa }}
+                    <img src="../setup/test.jpg" alt="">
+                {{else}}
+                    <img src="../setup/pic2.png" alt="">
+                {{/unless}}
             </div>
             <div local-class="click-upload">
-                {{#if dropzone.supported}} {{!-- Drag your proof or --}}{{/if}}
-                {{#file-upload name="file-one" multiple=false onfileadd=(action "UploadFilesone") accept="image/*,video/*,audio/*,vnd.ms-excel/*"
-                    }}
-                    {{#if filenameone}} {{filenameone}} {{/if}}
+                {{#file-upload name="file-cpa" multiple=false onfileadd=(action "uploadCpaFile") accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"}}
+                    {{#if filecpa}} {{filecpa}} {{/if}}
                     <a>选择文件</a>
                 {{/file-upload}}
             </div>
-        {{/file-dropzone }} {{!--
-        <div local-class="upload-area">
-            {{upload-files index=0}}
-        </div> --}}
+        </div>
     </div>
 
     <div local-class="step-right">
@@ -47,41 +26,22 @@
             <span>请上传国药诚信文件</span>
             <span>(仅支持：excel)</span>
         </p>
-        {{#file-dropzone name="file-two" local-class='upload-area' as |dropzone queue|}}
+
+        <div local-class="upload-area">
             <div local-class="dropzone-upload-area" class= {{concat 'upload ' (if dropzone.active 'active')}}>
-                {{#if dropzone.supported}}
-                    <div local-class="">
-                        {{#if dropzone.active}}
-                            {{#if dropzone.valid}}
-                                {{#unless filenametwo }}
-                                    <img src="../setup/test.jpg" alt="">
-                                {{else}}
-                                    <img src="../setup/pic2.png" alt="">
-                                {{/unless}}
-                            {{else}}b🐮 {{/if}}
-                        {{else}}
-                            {{#unless filenametwo }}
-                                <img src="../setup/test.jpg" alt="">
-                                {{else}}
-                                    <img src="../setup/pic2.png" alt="">
-                            {{/unless}}
-                                {{!-- <img src="../setup/test.jpg" alt="">  --}}
-                            {{/if}}
-                    </div>
-                {{/if}}
+                {{#unless filegycx }}
+                        <img src="../setup/test.jpg" alt="">
+                    {{else}}
+                        <img src="../setup/pic2.png" alt="">
+                {{/unless}}
             </div>
             <div local-class="click-upload">
-                {{#if dropzone.supported}} {{!-- Drag your proof or --}}{{/if}}
-                {{#file-upload name="file-two" multiple=false onfileadd=(action "UploadFilestwo") accept="image/*,video/*,audio/*,vnd.ms-excel/*"
-                    }}
-                    {{#if filenametwo}} {{filenametwo}} {{/if}}
+                {{#file-upload name="file-gycx" multiple=false onfileadd=(action "uploadGycxFile") accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"}}
+                    {{#if filegycx}} {{filegycx}} {{/if}}
                     <a>选择文件</a>
                 {{/file-upload}}
             </div>
-        {{/file-dropzone }} {{!--
-        <div local-class="upload-area">
-            {{upload-files index=1}}
-        </div> --}}
+        </div>
     </div>
     {{!-- 下一步正确逻辑 下方四行--}}
     {{#if isDisabled}}
