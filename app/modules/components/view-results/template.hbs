@@ -101,14 +101,14 @@
         </h4>
     {{/modal.header}} 
     {{#modal.body}}
-        <input type="checkbox">a
-        <input type="checkbox">b
-        <input type="checkbox">c
-        <input type="checkbox">dd
+        <input type="checkbox">2018-01
+        <input type="checkbox">2018-02
+        <input type="checkbox">2018-03
+        <input type="checkbox">2018-04
         
     {{/modal.body}} 
     {{#modal.footer}} 
-        {{#bs-button onClick=(action modal.close)}}关闭选择{{/bs-button}} 
+        {{#bs-button onClick=(action modal.close)}}全选{{/bs-button}} 
         {{#bs-button onClick=(action 'confirmSave')}}确认{{/bs-button}} 
     {{/modal.footer}} 
 {{/bs-modal}}

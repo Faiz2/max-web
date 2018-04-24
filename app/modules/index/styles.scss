@@ -4,6 +4,13 @@ $btn-bgcolor: #60b3ad;
 
 $max-font-size-title:  2.2rem;;
 $max-font-size-content: 1.4rem;
+
+html,
+body {
+    height: 100%;
+    background-color: #fafafa;
+}
+
 .wrapper-container {
     height: 100%;
 }
@@ -40,7 +47,6 @@ $max-font-size-content: 1.4rem;
             padding: 0 20px;
             height: 40px;
             line-height: 40px;
-            // border-bottom: 1px solid #eee;
             font-size: 1.8rem;
             letter-spacing: 2px;
             color: #fff;
@@ -70,6 +76,7 @@ $max-font-size-content: 1.4rem;
         width: 96%;
         height: 800px;
         .detail-choosebar {
+            margin-bottom: 20px;
             height: 80px;
             border-radius: 5px;
             box-shadow: 2px 2px 4px 4px #eee;
@@ -164,13 +171,11 @@ $max-font-size-content: 1.4rem;
                     border-radius:0 20px 20px 0;
                     background-color: $btn-bgcolor;
                 }
-                .right-section {
-
-                }
             }
         }
         .detail-list {
             border: 1px solid #eee;
+            background-color: #fff;
         }
     }
 }

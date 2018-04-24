@@ -3,6 +3,7 @@ import Component from '@ember/component';
 import { set, get } from '@ember/object';
 
 export default Component.extend({
+    isDisabled: true,
     filenameone: "",
     filenametwo: "",
     actions: {

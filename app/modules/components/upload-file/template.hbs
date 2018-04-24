@@ -5,59 +5,96 @@
             <span>(仅支持：excel)</span>
         </p>
         {{#file-dropzone name="file-one" local-class='upload-area' as |dropzone queue|}}
-        <div local-class="dropzone-upload-area" class={{concat 'upload ' (if dropzone.active 'active')}}>
-            {{#if dropzone.supported}}
-            <div local-class="">
-                {{#if dropzone.active}} {{#if dropzone.valid}}
-                <img src="../setup/test.jpg" alt=""> {{else}} b🐮 {{/if}} {{else}}
-                <img src="../setup/test.jpg" alt=""> {{/if}}
+            <div local-class="dropzone-upload-area" class= {{concat 'upload ' (if dropzone.active 'active')}}>
+                {{#if dropzone.supported}}
+                    <div local-class="">
+                        {{#if dropzone.active}}
+                            {{#if dropzone.valid}}
+                                {{#unless filenameone }}
+                                    <img src="../setup/test.jpg" alt="">
+                                {{else}}
+                                    <img src="../setup/pic2.png" alt="">
+                                {{/unless}}
+                                {{!-- <img src="../setup/test.jpg" alt=""> --}}
+                            {{else}}b🐮 {{/if}}
+                        {{else}}
+                            {{!-- <img src="../setup/test.jpg" alt="">  --}}
+                            {{#unless filenameone }}
+                                <img src="../setup/test.jpg" alt="">
+                            {{else}}
+                                <img src="../setup/pic2.png" alt="">
+                            {{/unless}}
+                        {{/if}}
+                    </div>
+                {{/if}}
             </div>
-            {{/if}}
-        </div>
-        <div local-class="click-upload">
-            {{#if dropzone.supported}} {{!-- Drag your proof or --}} {{/if}} {{#file-upload name="file-one" multiple=false onfileadd=(action
-            "UploadFilesone") accept="image/*,video/*,audio/*,vnd.ms-excel/*"}} {{#if filenameone}} {{filenameone}} {{/if}}
-            <a>选择文件</a>
-            {{/file-upload}}
-        </div>
+            <div local-class="click-upload">
+                {{#if dropzone.supported}} {{!-- Drag your proof or --}}{{/if}}
+                {{#file-upload name="file-one" multiple=false onfileadd=(action "UploadFilesone") accept="image/*,video/*,audio/*,vnd.ms-excel/*"
+                    }}
+                    {{#if filenameone}} {{filenameone}} {{/if}}
+                    <a>选择文件</a>
+                {{/file-upload}}
+            </div>
         {{/file-dropzone }} {{!--
         <div local-class="upload-area">
             {{upload-files index=0}}
         </div> --}}
     </div>
-    
+
     <div local-class="step-right">
         <p>
             <span>请上传国药诚信文件</span>
             <span>(仅支持：excel)</span>
         </p>
         {{#file-dropzone name="file-two" local-class='upload-area' as |dropzone queue|}}
-        <div local-class="dropzone-upload-area" class={{concat 'upload ' (if dropzone.active 'active')}}>
-            {{#if dropzone.supported}}
-            <div local-class="">
-                {{#if dropzone.active}} {{#if dropzone.valid}}
-                <img src="../setup/test.jpg" alt=""> {{else}} b🐮 {{/if}} {{else}}
-                <img src="../setup/test.jpg" alt=""> {{/if}}
+            <div local-class="dropzone-upload-area" class= {{concat 'upload ' (if dropzone.active 'active')}}>
+                {{#if dropzone.supported}}
+                    <div local-class="">
+                        {{#if dropzone.active}}
+                            {{#if dropzone.valid}}
+                                {{#unless filenametwo }}
+                                    <img src="../setup/test.jpg" alt="">
+                                {{else}}
+                                    <img src="../setup/pic2.png" alt="">
+                                {{/unless}}
+                            {{else}}b🐮 {{/if}}
+                        {{else}}
+                            {{#unless filenametwo }}
+                                <img src="../setup/test.jpg" alt="">
+                                {{else}}
+                                    <img src="../setup/pic2.png" alt="">
+                            {{/unless}}
+                                {{!-- <img src="../setup/test.jpg" alt="">  --}}
+                            {{/if}}
+                    </div>
+                {{/if}}
             </div>
-            {{/if}}
-        </div>
-        <div local-class="click-upload">
-            {{#if dropzone.supported}} {{!-- Drag your proof or --}} {{/if}} {{#file-upload name="file-two" multiple=false onfileadd=(action
-            "UploadFilestwo") accept="image/*,video/*,audio/*,vnd.ms-excel/*"}} {{#if filenametwo}} {{filenametwo}} {{/if}}
-            <a>选择文件</a>
-            {{/file-upload}}
-        </div>
+            <div local-class="click-upload">
+                {{#if dropzone.supported}} {{!-- Drag your proof or --}}{{/if}}
+                {{#file-upload name="file-two" multiple=false onfileadd=(action "UploadFilestwo") accept="image/*,video/*,audio/*,vnd.ms-excel/*"
+                    }}
+                    {{#if filenametwo}} {{filenametwo}} {{/if}}
+                    <a>选择文件</a>
+                {{/file-upload}}
+            </div>
         {{/file-dropzone }} {{!--
         <div local-class="upload-area">
             {{upload-files index=1}}
         </div> --}}
     </div>
-    {{!-- 下一步正确逻辑 下方四行--}} {{!-- {{#if isDisabled}}
-    <button disabled=true local-class="to-second-step" type="button" name="btn-second-step">下一步</button>
+    {{!-- 下一步正确逻辑 下方四行--}}
+    {{#if isDisabled}}
+        <button disabled=true local-class="to-second-step" type="button" name="btn-second-step">下一步</button>
     {{else}}
-    <button{{action "toSecond"}} local-class={{unless isDisabled "useable"}} local-class="to-second-step" type="button" name="btn-second-step">下一步</button>
-        {{/if}} --}} {{!-- 下一步正确逻辑 上方四行 --}} {{!-- 下一步测试逻辑 --}} {{#link-to "adddata.gsample"}}
-        <button local-class="to-second-step useable" type="button" name="btn-second-step">下一步</button>
+        {{#link-to "adddata.gsample"}}
+            <button local-class={{unless isDisabled "useable"}} local-class="to-second-step" type="button" name="btn-second-step">下一步</button>
         {{/link-to}}
+    {{/if}}
+    {{!-- 下一步正确逻辑 上方四行 --}}
+    {{!-- 下一步测试逻辑 --}}
+    {{!-- {{#link-to "adddata.gsample"}}
+        <button local-class="to-second-step useable" type="button" name="btn-second-step">下一步</button>
+    {{/link-to}} --}}
 </div>
 {{yield}}
