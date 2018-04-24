@@ -24,3 +24,4 @@ package.json.ember-try
 
 # VScode files
 /jsconfig.json
+/.vscode

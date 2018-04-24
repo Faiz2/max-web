@@ -13,7 +13,7 @@ export default Route.extend({
                'units': 'aa'
             },
             {
-               'index': "1",
+               'index': "2",
                'data': "201804",
                'provice': "shandong",
                'market': "num01",
@@ -22,7 +22,7 @@ export default Route.extend({
                'units': 'aa'
             },
             {
-               'index': "1",
+               'index': "3",
                'data': "201804",
                'provice': "shandong",
                'market': "num01",
@@ -31,7 +31,7 @@ export default Route.extend({
                'units': 'aa'
             },
             {
-               'index': "1",
+               'index': "4",
                'data': "201804",
                'provice': "shandong",
                'market': "num01",
@@ -40,7 +40,7 @@ export default Route.extend({
                'units': 'aa'
             },
             {
-               'index': "1",
+               'index': "5",
                'data': "201804",
                'provice': "shandong",
                'market': "num01",
@@ -49,7 +49,7 @@ export default Route.extend({
                'units': 'aa'
             },
             {
-               'index': "1",
+               'index': "6",
                'data': "201804",
                'provice': "shandong",
                'market': "num01",
@@ -58,7 +58,7 @@ export default Route.extend({
                'units': 'aa'
             },
             {
-               'index': "1",
+               'index': "7",
                'data': "201804",
                'provice': "shandong",
                'market': "num01",
@@ -67,7 +67,7 @@ export default Route.extend({
                'units': 'aa'
             },
             {
-               'index': "1",
+               'index': "8",
                'data': "201804",
                'provice': "shandong",
                'market': "num01",
@@ -76,7 +76,7 @@ export default Route.extend({
                'units': 'aa'
             },
             {
-               'index': "1",
+               'index': "9",
                'data': "201804",
                'provice': "shandong",
                'market': "num01",
@@ -85,7 +85,7 @@ export default Route.extend({
                'units': 'aa'
             },
             {
-               'index': "1",
+               'index': "10",
                'data': "201804",
                'provice': "shandong",
                'market': "num01",
@@ -94,7 +94,7 @@ export default Route.extend({
                'units': 'aa'
             },
             {
-               'index': "1",
+               'index': "11",
                'data': "201804",
                'provice': "shandong",
                'market': "num01",
@@ -103,7 +103,7 @@ export default Route.extend({
                'units': 'aa'
             },
             {
-               'index': "1",
+               'index': "12",
                'data': "201804",
                'provice': "shandong",
                'market': "num01",
@@ -112,7 +112,7 @@ export default Route.extend({
                'units': 'aa'
             },
             {
-               'index': "1",
+               'index': "13",
                'data': "201804",
                'provice': "shandong",
                'market': "num01",
@@ -126,13 +126,13 @@ export default Route.extend({
     setupController(controller) {
     this._super(...arguments);
     controller.set('columns', [
-      {propertyName: 'index', title:'序号' ,useSorting: false},
-      {propertyName: 'data', useSorting: false},
-      {propertyName: 'provice', useSorting: false},
-      {propertyName: 'market', useSorting: false},
-      {propertyName: 'product', useSorting: false},
-      {propertyName: 'sales', useSorting: false},
-      {propertyName: 'units', useSorting: false}
+        { propertyName: 'index','className':'text-center', title:'序号' ,useSorting: false},
+        { propertyName: 'data', 'className': 'text-center', useSorting: false},
+        { propertyName: 'provice', 'className': 'text-center', useSorting: false},
+        { propertyName: 'market', 'className': 'text-center', useSorting: false},
+        { propertyName: 'product', 'className': 'text-center', useSorting: false},
+        { propertyName: 'sales', 'className': 'text-center',useSorting: false},
+        { propertyName: 'units', 'className': 'text-center', useSorting: false}
     ]);
     controller.set('title','Pharbers 数据')
   }

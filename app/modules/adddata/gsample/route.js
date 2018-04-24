@@ -53,13 +53,13 @@ export default Route.extend({
     setupController(controller) {
         this._super(...arguments);
         controller.set('columns', [
-            { propertyName: 'index', title: '序号', useSorting: false },
-            { propertyName: 'data', useSorting: false },
-            { propertyName: 'provice', useSorting: false },
-            { propertyName: 'market', useSorting: false },
-            { propertyName: 'product', useSorting: false },
-            { propertyName: 'sales', useSorting: false },
-            { propertyName: 'units', useSorting: false }
+            { propertyName: 'index', 'className':'text-center', title: '序号', useSorting: false },
+            { propertyName: 'data', 'className': 'text-center', useSorting: false },
+            { propertyName: 'provice', 'className': 'text-center', useSorting: false },
+            { propertyName: 'market', 'className': 'text-center', useSorting: false },
+            { propertyName: 'product', 'className': 'text-center', useSorting: false },
+            { propertyName: 'sales', 'className': 'text-center', useSorting: false },
+            { propertyName: 'units', 'className': 'text-center', useSorting: false }
         ]);
     }
 });

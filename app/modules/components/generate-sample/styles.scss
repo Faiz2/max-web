@@ -14,10 +14,24 @@
   background-color: $btn-bgcolor;
 }
 
+/**
+*
+*弹窗样式
+*/
+.hint-area {
+  top: 50%;
+  transform: translateY(-50%);
+  .btn-default {
+    color: #fff;
+    background-color: $btn-bgcolor;
+  }
+
+}
+
 
 /**
 *
-*为第二步结果页面设置wrapper样式
+*为generate-sample结果页面设置wrapper样式
 */
 
 .step-content-wrapper-noshadow {
@@ -44,7 +58,7 @@
 
 /**
 *
-*第二步样式
+*generate-sample样式
 */
 
 .generate-sample-content {
@@ -112,7 +126,7 @@
     cursor: pointer;
   }
   p.calc-progress-text {
-    margin-top: 0px;
+    margin-top: 0;
     height: 40px;
     line-height: 40px;
     text-align: center;
