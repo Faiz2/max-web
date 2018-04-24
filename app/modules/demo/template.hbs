@@ -1,39 +1,39 @@
-<div class="">
+{{!-- <div class="">
     <button type="button" name="button" {{action 'go'}}>go</button>
-</div>
+</div> --}}
 <div class="">
-    <dl>
+    {{!-- <dl>
         <dt>进度条：</dt>
         <dt>{{circle-progress eid="circle-progress" option=option}}</dt>
-    </dl>
+    </dl> --}}
 
     <dl>
         <dt>医院样本数量：</dt>
-        <dt>{{sample-hospital-number-line-and-bar eid="sample-hospital-number-line-and-bar"}}</dt>
+        <dt>{{sample-line-and-bar chartsName="医院样本" option=hospitalOption eid="sample-hospital-number-line-and-bar"}}</dt>
     </dl>
 
     <dl>
         <dt>产品样本数量：</dt>
-        <dt>{{sample-product-number-line-and-bar eid="sample-product-number-line-and-bar"}}</dt>
+        <dt>{{sample-line-and-bar chartsName="产品样本" option=productOption eid="sample-product-number-line-and-bar"}}</dt>
     </dl>
 
     <dl>
         <dt>销售样本数量：</dt>
-        <dt>{{sample-sales-number-line-and-bar eid="sample-sales-number-line-and-bar"}}</dt>
+        <dt>{{sample-line-and-bar chartsName="销售样本" option=salesOption eid="sample-sales-number-line-and-bar"}}</dt>
     </dl>
 
     <dl>
         <dt>趋势：</dt>
-        <dt>{{result-trend-line-and-bar eid="result-trend-line-and-bar"}}</dt>
+        <dt>{{result-trend-line-and-bar option=trendOption eid="result-trend-line-and-bar"}}</dt>
     </dl>
 
     <dl>
         <dt>镜像图：</dt>
-        <dt>{{result-mirror-bar eid="result-mirror-bar"}}</dt>
+        <dt>{{result-mirror-bar option=mirrorOption eid="result-mirror-bar"}}</dt>
     </dl>
 
     <dl>
         <dt>地图：</dt>
-        <dt>{{result-map eid="result-map"}}</dt>
+        <dt>{{result-map option=mapOption eid="result-map"}}</dt>
     </dl>
 </div>

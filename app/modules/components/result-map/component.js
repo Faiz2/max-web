@@ -35,7 +35,7 @@ export default Component.extend({
             },
             visualMap: {
                 min: 0,
-                max: 9999999999,
+                max: 20000,
                 left: 'left',
                 top: 'bottom',
                 text: ['高','低'],
