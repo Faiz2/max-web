@@ -1,6 +1,13 @@
 export default function() {
     //You Code
 
+    this.post('upload/cpa', (schema, request) => {
+        
+    });
+    this.post('upload/gycx', (schema, request) => {
+
+    });
+
     this.post('/query/sample/hospital-numbers',(schema, request) => {
         window.console.info(request.requestBody);
         return {
