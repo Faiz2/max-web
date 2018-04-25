@@ -16,7 +16,6 @@ body {
 }
 .wrapper-menu {
     position: fixed;
-    // float: left;
     height: 100%;
     width: 220px;
     background-color: $navbar-bgcolor;
@@ -36,7 +35,6 @@ body {
                 width: 10px;
                 border-radius: 2px;
                 background-color: #fff;
-
             }
         }
     }
@@ -55,7 +53,6 @@ body {
                 background-color: $btn-bgcolor;
             }
         }
-
     }
 }
 
@@ -70,11 +67,11 @@ body {
         color: #000;
         background-color: #fff;
         border-bottom: 2px solid #eee;
-
     }
     .content-detail {
         margin: 0 auto;
         width: 96%;
+        min-width: 980px;
         height: 800px;
         .detail-choosebar {
             margin-bottom: 20px;

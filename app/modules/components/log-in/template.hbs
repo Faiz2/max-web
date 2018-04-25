@@ -1,0 +1,29 @@
+<div local-class="login-wrapper">
+    <div local-class="login-left">
+        <img src="../setup/pharbers_logo_color.png" alt="">
+    </div>
+    <div local-class="login-right">
+        <div local-class="login-title">登入数据平台</div>
+        <form action="#">
+            <div local-class="login-item login-user">
+                {{!-- <span class="glyphicon glyphicon-user"></span> --}}
+                <img src="../setup/id.png" alt="">
+                {{!-- <input type="text" placeholder="请输入帐号"> --}}
+                 {{input value=username placeholder="请输入帐号"}}
+            </div>
+            <div local-class="login-item login-password">
+                {{!-- <span class="glyphicon glyphicon-lock"></span> --}}
+                <img src="../setup/code.png" alt="">
+                
+                {{!-- <input type="text" placeholder="请输入密码"> --}}
+                 {{input type="password" value=password  placeholder="请输入密码"}}
+            </div>
+                <button {{action "logIn"}} local-class="btn-default-max">登入</button>
+            {{!-- 测试逻辑 --}}
+            {{!-- {{#link-to "index"}}
+                <button {{action "logIn"}} local-class="btn-default-max">登入</button>
+            {{/link-to}} --}}
+        </form>
+    </div>
+</div>
+{{yield}}

@@ -7,7 +7,8 @@
   position: relative;
   margin: 40px auto 0;
   width: 1200px;
-  height: 600px;
+  
+  min-height: 600px;
   background-color: #fff;
   box-shadow: 2px 2px 4px 4px #eee;
   border-radius: 5px;
@@ -21,7 +22,7 @@
 .step-left,
 .step-right {
   float: left;
-  padding-top: 60px;
+  padding: 60px 20px 0;
   width: 50%;
   height: 100%;
   text-align: center;
