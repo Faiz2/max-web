@@ -23,8 +23,8 @@ export default Service.extend({
         let options = {
             apiUrl: WebIM.config.apiURL,
             appKey: WebIM.config.appkey,
-            user: 'test',
-            pwd: '123456',
+            user: name,
+            pwd: password,
             success: function(token) {
               that.get('cookies').write('webim_token', token.access_token);
               that.get('cookies').write('webim_user', token.user.username);
