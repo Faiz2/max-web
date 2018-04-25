@@ -1,14 +1,14 @@
 import Controller from '@ember/controller';
-import { inject } from '@ember/service';
-import rsvp from 'rsvp';
+// import { inject } from '@ember/service';
+// import rsvp from 'rsvp';
 // import SampleGetOption from '../components/sample-line-and-bar/getOption';
 // import ResuleGetOption from '../components/result-trend-line-and-bar/getOption';
 // import MirrorGetOption from '../components/result-mirror-bar/getOption';
 // import MapGetOption from '../components/result-map/getOption';
 
 export default Controller.extend({
-    ajax: inject(),
-    progress: inject('circle-progress'),
+    // ajax: inject(),
+    // progress: inject('circle-progress'),
     getAjaxOpt(data) {
         return {
             method: 'POST',
@@ -21,23 +21,51 @@ export default Controller.extend({
     },
     init() {
         this._super(...arguments);
+        // let WebIM = require('easemob-websdk');
+        // let conn = new WebIM.connection({
+        //     isMultiLoginSessions: WebIM.config.isMultiLoginSessions,
+        //     https: typeof WebIM.config.https === 'boolean' ? WebIM.config.https : location.protocol === 'https:',
+        //     url: WebIM.config.xmppURL,
+        //     heartBeatWait: WebIM.config.heartBeatWait,
+        //     autoReconnectNumMax: WebIM.config.autoReconnectNumMax,
+        //     autoReconnectInterval: WebIM.config.autoReconnectInterval,
+        //     apiUrl: WebIM.config.apiURL,
+        //     isAutoLogin: true
+        // });
+        // var options = {
+        //   apiUrl: WebIM.config.apiURL,
+        //   user: 'qp',
+        //   pwd: 'aaaaaa',
+        //   appKey: WebIM.config.appkey
+        // };
+        // conn.open(options);
+        //
+        // conn.listen({
+        //     onOpened: function ( message ) {//连接成功回调
+        //         window.console.log("连接成功");
+        //     },
+        //     onClosed: function ( message ) {},
+        //     onTextMessage: function ( message ) {
+        //         window.console.info(message)
+        //     }
+        // });
 
-        const ajax = this.get('ajax');
-        let condition = {
-            "condition":{
-                "user_id":"5ad871fe52d78f494e56e772"
-            }
-        };
-        new rsvp.Promise((resolve, reject) => {
-            return ajax.request('api/job/push',
-                                    this.getAjaxOpt(condition)).then((data) => {
-                // this.set('hospitalOption', sampleOption.getOption(data))
-                window.console.info(data)
-                return resolve({resule: data});
-            },
-            () => {return reject("Access Error");}
-        );
-        });
+        // const ajax = this.get('ajax');
+        // let condition = {
+        //     "condition":{
+        //         "user_id":"5ad871fe52d78f494e56e772"
+        //     }
+        // };
+        // new rsvp.Promise((resolve, reject) => {
+        //     return ajax.request('api/job/push',
+        //                             this.getAjaxOpt(condition)).then((data) => {
+        //         // this.set('hospitalOption', sampleOption.getOption(data))
+        //         window.console.info(data)
+        //         return resolve({resule: data});
+        //     },
+        //     () => {return reject("Access Error");}
+        // );
+        // });
 
         // let sampleOption = SampleGetOption.create();
         // let resultOption = ResuleGetOption.create();
