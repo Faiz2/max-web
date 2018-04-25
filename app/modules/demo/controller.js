@@ -1,10 +1,10 @@
 import Controller from '@ember/controller';
 import { inject } from '@ember/service';
 import rsvp from 'rsvp';
-import SampleGetOption from '../components/sample-line-and-bar/getOption';
-import ResuleGetOption from '../components/result-trend-line-and-bar/getOption';
-import MirrorGetOption from '../components/result-mirror-bar/getOption';
-import MapGetOption from '../components/result-map/getOption';
+// import SampleGetOption from '../components/sample-line-and-bar/getOption';
+// import ResuleGetOption from '../components/result-trend-line-and-bar/getOption';
+// import MirrorGetOption from '../components/result-mirror-bar/getOption';
+// import MapGetOption from '../components/result-map/getOption';
 
 export default Controller.extend({
     ajax: inject(),
@@ -23,62 +23,77 @@ export default Controller.extend({
         this._super(...arguments);
 
         const ajax = this.get('ajax');
-        let condition = {name: "qp"};
-        let sampleOption = SampleGetOption.create();
-        let resultOption = ResuleGetOption.create();
-        let mirrorOption = MirrorGetOption.create();
-        let mapOption = MapGetOption.create();
-
+        let condition = {
+            "condition":{
+                "user_id":"5ad871fe52d78f494e56e772"
+            }
+        };
         new rsvp.Promise((resolve, reject) => {
-            return ajax.request('/query/sample/hospital-numbers',
-                this.getAjaxOpt(condition)).then((data) => {
-                this.set('hospitalOption', sampleOption.getOption(data))
+            return ajax.request('api/job/push',
+                                    this.getAjaxOpt(condition)).then((data) => {
+                // this.set('hospitalOption', sampleOption.getOption(data))
+                window.console.info(data)
                 return resolve({resule: data});
             },
             () => {return reject("Access Error");}
         );
         });
 
-        new rsvp.Promise((resolve, reject) => {
-            return ajax.request('/query/sample/product-numbers',
-                                    this.getAjaxOpt(condition)).then((data) => {
-                this.set('productOption', sampleOption.getOption(data))
-                return resolve({resule: data});
-            },() => {return reject("Access Error");});
-        });
-
-
-        new rsvp.Promise((resolve, reject) => {
-            return ajax.request('/query/sample/sales-numbers',
-                                    this.getAjaxOpt(condition)).then((data) => {
-                this.set('salesOption', sampleOption.getOption(data))
-                return resolve({resule: data});
-            },() => {return reject("Access Error");});
-        });
-
-        new rsvp.Promise((resolve, reject) => {
-            return ajax.request('/query/result/trend',
-                                    this.getAjaxOpt(condition)).then((data) => {
-                this.set('trendOption', resultOption.getOption(data))
-                return resolve({resule: data});
-            },() => {return reject("Access Error");});
-        });
-
-        new rsvp.Promise((resolve, reject) => {
-            return ajax.request('/query/result/mirror',
-                                    this.getAjaxOpt(condition)).then((data) => {
-                this.set('mirrorOption', mirrorOption.getOption(data))
-                return resolve({resule: data});
-            },() => {return reject("Access Error");});
-        });
-
-        new rsvp.Promise((resolve, reject) => {
-            return ajax.request('/query/result/map',
-                                    this.getAjaxOpt(condition)).then((data) => {
-                this.set('mapOption', mapOption.getOption(data))
-                return resolve({resule: data});
-            },() => {return reject("Access Error");});
-        });
+        // let sampleOption = SampleGetOption.create();
+        // let resultOption = ResuleGetOption.create();
+        // let mirrorOption = MirrorGetOption.create();
+        // let mapOption = MapGetOption.create();
+        //
+        // new rsvp.Promise((resolve, reject) => {
+        //     return ajax.request('/query/sample/hospital-numbers',
+        //                             this.getAjaxOpt(condition)).then((data) => {
+        //         this.set('hospitalOption', sampleOption.getOption(data))
+        //         return resolve({resule: data});
+        //     },
+        //     () => {return reject("Access Error");}
+        // );
+        // });
+        //
+        // new rsvp.Promise((resolve, reject) => {
+        //     return ajax.request('/query/sample/product-numbers',
+        //                             this.getAjaxOpt(condition)).then((data) => {
+        //         this.set('productOption', sampleOption.getOption(data))
+        //         return resolve({resule: data});
+        //     },() => {return reject("Access Error");});
+        // });
+        //
+        //
+        // new rsvp.Promise((resolve, reject) => {
+        //     return ajax.request('/query/sample/sales-numbers',
+        //                             this.getAjaxOpt(condition)).then((data) => {
+        //         this.set('salesOption', sampleOption.getOption(data))
+        //         return resolve({resule: data});
+        //     },() => {return reject("Access Error");});
+        // });
+        //
+        // new rsvp.Promise((resolve, reject) => {
+        //     return ajax.request('/query/result/trend',
+        //                             this.getAjaxOpt(condition)).then((data) => {
+        //         this.set('trendOption', resultOption.getOption(data))
+        //         return resolve({resule: data});
+        //     },() => {return reject("Access Error");});
+        // });
+        //
+        // new rsvp.Promise((resolve, reject) => {
+        //     return ajax.request('/query/result/mirror',
+        //                             this.getAjaxOpt(condition)).then((data) => {
+        //         this.set('mirrorOption', mirrorOption.getOption(data))
+        //         return resolve({resule: data});
+        //     },() => {return reject("Access Error");});
+        // });
+        //
+        // new rsvp.Promise((resolve, reject) => {
+        //     return ajax.request('/query/result/map',
+        //                             this.getAjaxOpt(condition)).then((data) => {
+        //         this.set('mapOption', mapOption.getOption(data))
+        //         return resolve({resule: data});
+        //     },() => {return reject("Access Error");});
+        // });
 
     },
     actions: {
