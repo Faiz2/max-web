@@ -99,6 +99,10 @@ body {
                 display: inline-block;
                 height: 80px;
                 line-height: 80px;
+                a:hover {
+                    text-decoration: none;
+                    
+                }
                 .select-title {
                     font-size: 1.8rem;
                     letter-spacing: 2px;
