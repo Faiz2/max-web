@@ -1,5 +1,5 @@
 import Route from '@ember/routing/route';
-import { inject } from '@ember/service';
+// import { inject } from '@ember/service';
 // import rsvp from 'rsvp';
 // import SampleGetOption from '../../components/sample-line-and-bar/getOption';
 
