@@ -1,16 +1,28 @@
 <div local-class="step-flow-wrapper">
     <div local-class="step">
-        <div  local-class={{if stepOne "done step-item item-one" "step-item item-one"}}>
-            <span>Step 1：上传源文件{{stepOne}}</span>
+        <div  local-class="step-item item-one">
+            <img src="../../setup/step1.png" alt="">
         </div>
-        <div local-class={{if stepTwo "done step-item item-two" "step-item item-two"}}>
-            <span>Step 2：生成样本</span>
+        <div local-class="step-item item-two">
+            {{#unless stepTwo}}
+                <img src="../../setup/step2.png" alt="">
+            {{else}}
+                <img src="../../setup/step2done.png" alt="">
+            {{/unless}}
         </div>
-        <div local-class={{if stepThree "done step-item item-three" "step-item item-three"}}>
-            <span>Step 3：M A X计算</span>
+        <div local-class="step-item item-three">
+            {{#unless stepThree}}
+                <img src="../../setup/step3.png" alt="">
+            {{else}}
+                <img src="../../setup/step3done.png" alt="">
+            {{/unless}}
         </div>
-        <div local-class={{if stepFour "done step-item item-four" "step-item item-four"}}>
-            <span>Step 4：查看结果</span>
+        <div local-class="step-item item-four">
+            {{#unless stepFour}}
+                <img src="../../setup/step4.png" alt="">
+            {{else}}
+                <img src="../../setup/step4done.png" alt="">
+            {{/unless}}
         </div>
     </div>
 </div>
