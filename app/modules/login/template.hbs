@@ -8,11 +8,11 @@
             <form action="#">
                 <div local-class="login-item login-user">
                     <img src="../setup/id.png" alt="">
-                    {{input value=userid placeholder="请输入帐号" }}
+                    {{input value=userinfo.username placeholder="请输入帐号" }}
                 </div>
                 <div local-class="login-item login-password">
                     <img src="../setup/code.png" alt="">
-                    {{input type="password" value=password placeholder="请输入密码" }}
+                    {{input type="password" value=userinfo.password placeholder="请输入密码" }}
                 </div>
                 <button type="button" name="button" {{action "sbtinfo"}} local-class="btn-default-max">登入</button>
 

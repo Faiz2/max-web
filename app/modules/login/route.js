@@ -1,19 +1,19 @@
 import Route from '@ember/routing/route';
 import {set,get} from '@ember/object';
-
+import Userinfo from './userinfo';
+import {inject} from '@ember/service';
 export default Route.extend({
-    userid: '',
-    password: '',
+    userinfo: new Userinfo(),
+    ajax: inject(),
     setupController() {
         this._super(...arguments);
-        this.controllerFor('login').set('userid', get(this, 'userid'));
-        this.controllerFor('login').set('password', get(this, 'password'));
+        this.controllerFor('login').set('userinfo', get(this, 'userinfo'));
     },
     actions: {
         sbtinfo() {
             console.log('username:')
-            console.info(get(this, 'userid'));
-            console.info(get(this, 'password'));
+            console.info(get(this, 'userinfo'));
+            console.info(get(this, 'userinfo.password'));
         }
     }
 
