@@ -1,5 +1,5 @@
 import Controller from '@ember/controller';
-// import { inject } from '@ember/service';
+import { inject } from '@ember/service';
 // import rsvp from 'rsvp';
 // import SampleGetOption from '../components/sample-line-and-bar/getOption';
 // import ResuleGetOption from '../components/result-trend-line-and-bar/getOption';
@@ -8,7 +8,7 @@ import Controller from '@ember/controller';
 
 export default Controller.extend({
     // ajax: inject(),
-    // progress: inject('circle-progress'),
+    progress: inject('circle-progress-serivce'),
     getAjaxOpt(data) {
         return {
             method: 'POST',
@@ -21,6 +21,7 @@ export default Controller.extend({
     },
     init() {
         this._super(...arguments);
+
         // let WebIM = require('easemob-websdk');
         // let conn = new WebIM.connection({
         //     isMultiLoginSessions: WebIM.config.isMultiLoginSessions,
@@ -126,10 +127,11 @@ export default Controller.extend({
     },
     actions: {
         go: function() {
-            let num = 10;
-            const progress = this.get('progress');
-            progress.setPercent(num);
-            this.set('option', progress.getOption());
+            // let num = 10;
+            // const progress = this.get('progress');
+            // progress.setPercent(num);
+            // this.set('option', progress.getOption());
+            this.set('option', this.get('progress').getOption())
         }
     }
 });

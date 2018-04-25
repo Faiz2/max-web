@@ -1,6 +1,6 @@
 import { moduleFor, test } from 'ember-qunit';
 
-moduleFor('service:web-im', 'Unit | Service | web im', {
+moduleFor('service:xmpp-service', 'Unit | Service | xmpp service', {
   // Specify the other units that are required for this test.
   // needs: ['service:foo']
 });
