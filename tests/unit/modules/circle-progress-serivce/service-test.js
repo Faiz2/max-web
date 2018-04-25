@@ -1,6 +1,6 @@
 import { moduleFor, test } from 'ember-qunit';
 
-moduleFor('service:circle-progress', 'Unit | Service | circle progress', {
+moduleFor('service:circle-progress-serivce', 'Unit | Service | circle progress serivce', {
   // Specify the other units that are required for this test.
   // needs: ['service:foo']
 });
