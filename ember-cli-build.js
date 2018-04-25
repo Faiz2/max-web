@@ -1,6 +1,7 @@
 'use strict';
 
 const EmberApp = require('ember-cli/lib/broccoli/ember-app');
+// const Easemob =  require('easemob-websdk');
 
 module.exports = function(defaults) {
     // 判断是否需要sourceMaps
@@ -33,8 +34,11 @@ module.exports = function(defaults) {
             locales: ['fr', 'de', 'ru', 'uk','zh'],
         }
     });
-    app.import("vendor/echarts.js")
-    app.import("vendor/china.js")
+    app.import("vendor/echarts/echarts.js")
+    app.import("vendor/echarts/china.js")
+    app.import("vendor/webim/config.js")
+    app.import("vendor/webim/strophe-1.2.8.min.js")
+    app.import("vendor/webim/websdk-1.4.13.js")
       // Use `app.import` to add additional libraries to the generated
       // output files.
       //

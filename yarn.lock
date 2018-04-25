@@ -2385,10 +2385,6 @@ duplexer3@^0.1.4:
   version "0.1.4"
   resolved "https://registry.yarnpkg.com/duplexer3/-/duplexer3-0.1.4.tgz#ee01dd1cac0ed3cbc7fdbea37dc0a8f1ce002ce2"
 
-easemob-websdk@^1.4.15:
-  version "1.4.15"
-  resolved "https://registry.yarnpkg.com/easemob-websdk/-/easemob-websdk-1.4.15.tgz#b84f28b5529e15ba213c5a10f623f1b47dc79014"
-
 ecc-jsbn@~0.1.1:
   version "0.1.1"
   resolved "https://registry.yarnpkg.com/ecc-jsbn/-/ecc-jsbn-0.1.1.tgz#0fc73a9ed5f0d53c38193398523ef7e543777505"
@@ -2844,6 +2840,13 @@ ember-concurrency@^0.8.7:
     ember-cli-babel "^6.8.2"
     ember-maybe-import-regenerator "^0.1.5"
 
+ember-cookies@^0.3.0:
+  version "0.3.0"
+  resolved "https://registry.yarnpkg.com/ember-cookies/-/ember-cookies-0.3.0.tgz#f9a23c957bd0e561e6a056e044d95ce2416b64d8"
+  dependencies:
+    ember-cli-babel "^6.8.2"
+    ember-getowner-polyfill "^1.1.0 || ^2.0.0"
+
 ember-css-modules-sass@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/ember-css-modules-sass/-/ember-css-modules-sass-1.0.0.tgz#657feddc9a257d18f2bf3bf5141c6365b1fa42ca"
@@ -2929,6 +2932,12 @@ ember-export-application-global@^2.0.0:
   dependencies:
     ember-cli-babel "^6.0.0-beta.7"
 
+ember-factory-for-polyfill@^1.3.1:
+  version "1.3.1"
+  resolved "https://registry.yarnpkg.com/ember-factory-for-polyfill/-/ember-factory-for-polyfill-1.3.1.tgz#b446ed64916d293c847a4955240eb2c993b86eae"
+  dependencies:
+    ember-cli-version-checker "^2.1.0"
+
 ember-file-upload@^2.4.2:
   version "2.4.2"
   resolved "https://registry.yarnpkg.com/ember-file-upload/-/ember-file-upload-2.4.2.tgz#eef982f936e7ff2110b7717c4290abc97b319f89"
@@ -2952,6 +2961,13 @@ ember-get-config@^0.2.2, ember-get-config@^0.2.3:
   dependencies:
     broccoli-file-creator "^1.1.1"
     ember-cli-babel "^6.3.0"
+
+"ember-getowner-polyfill@^1.1.0 || ^2.0.0":
+  version "2.2.0"
+  resolved "https://registry.yarnpkg.com/ember-getowner-polyfill/-/ember-getowner-polyfill-2.2.0.tgz#38e7dccbcac69d5ec694000329ec0b2be651d2b2"
+  dependencies:
+    ember-cli-version-checker "^2.1.0"
+    ember-factory-for-polyfill "^1.3.1"
 
 ember-in-element-polyfill@^0.1.2:
   version "0.1.2"
