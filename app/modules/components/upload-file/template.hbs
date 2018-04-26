@@ -45,10 +45,10 @@
     </div>
     {{!-- 下一步正确逻辑 下方四行--}}
     {{#if isDisabled}}
-        <button disabled=true local-class="to-second-step" type="button" name="btn-second-step">下一步</button>
+        <button disabled=true local-class="btn-default-max to-second-step" type="button" name="btn-second-step">下一步</button>
     {{else}}
         {{#link-to "adddata.gsample"}}
-            <button local-class={{unless isDisabled "useable"}} local-class="to-second-step" type="button" name="btn-second-step">下一步</button>
+            <button local-class={{unless isDisabled "useable" }} local-class="btn-default-max to-second-step" type="button" name="btn-second-step">下一步</button>
         {{/link-to}}
     {{/if}}
     {{!-- 下一步正确逻辑 上方四行 --}}
