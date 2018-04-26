@@ -1,5 +1,4 @@
 import Route from '@ember/routing/route';
-
 export default Route.extend({
     model() {
         return [
@@ -134,6 +133,6 @@ export default Route.extend({
         { propertyName: 'sales', 'className': 'text-center',useSorting: false},
         { propertyName: 'units', 'className': 'text-center', useSorting: false}
     ]);
-    controller.set('title','Pharbers 数据')
-  }
+    controller.set('title','Pharbers 数据');
+  },
 });

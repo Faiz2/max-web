@@ -60,7 +60,5 @@
   "engines": {
     "node": "^4.5 || 6.* || >= 7.*"
   },
-  "dependencies": {
-    "ember-flatpickr": "^2.4.0"
-  }
+  "dependencies": {}
 }
