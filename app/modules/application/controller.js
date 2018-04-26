@@ -1,8 +1,8 @@
 import Controller from '@ember/controller';
 import { inject } from '@ember/service';
-import xmppMessage from './xmppMessage';
+import XmppMessageMixin from './XmppMessageMixin';
 
-export default Controller.extend({
+export default Controller.extend(XmppMessageMixin, {
     webIm: inject('xmpp-service'),
     progress: inject('circle-progress-serivce'),
     init() {
@@ -13,11 +13,10 @@ export default Controller.extend({
         };
         if(status === 'yes') {
             let conn = result;
-            xmppMessage.callback(conn, services);
+            this.callback(this, conn, services);
         } else {
             // this.transitionTo('login');
             this.set('webImErrorMessage', message);
         }
-    }
-
+    },
 });

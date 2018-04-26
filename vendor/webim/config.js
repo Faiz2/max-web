@@ -18,7 +18,7 @@ WebIM.config = {
     /*
      * Application AppKey
      */
-    appkey: '1178170412178095#loading',
+    appkey: '1111170725178064#maxloading',
     /*
      * Whether to use wss
      * @parameter {Boolean} true or false

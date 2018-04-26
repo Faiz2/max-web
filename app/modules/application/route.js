@@ -5,6 +5,6 @@ export default Route.extend({
     init() {
         this._super(...arguments);
         // TODO 王森 这段话放到login成功后
-        this.get('webIm').login('test','123456')
+        this.get('webIm').login('test','123123')
     }
 });
