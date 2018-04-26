@@ -8,7 +8,7 @@ export default Controller.extend(XmppMessageMixin, {
     progress: inject('circle-progress-serivce'),
     init() {
         this._super(...arguments);
-        window.console.info('1234da')
+        window.console.info('1234da');
         const { result, status, message} = this.get('webIm').load();
         let services = {
             'progress': this.get('progress')

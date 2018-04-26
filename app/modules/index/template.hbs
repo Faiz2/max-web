@@ -18,10 +18,7 @@
         </div>
     </div>
     <div local-class="copyright">
-        <p> <button {{action "testLogin"}} class="btn-danger" type="button" name="button">测试按钮，后期删除</button> </p>
-        {{!-- <p>从‘data/uploadfiles’路由进入后，会在beforeModel 中获取到index路由的controller.js中的‘userIsLoggedIn’的值</p>
-        <p>如果为‘false’，将会跳转到登录页面。在点击测试按钮后，修改‘userIsLoggedIn’的值为true，就能调回到前路由，如果没有前路由，
-            将会调往指定界面，在此为’viewresults</p> --}}
+        <p {{action 'testLogin'}}>测试按钮</p>
         <p>Copyright © 2018 Pharbers . All rights reserved.</p>
     </div>
 </div>
