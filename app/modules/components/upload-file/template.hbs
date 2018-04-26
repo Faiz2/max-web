@@ -45,16 +45,29 @@
     </div>
     {{!-- 下一步正确逻辑 下方四行--}}
     {{#if isDisabled}}
-        <button disabled=true local-class="btn-default-max to-second-step" type="button" name="btn-second-step">下一步</button>
+        <button {{action 'pleaseUploadFile'}} local-class="btn-default-max to-generate-sample" type="button" name="btn-second-step">下一步</button>
     {{else}}
         {{#link-to "adddata.gsample"}}
-            <button local-class={{unless isDisabled "useable" }} local-class="btn-default-max to-second-step" type="button" name="btn-second-step">下一步</button>
+            <button local-class={{unless isDisabled "useable" }} local-class="btn-default-max to-generate-sample" type="button" name="btn-second-step">下一步</button>
         {{/link-to}}
     {{/if}}
     {{!-- 下一步正确逻辑 上方四行 --}}
     {{!-- 下一步测试逻辑 --}}
     {{!-- {{#link-to "adddata.gsample"}}
-        <button local-class="to-second-step useable" type="button" name="btn-second-step">下一步</button>
+        <button local-class="to-generate-sample useable" type="button" name="btn-second-step">下一步</button>
     {{/link-to}} --}}
 </div>
+{{#bs-modal local-class="hint-area" open=remindUploadFile onHidden=(action (mut remindUploadFile) false) as |modal|}}
+    {{#modal.header}}
+        <h4 class="modal-title">
+            提示
+        </h4>
+    {{/modal.header}}
+    {{#modal.body}}
+        <p>请上传文件</p>
+    {{/modal.body}}
+    {{#modal.footer}}
+        {{#bs-button onClick=(action modal.close)}}关闭{{/bs-button}}
+    {{/modal.footer}}
+{{/bs-modal}}
 {{yield}}

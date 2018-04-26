@@ -190,7 +190,11 @@ body {
     .detail-list {
       border: 1px solid #eee;
       background-color: #fff;
+      .footer-num {
+          float: right;
+          padding-right: 50px;
+          margin-bottom: 10px;
+      }
     }
   }
 }
-

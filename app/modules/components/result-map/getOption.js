@@ -7,7 +7,7 @@ export default EmberObject.extend({
             series: [{
                 name: '中国',
                 type: 'map',
-                zoom: 1.2,
+                zoom: 1.5,
                 mapType: 'china',
                 roam: false,
                 label: {normal: {show: true}},

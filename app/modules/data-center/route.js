@@ -1,9 +1,18 @@
 import Route from '@ember/routing/route';
+import { inject } from '@ember/service';
 export default Route.extend({
     redirect(model, transition) {
         this.refresh
     },
-    model() {
+    cookies: inject(),
+    // beforeModel(transition) {
+    //     if (!this.controllerFor('index').get('userIsLoggedIn')) {
+    //         let loginController = this.controllerFor('index');
+    //         loginController.set('previousTransition', transition);
+    //         this.transitionTo('index');
+    //     }
+    // },
+  model() {
     return [{
         'index': "1",
         'data': "201804",

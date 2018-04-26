@@ -8,7 +8,7 @@ export default Component.extend({
                 timeline: {show: false},//这个不能删除
                 title: {
                     text: "市场规模排名",
-                    left: '200'
+                    left: '36%'
                 },
                 tooltip: {
                     show: true,

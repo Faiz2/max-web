@@ -22,53 +22,32 @@
         <div local-class="market-results">
             <div local-class="market-target">
                 <p local-class="result-title"><span>INF</span>市场指标</p>
-                {{!-- <div local-class="market-target-content">
-                    <div>
-                        <p local-class="small-title">市场总销售额</p>
-                        <div>
-                            <p></p>
-                            <p></p>
+
+                <div local-class="market-target-content" >
+                    <div local-class="target-item">
+                        <div local-class="item-current">
+                            <p>市场总销售额</p>
+                            <p><span>￥670.5</span>&nbsp;&nbsp;&nbsp;<span>Mil</span></p>
+                        </div>
+                        <div local-class="item-old">
+                            <p>同比</p>
+                            <p>+3.01%</p>
                         </div>
                     </div>
-                </div> --}}
-                <div local-class="market-target-content" class="container-fluid">
-                    <div local-class="row small-title">
-                        <div class="col-md-1"></div>
-                        <div class="col-md-3">市场总销售额</div>
-                        
-                        <div class="col-md-4">辉瑞产品销售额</div>
-                        <div class="col-md-4">份额</div>
+                    <div local-class="target-item">
+                        <div local-class="item-current">
+                            <p>辉瑞产品销售额</p>
+                            <p><span>￥670.5</span>&nbsp;&nbsp;&nbsp;<span>Mil</span></p>
+                        </div>
+                        <div local-class="item-old">
+                            <p>同比</p>
+                            <p>+3.01%</p>
+                        </div>
                     </div>
-                    <div class="row" local-class=" target-specific">
-                        <div class="col-md-1"></div>
-                        <div class="col-md-3">
-                            <div class="col-md-8" local-class="big-text">
-                                ￥670.5 <span>Mil</span>
-                            </div>
-                            <div class="col-md-4">
-                                <p>同比</p>
-                                <p local-class="show-state">+03.1%</p>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="col-md-8" local-class="big-text">
-                                 ￥670.5
-                                <span>Mil</span>
-                            </div>
-                            <div class="col-md-4">
-                                <p>同比</p>
-                                <p local-class="show-state">+03.1%</p>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="col-md-8" local-class="big-text">
-                                 ￥670.5
-                                <span>Mil</span>
-                            </div>
-                            <div class="col-md-4">
-                                <p>同比</p>
-                                <p local-class="show-state">+03.1%</p>
-                            </div>
+                    <div local-class="target-item">
+                        <div local-class="item-current">
+                            <p>份额</p>
+                            <p><span>31.1%</span><span></span></p>
                         </div>
                     </div>
                 </div>
@@ -81,35 +60,41 @@
         </div>
         <div local-class="market-results">
             <p local-class="result-title"><span>INF</span>地区层面结果</p>
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-md-8">
-                         {{result-map eid="result-map"}}
+            {{!-- <div class="container-fluid"> --}}
+                {{!-- <div class="row"> --}}
+                <div local-class="china-map-data">
+                    {{!-- <div class="col-md-6"> --}}
+                    <div local-class="china-map">
+                        {{result-map eid="result-map"}}
                     </div>
-                    <div class="col-md-4">
-                         {{result-mirror-bar eid="result-mirror-bar"}}
+                    {{!-- </div> --}}
+                    {{!-- <div class="col-md-6"> --}}
+                    <div local-class="china-data">
+                        {{result-mirror-bar eid="result-mirror-bar"}}
                     </div>
+                    {{!-- </div> --}}
                 </div>
-            </div>
+                {{!-- </div> --}}
+            {{!-- </div> --}}
         </div>
     </div>
 </div>
-{{#bs-modal local-class="hint-area" open=isSave onHidden=(action (mut isSave) false) as |modal|}} 
+{{#bs-modal local-class="hint-area" open=isSave onHidden=(action (mut isSave) false) as |modal|}}
     {{#modal.header}}
         <h4 class="modal-title">
             请确认保存的数据
         </h4>
-    {{/modal.header}} 
+    {{/modal.header}}
     {{#modal.body}}
         <input type="checkbox">2018-01
         <input type="checkbox">2018-02
         <input type="checkbox">2018-03
         <input type="checkbox">2018-04
-        
-    {{/modal.body}} 
-    {{#modal.footer}} 
-        {{#bs-button onClick=(action modal.close)}}全选{{/bs-button}} 
-        {{#bs-button onClick=(action 'confirmSave')}}确认{{/bs-button}} 
-    {{/modal.footer}} 
+
+    {{/modal.body}}
+    {{#modal.footer}}
+        {{#bs-button onClick=(action modal.close)}}全选{{/bs-button}}
+        {{#bs-button onClick=(action 'confirmSave')}}确认{{/bs-button}}
+    {{/modal.footer}}
 {{/bs-modal}}
 {{yield}}

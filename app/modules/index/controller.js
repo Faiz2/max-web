@@ -7,6 +7,7 @@ export default Controller.extend({
     cookies: inject(),
     ajax: inject(),
     webIm: inject('xmpp-service'),
+    userIsLoggedIn: false,
     getAjaxOpt(data) {
         return {
             method: 'POST',
@@ -37,8 +38,25 @@ export default Controller.extend({
                             alert('帐号或密码错误。');
                         }
                         return resolve({ resule: response});
-                    },() => {return reject("Access Error")});
+                    },
+                    () => {return reject("Access Error");}
+                );
             });
-        }
+        },
+
+        // 测试 按钮逻辑，后期删除
+        testLogin() {
+           // Log the user in, then reattempt previous transition if it exists.
+           let previousTransition = this.get('previousTransition');
+           if (previousTransition) {
+                // 修改监听的数值为true
+                this.set('userIsLoggedIn', true);
+                this.set('previousTransition', null);
+                previousTransition.retry();
+           } else {
+                // 回到主页（由于主页监听了是否登录，所以跳转到了没有监听登录的路由）
+                this.transitionToRoute('/adddata/viewresults');
+           }
+         }
     }
 })
