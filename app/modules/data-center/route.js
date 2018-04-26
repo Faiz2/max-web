@@ -1,6 +1,9 @@
 import Route from '@ember/routing/route';
 export default Route.extend({
-  model() {
+    redirect(model, transition) {
+        this.refresh
+    },
+    model() {
     return [{
         'index': "1",
         'data': "201804",
@@ -120,8 +123,8 @@ export default Route.extend({
       },
 
     ]
-  },
-  setupController(controller) {
+    },
+    setupController(controller) {
     this._super(...arguments);
     controller.set('columns', [{
         propertyName: 'index',
@@ -161,10 +164,10 @@ export default Route.extend({
       }
     ]);
     controller.set('title', 'Pharbers 数据');
-  },
-  actions: {
+    },
+    actions: {
       changeMonthAction(startData) {
           console.log(startData.toString().slice(4, 7) + " " + startData.toString().slice(11, 15))
       }
-  }
+    }
 });

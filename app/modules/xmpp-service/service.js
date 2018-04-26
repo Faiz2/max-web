@@ -29,7 +29,7 @@ export default Service.extend({
               that.get('cookies').write('webim_token', token.access_token);
               that.get('cookies').write('webim_user', token.user.username);
             },
-            error: function(m){console.error("Error = " + m)}
+            error: function(m){window.console.error("Error = " + m)}
         };
         this.get('conn').open(options);
     },
