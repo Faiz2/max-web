@@ -29,10 +29,6 @@ module.exports = function(defaults) {
         babel: {
             sourceMaps: sourceMap
         },
-        flatpickr: {
-            theme: 'material_green',
-            locales: ['fr', 'de', 'ru', 'uk','zh'],
-        }
     });
     app.import("vendor/echarts/echarts.js")
     app.import("vendor/echarts/china.js")
@@ -45,6 +41,8 @@ module.exports = function(defaults) {
     app.import('node_modules/bootstrap/fonts/glyphicons-halflings-regular.ttf', { destDir: '/fonts' });
     app.import('node_modules/bootstrap/fonts/glyphicons-halflings-regular.woff', { destDir: '/fonts' });
     app.import('node_modules/bootstrap/fonts/glyphicons-halflings-regular.woff2', { destDir: '/fonts' });
+    // 为日历插件添加中文
+    app.import("vendor/datepicker/datepicker.zh-CN.min.js") 
       // Use `app.import` to add additional libraries to the generated
       // output files.
       //

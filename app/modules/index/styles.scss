@@ -12,13 +12,18 @@ body {
 }
 
 .wrapper-container {
+    position: relative;
     height: 100%;
     min-width: 1200px;
 }
 .wrapper-menu {
-    // position: fixed;
-    position: relative;
-    float: left;
+    position: fixed;
+    // position: relative;
+    // float: left;
+    top: 60px;
+    bottom: 0;
+    left: 0;
+    z-index: 3;
     height: 100%;
     width: 220px;
     background-color: $navbar-bgcolor;
@@ -60,11 +65,19 @@ body {
 }
 
 .wrapper-content {
-    margin-left: 220px;
+    position: absolute;
+    top: 60px;
+    right: 0;
+    bottom: 0;
+    left: 220px;
+    z-index: 2;  
+    width: auto;
+    // margin-left: 220px;
     background-color: $content-bgcolor;
     .content-title {
         padding-left: 40px;
         height: 50px;
+        width: 100% ;
         line-height: 60px;
         font-size: 2.0rem;
         color: #000;
@@ -74,7 +87,7 @@ body {
     .content-detail {
         margin: 0 auto;
         width: 96%;
-        min-width: 980px;
+        min-width: 960px;
         height: 800px;
         .detail-choosebar {
             margin-bottom: 20px;
@@ -86,6 +99,10 @@ body {
                 display: inline-block;
                 height: 80px;
                 line-height: 80px;
+                a:hover {
+                    text-decoration: none;
+                    
+                }
                 .select-title {
                     font-size: 1.8rem;
                     letter-spacing: 2px;

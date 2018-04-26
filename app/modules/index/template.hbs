@@ -1,4 +1,4 @@
-{{nav-bar title=title isCenter=false isShow=false}}
+{{nav-bar title=title isCenter=false isShow=false }}
 <div local-class="wrapper-container">
         <div local-class="wrapper-menu" >
             <div local-class="menu-user">
@@ -13,12 +13,12 @@
                 </div>
             </div>
             <ul local-class="menu-tabs">
-                <li local-class="item-tab active" ><span>&</span>数据工具</li>
+                <li local-class="item-tab active" ><span class="glyphicon glyphicon-th"></span>数据工具</li>
             </ul>
         </div>
         <div local-class="wrapper-content">
             <p local-class="content-title">
-                <p><span>&</span>数据中心</p>
+                <p><span class="glyphicon glyphicon-th"></span>数据中心</p>
             </p>
             <div local-class="content-detail">
                 <div local-class="detail-choosebar">
@@ -31,9 +31,9 @@
                         </select>
                         <span local-class="select-title">时间选择</span>
                         <span local-class="time-selects">
-                            {{ember-flatpickr date=null onChange=null  locale='zh' }}
+                            {{bootstrap-datepicker value=startDate autoclose=true minViewMode=1 format="mm/yyyy" keyboardNavigation=true language="zh-CN"}}
                             <span local-class="middle-text">to</span>
-                            {{ember-flatpickr date=null onChange=null locale='zh' dateFormat='m/Y'  placeholder='选择截至日期' mode="range"}}
+                            {{bootstrap-datepicker value=endDate autoclose=true minViewMode=1 format="mm/yyyy" language="zh-CN"}}                            
                         </span>
                          <span><button local-class="btn-output" class="btn" type="button" name="btn-output">导出</button></span>
                     </div>
