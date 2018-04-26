@@ -111,5 +111,14 @@ export default function() {
         }
     });
 
-
+    this.post('api/user/login', (schema, request) => {
+        window.console.info(request.requestBody);
+        return {
+            result: {
+                uid: "naskdhaslodbaklsdnbasdhaksld",
+                user_token: "dasdsajdsadasdasdasdadad"
+            },
+            status: "ok"
+        }
+    })
 }
