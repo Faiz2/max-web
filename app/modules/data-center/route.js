@@ -3,7 +3,7 @@ export default Route.extend({
     redirect(model, transition) {
         this.refresh
     },
-    model() {
+  model() {
     return [{
         'index': "1",
         'data': "201804",

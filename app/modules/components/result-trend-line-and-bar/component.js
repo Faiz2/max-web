@@ -8,7 +8,8 @@ export default Component.extend({
             grid: {
                 left: '3%',
                 right: '4%',
-                bottom: '3%',
+                bottom: '4%',
+                height: '250px',
                 containLabel: true
             },
             tooltip: {

@@ -1,3 +1,20 @@
+/**
+*
+*btn样式
+*/
+.btn-default-max {
+    padding: 0 20px;
+    height: 35px;
+    width: 100px;
+    line-height: 35px;
+    border: 0;
+    border-radius: 4px;
+    font-size: 18px;
+    color: #fff;
+    background-color: $btn-bgcolor;
+}
+
+
 .login {
   position: fixed;
   top: 0;
@@ -46,7 +63,7 @@
       margin: 20px 0;
       height: 30px;
       line-height: 30px;
-      font-size: 12px; 
+      font-size: 12px;
       img {
         width: 20px;
       }
@@ -84,5 +101,7 @@
   font-size: 12px;
   letter-spacing: 1.2px;
   color: #fff;
+  p {
+      text-align: center;
+  }
 }
-

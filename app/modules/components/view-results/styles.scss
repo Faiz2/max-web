@@ -70,6 +70,40 @@
       margin-right: 40px;
     }
   }
+  .target-item {
+      display: inline-block;
+      margin-left: 100px;
+      width: 265px;
+
+      .item-current, .item-old {
+          display: inline-block;
+          width: 48%;
+      }
+      .item-current {
+          text-align: left;
+          p:first-child {
+              font-size: 1.2rem;
+          }
+          p:last-child {
+              span:first-child {
+                  font-size: 2.8rem;
+              }
+              span:last-child {
+                  font-size: 1.6rem;
+              }
+          }
+      }
+      .item-old {
+          padding-left: 50px;
+          p:first-child {
+              font-size: 1.4rem;
+          }
+          p:last-child {
+              font-size: 1.6rem;
+              color: $btn-bgcolor;
+          }
+      }
+  }
   .market-results {
     padding:5px 30px;
     margin-bottom: 25px;
@@ -85,13 +119,16 @@
         .big-text {
           padding-top: 16px;
           padding-left: 0;
-          font-size: 27px;          
+          font-size: 27px;
         }
         span {
           font-size: 16px;
         }
         p {
           font-size: 14px;
+        }
+        .show-state {
+            color: $btn-bgcolor;
         }
       }
 
@@ -101,6 +138,19 @@
       line-height: 40px;
       font-size: 1.8rem;
     }
+    .china-map-data {
+        height: 600px;
+        .china-map, .china-data {
+            float: left;
+        }
+        .china-map {
+            width: 700px;
+        }
+        .china-data {
+            width: 440px;
+        }
+    }
+
   }
 // }
 

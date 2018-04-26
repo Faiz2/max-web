@@ -2,10 +2,15 @@ import Component from '@ember/component';
 import { set, get } from '@ember/object';
 
 export default Component.extend({
+    remindUploadFile: false,    // 用于检测提醒用户上传文件的状态
     isDisabled: true,
     filecpa: "",
     filegycx: "",
     actions: {
+        // 提示用户上传文件的弹窗
+        pleaseUploadFile() {
+            this.set('remindUploadFile', true);
+        },
         uploadCpaFile(file) {
             set(this, 'filecpa', get(file, 'name'));
             set(this, 'isDisabled', false)
