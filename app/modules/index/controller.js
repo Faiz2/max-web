@@ -1,6 +1,6 @@
 import Controller from '@ember/controller';
 import { inject } from '@ember/service';
-import {set,get} from '@ember/object';
+// import {set,get} from '@ember/object';
 import rsvp from 'rsvp';
 
 export default Controller.extend({
@@ -31,9 +31,9 @@ export default Controller.extend({
                         if (response.status === "ok") {
                             this.get('cookies').write('uid', response.result.uid);
                             this.get('cookies').write('user_token', response.result.user_token);
-                            this.transitionToRoute('/');
+                            this.transitionToRoute('/data-center');
                         } else {
-                            alert('wrong')
+                            alert('帐号或密码错误。')
                         }
                         return resolve({ resule: response});
             },

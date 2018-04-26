@@ -1,0 +1,75 @@
+{{nav-bar title=title isCenter=false isShow=false }}
+<div local-class="wrapper-container">
+    <div local-class="wrapper-menu">
+        <div local-class="menu-user">
+            <div local-class="user-name">
+                <span local-class="name-span">N ame</span>
+                <span class="glyphicon glyphicon-chevron-down"></span>
+                <span class="glyphicon glyphicon-bell"> </span>
+            </div>
+            <div local-class="user-status">
+                <span local-class="status-span"></span>
+                <span>test1234 @ 123.com</span>
+            </div>
+        </div>
+        <ul local-class="menu-tabs">
+            <li local-class="item-tab active">
+                <span class="glyphicon glyphicon-th"></span>数据工具</li>
+        </ul>
+    </div>
+    <div local-class="wrapper-content">
+        <p local-class="content-title">
+            <p>
+                <span class="glyphicon glyphicon-th"></span>数据中心</p>
+        </p>
+        <div local-class="content-detail">
+            <div local-class="detail-choosebar">
+                <div local-class="choosebar-content choosebar-left">
+                    <span local-class="select-title">市场</span>
+                    <select local-class="choose-market" name="">
+                        <option value="all">全部</option>
+                        <option value="a">a market</option>
+                        <option value="b">b market</option>
+                    </select>
+                    <span local-class="select-title">时间选择</span>
+                    <span local-class="time-selects">
+                        {{bootstrap-datepicker changeMonth="changeMonthAction" value=startData autoclose=true minViewMode=1 format="mm/yyyy" keyboardNavigation=true language="zh-CN"}}
+                        <span local-class="middle-text">to</span>
+                        {{bootstrap-datepicker value=endData autoclose=true minViewMode=1 format="mm/yyyy" language="zh-CN"}}
+                    </span>
+                    <span>
+                        <button local-class="btn-output" class="btn" type="button" name="btn-output">导出</button>
+                    </span>
+                </div>
+                <div local-class="choosebar-content choosebar-right">
+                    {{#link-to "adddata.uploadfiles"}}
+                        <div local-class="btn-add-data">
+                            <div local-class="add-data-content left-section">
+                                +
+                            </div>
+                            <div local-class="add-data-content right-section">
+                                添加数据
+                            </div>
+                        </div>
+                    {{/link-to}}
+                </div>
+            </div>
+            <div local-class="detail-list">
+                {{models-table
+                        data=model
+                        columns=columns
+                        useFilteringByColumns=false
+                        showGlobalFilter=false
+                        filterQueryParameters=false
+                        showComponentFooter=true
+                        showColumnsDropdown=false
+                        useFilteringByColumns=false
+                        showGlobalFilter=false
+                        useNumericPagination=true
+                        showPageSize=false
+                    }}
+            </div>
+        </div>
+    </div>
+</div>
+{{outlet}}

@@ -19,7 +19,7 @@ Router.map(function() {
     this.route('viewresults');
   });
   this.route('demo');
-  this.route('login');
+  this.route('data-center');
 });
 
 export default Router;
