@@ -1,8 +1,13 @@
 <div local-class="step-content-wrapper">
     <div local-class="step-left">
         <p>
-            <span>请上传CPA文件</span>
-            <span>(仅支持：excel)</span>
+            {{#unless filecpa }}
+                <span>请上传CPA文件</span>
+                <span>(仅支持：excel)</span>
+            {{else}}
+                <span>CPA文件</span>
+                <span> </span>
+            {{/unless}}
         </p>
         <div local-class="upload-area">
             <div local-class="dropzone-upload-area" class= {{concat 'upload ' (if dropzone.active 'active')}}>
@@ -15,7 +20,11 @@
             <div local-class="click-upload">
                 {{#file-upload name="file-cpa" multiple=false onfileadd=(action "uploadCpaFile") accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"}}
                     {{#if filecpa}} {{filecpa}} {{/if}}
-                    <a>选择文件</a>
+                    {{#unless filecpa }}
+                        <a>选择文件</a>
+                    {{else}}
+                        <a local-class="delete" {{action "deleteCpaFile"}}>删除文件</a>
+                    {{/unless}}
                 {{/file-upload}}
             </div>
         </div>
@@ -23,8 +32,13 @@
 
     <div local-class="step-right">
         <p>
-            <span>请上传国药诚信文件</span>
-            <span>(仅支持：excel)</span>
+            {{#unless filegycx }}
+                <span>请上传国药诚信文件</span>
+                <span>(仅支持：excel)</span>
+            {{else}}
+                <span>国药诚信文件</span>
+                <span> </span>
+            {{/unless}}
         </p>
 
         <div local-class="upload-area">
@@ -38,7 +52,12 @@
             <div local-class="click-upload">
                 {{#file-upload name="file-gycx" multiple=false onfileadd=(action "uploadGycxFile") accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"}}
                     {{#if filegycx}} {{filegycx}} {{/if}}
-                    <a>选择文件</a>
+                    {{!-- <a>选择文件</a> --}}
+                    {{#unless filegycx }}
+                        <a>选择文件</a>
+                    {{else}}
+                        <a local-class="delete" {{action "deleteGycxFile"}}>删除文件</a>
+                    {{/unless}}
                 {{/file-upload}}
             </div>
         </div>

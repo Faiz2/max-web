@@ -42,7 +42,7 @@ module.exports = function(defaults) {
     app.import('node_modules/bootstrap/fonts/glyphicons-halflings-regular.woff', { destDir: '/fonts' });
     app.import('node_modules/bootstrap/fonts/glyphicons-halflings-regular.woff2', { destDir: '/fonts' });
     // 为日历插件添加中文
-    app.import("vendor/datepicker/datepicker.zh-CN.min.js") 
+    app.import("vendor/datepicker/datepicker.zh-CN.min.js")
       // Use `app.import` to add additional libraries to the generated
       // output files.
       //
