@@ -14,10 +14,10 @@
     {{!-- {{/link-to}} --}}
   </div>
 </nav>
-{{#bs-modal local-class="hint-area" open=exitStep onHidden=(action (mut exitStep) false) as |modal|}}
+{{#bs-modal fade=false open=exitStep onHidden=(action (mut exitStep) false) as |modal|}}
     {{#modal.header}}
         <h4 class="modal-title">
-            
+            提示
         </h4>
     {{/modal.header}}
     {{#modal.body}}

@@ -40,19 +40,19 @@
 
 .calc-max-content {
   margin: 0 auto;
-  padding-top: 80px;
+  padding-top: 70px;
   width: 50%;
   p.explain-text {
     margin: 0;
     padding: 0 30px;
-    height: 30px;
+    height: 60px;
     line-height: 30px;
     font-size: 1.6rem;
     letter-spacing: 2px;
   }
   .btn-start {
     position: relative;
-    margin: 100px auto 0;
+    margin: 70px auto 0;
     width: 200px;
     height: 200px;
     line-height: 200px;
@@ -88,6 +88,13 @@
   }
   p.calc-progress-text {
     margin-top: 40px;
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+    font-size: 18px;
+  }
+  p.calc-progress-text-ing {
+    margin-top: 0;
     height: 40px;
     line-height: 40px;
     text-align: center;

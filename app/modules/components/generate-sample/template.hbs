@@ -177,7 +177,7 @@
 </div>
 {{!-- local-class="hint-area" --}}
 
-{{#bs-modal position='center' backdropClose=false open=modal3 onHidden=(action (mut modal3) false) as |modal|}}
+{{#bs-modal fade=false backdropClose=false open=modal3 onHidden=(action (mut modal3) false) as |modal|}}
     {{#modal.header}}
         <h4 class="modal-title">
             提示
@@ -195,7 +195,7 @@
 {{/bs-modal}}
 
 {{#if isUploadRight}}
-    {{#bs-modal local-class="hint-area" open=progressRight onHidden=(action (mut progressRight) false) as |modal|}}
+    {{#bs-modal fade=false open=progressRight onHidden=(action (mut progressRight) false) as |modal|}}
         {{#modal.header}}
             <h4 class="modal-title">
                 选择月份
@@ -211,7 +211,7 @@
         {{/modal.footer}}
     {{/bs-modal}}
 {{else}}
-    {{#bs-modal local-class="hint-area" open=progressWrong onHidden=(action (mut progressWrong) false) as |modal|}}
+    {{#bs-modal fade=false open=progressWrong onHidden=(action (mut progressWrong) false) as |modal|}}
         {{#modal.header}}
             <h4 class="modal-title">
                 提示
