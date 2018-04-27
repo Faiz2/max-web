@@ -12,7 +12,10 @@ export default Mixin.create({
             },
             onTextMessage: function ( message ) {
                 window.console.info(message)
-            }
+            },
+            onOnline: function () {},                  //本机网络连接成功
+            onOffline: function () {},                 //本机网络掉线
+            onError: function ( message ) {}          //失败回调
         });
         this.Msg(conteollInstance, "ProgressMsg")
     },
