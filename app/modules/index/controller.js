@@ -46,16 +46,21 @@ export default Controller.extend({
 
         // 测试 按钮逻辑，后期删除
         testLogin() {
-           // Log the user in, then reattempt previous transition if it exists.
+            let cookieService = this.get('cookies');
+            // 写入cookies
+            cookieService.write('uid', "response.result.uid");
+            // cookies uid是否存在
+            console.log(cookieService.exists('uid'));
+            // 读取cookies
+            console.log(cookieService.read().uid);
+            // 清除cookies
+            // cookieService.clear(‘uid’);
            let previousTransition = this.get('previousTransition');
            if (previousTransition) {
-                // 修改监听的数值为true
-                this.set('userIsLoggedIn', true);
                 this.set('previousTransition', null);
                 previousTransition.retry();
            } else {
-                // 回到主页（由于主页监听了是否登录，所以跳转到了没有监听登录的路由）
-                this.transitionToRoute('/adddata/viewresults');
+                this.transitionToRoute('/data-center');
            }
          }
     }
