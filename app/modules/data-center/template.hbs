@@ -3,7 +3,7 @@
     <div local-class="wrapper-menu">
         <div local-class="menu-user">
             <div local-class="user-name">
-                <span local-class="name-span">N ame</span>
+                <span local-class="name-span">N ame</span>&nbsp;
                 <span class="glyphicon glyphicon-chevron-down"></span>
                 <span class="glyphicon glyphicon-bell"> </span>
             </div>
@@ -14,13 +14,13 @@
         </div>
         <ul local-class="menu-tabs">
             <li local-class="item-tab active">
-                <span class="glyphicon glyphicon-th"></span>数据工具</li>
+                <span class="glyphicon glyphicon-th"></span>&nbsp;数据工具</li>
         </ul>
     </div>
     <div local-class="wrapper-content">
         <p local-class="content-title">
             <p>
-                <span class="glyphicon glyphicon-th"></span>数据中心</p>
+                <span class="glyphicon glyphicon-th"></span>&nbsp;数据中心</p>
         </p>
         <div local-class="content-detail">
             <div local-class="detail-choosebar">
@@ -32,11 +32,11 @@
                         <option value="b">b market</option>
                     </select>
                     <span local-class="select-title">时间选择</span>
-                    <span local-class="time-selects">
-                        {{bootstrap-datepicker changeMonth="changeMonthAction" value=startData autoclose=true minViewMode=1 format="mm/yyyy" keyboardNavigation=true language="zh-CN"}}
+                    <div local-class="time-selects" class="input-group input-daterange">
+                        {{bootstrap-datepicker  changeMonth="changeMonthAction" value=startData autoclose=true minViewMode=1 format="mm/yyyy" keyboardNavigation=true language="zh-CN"}}
                         <span local-class="middle-text">to</span>
-                        {{bootstrap-datepicker value=endData autoclose=true minViewMode=1 format="mm/yyyy" language="zh-CN"}}
-                    </span>
+                        {{bootstrap-datepicker  value=endData autoclose=true minViewMode=1 format="mm/yyyy" language="zh-CN"}}
+                    </div>
                     <span>
                         <button local-class="btn-output" class="btn" type="button" name="btn-output">导出</button>
                     </span>
@@ -70,7 +70,7 @@
                 }}
                 {{mt.table}}
                 {{#mt.footer as |footer|}}
-                  {{footer.summary}}
+                  {{footer.summary local-class='footer-summary'}}
                   {{!-- {{footer.size-select}} --}}
                   {{footer.pagination-numeric local-class='footer-num'}}
                 {{/mt.footer}}

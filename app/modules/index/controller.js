@@ -52,15 +52,16 @@ export default Controller.extend({
             // cookies uid是否存在
             console.log(cookieService.exists('uid'));
             // 读取cookies
-            console.log(cookieService.read().uid);
+            console.log(cookieService.read());
             // 清除cookies
-            // cookieService.clear(‘uid’);
+            // cookieService.clear("uid");
            let previousTransition = this.get('previousTransition');
            if (previousTransition) {
                 this.set('previousTransition', null);
                 previousTransition.retry();
            } else {
-                this.transitionToRoute('/data-center');
+                // this.transitionToRoute('/data-center');
+                location.href='/data-center'
            }
          }
     }

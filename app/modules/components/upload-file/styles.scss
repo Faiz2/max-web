@@ -44,10 +44,12 @@
     display: inline-block;
     margin: 0 atuo;
     margin-bottom: 0;
-    width: 60%;
+    width: 56%;
     height: 26px;
     line-height: 26px;
     font-size: 1.6rem;
+    letter-spacing: 1px;
+    color: #7e7e7e;
     span:first-child {
       float: left;
     }
@@ -59,9 +61,10 @@
   .upload-area {
     display: inline-block;
     margin: 0 auto;
-    width: 60%;
+    width: 56%;
     height: 360px;
-    border: 1px solid #eee;
+    border: 1px solid #7e7e7e;
+    border-radius: 5px;
     .dropzone-upload-area {
       padding-top: 30px;
       height: 360px;
@@ -81,21 +84,30 @@
       line-height: 40px;
       text-align: left;
       font-size: 1.6rem;
-      border: 1px solid #eee;
+      border: 1px solid #7e7e7e;
+      border-radius: 5px;
     }
     a {
       position: absolute;
-      right: 0;
-      top: 0;
+      right: -1px;
+      top: -1px;
       display: inline-block;
       width: 80px;
-      height: 38px;
-      line-height: 38px;
+      height: 40px;
+      line-height: 40px;
       text-align: center;
+      border-radius: 0 5px 5px 0;
       color: #fff;
       background-color: $btn-bgcolor;
       cursor: pointer;
+      &:hover {
+          text-decoration: none;
+      }
+      &.delete {
+          background: red;
+      }
     }
+
   }
 }
 

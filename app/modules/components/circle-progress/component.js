@@ -16,7 +16,7 @@ export default Component.extend({
                 },
                 series: [{
                         type: 'pie',
-                        radius: ['37%', '40%'],
+                        radius: ['57%', '60%'],
                         silent: true,
                         label: {
                             normal: {
@@ -36,7 +36,7 @@ export default Component.extend({
                         animation: false
                     },{
                         type: 'pie',
-                        radius: ['37%', '40%'],
+                        radius: ['57%', '60%'],
                         silent: true,
                         label: {
                             normal: {
@@ -57,7 +57,7 @@ export default Component.extend({
                     },{
                         name: 'main',
                         type: 'pie',
-                        radius: ['37%', '40%'],
+                        radius: ['57%', '60%'],
                         label: {
                             normal: {
                                 show: false,

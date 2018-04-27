@@ -1,4 +1,7 @@
 import Route from '@ember/routing/route';
-import {inject} from '@ember/service';
 export default Route.extend({
+    setupController(controller) {
+        this._super(...arguments);
+        controller.set('', );
+    }
 });

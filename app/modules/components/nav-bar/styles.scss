@@ -29,6 +29,7 @@
         position: relative;
         margin: 0;
         font-size: $max-font-size-title;
+        letter-spacing: 2px;
     }
     .center {
         position: relative;
@@ -47,8 +48,13 @@
         line-height: 30px;
         border-radius: 50%;
         text-align: center;
-        background-color: #eee;
+        font-size: 1.8rem;
+        color: $navbar-bgcolor;
+        background-color: #fff;
         cursor: pointer;
+    }
+    .btn-close:hover {
+        color: $navbar-bgcolor;
     }
     .hidden {
         display: none;
