@@ -79,22 +79,28 @@
         </div>
     </div>
 </div>
-{{#bs-modal local-class="hint-area" open=isSave onHidden=(action (mut isSave) false) as |modal|}}
+{{#bs-modal fade=false open=isSave onHidden=(action (mut isSave) false) as |modal|}}
     {{#modal.header}}
         <h4 class="modal-title">
             请确认保存的数据
         </h4>
     {{/modal.header}}
     {{#modal.body}}
-        <input type="checkbox">2018-01
-        <input type="checkbox">2018-02
-        <input type="checkbox">2018-03
-        <input type="checkbox">2018-04
+        {{input type="checkbox" name="savaMonths" checked=allMonth}}2017.01
+        {{input type="checkbox" name="savaMonths" checked=allMonth}}2017.02
+        {{input type="checkbox" name="savaMonths" checked=allMonth}}2017.03
 
     {{/modal.body}}
     {{#modal.footer}}
-        {{#bs-button onClick=(action modal.close)}}全选{{/bs-button}}
+        {{#bs-button onClick=(action "chooseAllMonth")}}全选{{/bs-button}}
         {{#bs-button onClick=(action 'confirmSave')}}确认{{/bs-button}}
     {{/modal.footer}}
 {{/bs-modal}}
+{{#if saveState}}
+<div local-class="saving">
+    <div local-class="saving-content">
+        正在保存中...
+    </div>
+</div>
+{{/if}}
 {{yield}}

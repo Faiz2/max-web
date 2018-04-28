@@ -11,7 +11,7 @@ export default Component.extend({
                     y: 'center',
                     textStyle: {
                         color: '#0BBC96',
-                        fontSize: 24,
+                        fontSize: 36,
                     }
                 },
                 series: [{
