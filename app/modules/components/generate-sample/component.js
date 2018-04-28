@@ -32,6 +32,7 @@ export default Component.extend({
                     "user_id": "5ad871fe52d78f494e56e772",
                     "company_id": "5ad871fd52d78f494e56e771",
                     "args": {
+                        "company": "nhwa",
                         "cpa": "cpa.xlsx",
                         "gycx": "gycx.xlsx"
                     }
@@ -50,24 +51,49 @@ export default Component.extend({
                         }
                     );
             });
-            // if (this.get('isUploadRight') === true) {
-        // later(() => {
-        //     set(this, 'progressRight', true);
-        // }, 1800);
-            // } else {
-            //     later(() => {
-            //         set(this, 'progressWrong', true);
-            //     }, 1800);
-            // } 
+            if (this.get('isUploadRight') === true) {
+                later(() => {
+                    set(this, 'progressRight', true);
+                }, 10 * 1000);
+            } else {
+                later(() => {
+                    set(this, 'progressWrong', true);
+                }, 1800);
+            }
         },
-        
+
         // 文件解析成功
         calcRight() {
-            // console.log('right');
+
+            let condition = {
+                "condition": {
+                    "job_id": "5adfeb4b52d78f67585c9d84",
+                    "user_id": "5ad871fe52d78f494e56e772",
+                    "company_id": "5ad871fd52d78f494e56e771",
+                    "args": {
+                        "company": "nhwa",
+                        "cpa": "cpa.xlsx",
+                        "gycx": "gycx.xlsx",
+                        "ym":"201711,201712"
+                    }
+                }
+            };
+            new rsvp.Promise((resolve, reject) => {
+                return this.get('ajax').request('api/job/panel',
+                    this.getAjaxOpt(condition)).then((response) => {
+                        window.console.info(response);
+                        return resolve({ resule: response });
+                    },
+                        () => {
+                            return reject("Access Error");
+                        }
+                    );
+            });
+
             set(this, 'progressRight', false);
             later(() => {
                 set(this, 'hasResult', true);
-            }, 1800);
+            }, 1.5 * 60 * 1000);
         }
     },
 });

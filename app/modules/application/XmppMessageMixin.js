@@ -11,7 +11,8 @@ export default Mixin.create({
                 }, 1000);
             },
             onTextMessage: function ( message ) {
-                window.console.info(message)
+                window.console.info(JSON.parse(message.data))
+                // window.console.info(message)
             },
             onOnline: function () {},                  //本机网络连接成功
             onOffline: function () {},                 //本机网络掉线
