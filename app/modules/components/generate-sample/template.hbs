@@ -14,12 +14,7 @@
                     </div>
                 </div>
             {{else }}
-             {{circle-progress option=optionData eid="circle-progress"}}
-                {{!-- <div local-class="calc-progress">
-                    <div local-class="calc-progress-content">
-                        滚动
-                    </div>
-                </div> --}}
+             {{circle-progress option=circleProgressOption eid="circle-progress"}}
             {{/unless}}
             {{#unless isShowProgress}}
                 <p local-class="reupload">{{#bs-button onClick=(action (mut modal3) true)}}上传错误？重新上传{{/bs-button}}</p>
@@ -55,13 +50,6 @@
             <div local-class="result-item hospital-sample">
                 <p local-class="item-title">INF 市场 医院样本数量</p>
                 <div local-class="item-legend">
-                    {{!--
-                    <div local-class="legend-left">
-                        <span local-class="legend-left-icon"></span>
-                        <span local-class="legend-left-text">当月样本数</span>
-                        <span local-class="legend-left-icon"></span>
-                        <span local-class="legend-left-text">去年个月样本数趋势</span>
-                    </div> --}}
                     <div local-class="legend-right">
                         <div local-class="legend-right-left">
                             <p>-5%</p>
@@ -78,21 +66,12 @@
                     </div>
                 </div>
                 <div local-class="item-chart">
-                    {{!-- <img src="../setup/test.jpg" width="100%" height="100%" alt=""> --}}
                  {{sample-line-and-bar chartsName="医院样本" option=hospitalOption eid="sample-hospital-number-line-and-bar"}}
-                 {{!-- {{sample-line-and-bar eid="sample-hospital-number-line-and-bar"}} --}}
                 </div>
             </div>
             <div local-class="result-item prod-sample">
                 <p local-class="item-title">INF 市场 产品样本数量</p>
                 <div local-class="item-legend">
-                    {{!--
-                    <div local-class="legend-left">
-                        <span local-class="legend-left-icon"></span>
-                        <span local-class="legend-left-text">当月样本数</span>
-                        <span local-class="legend-left-icon"></span>
-                        <span local-class="legend-left-text">去年个月样本数趋势</span>
-                    </div> --}}
                     <div local-class="legend-right">
                         <div local-class="legend-right-left">
                             <p>-5%</p>
@@ -109,20 +88,12 @@
                     </div>
                 </div>
                 <div local-class="item-chart">
-                    {{!-- <img src="../setup/test.jpg" width="100%" height="100%" alt=""> --}}
                  {{sample-line-and-bar eid="sample-product-number-line-and-bar"}}
                 </div>
             </div>
             <div local-class="result-item sample-sales">
                 <p local-class="item-title">INF 市场 样本销售额</p>
                 <div local-class="item-legend">
-                    {{!--
-                    <div local-class="legend-left">
-                        <span local-class="legend-left-icon"></span>
-                        <span local-class="legend-left-text">当月样本数</span>
-                        <span local-class="legend-left-icon"></span>
-                        <span local-class="legend-left-text">去年个月样本数趋势</span>
-                    </div> --}}
                     <div local-class="legend-right">
                         <div local-class="legend-right-left">
                             <p>-5%</p>
@@ -139,20 +110,12 @@
                     </div>
                 </div>
                 <div local-class="item-chart">
-                    {{!-- <img src="../setup/test.jpg" width="100%" height="100%" alt=""> --}}
                  {{sample-line-and-bar eid="sample-sales-number-line-and-bar"}}
                 </div>
             </div>
             <div local-class="result-item hospital-list">
                 <p local-class="item-title">INF 市场 样本销售额</p>
                 <div local-class="item-legend">
-                    {{!--
-                    <div local-class="legend-left">
-                        <span local-class="legend-left-icon"></span>
-                        <span local-class="legend-left-text">当月样本数</span>
-                        <span local-class="legend-left-icon"></span>
-                        <span local-class="legend-left-text">去年个月样本数趋势</span>
-                    </div> --}}
                     <div local-class="legend-right">
                         <div local-class="legend-right-left">
                             <p>-5%</p>
@@ -175,7 +138,6 @@
         </div>
     {{/unless}}
 </div>
-{{!-- local-class="hint-area" --}}
 
 {{#bs-modal fade=false backdropClose=false open=modal3 onHidden=(action (mut modal3) false) as |modal|}}
     {{#modal.header}}
@@ -194,8 +156,8 @@
     {{/modal.footer}}
 {{/bs-modal}}
 
-{{#if isUploadRight}}
-    {{#bs-modal fade=false open=progressRight onHidden=(action (mut progressRight) false) as |modal|}}
+{{#if ymCalcObj.isUploadRight}}
+    {{#bs-modal fade=false open=ymCalcObj.progressRight onHidden=(action (mut ymCalcObj.progressRight) false) as |modal|}}
         {{#modal.header}}
             <h4 class="modal-title">
                 选择月份
@@ -204,6 +166,9 @@
         {{#modal.body}}
             <p>本次上传件中含以下几个月份，</p>
             <p>请选择要进行计算的月份：</p>
+            {{#each ymCalcObj.years as |item|}}
+                {{input type="checkbox" name="year" }} {{item}}
+            {{/each}}
         {{/modal.body}}
         {{#modal.footer}}
             {{#bs-button onClick=(action modal.close)}}关闭选择{{/bs-button}}

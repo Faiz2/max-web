@@ -1,20 +1,25 @@
+import { computed } from '@ember/object';
 import Component from '@ember/component';
-import { set } from '@ember/object';
 import { later } from '@ember/runloop';
 import {inject} from '@ember/service';
 import rsvp from 'rsvp';
-import ymCalcMsg from '../../application/XmppMessageMixin';
+import ymCalcObject from '../../common/xmpp-message-object/ymCalcMessage';
 
-export default Component.extend(ymCalcMsg, {
+export default Component.extend({
     ajax: inject(),
-    isDisabled: true,
+    progress: inject('circle-progress-serivce'),
+    circleProgressOption: computed('progress.option', function() {
+        return this.get('progress').getOption();
+    }),
+    // isDisabled: true,
     // isShowProgress: false,  // step two 中开始按钮控制的进度显示
     // isUploadRight: true,  // 文件解析过程中是否正确
     // progressRight: false,   // 文件解析正确弹窗
     // progressWrong: false,   // 文件解析错误弹窗
     hasResult: false,   // 文件解析是否有结果
-    modelData: '',  // 接收表格数据
-    columnsData: '',    // 接受表格表头信息
+    // modelData: '',  // 接收表格数据
+    // columnsData: '',    // 接受表格表头信息
+    ymCalcObj: ymCalcObject,
     getAjaxOpt(data) {
         return {
             method: 'POST',
@@ -40,29 +45,31 @@ export default Component.extend(ymCalcMsg, {
                     }
                 }
             };
-            set(this, 'isShowProgress', true);
-            set(this, 'isUploadRight', true);
 
-            new rsvp.Promise((resolve, reject) => {
-                return this.get('ajax').request('api/job/ymCalc',
-                    this.getAjaxOpt(condition)).then((response) => {
-                        window.console.info(response);
-                        return resolve({ resule: response });
-                    },
-                        () => {
-                            return reject("Access Error");
-                        }
-                    );
-            });
-            if (this.get('isUploadRight') === true) {
-                later(() => {
-                    set(this, 'progressRight', true);
-                }, 10 * 1000);
-            } else {
-                later(() => {
-                    set(this, 'progressWrong', true);
-                }, 1800);
-            }
+            this.set('isShowProgress', true);
+            this.set('isUploadRight', true);
+
+
+            // new rsvp.Promise((resolve, reject) => {
+            //     return this.get('ajax').request('api/job/ymCalc',
+            //         this.getAjaxOpt(condition)).then((response) => {
+            //             window.console.info(response);
+            //             return resolve({ resule: response });
+            //         },
+            //             () => {
+            //                 return reject("Access Error");
+            //             }
+            //         );
+            // });
+            // if (this.get('isUploadRight') === true) {
+            //     later(() => {
+            //         set(this, 'progressRight', true);
+            //     }, 10 * 1000);
+            // } else {
+            //     later(() => {
+            //         set(this, 'progressWrong', true);
+            //     }, 1800);
+            // }
         },
 
         // 文件解析成功
@@ -93,9 +100,9 @@ export default Component.extend(ymCalcMsg, {
                     );
             });
 
-            set(this, 'progressRight', false);
+            this.set('progressRight', false);
             later(() => {
-                set(this, 'hasResult', true);
+                this.set('hasResult', true);
             }, 1.5 * 60 * 1000);
         }
     },
