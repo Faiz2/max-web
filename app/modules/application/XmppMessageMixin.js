@@ -1,6 +1,6 @@
 import Mixin from '@ember/object/mixin';
 import { later } from '@ember/runloop';
-import ymCalcObject from '../common/xmpp-message-object/ymCalcMessage';
+import SampleObject from '../common/xmpp-message-object/SampleObjectMessage';
 
 export default Mixin.create({
     callback(conteollInstance, xmppConn, services) {
@@ -37,7 +37,7 @@ export default Mixin.create({
         // 真实处理情况 状态要重构了，好乱
         // switch(message.stage) {
         //     case 'start':
-        //         ymCalcObject.set('isShowProgress', true); // 开启进度条
+        //         SampleObject.set('isShowProgress', true); // 开启进度条
         //         break;
         //     case 'ing':
         //         services.progress.setPercent(message.attributes.progress);
@@ -45,14 +45,14 @@ export default Mixin.create({
         //     case 'done':
         //         services.progress.setPercent(message.attributes.progress);
         //         let list = ["201601", "201602", "201603", "201604", "201605", "201606"]
-        //         ymCalcObject.set('years', list);
-        //         ymCalcObject.set('yearsSuccessModal', true); // 解析后弹框 要改成这个
-        //         ymCalcObject.set('isUploadRight', true); // 解析后标识
-        //         ymCalcObject.set('progressRight', true);// 正确弹框
+        //         SampleObject.set('years', list);
+        //         SampleObject.set('yearsSuccessModal', true); // 解析后弹框 要改成这个
+        //         SampleObject.set('isUploadRight', true); // 解析后标识
+        //         SampleObject.set('progressRight', true);// 正确弹框
         //         break;
         //     case 'error':
-        //         ymCalcObject.set('isUploadRight', false);
-        //         ymCalcObject.set('yearsErrorModal', true);
+        //         SampleObject.set('isUploadRight', false);
+        //         SampleObject.set('yearsErrorModal', true);
         //         break;
         //     default:
         //         window.console.info('default');
@@ -63,10 +63,10 @@ export default Mixin.create({
         later(this, function() {
             services.progress.setPercent(100);
             let list = ["201601", "201602", "201603", "201604", "201605", "201606"]
-            ymCalcObject.set('years', list);
-            ymCalcObject.set('yearsSuccessModal', true); // 解析后弹框 要改成这个
-            ymCalcObject.set('isUploadRight', true); // 解析后弹框
-            ymCalcObject.set('progressRight', true);
+            SampleObject.set('years', list);
+            SampleObject.set('yearsSuccessModal', true); // 解析后弹框 要改成这个
+            SampleObject.set('isUploadRight', true); // 解析后弹框
+            SampleObject.set('progressRight', true);
 
         }, 5000);
     },

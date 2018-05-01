@@ -134,24 +134,3 @@
 *
 *end 第一步的样式
 */
-// 弹窗
-:global(.modal.in .modal-dialog) {
-    top: 50%;
-    transform: translateY(-50%);
-}
-
-:global(.modal-content ){
-    width: 400px;
-    left: 50%;
-    transform: translateX(-50%);
-    :global(.btn) {
-        padding: 0;
-        width: 100px;
-        height: 35px;
-        line-height: 35px;
-        border: 0;
-        font-size: 18px;
-        color: #fff;
-        background-color: $btn-bgcolor;
-    }
-}
