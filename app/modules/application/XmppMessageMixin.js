@@ -1,36 +1,79 @@
 import Mixin from '@ember/object/mixin';
 import { later } from '@ember/runloop';
-// 不要随便用这个Mixin
+import SampleObject from '../common/xmpp-message-object/SampleObjectMessage';
+
 export default Mixin.create({
     callback(conteollInstance, xmppConn, services) {
+        let that = this;
         xmppConn.listen({
             onOpened: function ( message ) {window.console.log("连接成功")},
             onClosed: function ( message ) {
                 later(conteollInstance, function() {
-                    conteollInstance.transitionToRoute('login')
+                    conteollInstance.transitionToRoute('/')
                 }, 1000);
             },
             onTextMessage: function ( message ) {
-                window.console.info(message)
+                // window.console.info(JSON.parse(message.data));
+                // window.console.info(message);
+                // that.Msg(conteollInstance, JSON.parse(message.data), services);
+                that.Msg(conteollInstance, "ymCalc", services);
             },
             onOnline: function () {},                  //本机网络连接成功
             onOffline: function () {},                 //本机网络掉线
-            onError: function ( message ) {}          //失败回调
+            onError: function ( message ) {}           //失败回调
         });
-        this.Msg(conteollInstance, "ProgressMsg")
+
     },
-    Msg(conteollInstance, message) {
-        this[message](conteollInstance, message);
+    Msg(conteollInstance, message, services) {
+
+        // if (message.target === services.cookies.read('webim_user')) {
+        //     let call = message.call + "Msg";
+        //     this[call](conteollInstance, message, services);
+        // }
+        let call = message + "Msg";
+        this[call](conteollInstance, message, services);
     },
-    ProgressMsg(conteollInstance, message) {
+    ymCalcMsg(conteollInstance, message, services) {
+        // 真实处理情况 状态要重构了，好乱
+        // switch(message.stage) {
+        //     case 'start':
+        //         SampleObject.set('isShowProgress', true); // 开启进度条
+        //         break;
+        //     case 'ing':
+        //         services.progress.setPercent(message.attributes.progress);
+        //         break;
+        //     case 'done':
+        //         services.progress.setPercent(message.attributes.progress);
+        //         let list = ["201601", "201602", "201603", "201604", "201605", "201606"]
+        //         SampleObject.set('years', list);
+        //         SampleObject.set('yearsSuccessModal', true); // 解析后弹框 要改成这个
+        //         SampleObject.set('isUploadRight', true); // 解析后标识
+        //         SampleObject.set('progressRight', true);// 正确弹框
+        //         break;
+        //     case 'error':
+        //         SampleObject.set('isUploadRight', false);
+        //         SampleObject.set('yearsErrorModal', true);
+        //         break;
+        //     default:
+        //         window.console.info('default');
+        // }
+
+        services.progress.setPercent(Math.floor(Math.random() * 100) + 1);
+
+        later(this, function() {
+            services.progress.setPercent(100);
+            let list = ["201601", "201602", "201603", "201604", "201605", "201606"]
+            SampleObject.set('years', list);
+            SampleObject.set('yearsSuccessModal', true); // 解析后弹框 要改成这个
+            SampleObject.set('isUploadRight', true); // 解析后弹框
+            SampleObject.set('progressRight', true);
+
+        }, 5000);
+    },
+    ProgressMsg(conteollInstance, message, services) {
+        // services.progress.setPercent(10)
         // later(conteollInstance, function() {
         //     conteollInstance.transitionToRoute('demo')
         // }, 1000);
-    },
-    SampleCheckMsg(conteollInstance, message) {
-
-    },
-    ResultCheckMsg(conteollInstance, message) {
-
     }
 });

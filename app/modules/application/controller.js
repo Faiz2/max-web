@@ -6,11 +6,13 @@ import { later } from '@ember/runloop';
 export default Controller.extend(XmppMessageMixin, {
     webIm: inject('xmpp-service'),
     progress: inject('circle-progress-serivce'),
+    cookies: inject(),
     init() {
         this._super(...arguments);
         const { result, status, message} = this.get('webIm').load();
         let services = {
-            'progress': this.get('progress')
+            'progress': this.get('progress'),
+            'cookies': this.get('cookies')
         };
         if(status === 'yes') {
             let conn = result;
@@ -18,7 +20,7 @@ export default Controller.extend(XmppMessageMixin, {
         } else {
             later(this, function() {
                 this.set('webImErrorMessage', message);
-                // this.transitionToRoute('/');
+                this.transitionToRoute('/');
             }, 500);
         }
     },

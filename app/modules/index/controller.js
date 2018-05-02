@@ -26,43 +26,26 @@ export default Controller.extend({
                     "password": this.get('password')
                 }
             };
-            new rsvp.Promise((resolve, reject) => {
-                return this.get('ajax').request('api/user/login',
-                    this.getAjaxOpt(condition)).then((response) => {
-                        if (response.status === "ok") {
-                            this.get('cookies').write('uid', response.result.uid);
-                            this.get('cookies').write('user_token', response.result.user_token);
-                            this.get('webIm').login('test','123123');
-                            this.transitionToRoute('/data-center');
-                        } else {
-                            alert('帐号或密码错误。');
-                        }
-                        return resolve({ resule: response});
-                    },
-                    () => {return reject("Access Error");}
-                );
-            });
-        },
-
-        // 测试 按钮逻辑，后期删除
-        testLogin() {
-            let cookieService = this.get('cookies');
-            // 写入cookies
-            cookieService.write('uid', "response.result.uid");
-            // cookies uid是否存在
-            console.log(cookieService.exists('uid'));
-            // 读取cookies
-            console.log(cookieService.read());
-            // 清除cookies
-            // cookieService.clear("uid");
-           let previousTransition = this.get('previousTransition');
-           if (previousTransition) {
-                this.set('previousTransition', null);
-                previousTransition.retry();
-           } else {
-                // this.transitionToRoute('/data-center');
-                location.href='/data-center'
-           }
-         }
+            this.get('webIm').login('testUser','testPwd');
+            this.get('cookies').write('uid', "00");
+            this.transitionToRoute('data-center');
+            // new rsvp.Promise((resolve, reject) => {
+            //     return this.get('ajax').request('api/user/login',
+            //         this.getAjaxOpt(condition)).then((response) => {
+            //             if (response.status === "ok") {
+            //                 this.get('cookies').write('uid', response.result.uid);
+            //                 this.get('cookies').write('user_token', response.result.user_token);
+            //                 this.get('webIm').login('testUser','testPwd');
+            //                 this.transitionToRoute('data-center');
+            //                 window.location = 'data-center';
+            //             } else {
+            //                 alert('帐号或密码错误。');
+            //             }
+            //             return resolve({ resule: response});
+            //         },
+            //         () => {return reject("Access Error");}
+            //     );
+            // });
+        }
     }
 })

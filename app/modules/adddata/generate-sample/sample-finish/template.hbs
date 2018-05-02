@@ -1,0 +1,120 @@
+{{outlet}}
+
+<div local-class="step-content-wrapper-noshadow">
+    <div local-class="generate-sample-result">
+        <div local-class="result-choosebar">
+            <div local-class="choosebar-content choosebar-left">
+                <span local-class="select-title">市场</span>
+                <select local-class="choose-select choose-market" name="">
+                    <option>Markone</option>
+                    <option>Markone</option>
+                    <option>Markone</option>
+                </select>
+                <span local-class="select-title">月份</span>
+                <select local-class="choose-select choose-month" name="">
+                    <option>04/2017</option>
+                    <option>04/2017</option>
+                    <option>04/2017</option>
+                </select>
+                <button local-class="btn-default-max" type="button" name="button">导出</button>
+            </div>
+            <div local-class="choosebar-content choosebar-right">
+                {{#link-to "adddata.uploadfiles"}}
+                    <button local-class="btn-default-max" type="button" name="button">重新上传</button>
+                {{/link-to}}
+
+                {{#link-to "adddata.calcmax"}}
+                    <button local-class="btn-default-max" type="button" name="button">下一步</button>
+                {{/link-to}}
+            </div>
+        </div>
+        <div local-class="result-item hospital-sample">
+            <p local-class="item-title">INF 市场 医院样本数量</p>
+            <div local-class="item-legend">
+                <div local-class="legend-right">
+                    <div local-class="legend-right-left">
+                        <p>-5%</p>
+                        <p>样本误差率</p>
+                    </div>
+                    <div local-class="legend-right-center">
+                        <p>912个</p>
+                        <p>本月样本数</p>
+                    </div>
+                    <div local-class="legend-right-right">
+                        <p>960个</p>
+                        <p>去年同月样本数</p>
+                    </div>
+                </div>
+            </div>
+            <div local-class="item-chart">
+             {{sample-line-and-bar chartsName="医院样本" eid="sample-hospital-number-line-and-bar"}}
+            </div>
+        </div>
+        <div local-class="result-item prod-sample">
+            <p local-class="item-title">INF 市场 产品样本数量</p>
+            <div local-class="item-legend">
+                <div local-class="legend-right">
+                    <div local-class="legend-right-left">
+                        <p>-5%</p>
+                        <p>样本误差率</p>
+                    </div>
+                    <div local-class="legend-right-center">
+                        <p>912个</p>
+                        <p>本月样本数</p>
+                    </div>
+                    <div local-class="legend-right-right">
+                        <p>960个</p>
+                        <p>去年同月样本数</p>
+                    </div>
+                </div>
+            </div>
+            <div local-class="item-chart">
+             {{sample-line-and-bar eid="sample-product-number-line-and-bar"}}
+            </div>
+        </div>
+        <div local-class="result-item sample-sales">
+            <p local-class="item-title">INF 市场 样本销售额</p>
+            <div local-class="item-legend">
+                <div local-class="legend-right">
+                    <div local-class="legend-right-left">
+                        <p>-5%</p>
+                        <p>样本误差率</p>
+                    </div>
+                    <div local-class="legend-right-center">
+                        <p>912个</p>
+                        <p>本月样本数</p>
+                    </div>
+                    <div local-class="legend-right-right">
+                        <p>960个</p>
+                        <p>去年同月样本数</p>
+                    </div>
+                </div>
+            </div>
+            <div local-class="item-chart">
+             {{sample-line-and-bar eid="sample-sales-number-line-and-bar"}}
+            </div>
+        </div>
+        <div local-class="result-item hospital-list">
+            <p local-class="item-title">INF 市场 样本销售额</p>
+            <div local-class="item-legend">
+                <div local-class="legend-right">
+                    <div local-class="legend-right-left">
+                        <p>-5%</p>
+                        <p>样本误差率</p>
+                    </div>
+                    <div local-class="legend-right-center">
+                        <p>912个</p>
+                        <p>本月样本数</p>
+                    </div>
+                    <div local-class="legend-right-right">
+                        <p>960个</p>
+                        <p>去年同月样本数</p>
+                    </div>
+                </div>
+            </div>
+                 {{models-table data=model columns=columns useFilteringByColumns=false showGlobalFilter=false filterQueryParameters=false
+                showComponentFooter=true showColumnsDropdown=false useFilteringByColumns=false showGlobalFilter=false useNumericPagination=true
+                showPageSize=false }}
+        </div>
+    </div>
+</div>

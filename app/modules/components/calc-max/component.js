@@ -1,19 +1,52 @@
 import Component from '@ember/component';
 import { set} from '@ember/object';
 import { later } from '@ember/runloop';
-// import { inject } from '@ember/service';
+import { inject } from '@ember/service';
+import rsvp from 'rsvp';
 
 export default Component.extend({
+    ajax: inject(),
     isShowCalcProgress: false, // scalc-max中开始按钮控制的进度显示
     calcHasDone: false,    // MAX计算是否完成
+    getAjaxOpt(data) {
+        return {
+            method: 'POST',
+            dataType: "json",
+            cache: false,
+            data: JSON.stringify(data),
+            contentType: "application/json,charset=utf-8",
+            Accpt: "application/json,charset=utf-8",
+        }
+    },
     actions: {
         // calc-max 中的开始计算按钮
         startCalcMAX() {
             set(this, 'isShowCalcProgress', true);
+            let condition = {
+                "condition": {
+                    "job_id": "5adfeb4b52d78f67585c9d84",
+                    "user_id": "5ad871fe52d78f494e56e772",
+                    "company_id": "5ad871fd52d78f494e56e771",
+                    "args": {
+                        "panel": "asdsadas"
+                    }
+                }
+            };
+            new rsvp.Promise((resolve, reject) => {
+                return this.get('ajax').request('api/job/calc',
+                    this.getAjaxOpt(condition)).then((response) => {
+                        window.console.info(response);
+                        return resolve({ resule: response });
+                    },
+                        () => {
+                            return reject("Access Error");
+                        }
+                    );
+            });
 
-            later(() => {
-                set(this, 'calcHasDone', true);
-            }, 1800);
+            // later(() => {
+            //     set(this, 'calcHasDone', true);
+            // }, 1800);
         },
     },
     // poll: inject(),

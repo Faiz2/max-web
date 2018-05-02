@@ -13,7 +13,7 @@ export default Service.extend({
             series: [{
                 name: 'main',
                 type: 'pie',
-                radius: ['37%', '40%'],
+                radius: ['57%', '60%'],
                 label: {
                     normal: {
                         show: false,
