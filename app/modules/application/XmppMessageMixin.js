@@ -49,6 +49,9 @@ export default Mixin.create({
                 later(conteollInstance, function() {
                     services.progress.setPercent(message.attributes.progress);
                     let years = message.attributes.content.ymList.split(",")
+                        .map((elt, i, array) => {
+                            return {year: elt,isChecked: false}
+                        });
                     SampleObject.set('years', years);
                     SampleObject.set('isUploadRight', true); // 解析后标识
                     SampleObject.set('progressRight', true);// 正确弹框
