@@ -3,19 +3,19 @@
         <p local-class="explain-text">本次计算预估耗时
             <span>30</span> 分钟，请确保您的装置电量充足， 保持联网，在计算完成前，请勿关闭本界面
         </p>
-        {{#unless isShowCalcProgress}}
+        {{#unless MaxCalculateObject.isShowCalcProgress}}
             <div local-class="btn-start" {{action "startCalcMAX"}}>
                 <div local-class="btn-start-content">
                     开始计算
                 </div>
             </div>
         {{else}}
-         {{circle-progress option=option eid="circle-progress"}}
+            {{circle-progress option=circleProgressOption eid="circle-progress"}}
         {{/unless}}
-        {{#unless isShowCalcProgress}}
+        {{#unless MaxCalculateObject.isShowCalcProgress}}
             <p local-class="calc-progress-text">准备计算...</p>
         {{else}}
-            {{#unless calcHasDone}}
+            {{#unless MaxCalculateObject.calcHasDone}}
                 <p local-class="calc-progress-text-ing">正在进行MAX计算...</p>
             {{else}}
                 <p local-class="calc-progress-text-ing">

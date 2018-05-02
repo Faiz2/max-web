@@ -6,6 +6,7 @@ import SampleObject from '../../../common/xmpp-message-object/SampleObjectMessag
 import styles from '../styles';
 
 export default Controller.extend({
+    ajax: inject(),
     progress: inject('circle-progress-serivce'),
     circleProgressOption: computed('progress.option', function() {
         return this.get('progress').getOption();
@@ -36,7 +37,17 @@ export default Controller.extend({
                     }
                 }
             };
-            SampleObject.set('isShowProgress', true);
+            new rsvp.Promise((resolve, reject) => {
+                return this.get('ajax').request('api/job/ymCalc',
+                    this.getAjaxOpt(condition)).then((response) => {
+                        window.console.info(response);
+                        return resolve({ resule: response });
+                    },
+                        () => {
+                            return reject("Access Error");
+                        }
+                    );
+            });
         },
         startGenerateSample: function() {
             let condition = {

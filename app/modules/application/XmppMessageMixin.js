@@ -1,6 +1,7 @@
 import Mixin from '@ember/object/mixin';
 import { later } from '@ember/runloop';
 import SampleObject from '../common/xmpp-message-object/SampleObjectMessage';
+import MaxCalculateObject from '../common/xmpp-message-object/MaxCalculateMessage';
 
 export default Mixin.create({
     callback(conteollInstance, xmppConn, services) {
@@ -8,18 +9,21 @@ export default Mixin.create({
         xmppConn.listen({
             onOpened: function ( message ) {window.console.log("连接成功")},
             onClosed: function ( message ) {
-                later(conteollInstance, function() {
-                    conteollInstance.transitionToRoute('/')
-                }, 1000);
+                // later(conteollInstance, function() {
+                //     conteollInstance.transitionToRoute('/')
+                // }, 1000);
+                alert("异地登入，即将下线")
             },
             onTextMessage: function ( message ) {
-                // window.console.info(JSON.parse(message.data));
-                // window.console.info(message);
-                // that.Msg(conteollInstance, JSON.parse(message.data), services);
-                that.Msg(conteollInstance, "ymCalc", services);
+                that.Msg(conteollInstance, JSON.parse(message.data), services);
+                // that.Msg(conteollInstance, "ymCalc", services);
             },
-            onOnline: function () {},                  //本机网络连接成功
-            onOffline: function () {},                 //本机网络掉线
+            onOnline: function () {
+                window.console.info("上线啦")
+            },                  //本机网络连接成功
+            onOffline: function () {
+                window.console.info("掉线啦")
+            },                 //本机网络掉线
             onError: function ( message ) {}           //失败回调
         });
 
@@ -30,50 +34,85 @@ export default Mixin.create({
         //     let call = message.call + "Msg";
         //     this[call](conteollInstance, message, services);
         // }
-        let call = message + "Msg";
+        let call = message.call + "Msg";
         this[call](conteollInstance, message, services);
     },
     ymCalcMsg(conteollInstance, message, services) {
-        // 真实处理情况 状态要重构了，好乱
-        // switch(message.stage) {
-        //     case 'start':
-        //         SampleObject.set('isShowProgress', true); // 开启进度条
-        //         break;
-        //     case 'ing':
-        //         services.progress.setPercent(message.attributes.progress);
-        //         break;
-        //     case 'done':
-        //         services.progress.setPercent(message.attributes.progress);
-        //         let list = ["201601", "201602", "201603", "201604", "201605", "201606"]
-        //         SampleObject.set('years', list);
-        //         SampleObject.set('yearsSuccessModal', true); // 解析后弹框 要改成这个
-        //         SampleObject.set('isUploadRight', true); // 解析后标识
-        //         SampleObject.set('progressRight', true);// 正确弹框
-        //         break;
-        //     case 'error':
-        //         SampleObject.set('isUploadRight', false);
-        //         SampleObject.set('yearsErrorModal', true);
-        //         break;
-        //     default:
-        //         window.console.info('default');
-        // }
-
-        services.progress.setPercent(Math.floor(Math.random() * 100) + 1);
-
-        later(this, function() {
-            services.progress.setPercent(100);
-            let list = ["201601", "201602", "201603", "201604", "201605", "201606"]
-            SampleObject.set('years', list);
-            SampleObject.set('yearsSuccessModal', true); // 解析后弹框 要改成这个
-            SampleObject.set('isUploadRight', true); // 解析后弹框
-            SampleObject.set('progressRight', true);
-
-        }, 5000);
+        switch(message.stage) {
+            case 'start':
+                SampleObject.set('isShowProgress', true); // 开启进度条
+                break;
+            case 'ing':
+                services.progress.setPercent(message.attributes.progress);
+                break;
+            case 'done':
+                later(conteollInstance, function() {
+                    services.progress.setPercent(message.attributes.progress);
+                    let years = message.attributes.content.ymList.split(",")
+                    SampleObject.set('years', years);
+                    SampleObject.set('isUploadRight', true); // 解析后标识
+                    SampleObject.set('progressRight', true);// 正确弹框
+                }, 500);
+                break;
+            case 'error':
+                SampleObject.set('isUploadRight', false);
+                SampleObject.set('yearsErrorModal', true);
+                break;
+            default:
+                window.console.info('default');
+        }
     },
-    ProgressMsg(conteollInstance, message, services) {
-        // services.progress.setPercent(10)
-        // later(conteollInstance, function() {
-        //     conteollInstance.transitionToRoute('demo')
-        // }, 1000);
+    panelMsg(conteollInstance, message, services) {
+        switch(message.stage) {
+            case 'start':
+                SampleObject.set('progressRight', false);
+                later(conteollInstance, function() {
+                    services.progress.setPercent(message.attributes.progress);
+                }, 500);
+                break;
+            case 'ing':
+                services.progress.setPercent(message.attributes.progress);
+                break;
+            case 'done':
+                services.progress.setPercent(message.attributes.progress);
+                let panel = message.attributes.content.panel
+                later(conteollInstance, function() {
+                    conteollInstance.transitionToRoute('adddata.generate-sample.sample-finish')
+                }, 1000);
+                break;
+            case 'error':
+                SampleObject.set('isUploadRight', false);
+                SampleObject.set('yearsErrorModal', true);
+                break;
+            default:
+                window.console.info('default');
+        }
+    },
+    calcMsg(conteollInstance, message, services) {
+        switch(message.stage) {
+            case 'start':
+                MaxCalculateObject.set('isShowCalcProgress', true);
+                later(conteollInstance, function() {
+                    services.progress.setPercent(message.attributes.progress);
+                }, 500);
+                break;
+            case 'ing':
+                services.progress.setPercent(message.attributes.progress);
+                break;
+            case 'done':
+                later(conteollInstance, function() {
+                    services.progress.setPercent(message.attributes.progress);
+                }, 500);
+                MaxCalculateObject.set('calcHasDone', true);
+                break;
+            case 'error':
+                SampleObject.set('isUploadRight', false);
+                SampleObject.set('yearsErrorModal', true);
+                break;
+            default:
+                window.console.info('default');
+        }
+
+
     }
 });
