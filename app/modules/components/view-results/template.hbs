@@ -86,10 +86,12 @@
         </h4>
     {{/modal.header}}
     {{#modal.body}}
-        {{input type="checkbox" name="savaMonths" checked=allMonth}}2017.01
-        {{input type="checkbox" name="savaMonths" checked=allMonth}}2017.02
-        {{input type="checkbox" name="savaMonths" checked=allMonth}}2017.03
-
+        {{#each months as |item|}}
+            <label class="data-checkbox" for="{{item.year}}">
+                {{input type="checkbox" id=item.year checked=item.isChecked}}
+                <span class="checkbox-span"></span>{{item.year}}
+            </label>
+        {{/each}}
     {{/modal.body}}
     {{#modal.footer}}
         {{#bs-button onClick=(action "chooseAllMonth")}}全选{{/bs-button}}

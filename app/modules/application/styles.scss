@@ -16,9 +16,12 @@ html {
     top: 50%;
     transform: translateY(-50%);
 }
-
+:global(.modal-header) {
+    border-radius: 5px 5px 0 0;
+    color: #fff;
+    background-color: $btn-bgcolor;
+}
 :global(.modal-content ){
-    width: 400px;
     left: 50%;
     transform: translateX(-50%);
     :global(.btn) {
@@ -32,3 +35,38 @@ html {
         background-color: $btn-bgcolor;
     }
 }
+
+/**
+*
+*多选样式
+*/
+.data-checkbox {
+    font-weight: normal;
+}
+input[type="checkbox"] {
+    display: none;
+}
+.checkbox-span {
+    display: inline-block;
+    margin: 10px ;
+    width: 16px;
+    height: 16px;
+    line-height: 1;
+    vertical-align: middle;
+    border: 1px solid rgba(0, 0, 0, .15);
+    // border-radius: 100%;
+    background-color: #fff;
+}
+input[type="checkbox"]:checked + .checkbox-span:after {
+    content: "";
+    display: inline-block;
+    margin: 1px;
+    // border-radius: 100%;
+    height: 12px;
+    width: 12px;
+    background-color: $btn-bgcolor;
+
+}
+// .checkbox-span,input[type="checkbox"]:checked + .checkbox-span:after {
+//     border-radius: 0;
+// }
