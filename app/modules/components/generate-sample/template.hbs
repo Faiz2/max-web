@@ -50,6 +50,14 @@
             <div local-class="result-item hospital-sample">
                 <p local-class="item-title">INF 市场 医院样本数量</p>
                 <div local-class="item-legend">
+
+                    <div local-class="legend-left">
+                        <span local-class="legend-left-icon"></span>
+                        <span local-class="legend-left-text">当月样本数</span>
+                        <span local-class="legend-left-icon">----</span>
+                        <span local-class="legend-left-text">去年个月样本数趋势</span>
+                    </div>
+
                     <div local-class="legend-right">
                         <div local-class="legend-right-left">
                             <p>-5%</p>
@@ -64,6 +72,7 @@
                             <p>去年同月样本数</p>
                         </div>
                     </div>
+
                 </div>
                 <div local-class="item-chart">
                  {{sample-line-and-bar chartsName="医院样本" option=hospitalOption eid="sample-hospital-number-line-and-bar"}}
@@ -131,15 +140,13 @@
                         </div>
                     </div>
                 </div>
-                     {{models-table data=modelData columns=columnsData useFilteringByColumns=false showGlobalFilter=false filterQueryParameters=false
+                     {{models-table data=modelData columns=columnsData  filterQueryParameters=false
                     showComponentFooter=true showColumnsDropdown=false useFilteringByColumns=false showGlobalFilter=false useNumericPagination=true
                     showPageSize=false }}
             </div>
         </div>
     {{/unless}}
 </div>
-
-
 {{#bs-modal fade=false backdropClose=false open=modal3 onHidden=(action (mut modal3) false) as |modal|}}
     {{#modal.header}}
         <h4 class="modal-title">
