@@ -50,6 +50,11 @@ export default Controller.extend({
             });
         },
         startGenerateSample: function() {
+            // TODO : 未添加异常处理
+            let years = this.get('SampleObject').years.filterBy('isChecked')
+                .map((elt, i, array) => {
+                    return elt.year
+                });
             let condition = {
                 "condition": {
                     "job_id": "5adfeb4b52d78f67585c9d84",
@@ -59,10 +64,11 @@ export default Controller.extend({
                         "company": "nhwa",
                         "cpa": "cpa.xlsx",
                         "gycx": "gycx.xlsx",
-                        "ym":"201711,201712"
+                        "ym":years.toString()
                     }
                 }
             };
+
             new rsvp.Promise((resolve, reject) => {
                 return this.get('ajax').request('api/job/panel',
                     this.getAjaxOpt(condition)).then((response) => {

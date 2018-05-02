@@ -53,7 +53,7 @@
         <p>本次上传件中含以下几个月份，</p>
         <p>请选择要进行计算的月份：</p>
         {{#each SampleObject.years as |item|}}
-            {{input type="checkbox" name="year" }} {{item}}
+            {{input type="checkbox" name="year" checked=item.isChecked }} {{item.year}}
         {{/each}}
     {{/modal.body}}
     {{#modal.footer}}
