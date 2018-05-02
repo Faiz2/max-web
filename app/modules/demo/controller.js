@@ -1,5 +1,6 @@
 import Controller from '@ember/controller';
 import { inject } from '@ember/service';
+import Ember from 'ember';
 // import rsvp from 'rsvp';
 // import SampleGetOption from '../components/sample-line-and-bar/getOption';
 // import ResuleGetOption from '../components/result-trend-line-and-bar/getOption';
@@ -8,6 +9,11 @@ import { inject } from '@ember/service';
 
 export default Controller.extend({
     // ajax: inject(),
+    nums: [
+        {value: '04/2017', check: false},
+        {value: '05/2017', check: false},
+        {value: '06/2017', check: false},
+        {value: '07/2017', check: false}],
     progress: inject('circle-progress-serivce'),
     getAjaxOpt(data) {
         return {
@@ -132,6 +138,16 @@ export default Controller.extend({
             // progress.setPercent(num);
             // this.set('option', progress.getOption());
             this.set('option', this.get('progress').getOption())
-        }
+        },
+        submitNum() {
+            let checkedNum = [];
+            this.get('nums').forEach((item) => {
+                if(item.check) {
+                    checkedNum.push(item.value);
+                    console.info(item.value)
+                }
+            })
+            console.log(checkedNum)
+        },
     }
 });
