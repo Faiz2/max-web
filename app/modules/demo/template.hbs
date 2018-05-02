@@ -1,3 +1,14 @@
+<div class="form-group">
+    {{#each nums as |num|}}
+        <div class="checkbox">
+            <label for="{{num.value}}">
+                {{input type="checkbox" id=num.value checked=num.check}} {{num.value}}
+            </label>
+        </div>
+    {{/each}}
+</div>
+<button type="submit" class="btn btn-success" {{action "submitNum"}}>提交</button>
+
 <div class="">
     <button type="button" name="button" {{action 'go'}}>go</button>
 </div>
