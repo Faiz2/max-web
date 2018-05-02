@@ -53,7 +53,10 @@
         <p>本次上传件中含以下几个月份，</p>
         <p>请选择要进行计算的月份：</p>
         {{#each SampleObject.years as |item|}}
-            {{input type="checkbox" name="year" checked=item.isChecked }} {{item.year}}
+            <label class="data-checkbox" for="{{item.year}}">
+                {{input type="checkbox" id=item.year name="year" checked=item.isChecked}}
+                <span class="checkbox-span"></span>{{item.year}}
+            </label>
         {{/each}}
     {{/modal.body}}
     {{#modal.footer}}
@@ -75,6 +78,24 @@
         <p>2.原文件不含有月份的数值。</p>
         <p>3.原文件上传错误。</p>
         <p>请检查原文件，并重新上传正确的原文件。</p>
+    {{/modal.body}}
+    {{#modal.footer}}
+        {{#link-to "adddata.uploadfiles"}}
+            {{#bs-button }}重新上传{{/bs-button}}
+        {{/link-to}}
+    {{/modal.footer}}
+{{/bs-modal}}
+
+{{#bs-modal fade=false backdropClose=false open=SampleObject.cantFindMonth onHidden=(action (mut SampleObject.cantFindMonth) false) as |modal|}}
+    {{#modal.header}}
+        <h4 class="modal-title">
+            xx
+        </h4>
+    {{/modal.header}}
+    {{#modal.body}}
+        <p local-class="download-model">下载文件格式范本</p>
+        <p>原因可能为：</p>
+        
     {{/modal.body}}
     {{#modal.footer}}
         {{#link-to "adddata.uploadfiles"}}

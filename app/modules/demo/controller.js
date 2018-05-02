@@ -141,13 +141,16 @@ export default Controller.extend({
         },
         submitNum() {
             let checkedNum = [];
-            this.get('nums').forEach((item) => {
-                if(item.check) {
-                    checkedNum.push(item.value);
-                    console.info(item.value)
-                }
-            })
-            console.log(checkedNum)
+            // this.get('nums').forEach((item) => {
+            //     if(item.check) {
+            //         checkedNum.push(item.value);
+            //         console.info(item.value)
+            //     }
+            // })
+            checkedNum = this.get('nums').filterBy('check', true).map((ele,index,array)=> {
+                return ele.value
+            });
+            console.info(checkedNum)
         },
     }
 });
