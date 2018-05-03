@@ -6,5 +6,6 @@ export default EmberObje.create({
     isShowProgress: false,
     isUploadRight: false,
     progressRight: false,
-    progressWrong: false
+    progressWrong: false,
+    cantFindMonth: false,
 });
