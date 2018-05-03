@@ -1,5 +1,5 @@
 import Component from '@ember/component';
-import {get,set} from '@ember/object';
+import { set } from '@ember/object';
 import {later} from '@ember/runloop';
 
 export default Component.extend({
@@ -22,15 +22,15 @@ export default Component.extend({
             let allMOnthsBool = this.get('allMonths');
             if(allMOnthsBool) {
                 this.set('chooseTrueNums', (this.get('months').length))
-                this.get('months').forEach((item,index) => {
+                this.get('months').forEach((item) => {
                     set(item,'isChecked',false);
                 });
             } else {
                 this.set('chooseTrueNums', 0)
-                this.get('months').forEach((item,index) => {
+                this.get('months').forEach((item) => {
                     set(item,'isChecked',true);
                 });
-            };
+            }
             this.toggleProperty('allMonths');
         },
         // 检查选择项与全选项
@@ -60,7 +60,7 @@ export default Component.extend({
                 set(this, 'saveState', false);
             },1800);
             checkedMonth = this.get('months').filterBy('isChecked',true).
-            map((ele,index,array) => {
+            map((ele) => {
                 return ele.year
             })
             console.log(checkedMonth)
