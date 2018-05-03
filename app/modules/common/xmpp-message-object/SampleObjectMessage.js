@@ -7,5 +7,5 @@ export default EmberObje.create({
     isUploadRight: false,
     progressRight: false,
     progressWrong: false,
-    cantFindMonth: false,
+    cantFindMonth: false,   // 未能找到月份
 });

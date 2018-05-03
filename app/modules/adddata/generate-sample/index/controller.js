@@ -81,8 +81,9 @@ export default Controller.extend({
                     );
             });
         },
+        // 未显示要计算的月份
         cantFindMonth: function() {
-            
+            this.set('SampleObject.cantFindMonth', true);
         }
     }
 });

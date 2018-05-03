@@ -16,7 +16,7 @@
                 </select>
             </div>
             <div local-class="choosebar-content choosebar-right">
-                <button {{action 'saveData'}} local-class="btn-default-max" type="button" name="button">导出</button>
+                <button {{action 'saveData'}} local-class="btn-default-max" type="button" name="button">保存</button>
             </div>
         </div>
         <div local-class="market-results">
@@ -86,16 +86,20 @@
         </h4>
     {{/modal.header}}
     {{#modal.body}}
+        <p><label class="data-checkbox" for="allMonths">
+            {{input type="checkbox" id="allMonths" checked=allMonths change=(action "chooseAllMonth")}}
+            <span class="checkbox-span"></span>全部
+        </label></p>
         {{#each months as |item|}}
             <label class="data-checkbox" for="{{item.year}}">
-                {{input type="checkbox" id=item.year checked=item.isChecked}}
+                {{input type="checkbox" id=item.year checked=item.isChecked change=(action "checkChoose" item)}}
                 <span class="checkbox-span"></span>{{item.year}}
             </label>
         {{/each}}
     {{/modal.body}}
     {{#modal.footer}}
-        {{#bs-button onClick=(action "chooseAllMonth")}}全选{{/bs-button}}
-        {{#bs-button onClick=(action 'confirmSave')}}确认{{/bs-button}}
+        {{#bs-button class="btn-only-text" onClick=(action modal.close)}}取消{{/bs-button}}
+        {{#bs-button onClick=(action 'confirmSave')}}确认保存{{/bs-button}}
     {{/modal.footer}}
 {{/bs-modal}}
 {{#if saveState}}
