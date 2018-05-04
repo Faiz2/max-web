@@ -63,7 +63,7 @@
     margin: 0 auto;
     width: 56%;
     height: 360px;
-    border: 1px solid #7e7e7e;
+    border: 1px solid $border-color;
     border-radius: 5px;
     .dropzone-upload-area {
       padding-top: 30px;
@@ -84,7 +84,7 @@
       line-height: 40px;
       text-align: left;
       font-size: 1.6rem;
-      border: 1px solid #7e7e7e;
+      border: 1px solid $border-color;
       border-radius: 5px;
     }
     a {

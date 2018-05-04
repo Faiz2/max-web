@@ -101,135 +101,139 @@ body {
         min-width: 960px;
         height: 800px;
     }
-    .detail-choosebar {
-        margin-bottom: 20px;
+}
+/**
+*
+* choose bar 样式
+*/
+.detail-choosebar {
+    margin-bottom: 20px;
+    height: 80px;
+    border-radius: 5px;
+    box-shadow: 2px 2px 4px 4px #eee;
+    background-color: #fff;
+
+    .choosebar-content {
+        display: inline-block;
         height: 80px;
-        border-radius: 5px;
-        box-shadow: 2px 2px 4px 4px #eee;
-        background-color: #fff;
+        line-height: 80px;
 
-        .choosebar-content {
-            display: inline-block;
-            height: 80px;
-            line-height: 80px;
-
-            a:hover {
-                text-decoration: none;
-            }
-
-            .select-title {
-                font-size: 1.8rem;
-                letter-spacing: 2px;
-                padding: 0 10px;
-            }
-
-            .choose-market {
-                width: 160px;
-                height: 40px;
-                text-align: center;
-                text-align-last: center;
-                border: 1px solid #eee;
-                background-color: #fff;
-                option {
-                    height: 20px;
-                    text-align: center;
-                }
-            }
+        a:hover {
+            text-decoration: none;
         }
-        .choosebar-left {
-            float: left;
-            margin-left: 20px;
 
-            .time-selects {
-                display: inline-block;
-                height: 40px;
-                line-height: 40px;
-                text-align: center;
-                border: 1px solid #000;
-                border-radius: 4px;
-                font-size: 0;
-
-                & input {
-                    width: 100px;
-                    height: 34px;
-                    text-align: center;
-                    border: 0;
-                    font-size: 1.4rem;
-                    letter-spacing: 1.2px;
-                }
-
-                & .middle-text {
-                    display: inline-block;
-                    padding: 0 5px;
-                    height: 38px;
-                    line-height: 38px;
-                    font-size: 1.4rem;
-                    background-color: $btn-bgcolor;
-                }
-            }
-            button[name="btn-output"] {
-                margin-top: -4px;
-                margin-left: 40px;
-                padding: 0;
-                width: 100px;
-                height: 40px;
-                line-height: 40px;
-                text-align: center;
-                vertical-align: middle;
-                font-size: 18px;
-                color: #fff;
-                background-color: $btn-bgcolor;
-            }
+        .select-title {
+            font-size: 1.8rem;
+            letter-spacing: 2px;
+            padding: 0 10px;
         }
-        .choosebar-right {
-            float: right;
-            margin-right: 40px;
-            padding-top: 20px;
-            width: 120px;
 
-            .btn-add-data {
-                height: 42px;
-                border: 1px solid #eee;
-                border-radius: 4px;
-                cursor: pointer;
-                background-color: gray;
-            }
-
-            .add-data-content {
-                display: inline-block;
-                height: 40px;
-                line-height: 40px;
-                vertical-align: top;
-                font-size: 1.8rem;
-                color: #fff;
-            }
-
-            .left-section {
-                padding-left: 8px;
-                width: 30px;
-                border-radius: 0 20px 20px 0;
-                background-color: $btn-bgcolor;
+        .choose-market {
+            width: 160px;
+            height: 40px;
+            text-align: center;
+            text-align-last: center;
+            border: 1px solid $border-color;
+            border-radius: 5px;
+            background-color: #fff;
+            option {
+                font-size: 20px;
+                text-align: center;
             }
         }
     }
+    .choosebar-left {
+        float: left;
+        margin-left: 20px;
 
-    .detail-list {
-        border: 1px solid #eee;
-        background-color: #fff;
+        .time-selects {
+            display: inline-block;
+            height: 40px;
+            line-height: 40px;
+            text-align: center;
+            border: 1px solid $border-color;
+            border-radius: 4px;
+            font-size: 0;
 
-        .footer-summary {
-            margin-top: 5px;
-            padding-left: 50px;
+            & input {
+                width: 100px;
+                height: 34px;
+                text-align: center;
+                border: 0;
+                font-size: 1.4rem;
+                letter-spacing: 1.2px;
+            }
+
+            & .middle-text {
+                display: inline-block;
+                padding: 0 5px;
+                height: 38px;
+                line-height: 38px;
+                font-size: 1.4rem;
+                background-color: $btn-bgcolor;
+            }
+        }
+        button[name="btn-output"] {
+            margin-top: -4px;
+            margin-left: 40px;
+            padding: 0;
+            width: 100px;
+            height: 40px;
+            line-height: 40px;
+            text-align: center;
+            vertical-align: middle;
+            font-size: 18px;
+            color: #fff;
+            background-color: $btn-bgcolor;
+        }
+    }
+    .choosebar-right {
+        float: right;
+        margin-right: 40px;
+        padding-top: 20px;
+        width: 120px;
+
+        .btn-add-data {
+            height: 42px;
+            border: 1px solid #eee;
+            border-radius: 4px;
+            cursor: pointer;
+            background-color: gray;
         }
 
-        .footer-num {
-            float: right;
-            padding-right: 50px;
-            margin-bottom: 10px;
+        .add-data-content {
+            display: inline-block;
+            height: 40px;
+            line-height: 40px;
+            vertical-align: top;
+            font-size: 1.8rem;
+            color: #fff;
+        }
+
+        .left-section {
+            padding-left: 8px;
+            width: 30px;
+            border-radius: 0 20px 20px 0;
+            background-color: $btn-bgcolor;
         }
     }
 }
 
+.detail-list {
+    border: 1px solid #eee;
+    background-color: #fff;
+
+    .footer-summary {
+        margin-top: 5px;
+        padding-left: 50px;
+    }
+
+    .footer-num {
+        float: right;
+        padding-right: 50px;
+        margin-bottom: 10px;
+    }
+}
 /**
 *
 * 导出弹窗内容样式
@@ -252,7 +256,7 @@ body {
         height: 30px;
         line-height: 30px;
         text-align: center;
-        border: 1px solid #676767;
+        border: 1px solid $border-color;
         border-radius: 4px;
         font-size: 0;
 
@@ -282,7 +286,7 @@ body {
         height: 30px;
         text-align: center;
         text-align-last: center;
-        border: 1px solid #676767;
+        border: 1px solid $border-color;
         border-radius: 5px;
         background-color: #fff;
         option {
