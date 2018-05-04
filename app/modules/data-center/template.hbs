@@ -33,9 +33,9 @@
                     </select>
                     <span local-class="select-title">时间选择</span>
                     <div local-class="time-selects" class="input-group input-daterange">
-                        {{bootstrap-datepicker  changeMonth="changeStartMonth" value=date1 autoclose=true minViewMode=1 format="mm/yyyy" keyboardNavigation=true language="zh-CN"}}
+                        {{bootstrap-datepicker  changeMonth="changeStartMonth" value=startDate autoclose=true minViewMode=1 format="mm/yyyy" keyboardNavigation=true language="zh-CN"}}
                         <span local-class="middle-text">to</span>
-                        {{bootstrap-datepicker changeMonth="changeEndMonth" value=date2 autoclose=true minViewMode=1 format="mm/yyyy" language="zh-CN"}}
+                        {{bootstrap-datepicker changeMonth="changeEndMonth" value=endDate autoclose=true minViewMode=1 format="mm/yyyy" language="zh-CN"}}
                     </div>
                     <span>
                         <button {{action 'outputDate'}} local-class="btn-output" class="btn" type="button" name="btn-output">导出</button>
@@ -97,9 +97,9 @@
         <p local-class="modal-content-line">
             <span>时间区间</span>
             <div local-class="time-selects">
-                {{bootstrap-datepicker changeMonth="changeStartMonth" value=outputStartData autoclose=true minViewMode=1 format="mm/yyyy" keyboardNavigation=true language="zh-CN"}}
+                {{bootstrap-datepicker changeMonth="changeOutputStartMonth" value=outputStartData autoclose=true minViewMode=1 format="mm/yyyy" keyboardNavigation=true language="zh-CN"}}
                 <span local-class="middle-text">to</span>
-                {{bootstrap-datepicker changeMonth="changeEndMonth" value=outputEndData autoclose=true minViewMode=1 format="mm/yyyy" language="zh-CN"}}
+                {{bootstrap-datepicker changeMonth="changeOutputEndMonth" value=outputEndData autoclose=true minViewMode=1 format="mm/yyyy" language="zh-CN"}}
             </div>
         </p>
         <p local-class="modal-content-line">

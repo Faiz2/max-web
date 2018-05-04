@@ -19,10 +19,10 @@
                 <button local-class="btn-default-max" type="button" name="button">导出</button>
             </div>
             <div local-class="choosebar-content choosebar-right">
-                {{#link-to "adddata.uploadfiles"}}
+                {{!-- {{#link-to "adddata.uploadfiles"}}
                     <button local-class="btn-default-max" type="button" name="button">重新上传</button>
-                {{/link-to}}
-
+                {{/link-to}} --}}
+                {{#bs-button local-class="btn-default-max" onClick=(action (mut uploadAgain) true)}}重新上传{{/bs-button}}
                 {{#link-to "adddata.calcmax"}}
                     <button local-class="btn-default-max" type="button" name="button">下一步</button>
                 {{/link-to}}
