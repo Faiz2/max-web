@@ -6,12 +6,29 @@ $btn-bgcolor: #60b3ad;
 
 $max-font-size-title:  2.2rem;;
 $max-font-size-content: 1.4rem;
+
 html {
     height: 100%;
     background-color: $content-bgcolor;
     font-size: 10px;
 }
-// 弹窗
+
+/**
+*
+* btn 只有字的样式
+*/
+.btn-only-text {
+    padding-left: 20px !important;
+    padding-right: 20px !important;
+    width: auto !important;
+    color: #676767 !important;
+    background-color: transparent !important;
+}
+
+/**
+*
+*弹窗样式
+*/
 :global(.modal.in .modal-dialog) {
     top: 50%;
     transform: translateY(-50%);
@@ -41,6 +58,7 @@ html {
 *多选样式
 */
 .data-checkbox {
+    width: 130px;
     font-weight: normal;
 }
 input[type="checkbox"] {
@@ -54,19 +72,13 @@ input[type="checkbox"] {
     line-height: 1;
     vertical-align: middle;
     border: 1px solid rgba(0, 0, 0, .15);
-    // border-radius: 100%;
     background-color: #fff;
 }
 input[type="checkbox"]:checked + .checkbox-span:after {
     content: "";
     display: inline-block;
-    margin: 1px;
-    // border-radius: 100%;
-    height: 12px;
-    width: 12px;
+    // margin: 1px;
+    height: 14px;
+    width: 14px;
     background-color: $btn-bgcolor;
-
 }
-// .checkbox-span,input[type="checkbox"]:checked + .checkbox-span:after {
-//     border-radius: 0;
-// }

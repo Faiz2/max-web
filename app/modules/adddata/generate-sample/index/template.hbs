@@ -51,7 +51,7 @@
     {{/modal.header}}
     {{#modal.body}}
         <p>本次上传件中含以下几个月份，</p>
-        <p>请选择要进行计算的月份：</p>
+        <p>请选择要进行计算的月份：（可多选）</p>
         {{#each SampleObject.years as |item|}}
             <label class="data-checkbox" for="{{item.year}}">
                 {{input type="checkbox" id=item.year name="year" checked=item.isChecked}}
@@ -60,7 +60,7 @@
         {{/each}}
     {{/modal.body}}
     {{#modal.footer}}
-        {{#bs-button onClick=(action modal.close)}}关闭选择{{/bs-button}}
+        {{#bs-button class="btn-only-text" onClick=(action 'cantFindMonth')}}未显示需要的月份{{/bs-button}}
         {{#bs-button onClick=(action 'startGenerateSample')}}确认{{/bs-button}}
     {{/modal.footer}}
 {{/bs-modal}}
@@ -89,15 +89,15 @@
 {{#bs-modal fade=false backdropClose=false open=SampleObject.cantFindMonth onHidden=(action (mut SampleObject.cantFindMonth) false) as |modal|}}
     {{#modal.header}}
         <h4 class="modal-title">
-            xx
+            未显示要计算的月份？
         </h4>
     {{/modal.header}}
     {{#modal.body}}
-        <p local-class="download-model">下载文件格式范本</p>
-        <p>原因可能为：</p>
-        
+        <p>您上传的文件可能月份有缺失，请重新检查文件，</p>
+        <p>并重新上传。</p>
     {{/modal.body}}
     {{#modal.footer}}
+    {{#bs-button onClick=(action modal.close)}}返回选择{{/bs-button}}
         {{#link-to "adddata.uploadfiles"}}
             {{#bs-button }}重新上传{{/bs-button}}
         {{/link-to}}

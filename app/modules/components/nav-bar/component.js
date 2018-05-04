@@ -1,5 +1,5 @@
 import Component from '@ember/component';
-import {set} from '@ember/object';
+// import {set} from '@ember/object';
 export default Component.extend({
     isCenter: true,
     isShow: false,
@@ -10,7 +10,7 @@ export default Component.extend({
         },
         exitStepFlow() {
             this.set('exitStep',false);
-            
+
         }
     }
 });

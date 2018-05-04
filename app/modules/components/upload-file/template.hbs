@@ -65,7 +65,7 @@
     {{#if isDisabled}}
         <button {{action 'pleaseUploadFile'}} local-class="btn-default-max to-generate-sample" type="button" name="btn-second-step">下一步</button>
     {{else}}
-        {{#link-to "adddata.gsample"}}
+        {{#link-to "adddata.generate-sample"}}
             <button local-class={{unless isDisabled "useable" }} local-class="btn-default-max to-generate-sample" type="button" name="btn-second-step">下一步</button>
         {{/link-to}}
     {{/if}}
