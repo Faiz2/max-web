@@ -22,7 +22,6 @@ export default Controller.extend({
 
     actions: {
         outputDate() {
-            console.log('aaa')
             this.set('output',true)
         },
         changeStartMonth(date) {

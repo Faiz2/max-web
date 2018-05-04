@@ -6,7 +6,6 @@ export default Controller.extend({
     cookies: inject(),
     ajax: inject(),
     webIm: inject('xmpp-service'),
-    userIsLoggedIn: false,
     getAjaxOpt(data) {
         return {
             method: 'POST',
