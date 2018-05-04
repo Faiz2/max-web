@@ -3,6 +3,7 @@
 $navbar-bgcolor: #737373;
 $content-bgcolor: #fafafa;
 $btn-bgcolor: #60b3ad;
+$border-color: #7e7e7e;
 
 $max-font-size-title:  2.2rem;;
 $max-font-size-content: 1.4rem;
@@ -23,6 +24,21 @@ html {
     width: auto !important;
     color: #676767 !important;
     background-color: transparent !important;
+}
+/**
+*
+* btn max 基本样式
+*/
+.btn-default-max{
+    height: 35px;
+    width: 100px;
+    line-height: 35px;
+    border: 0;
+    border-radius: 5px;
+    font-size: 18px;
+    text-align: center;
+    color: #fff;
+    background-color: $btn-bgcolor;
 }
 
 a:hover {
@@ -81,7 +97,6 @@ input[type="checkbox"] {
 input[type="checkbox"]:checked + .checkbox-span:after {
     content: "";
     display: inline-block;
-    // margin: 1px;
     height: 14px;
     width: 14px;
     background-color: $btn-bgcolor;

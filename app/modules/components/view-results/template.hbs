@@ -5,14 +5,14 @@
                 <span local-class="select-title">市场</span>
                 <select local-class="choose-select choose-market" name="">
                     <option>Markone</option>
-                    <option>Markone</option>
-                    <option>Markone</option>
+                    <option>Marktwo</option>
+                    <option>Markthree</option>
                 </select>
                 <span local-class="select-title">月份</span>
                 <select local-class="choose-select choose-month" name="">
                     <option>04/2017</option>
-                    <option>04/2017</option>
-                    <option>04/2017</option>
+                    <option>05/2017</option>
+                    <option>06/2017</option>
                 </select>
             </div>
             <div local-class="choosebar-content choosebar-right">
@@ -54,28 +54,20 @@
             </div>
             <div local-class="market-trend">
                 <p local-class="result-title">
-                    <span>INF</span>市场趋势 <span local-class="trend-legend">aaaa  bbbbb</span></p>
+                    <span>INF</span>市场趋势 <span local-class="trend-legend"> <span></span><span local-class="text">市场销售额</span> <span>——</span><span local-class="text">份额变化趋势</span></span></p>
                      {{result-trend-line-and-bar eid="result-trend-line-and-bar"}}
             </div>
         </div>
         <div local-class="market-results">
             <p local-class="result-title"><span>INF</span>地区层面结果</p>
-            {{!-- <div class="container-fluid"> --}}
-                {{!-- <div class="row"> --}}
                 <div local-class="china-map-data">
-                    {{!-- <div class="col-md-6"> --}}
                     <div local-class="china-map">
                         {{result-map eid="result-map"}}
                     </div>
-                    {{!-- </div> --}}
-                    {{!-- <div class="col-md-6"> --}}
                     <div local-class="china-data">
                         {{result-mirror-bar eid="result-mirror-bar"}}
                     </div>
-                    {{!-- </div> --}}
                 </div>
-                {{!-- </div> --}}
-            {{!-- </div> --}}
         </div>
     </div>
 </div>

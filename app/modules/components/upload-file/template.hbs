@@ -61,19 +61,14 @@
             </div>
         </div>
     </div>
-    {{!-- 下一步正确逻辑 下方四行--}}
     {{#if isDisabled}}
-        <button {{action 'pleaseUploadFile'}} local-class="btn-default-max to-generate-sample" type="button" name="btn-second-step">下一步</button>
+        <button {{action 'pleaseUploadFile'}} class="btn-default-max" local-class="to-generate-sample" type="button" name="btn-second-step">下一步</button>
     {{else}}
         {{#link-to "adddata.generate-sample"}}
-            <button local-class={{unless isDisabled "useable" }} local-class="btn-default-max to-generate-sample" type="button" name="btn-second-step">下一步</button>
+            <button local-class={{unless isDisabled "useable" }} class="btn-default-max" local-class="to-generate-sample" type="button" name="btn-second-step">下一步</button>
         {{/link-to}}
     {{/if}}
-    {{!-- 下一步正确逻辑 上方四行 --}}
-    {{!-- 下一步测试逻辑 --}}
-    {{!-- {{#link-to "adddata.gsample"}}
-        <button local-class="to-generate-sample useable" type="button" name="btn-second-step">下一步</button>
-    {{/link-to}} --}}
+
 </div>
 {{#bs-modal-simple fade=false open=remindUploadFile title="提示" closeTitle="确定" onHidden=(action (mut remindUploadFile) false)}}
   <p>请上传文件</p>
