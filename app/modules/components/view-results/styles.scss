@@ -15,7 +15,6 @@
     background-color: $btn-bgcolor;
 }
 
-
 /**
 *
 *view-results样式
@@ -193,8 +192,54 @@
             width: 700px;
         }
 
-        .china-data {
-            width: 440px;
+
+    }
+}
+/**
+*
+*镜像图图例样式
+*/
+.china-data {
+    position: relative;
+    width: 440px;
+    .mirror-legend {
+        position: absolute;
+        z-index: 2;
+        top: 0;
+        right: 60px;
+        button {
+            padding: 0;
+            width: 60px;
+            height: 26px;
+            line-height: 26px;
+            border: 0;
+            text-align: center;
+            font-size: 14px;
+            color: #676767;
+            background-color: #eee;
+
+        }
+    }
+    .text-legend {
+        position: absolute;
+        z-index: 2;
+        top: 60px;
+        width: 100%;
+        font-size: 16px;
+        color: #676767;
+        p {
+            display: inline-block;
+            margin: 0;
+            width: 49%;
+            letter-spacing: 1.2px;
+        }
+        p:first-child {
+            text-align: right;
+            padding-right: 50px;
+        }
+        p:last-child {
+            text-align: left;
+            padding-left: 60px;
         }
     }
 }
