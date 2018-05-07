@@ -10,7 +10,7 @@ export default EmberObject.extend({
                 zoom: 1.5,
                 mapType: 'china',
                 roam: false,
-                label: {normal: {show: true}},
+                label: {normal: {show: false}},
                 data: data.areaData
             }]
         }
