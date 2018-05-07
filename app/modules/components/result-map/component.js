@@ -50,7 +50,7 @@ export default Component.extend({
                 zoom: 1.2,
                 mapType: 'china',
                 roam: false,
-                label: {normal: {show: true}},
+                label: {normal: {show: false}},
                 data: []
             }]
         });
