@@ -118,12 +118,21 @@
                     </div>
                 </div>
             </div>
-                 {{models-table data=model columns=columns useFilteringByColumns=false showGlobalFilter=false filterQueryParameters=false
+            <div local-class="detail-list">
+                {{#models-table data=model columns=columns useFilteringByColumns=false showGlobalFilter=false filterQueryParameters=false
                 showComponentFooter=true showColumnsDropdown=false useFilteringByColumns=false showGlobalFilter=false useNumericPagination=true
-                showPageSize=false }}
+                showPageSize=false as |mt| }}
+                    {{mt.table}}
+                    {{#mt.footer as |footer|}}
+                        {{footer.summary local-class='footer-summary' }}
+                        {{footer.pagination-numeric local-class='footer-num'}}
+                    {{/mt.footer}}
+                {{/models-table}}
+            </div>
         </div>
     </div>
 </div>
+
 {{#bs-modal fade=false backdropClose=false open=uploadAgain onHidden=(action (mut uploadAgain) false) as |modal|}}
     {{#modal.header}}
         <h4 class="modal-title">

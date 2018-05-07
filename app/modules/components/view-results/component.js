@@ -7,6 +7,7 @@ export default Component.extend({
     saveState: false,
     allMonths: false,
     chooseTrueNums: 0,
+    selectedArea: 1,
     months: [
         {year:'04/2018',isChecked: false},
         {year:'05/2018',isChecked: false},

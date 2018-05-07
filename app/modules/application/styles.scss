@@ -47,6 +47,19 @@ a:hover {
 
 /**
 *
+*btn.active style
+*/
+:global(.btn-default.active) {
+    background-color: $btn-bgcolor !important;
+    color: #fff !important;
+}
+:global(.btn-default.active:hover) {
+    background-color: $btn-bgcolor !important;
+    color: #fff  !important;
+
+}
+/**
+*
 *弹窗样式
 */
 :global(.modal.in .modal-dialog) {

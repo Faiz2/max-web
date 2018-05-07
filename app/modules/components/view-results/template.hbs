@@ -65,6 +65,19 @@
                         {{result-map eid="result-map"}}
                     </div>
                     <div local-class="china-data">
+                        <div local-class="mirror-legend">
+                            {{#bs-button-group
+                              value=selectedArea
+                              type="radio"
+                              onChange=(action (mut selectedArea)) as |bg|}}
+                              {{#bg.button value=0}}省{{/bg.button}}
+                              {{#bg.button value=1}}城市{{/bg.button}}
+                            {{/bs-button-group}}
+                            {{!-- <p>You selected: {{selectedArea}}</p> --}}
+                        </div>
+                        <div local-class="text-legend">
+                            <p>去年同期</p><p>本期</p>
+                        </div>
                         {{result-mirror-bar eid="result-mirror-bar"}}
                     </div>
                 </div>
