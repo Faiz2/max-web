@@ -4,6 +4,7 @@ import SampleObject from '../common/xmpp-message-object/SampleObjectMessage';
 import MaxCalculateObject from '../common/xmpp-message-object/MaxCalculateMessage';
 
 export default Mixin.create({
+
     callback(conteollInstance, xmppConn, services) {
         let that = this;
         xmppConn.listen({
@@ -12,9 +13,10 @@ export default Mixin.create({
                 // later(conteollInstance, function() {
                 //     conteollInstance.transitionToRoute('/')
                 // }, 1000);
-                alert("异地登入，即将下线")
+                alert("异地登入")
             },
             onTextMessage: function ( message ) {
+                window.console.info(message)
                 that.Msg(conteollInstance, JSON.parse(message.data), services);
                 // that.Msg(conteollInstance, "ymCalc", services);
             },
