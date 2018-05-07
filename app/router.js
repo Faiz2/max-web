@@ -9,12 +9,12 @@ const Router = EmberRouter.extend({
 Router.map(function() {
     this.route('page-not-found', {path: '/*path'});
     this.route('adddata', function() {
-      this.route('uploadfiles');
-      this.route('calcmax');
-      this.route('viewresults');
-      this.route('generate-sample', function() {
-        this.route('sample-finish');
-      });
+        this.route('uploadfiles');
+        this.route('calcmax');
+        this.route('viewresults');
+        this.route('generate-sample', function() {
+            this.route('sample-finish');
+        });
     });
     this.route('demo');
     this.route('data-center');
