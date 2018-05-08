@@ -17,7 +17,7 @@ export default Mixin.create({
                 alert("异地登入")
             },
             onTextMessage: function ( message ) {
-
+                window.console.info(message)
                 that.Msg(conteollInstance, JSON.parse(message.data), services);
             },
             onOnline: function () {
@@ -80,11 +80,13 @@ export default Mixin.create({
                 }, 500);
                 break;
             case 'ing':
+                SampleObject.set('fileParsingSuccess', false);
                 services.progress.setPercent(message.attributes.progress);
                 break;
             case 'done':
                 services.progress.setPercent(message.attributes.progress);
                 let panel = message.attributes.content.panel
+                services.cookies.write('panel', panel);
                 later(conteollInstance, function() {
                     conteollInstance.transitionToRoute('adddata.generate-sample.sample-finish')
                 }, 2000);
@@ -100,9 +102,7 @@ export default Mixin.create({
         switch(message.stage) {
             case 'start':
                 MaxCalculateObject.set('isShowCalcProgress', true);
-                later(conteollInstance, function() {
-                    services.progress.setPercent(message.attributes.progress);
-                }, 500);
+                services.progress.setPercent(message.attributes.progress);
                 break;
             case 'ing':
                 services.progress.setPercent(message.attributes.progress);

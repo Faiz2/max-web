@@ -3,6 +3,7 @@ import { upload } from 'ember-file-upload/mirage';
 export default function() {
     //You Code
     this.post('/upload/cpa', upload((schema, request) => {
+        debugger
         let { type, name, size, url } = request.requestBody.file;
         return {
           filename: name,

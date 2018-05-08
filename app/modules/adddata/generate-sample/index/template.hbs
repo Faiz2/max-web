@@ -3,8 +3,8 @@
     <div local-class="generate-sample-content">
         <p local-class="explain-text">将对你本次上传的源文件</p>
         <p local-class="file-name">
-            <span>CAP：{{if filenameone filenameone "文件名"}}{{filenameone}}</span>
-            <span>GYCX： {{if filenametwo filenametwo "文件名"}}</span>
+            <span>CAP：{{cpafilename}}</span>
+            <span>GYCX： {{gycxfilename}}</span>
         </p>
         <p local-class="explain-text">进行清洗、过滤后，生成本次计算的样本</p>
         {{#unless SampleObject.isShowProgress}}

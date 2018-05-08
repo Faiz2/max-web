@@ -7,12 +7,18 @@ import styles from '../styles';
 
 export default Controller.extend({
     ajax: inject(),
+    cookies: inject(),
     progress: inject('circle-progress-serivce'),
     circleProgressOption: computed('progress.option', function() {
         return this.get('progress').getOption();
     }),
     styles,
     SampleObject,
+    init() {
+        this._super(...arguments);
+        this.set('cpafilename', this.get('cookies').read('filecpa'))
+        this.set('gycxfilename', this.get('cookies').read('filegycx'))
+    },
     getAjaxOpt(data) {
         return {
             method: 'POST',
@@ -27,13 +33,11 @@ export default Controller.extend({
         startParsingFile: function() {
             let condition = {
                 "condition": {
-                    "job_id": "5adfeb4b52d78f67585c9d84",
-                    "user_id": "5ad871fe52d78f494e56e772",
-                    "company_id": "5ad871fd52d78f494e56e771",
+                    "job_id": this.get('cookies').read('job_id'),
+                    "user_id": this.get('cookies').read('uid'),
                     "args": {
-                        "company": "nhwa",
-                        "cpa": "cpa.xlsx",
-                        "gycx": "gycx.xlsx"
+                        "cpa": this.get('cookies').read('cpahash'),
+                        "gycx": this.get('cookies').read('gycxhash') || ''
                     }
                 }
             };
@@ -57,13 +61,11 @@ export default Controller.extend({
                 });
             let condition = {
                 "condition": {
-                    "job_id": "5adfeb4b52d78f67585c9d84",
-                    "user_id": "5ad871fe52d78f494e56e772",
-                    "company_id": "5ad871fd52d78f494e56e771",
+                    "job_id": this.get('cookies').read('job_id'),
+                    "user_id": this.get('cookies').read('uid'),
                     "args": {
-                        "company": "nhwa",
-                        "cpa": "cpa.xlsx",
-                        "gycx": "gycx.xlsx",
+                        "cpa": this.get('cookies').read('cpahash'),
+                        "gycx": this.get('cookies').read('gycxhash') || '',
                         "ym":years.toString()
                     }
                 }

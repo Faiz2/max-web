@@ -6,6 +6,7 @@ import MaxCalculateObject from '../../common/xmpp-message-object/MaxCalculateMes
 
 export default Component.extend({
     ajax: inject(),
+    cookies: inject(),
     MaxCalculateObject,
     progress: inject('circle-progress-serivce'),
     circleProgressOption: computed('progress.option', function() {
@@ -25,11 +26,10 @@ export default Component.extend({
         startCalcMAX() {
             let condition = {
                 "condition": {
-                    "job_id": "5adfeb4b52d78f67585c9d84",
-                    "user_id": "5ad871fe52d78f494e56e772",
-                    "company_id": "5ad871fd52d78f494e56e771",
+                    "job_id": this.get('cookies').read('job_id'),
+                    "user_id": this.get('cookies').read('uid'),
                     "args": {
-                        "panel": "asdsadas"
+                        "panel": this.get('cookies').read('panel')
                     }
                 }
             };

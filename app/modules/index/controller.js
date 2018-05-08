@@ -35,7 +35,7 @@ export default Controller.extend({
                         } else {
                             alert('帐号或密码错误。');
                         }
-                        return resolve({ resule: response});
+                        return resolve({ result: response});
                     },
                     () => {return reject("Access Error");}
                 );
