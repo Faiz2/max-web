@@ -22,7 +22,6 @@ export default Component.extend({
         }
     },
     actions: {
-        // calc-max 中的开始计算按钮
         startCalcMAX() {
             let condition = {
                 "condition": {

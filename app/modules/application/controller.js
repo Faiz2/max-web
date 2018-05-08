@@ -20,7 +20,7 @@ export default Controller.extend(XmppMessageMixin, {
         } else {
             later(this, function() {
                 this.set('webImErrorMessage', message);
-                // this.transitionToRoute('/');
+                this.transitionToRoute('/');
             }, 500);
         }
     },

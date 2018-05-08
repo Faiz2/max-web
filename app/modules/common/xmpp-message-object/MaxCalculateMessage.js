@@ -1,6 +1,7 @@
 import EmberObject from '@ember/object';
 
 export default EmberObject.create({
-    isShowCalcProgress: false, //控制计算时进度条的显示
-    calcHasDone: false, //计算完成
+    isShowCalcProgress: false, // 控制计算时进度条的显示
+    calcHasDone: false, // 计算完成
+    calculateState: false, // 计算状态    
 });

@@ -3,8 +3,9 @@ import { later } from '@ember/runloop';
 import SampleObject from '../common/xmpp-message-object/SampleObjectMessage';
 import MaxCalculateObject from '../common/xmpp-message-object/MaxCalculateMessage';
 
+// TODO: 第一波结束 重构xmpp
 export default Mixin.create({
-
+    record: 0,
     callback(conteollInstance, xmppConn, services) {
         let that = this;
         xmppConn.listen({
@@ -16,9 +17,8 @@ export default Mixin.create({
                 alert("异地登入")
             },
             onTextMessage: function ( message ) {
-                window.console.info(message)
+
                 that.Msg(conteollInstance, JSON.parse(message.data), services);
-                // that.Msg(conteollInstance, "ymCalc", services);
             },
             onOnline: function () {
                 window.console.info("上线啦")
@@ -32,12 +32,18 @@ export default Mixin.create({
     },
     Msg(conteollInstance, message, services) {
 
-        // if (message.target === services.cookies.read('webim_user')) {
-        //     let call = message.call + "Msg";
-        //     this[call](conteollInstance, message, services);
+        // if (message.target === services.cookies.read('uid')) {
         // }
         let call = message.call + "Msg";
-        this[call](conteollInstance, message, services);
+        if (message.attributes.progress >= this.get('record')
+            && message.attributes.progress != 100) {
+            this[call](conteollInstance, message, services);
+            this.set('record', message.attributes.progress)
+        } else if (message.stage == 'done') {
+            this[call](conteollInstance, message, services);
+            this.set('record', 0);
+        }
+
     },
     ymCalcMsg(conteollInstance, message, services) {
         switch(message.stage) {
@@ -55,13 +61,11 @@ export default Mixin.create({
                             return {year: elt,isChecked: false}
                         });
                     SampleObject.set('years', years);
-                    SampleObject.set('isUploadRight', true); // 解析后标识
-                    SampleObject.set('progressRight', true);// 正确弹框
+                    SampleObject.set('fileParsingSuccess', true); // 解析成功 years modal
                 }, 500);
                 break;
             case 'error':
-                SampleObject.set('isUploadRight', false);
-                SampleObject.set('yearsErrorModal', true);
+                SampleObject.set('fileParsingError', true); // 解析失败 error modal
                 break;
             default:
                 window.console.info('default');
@@ -70,7 +74,7 @@ export default Mixin.create({
     panelMsg(conteollInstance, message, services) {
         switch(message.stage) {
             case 'start':
-                SampleObject.set('progressRight', false);
+                SampleObject.set('fileParsingSuccess', false);
                 later(conteollInstance, function() {
                     services.progress.setPercent(message.attributes.progress);
                 }, 500);
@@ -83,11 +87,10 @@ export default Mixin.create({
                 let panel = message.attributes.content.panel
                 later(conteollInstance, function() {
                     conteollInstance.transitionToRoute('adddata.generate-sample.sample-finish')
-                }, 1000);
+                }, 2000);
                 break;
             case 'error':
-                SampleObject.set('isUploadRight', false);
-                SampleObject.set('yearsErrorModal', true);
+                SampleObject.set('fileParsingError', true);
                 break;
             default:
                 window.console.info('default');
@@ -105,19 +108,16 @@ export default Mixin.create({
                 services.progress.setPercent(message.attributes.progress);
                 break;
             case 'done':
+                MaxCalculateObject.set('calcHasDone', true);
                 later(conteollInstance, function() {
                     services.progress.setPercent(message.attributes.progress);
                 }, 500);
-                MaxCalculateObject.set('calcHasDone', true);
                 break;
             case 'error':
-                SampleObject.set('isUploadRight', false);
-                SampleObject.set('yearsErrorModal', true);
+                MaxCalculateObject.set('calculateState', true);
                 break;
             default:
                 window.console.info('default');
         }
-
-
     }
 });

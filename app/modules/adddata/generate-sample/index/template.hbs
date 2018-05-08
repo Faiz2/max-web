@@ -26,6 +26,7 @@
     </div>
 </div>
 
+{{!-- 重新上传文件弹框 --}}
 {{#bs-modal fade=false backdropClose=false open=uploadAgain onHidden=(action (mut uploadAgain) false) as |modal|}}
     {{#modal.header}}
         <h4 class="modal-title">
@@ -43,7 +44,8 @@
     {{/modal.footer}}
 {{/bs-modal}}
 
-{{#bs-modal fade=false open=SampleObject.progressRight backdropClose=false onHidden=(action (mut SampleObject.progressRight) false) as |modal|}}
+{{!-- 选择月份弹框 --}}
+{{#bs-modal fade=false open=SampleObject.fileParsingSuccess backdropClose=false onHidden=(action (mut SampleObject.fileParsingSuccess) false) as |modal|}}
     {{#modal.header}}
         <h4 class="modal-title">
             选择月份
@@ -65,7 +67,8 @@
     {{/modal.footer}}
 {{/bs-modal}}
 
-{{#bs-modal fade=false backdropClose=false open=SampleObject.progressWrong onHidden=(action (mut SampleObject.progressWrong) false) as |modal|}}
+{{!-- 文件解析错误弹框 --}}
+{{#bs-modal fade=false backdropClose=false open=SampleObject.fileParsingError onHidden=(action (mut SampleObject.fileParsingError) false) as |modal|}}
     {{#modal.header}}
         <h4 class="modal-title">
             提示
@@ -86,6 +89,7 @@
     {{/modal.footer}}
 {{/bs-modal}}
 
+{{!-- 缺少数据弹框 --}}
 {{#bs-modal fade=false backdropClose=false open=SampleObject.cantFindMonth onHidden=(action (mut SampleObject.cantFindMonth) false) as |modal|}}
     {{#modal.header}}
         <h4 class="modal-title">

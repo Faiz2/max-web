@@ -2,6 +2,7 @@ import Controller from '@ember/controller';
 import styles from '../styles';
 
 export default Controller.extend({
+    sampleCheckError: false,
     styles,
     init() {
         this._super(...arguments);

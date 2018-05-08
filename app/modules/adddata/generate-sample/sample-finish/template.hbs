@@ -133,6 +133,7 @@
     </div>
 </div>
 
+{{!-- 重新上传文件 --}}
 {{#bs-modal fade=false backdropClose=false open=uploadAgain onHidden=(action (mut uploadAgain) false) as |modal|}}
     {{#modal.header}}
         <h4 class="modal-title">
@@ -147,5 +148,20 @@
         {{#link-to "adddata.uploadfiles"}}
             {{#bs-button}}重新上传{{/bs-button}}
         {{/link-to}}
+    {{/modal.footer}}
+{{/bs-modal}}
+
+{{!-- 查询时出现错误 --}}
+{{#bs-modal fade=false backdropClose=false open=sampleCheckError onHidden=(action (mut sampleCheckError) false) as |modal|}}
+    {{#modal.header}}
+        <h4 class="modal-title">
+            提示
+        </h4>
+    {{/modal.header}}
+    {{#modal.body}}
+        <p>出现异常!</p>
+    {{/modal.body}}
+    {{#modal.footer}}
+        {{#bs-button onClick=(action modal.close)}}关闭{{/bs-button}}
     {{/modal.footer}}
 {{/bs-modal}}
