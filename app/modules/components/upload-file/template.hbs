@@ -30,24 +30,6 @@
                     {{else}}
                         <a local-class="delete" {{action "deleteCpaFile"}}>删除文件</a>
                     {{/unless}}
-                    {{!-- {{#if queue.files.length}}
-                        {{#bs-progress as |p|}}
-                            {{p.bar value=queue.progress
-                                    minValue=0
-                                    maxValue=100
-                                    showLabel=true
-                                    roundDigits=roundDigits
-                                    type="success"
-                                    striped=true
-                                    animate=true}}
-                        {{/bs-progress}}
-                    {{else}}
-                        {{#unless filecpa }}
-                            <a>选择文件</a>
-                        {{else}}
-                            <a local-class="delete" {{action "deleteCpaFile"}}>删除文件</a>
-                        {{/unless}}
-                    {{/if}} --}}
                 {{/file-upload}}
             </div>
 

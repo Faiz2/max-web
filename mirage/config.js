@@ -3,7 +3,6 @@ import { upload } from 'ember-file-upload/mirage';
 export default function() {
     //You Code
     this.post('/upload/cpa', upload((schema, request) => {
-        debugger
         let { type, name, size, url } = request.requestBody.file;
         return {
           filename: name,
@@ -122,4 +121,150 @@ export default function() {
             status: "ok"
         }
     })
+
+    this.post('/query/sample/finish', (schema, request) => {
+        let result = {
+            result: [
+                {
+                    'date': '2018-01',
+                    'province': '北京',
+                    'market': '降压药',
+                    'product': '巴拉巴拉巴拉',
+                    'sales': '100',
+                    'units': '20'
+                },
+                {
+                    'date': '2018-02',
+                    'province': '北京',
+                    'market': '降压药',
+                    'product': '巴拉巴拉巴拉',
+                    'sales': '100',
+                    'units': '20'
+                },
+                {
+                    'date': '2018-03',
+                    'province': '北京',
+                    'market': '降压药',
+                    'product': '巴拉巴拉巴拉',
+                    'sales': '100',
+                    'units': '20'
+                },
+                {
+                    'date': '2018-04',
+                    'province': '北京',
+                    'market': '降压药',
+                    'product': '巴拉巴拉巴拉',
+                    'sales': '100',
+                    'units': '20'
+                },
+                {
+                    'date': '2018-05',
+                    'province': '北京',
+                    'market': '降压药',
+                    'product': '巴拉巴拉巴拉',
+                    'sales': '100',
+                    'units': '20'
+                },
+                {
+                    'date': '2018-06',
+                    'province': '北京',
+                    'market': '降压药',
+                    'product': '巴拉巴拉巴拉',
+                    'sales': '100',
+                    'units': '20'
+                },
+                {
+                    'date': '2018-07',
+                    'province': '北京',
+                    'market': '降压药',
+                    'product': '巴拉巴拉巴拉',
+                    'sales': '100',
+                    'units': '20'
+                },
+                {
+                    'date': '2018-08',
+                    'province': '北京',
+                    'market': '降压药',
+                    'product': '巴拉巴拉巴拉',
+                    'sales': '100',
+                    'units': '20'
+                },
+                {
+                    'date': '2018-09',
+                    'province': '北京',
+                    'market': '降压药',
+                    'product': '巴拉巴拉巴拉',
+                    'sales': '100',
+                    'units': '20'
+                },
+                {
+                    'date': '2018-10',
+                    'province': '北京',
+                    'market': '降压药',
+                    'product': '巴拉巴拉巴拉',
+                    'sales': '100',
+                    'units': '20'
+                },
+                {
+                    'date': '2018-11',
+                    'province': '北京',
+                    'market': '降压药',
+                    'product': '巴拉巴拉巴拉',
+                    'sales': '100',
+                    'units': '20'
+                },
+                {
+                    'date': '2018-12',
+                    'province': '北京',
+                    'market': '降压药',
+                    'product': '巴拉巴拉巴拉',
+                    'sales': '100',
+                    'units': '20'
+                }
+
+            ],
+            status: 'ok'
+        }
+        return result
+    });
+
+    this.post('query/history', (schema, request) => {
+        let result = {
+            result: {
+                meta: {
+                    count: 100,
+                    totalPage: 10,
+                    indexPage: 1
+                },
+                data: [
+                    {
+                        'id': 1,
+                        'type': 'dataCenter',
+                        'attributes': {
+                            'date': '2018-01',
+                            'province': '北京',
+                            'market': '降压药',
+                            'product': '巴拉巴拉巴拉',
+                            'sales': '100',
+                            'units': '20'
+                        }
+                    },
+                    {
+                        'id': 2,
+                        'type': 'dataCenter',
+                        'attributes': {
+                            'date': '2018-02',
+                            'province': '北京',
+                            'market': '降压药',
+                            'product': '巴拉巴拉巴拉',
+                            'sales': '100',
+                            'units': '20'
+                        }
+                    }
+                ]
+            },
+            status: 'ok'
+        }
+        return result;
+    });
 }

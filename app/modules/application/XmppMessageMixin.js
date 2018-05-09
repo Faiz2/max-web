@@ -11,9 +11,6 @@ export default Mixin.create({
         xmppConn.listen({
             onOpened: function ( message ) {window.console.log("连接成功")},
             onClosed: function ( message ) {
-                // later(conteollInstance, function() {
-                //     conteollInstance.transitionToRoute('/')
-                // }, 1000);
                 alert("异地登入")
             },
             onTextMessage: function ( message ) {
