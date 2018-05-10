@@ -36,3 +36,34 @@ export function _queryObject(adapter, store, modelName, query) {
         return store._push(payload);
     }, null, `DS: Extract payload of queryObject ${modelName}`)
 }
+
+export function _queryMultipleObject(adapter, store, modelName, query, recordArray) {
+    let modelClass = store.modelFor(modelName);
+
+    let promise;
+    if (adapter.queryMultipleObject.length > 3) {
+        recordArray = recordArray || store.recordArrayManager.createAdapterPopulatedRecordArray(modelName, query);
+        promise = adapter.queryMultipleObject(store, modelClass, query, recordArray);
+    } else {
+        promise = adapter.queryMultipleObject(store, modelClass, query);
+    }
+
+    let label = `DS: Handle Adapter#queryMultipleObject of ${modelClass}`;
+
+    promise = Promise.resolve(promise, label);
+    promise = _guard(promise, _bind(_objectIsAlive, store));
+
+    return promise.then(adapterPayload => {
+        let serializer = serializerForAdapter(store, adapter, modelName);
+        let payload = normalizeResponseHelper(serializer, store, modelClass, adapterPayload, null, 'queryMultipleObject');
+        let internalModels = store._push(payload);
+
+        if (recordArray) {
+          recordArray._setInternalModels(internalModels, payload);
+        } else {
+          recordArray = store.recordArrayManager.createAdapterPopulatedRecordArray(modelName, query, internalModels, payload);
+        }
+
+        return recordArray;
+    }, null, `DS: Extract payload of query ${modelName}`);
+}

@@ -229,39 +229,28 @@ export default function() {
     });
 
     this.post('query/history', (schema, request) => {
+        let ids = Array.from(new Array(10),(val,index)=>index + 1);
+        let r = ids.map((ele, index, array) => {
+            return {
+                'id': ele,
+                'type': 'dataCenter',
+                'attributes': {
+                    'date': '2018-0' + ele,
+                    'province': '北京',
+                    'market': '降压药',
+                    'product': '巴拉巴拉巴拉',
+                    'sales': '100',
+                    'units': '20'
+                }
+            }
+        });
         let result = {
             result: {
+                data: r,
                 meta: {
-                    count: 100,
-                    totalPage: 10,
-                    indexPage: 1
-                },
-                data: [
-                    {
-                        'id': 1,
-                        'type': 'dataCenter',
-                        'attributes': {
-                            'date': '2018-01',
-                            'province': '北京',
-                            'market': '降压药',
-                            'product': '巴拉巴拉巴拉',
-                            'sales': '100',
-                            'units': '20'
-                        }
-                    },
-                    {
-                        'id': 2,
-                        'type': 'dataCenter',
-                        'attributes': {
-                            'date': '2018-02',
-                            'province': '北京',
-                            'market': '降压药',
-                            'product': '巴拉巴拉巴拉',
-                            'sales': '100',
-                            'units': '20'
-                        }
-                    }
-                ]
+                    itemsCount: 200,
+                    pagesCount: 20
+                }
             },
             status: 'ok'
         }

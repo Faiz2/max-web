@@ -11,11 +11,7 @@ export default DS.RESTAdapter.extend({
         }
     },
     defaultSerializer: '-default',
-    queryObject(store, type, jsonObject) {
-        return this.ajax('query/history','POST',this.get('headOpt')(jsonObject));
-    },
-    query(store, type, jsonObject) {
+    queryMultipleObject(store, type, jsonObject) {
         return this.ajax(`${this.get('host')}query/history`,'POST',this.get('headOpt')(jsonObject));
-    }
-
+    },
 });
