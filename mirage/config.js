@@ -248,8 +248,8 @@ export default function() {
             result: {
                 data: r,
                 meta: {
-                    itemsCount: 200,
-                    pagesCount: 20
+                    itemsCount: 100,
+                    pagesCount: 10
                 }
             },
             status: 'ok'
