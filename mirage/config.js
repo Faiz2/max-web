@@ -247,7 +247,7 @@ export default function() {
         let result = {
             result: {
                 data: r,
-                meta: {
+                page: {
                     itemsCount: 100,
                     pagesCount: 10
                 }

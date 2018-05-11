@@ -56,7 +56,7 @@
             </div>
 
             <div local-class="detail-list">
-                {{#models-table
+                {{#models-table-server-paginated
                     data=model
                     columns=columns
                     filterQueryParameters=filterQueryParameters
@@ -65,30 +65,29 @@
                     showComponentFooter=false
                     showColumnsDropdown=false
                     showGlobalFilter=false
-                    showPageSize=false as |mt|
-                }}
+                    showPageSize=false as |mt|}}
 
                     {{mt.table}}
                     {{#mt.footer as |footer| }}
                       {{footer.summary local-class='footer-summary'}}
-                      {{!-- {{footer.size-select}} --}}
-                      {{footer.pagination-numeric local-class='footer-num'}}
-                      {{!-- {{#footer.pagination-numeric local-class='footer-num' as |pn|}}
+                      {{!-- {{footer.pagination-numeric local-class='footer-num'}} --}}
+                      {{#footer.pagination-numeric local-class='footer-num' as |pn|}}
                         <div role="toolbar" class="btn-toolbar pull-right">
                           <div role="group" class="btn-group">
-                              {{log pn}}
+                              {{!-- {{log pn}} --}}
                               {{#each pn.visiblePageNumbers as |page|}}
                                   {{#if page.isLink}}
-                                    <button class="{{if page.isActive 'active' ''}} btn btn-default" {{action 'test' page.label}}>{{page.label}}</button>
+                                    <button class="{{if page.isActive 'active' ''}} btn btn-default" {{action 'doQueryData' page.label pn}}>{{page.label}}</button>
                                   {{else}}
-                                    <button class="btn btn-default " disabled="disabled" {{action 'test' page.label}}>{{page.label}}</button>
+                                    <button class="btn btn-default " disabled="disabled" {{action 'doQueryData' page.label pn}}>{{page.label}}</button>
                                   {{/if}}
                               {{/each}}
                           </div>
                         </div>
-                      {{/footer.pagination-numeric}} --}}
+                      {{/footer.pagination-numeric}}
                     {{/mt.footer}}
-                {{/models-table}}
+                {{/models-table-server-paginated}}
+
             </div>
         </div>
     </div>

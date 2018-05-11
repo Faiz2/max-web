@@ -1,5 +1,5 @@
 import Controller from '@ember/controller';
-import { computed } from '@ember/object';
+// import { computed } from '@ember/object';
 import styles from './styles';
 
 export default Controller.extend({
@@ -10,12 +10,19 @@ export default Controller.extend({
     endDate: new Date(),
     outputStartData: new Date('2018-01'),
     outputEndData: new Date(),
-    filterQueryParameters: computed(function () {
-        return {
-          page: 'page',
-          pageSize: 'pageSize'
-        };
-    }),
+    // filterQueryParameters: computed(function () {
+    //     return {
+    //       page: 'page',
+    //       pageSize: 'per_page'
+    //     };
+    // }),
+    filterQueryParameters: {
+        page: 'page',
+        pageSize: 'pageSize'
+    },
+    queryData(parameters) {
+        this.set('model', this.store.queryMultipleObject('data-center', parameters))
+    },
     init() {
         this._super(...arguments);
         this.set('columns', [
@@ -23,13 +30,21 @@ export default Controller.extend({
             { propertyName: 'date','className': 'text-center', useSorting: false },
             { propertyName: 'province','className': 'text-center', useSorting: false },
             { propertyName: 'market','className': 'text-center', useSorting: false },
-            { propertyName: 'product','className': 'text-left', useSorting: false },
+            { propertyName: 'product','className': 'text-center', useSorting: false },
             { propertyName: 'sales','className': 'text-center', useSorting: false },
             { propertyName: 'units','className': 'text-center', useSorting: false }
         ]);
+        this.queryData({})
     },
 
     actions: {
+        doQueryData(currentPage, pn) {
+
+            // console.info(this.get('startDate'))
+            // console.info(this.get('endDate'))
+            pn.gotoCustomPage(currentPage)
+            this.queryData({})
+        },
         outputDate() {
             this.set('output',true)
         },

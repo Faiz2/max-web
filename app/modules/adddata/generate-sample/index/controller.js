@@ -66,7 +66,7 @@ export default Controller.extend({
                     "args": {
                         "cpa": this.get('cookies').read('cpahash'),
                         "gycx": this.get('cookies').read('gycxhash') || '',
-                        "ym":years.toString()
+                        "ym":years.toString().replace(',', '#') // TODO 改成 #分割字符串
                     }
                 }
             };
