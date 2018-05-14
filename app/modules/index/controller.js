@@ -1,6 +1,7 @@
 import Controller from '@ember/controller';
 import { inject } from '@ember/service';
 import rsvp from 'rsvp';
+import { later } from '@ember/runloop';
 
 export default Controller.extend({
     cookies: inject(),
@@ -31,7 +32,9 @@ export default Controller.extend({
                             this.get('cookies').write('uid', response.result.uid);
                             this.get('cookies').write('user_token', response.result.user_token);
                             this.get('webIm').login('testUser','testPwd');
-                            window.location = 'data-center';
+                            later(this, () => {
+                                window.location = 'data-center';
+                            }, 1000)
                         } else {
                             alert('帐号或密码错误。');
                         }

@@ -3,16 +3,16 @@
         <div local-class="result-choosebar">
             <div local-class="choosebar-content choosebar-left">
                 <span local-class="select-title">市场</span>
-                <select local-class="choose-select choose-market" name="">
-                    <option>Markone</option>
-                    <option>Marktwo</option>
-                    <option>Markthree</option>
+                <select local-class="choose-select choose-market" name="markets" {{action 'queryAll' on='change'}}>
+                    {{#each markets as |item|}}
+                        <option value={{item}}>{{item}}</option>
+                    {{/each}}
                 </select>
                 <span local-class="select-title">月份</span>
-                <select local-class="choose-select choose-month" name="">
-                    <option>04/2017</option>
-                    <option>05/2017</option>
-                    <option>06/2017</option>
+                <select local-class="choose-select choose-month" name="years" {{action 'queryAll' on='change'}}>
+                    {{#each years as |item|}}
+                        <option value={{item}}>{{item}}</option>
+                    {{/each}}
                 </select>
             </div>
             <div local-class="choosebar-content choosebar-right">
@@ -27,7 +27,7 @@
                     <div local-class="target-item">
                         <div local-class="item-current">
                             <p>市场总销售额</p>
-                            <p><span>￥670.5</span>&nbsp;&nbsp;&nbsp;<span>Mil</span></p>
+                            <p><span>￥{{marketSumSales}}</span>&nbsp;&nbsp;&nbsp;<span>Mil</span></p>
                         </div>
                         <div local-class="item-old">
                             <p>同比</p>
@@ -37,7 +37,7 @@
                     <div local-class="target-item">
                         <div local-class="item-current">
                             <p>辉瑞产品销售额</p>
-                            <p><span>￥670.5</span>&nbsp;&nbsp;&nbsp;<span>Mil</span></p>
+                            <p><span>￥{{productSumSales}}</span>&nbsp;&nbsp;&nbsp;<span>Mil</span></p>
                         </div>
                         <div local-class="item-old">
                             <p>同比</p>
@@ -47,7 +47,7 @@
                     <div local-class="target-item">
                         <div local-class="item-current">
                             <p>份额</p>
-                            <p><span>31.1%</span><span></span></p>
+                            <p><span>{{computeShare}}%</span><span></span></p>
                         </div>
                     </div>
                 </div>
@@ -55,14 +55,14 @@
             <div local-class="market-trend">
                 <p local-class="result-title">
                     <span>INF</span>市场趋势 <span local-class="trend-legend"> <span></span><span local-class="text">市场销售额</span> <span>——</span><span local-class="text">份额变化趋势</span></span></p>
-                     {{result-trend-line-and-bar eid="result-trend-line-and-bar"}}
+                     {{result-trend-line-and-bar eid="result-trend-line-and-bar" option=trendOption}}
             </div>
         </div>
         <div local-class="market-results">
             <p local-class="result-title"><span>INF</span>地区层面结果</p>
                 <div local-class="china-map-data">
                     <div local-class="china-map">
-                        {{result-map eid="result-map"}}
+                        {{result-map eid="result-map" option=regionOption}}
                     </div>
                     <div local-class="china-data">
                         <div local-class="mirror-legend">
@@ -73,12 +73,17 @@
                               {{#bg.button value=0}}省{{/bg.button}}
                               {{#bg.button value=1}}城市{{/bg.button}}
                             {{/bs-button-group}}
-                            {{!-- <p>You selected: {{selectedArea}}</p> --}}
                         </div>
                         <div local-class="text-legend">
                             <p>去年同期</p><p>本期</p>
                         </div>
-                        {{result-mirror-bar eid="result-mirror-bar"}}
+
+                        <div local-class="{{if (eq selectedArea 0) 'show' 'hide'}}" >
+                            {{result-mirror-bar eid="result-mirror-province-bar" option=mirrorProvinceOption}}
+                        </div>
+                        <div local-class="{{if (eq selectedArea 1) 'show' 'hide'}}">
+                            {{result-mirror-bar eid="result-mirror-city-bar" option=mirrorCityOption}}
+                        </div>
                     </div>
                 </div>
         </div>
@@ -114,4 +119,7 @@
     </div>
 </div>
 {{/if}}
+{{#bs-modal-simple fade=false open=error title="提示" closeTitle="确定" onHidden=(action (mut error) false)}}
+  <p>{{errorMessage}}</p>
+{{/bs-modal-simple}}
 {{yield}}

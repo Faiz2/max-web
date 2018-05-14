@@ -26,10 +26,11 @@
             <div local-class="detail-choosebar">
                 <div local-class="choosebar-content choosebar-left">
                     <span local-class="select-title">市场</span>
-                    <select local-class="choose-market" name="">
-                        <option value="all">全部</option>
-                        <option value="a">a market</option>
-                        <option value="b">b market</option>
+                    <select local-class="choose-market" name="markets">
+                        <option value="All">全部</option>
+                        {{#each markets as |item|}}
+                            <option value={{item}}>{{item}}</option>
+                        {{/each}}
                     </select>
                     <span local-class="select-title">时间选择</span>
                     <div local-class="time-selects" class="input-group input-daterange">
@@ -42,7 +43,7 @@
                     </span>
                 </div>
                 <div local-class="choosebar-content choosebar-right">
-                    {{#link-to "adddata.uploadfiles"}}
+                    <a href="adddata/uploadfiles" {{action 'addData' preventDefault=false }}>
                         <div local-class="btn-add-data">
                             <div local-class="add-data-content left-section">
                                 +
@@ -51,7 +52,17 @@
                                 添加数据
                             </div>
                         </div>
-                    {{/link-to}}
+                    </a>
+                    {{!-- {{#link-to "adddata.uploadfiles" }}
+                        <div local-class="btn-add-data">
+                            <div local-class="add-data-content left-section">
+                                +
+                            </div>
+                            <div local-class="add-data-content right-section">
+                                添加数据
+                            </div>
+                        </div>
+                    {{/link-to}} --}}
                 </div>
             </div>
 
@@ -138,4 +149,8 @@
         {{#bs-button }}导出{{/bs-button}}
     {{/modal.footer}}
 {{/bs-modal}}
+{{#bs-modal-simple fade=false open=error title="提示" closeTitle="确定" onHidden=(action (mut error) false)}}
+  <p>{{errorMessage}}</p>
+{{/bs-modal-simple}}
+
 {{outlet}}

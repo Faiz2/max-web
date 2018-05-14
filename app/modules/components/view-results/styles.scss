@@ -274,3 +274,12 @@
 
     }
 }
+
+.show {
+    height: 600px;
+    overflow: auto;
+}
+.hide {
+    height: 0;
+    overflow: hidden;
+}

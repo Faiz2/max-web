@@ -121,7 +121,7 @@ export default Component.extend({
                             },
 
                         },
-                        data: ["北京","上海","深圳","广州","南京","湖南", "河北", "白城", "泰州", "武汉"],//areaData,
+                        data: [],//areaData,
                     },
                     {
                         gridIndex: 1,
@@ -143,7 +143,7 @@ export default Component.extend({
                             },
 
                         },
-                        data: ["北京","上海","深圳","广州","南京","湖南", "河北", "白城", "泰州", "武汉"],//areaData//
+                        data: [],//areaData//
                     },
                     {
                         gridIndex: 2,
@@ -164,7 +164,7 @@ export default Component.extend({
                             },
 
                         },
-                        data: ["北京","上海","深圳","广州","南京","湖南", "河北", "白城", "泰州", "武汉"]//areaData,
+                        data: []//areaData,
                     }
                 ]
             },
@@ -198,7 +198,7 @@ export default Component.extend({
                                     color: '#08C7AE',
                                 },
                             },
-                            data: [102, 201, 301, 40, 502, 153, 70, 85, 90, 100]//lastData,
+                            data: []//lastData,
                         },
                         {
                             name: '本期',
@@ -229,7 +229,7 @@ export default Component.extend({
                                     color: '#08C7AE',
                                 },
                             },
-                            data: [320, 50, 32, 402, 506, 321, 750, 80, 625, 103]//curData,
+                            data: []//curData,
                         }
                     ]
                 }

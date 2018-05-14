@@ -1,8 +1,12 @@
 import Controller from '@ember/controller';
 // import { computed } from '@ember/object';
 import styles from './styles';
+import { inject } from '@ember/service';
+
 
 export default Controller.extend({
+    ajax: inject(),
+    cookies: inject(),
     styles,
     title: 'Pharbers 数据平台',
     output: false,
@@ -10,18 +14,38 @@ export default Controller.extend({
     endDate: new Date(),
     outputStartData: new Date('2018-01'),
     outputEndData: new Date(),
-    // filterQueryParameters: computed(function () {
-    //     return {
-    //       page: 'page',
-    //       pageSize: 'per_page'
-    //     };
-    // }),
     filterQueryParameters: {
         page: 'page',
         pageSize: 'pageSize'
     },
+    getAjaxOpt(data) {
+        return {
+            method: 'POST',
+            dataType: "json",
+            cache: false,
+            data: JSON.stringify(data),
+            contentType: "application/json,charset=utf-8",
+            Accpt: "application/json,charset=utf-8",
+        }
+    },
     queryData(parameters) {
         this.set('model', this.store.queryMultipleObject('data-center', parameters))
+    },
+    queryMarkets() {
+        let condition = {
+            condition: {
+                user_id: this.get('cookies').read('uid')
+            }
+        }
+        this.get('ajax').request('/api/search/market/all', this.getAjaxOpt(condition)).then(({result, error, status}, reject) => {
+            if (status === 'ok') {
+                this.set('markets', result.markets)
+            } else {
+                this.set('error', true);
+                this.set('errorMessage', error.message);
+            }
+        })
+
     },
     init() {
         this._super(...arguments);
@@ -34,16 +58,33 @@ export default Controller.extend({
             { propertyName: 'sales','className': 'text-center', useSorting: false },
             { propertyName: 'units','className': 'text-center', useSorting: false }
         ]);
-        this.queryData({})
+        this.queryMarkets()
+        // this.queryData({})
     },
 
     actions: {
         doQueryData(currentPage, pn) {
-
             // console.info(this.get('startDate'))
             // console.info(this.get('endDate'))
             pn.gotoCustomPage(currentPage)
+            let market = $('select[name="markets"] :selected').val() || "All"
             this.queryData({})
+        },
+        addData() {
+            let pushJobIdCondition = {
+                condition: {
+                    user_id: this.get('cookies').read('uid')
+                }
+            }
+            this.get('ajax').request('/api/job/push', this.getAjaxOpt(pushJobIdCondition))
+                .then(({result, error, status}, reject) => {
+                    if (status === 'error') {
+                        this.set('error', true);
+                        this.set('errorMessage', error.message);
+                    } else {
+                        this.get('cookies').write('job_id', result.job.job_id);
+                    }
+                })
         },
         outputDate() {
             this.set('output',true)

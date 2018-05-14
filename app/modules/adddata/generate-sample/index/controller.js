@@ -34,7 +34,6 @@ export default Controller.extend({
             let condition = {
                 "condition": {
                     "job_id": this.get('cookies').read('job_id'),
-                    "user_id": this.get('cookies').read('uid'),
                     "args": {
                         "cpa": this.get('cookies').read('cpahash'),
                         "gycx": this.get('cookies').read('gycxhash') || ''
@@ -62,7 +61,6 @@ export default Controller.extend({
             let condition = {
                 "condition": {
                     "job_id": this.get('cookies').read('job_id'),
-                    "user_id": this.get('cookies').read('uid'),
                     "args": {
                         "cpa": this.get('cookies').read('cpahash'),
                         "gycx": this.get('cookies').read('gycxhash') || '',
