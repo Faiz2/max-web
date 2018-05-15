@@ -13,6 +13,16 @@ export default Component.extend({
     errorMessage: '',
     filecpa: "",
     filegycx: "",
+    getAjaxOpt(data) {
+        return {
+            method: 'POST',
+            dataType: "json",
+            cache: false,
+            data: JSON.stringify(data),
+            contentType: "application/json,charset=utf-8",
+            Accpt: "application/json,charset=utf-8",
+        }
+    },
     actions: {
         // 提示用户上传文件的弹窗
         pleaseUploadFile() {
@@ -72,6 +82,23 @@ export default Component.extend({
             } else {
                 this.set('isDisabled', true)
             }
+        },
+        next() {
+            let pushJobIdCondition = {
+                condition: {
+                    user_id: this.get('cookies').read('uid')
+                }
+            }
+            this.get('ajax').request('api/job/push', this.getAjaxOpt(pushJobIdCondition))
+                .then(({result, error, status}, reject) => {
+                    if (status === 'error') {
+                        this.set('uploadError', true);
+                        this.set('errorMessage', error.message);
+                    } else {
+                        this.get('cookies').write('job_id', result.job.job_id);
+                        this.attrs.nextAction()
+                    }
+                })
         }
     }
 });

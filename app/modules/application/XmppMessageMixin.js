@@ -29,23 +29,22 @@ export default Mixin.create({
     },
     Msg(conteollInstance, message, services) {
 
-        // if (message.target === services.cookies.read('uid')) {
-        // }
-        let call = message.call + "Msg";
-        if (message.attributes.progress >= this.get('record')
-            && message.attributes.progress != 100) {
-            this[call](conteollInstance, message, services);
-            this.set('record', message.attributes.progress)
-        } else if (message.stage == 'done') {
-            this[call](conteollInstance, message, services);
-            this.set('record', 0);
+        if (message.target === services.cookies.read('uid')) {
+            let call = message.call + "Msg";
+            if (message.attributes.progress >= this.get('record')
+                && message.attributes.progress != 100) {
+                this[call](conteollInstance, message, services);
+                this.set('record', message.attributes.progress)
+            } else if (message.stage == 'done') {
+                this[call](conteollInstance, message, services);
+                this.set('record', 0);
+            }
         }
-
     },
     ymCalcMsg(conteollInstance, message, services) {
         switch(message.stage) {
             case 'start':
-                SampleObject.set('isShowProgress', true); // 开启进度条
+                // SampleObject.set('isShowProgress', true); // 开启进度条
                 break;
             case 'ing':
                 services.progress.setPercent(message.attributes.progress);
@@ -53,7 +52,7 @@ export default Mixin.create({
             case 'done':
                 later(conteollInstance, function() {
                     services.progress.setPercent(message.attributes.progress);
-                    let years = message.attributes.content.ymList.split(",")
+                    let years = message.attributes.content.ymList.split("#")
                         .map((elt, i, array) => {
                             return {year: elt,isChecked: false}
                         });
@@ -71,13 +70,12 @@ export default Mixin.create({
     panelMsg(conteollInstance, message, services) {
         switch(message.stage) {
             case 'start':
-                SampleObject.set('fileParsingSuccess', false);
-                later(conteollInstance, function() {
-                    services.progress.setPercent(message.attributes.progress);
-                }, 500);
+                // SampleObject.set('fileParsingSuccess', false);
+                // later(conteollInstance, function() {
+                //     services.progress.setPercent(message.attributes.progress);
+                // }, 500);
                 break;
             case 'ing':
-                SampleObject.set('fileParsingSuccess', false);
                 services.progress.setPercent(message.attributes.progress);
                 break;
             case 'done':
@@ -98,10 +96,11 @@ export default Mixin.create({
     calcMsg(conteollInstance, message, services) {
         switch(message.stage) {
             case 'start':
-                MaxCalculateObject.set('isShowCalcProgress', true);
-                services.progress.setPercent(message.attributes.progress);
+                // MaxCalculateObject.set('isShowCalcProgress', true);
+                // services.progress.setPercent(message.attributes.progress);
                 break;
             case 'ing':
+                MaxCalculateObject.set('isShowCalcProgress', true);
                 services.progress.setPercent(message.attributes.progress);
                 break;
             case 'done':

@@ -43,7 +43,7 @@
                     </span>
                 </div>
                 <div local-class="choosebar-content choosebar-right">
-                    <a href="adddata/uploadfiles" {{action 'addData' preventDefault=false }}>
+                    {{#link-to "adddata.uploadfiles" }}
                         <div local-class="btn-add-data">
                             <div local-class="add-data-content left-section">
                                 +
@@ -52,17 +52,7 @@
                                 添加数据
                             </div>
                         </div>
-                    </a>
-                    {{!-- {{#link-to "adddata.uploadfiles" }}
-                        <div local-class="btn-add-data">
-                            <div local-class="add-data-content left-section">
-                                +
-                            </div>
-                            <div local-class="add-data-content right-section">
-                                添加数据
-                            </div>
-                        </div>
-                    {{/link-to}} --}}
+                    {{/link-to}}
                 </div>
             </div>
 

@@ -41,9 +41,10 @@ export default Controller.extend({
                 }
             };
             new rsvp.Promise((resolve, reject) => {
-                return this.get('ajax').request('api/job/ymCalc',
+                return this.get('ajax').request('api/max/ymCalc',
                     this.getAjaxOpt(condition)).then((response) => {
                         window.console.info(response);
+                        SampleObject.set('isShowProgress', true);
                         return resolve({ resule: response });
                     },
                         () => {
@@ -64,15 +65,16 @@ export default Controller.extend({
                     "args": {
                         "cpa": this.get('cookies').read('cpahash'),
                         "gycx": this.get('cookies').read('gycxhash') || '',
-                        "ym":years.toString().replace(',', '#') // TODO 改成 #分割字符串
+                        "yms":years.toString().replace(',', '#') // TODO 改成 #分割字符串
                     }
                 }
             };
 
             new rsvp.Promise((resolve, reject) => {
-                return this.get('ajax').request('api/job/panel',
+                return this.get('ajax').request('api/max/panel',
                     this.getAjaxOpt(condition)).then((response) => {
                         window.console.info(response);
+                        SampleObject.set('fileParsingSuccess', false);
                         return resolve({ resule: response });
                     },
                         () => {

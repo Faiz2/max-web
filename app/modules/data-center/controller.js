@@ -70,22 +70,6 @@ export default Controller.extend({
             let market = $('select[name="markets"] :selected').val() || "All"
             this.queryData({})
         },
-        addData() {
-            let pushJobIdCondition = {
-                condition: {
-                    user_id: this.get('cookies').read('uid')
-                }
-            }
-            this.get('ajax').request('/api/job/push', this.getAjaxOpt(pushJobIdCondition))
-                .then(({result, error, status}, reject) => {
-                    if (status === 'error') {
-                        this.set('error', true);
-                        this.set('errorMessage', error.message);
-                    } else {
-                        this.get('cookies').write('job_id', result.job.job_id);
-                    }
-                })
-        },
         outputDate() {
             this.set('output',true)
         },

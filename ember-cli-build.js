@@ -8,6 +8,12 @@ module.exports = function(defaults) {
     console.info(sourceMap);
     let app = new EmberApp(defaults, {
         // Add options here
+        // minifyCSS: {
+        //   enabled: false
+        // },
+        // minifyJS: {
+        //   enabled: false
+        // },
         cssModules: {
             plugins: [
                 require('postcss-import'),

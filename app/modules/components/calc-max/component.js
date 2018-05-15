@@ -34,9 +34,10 @@ export default Component.extend({
                 }
             };
             new rsvp.Promise((resolve, reject) => {
-                return this.get('ajax').request('api/job/calc',
+                return this.get('ajax').request('api/max/calc',
                     this.getAjaxOpt(condition)).then((response) => {
                         window.console.info(response);
+                        MaxCalculateObject.set('isShowCalcProgress', true);
                         return resolve({ resule: response });
                     },
                         () => {

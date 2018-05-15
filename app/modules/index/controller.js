@@ -31,7 +31,7 @@ export default Controller.extend({
                         if (response.status === "ok") {
                             this.get('cookies').write('uid', response.result.uid);
                             this.get('cookies').write('user_token', response.result.user_token);
-                            this.get('webIm').login('testUser','testPwd');
+                            this.get('webIm').login(response.result.uid,'nhwa');
                             later(this, () => {
                                 window.location = 'data-center';
                             }, 1000)
