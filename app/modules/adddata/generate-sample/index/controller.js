@@ -9,9 +9,9 @@ export default Controller.extend({
     ajax: inject(),
     cookies: inject(),
     progress: inject('circle-progress-serivce'),
-    circleProgressOption: computed('progress.option', function() {
-        return this.get('progress').getOption();
-    }),
+    // circleProgressOption: computed('progress.option', function() {
+    //     return this.get('progress').getOption();
+    // }),
     styles,
     SampleObject,
     init() {
@@ -45,6 +45,7 @@ export default Controller.extend({
                     this.getAjaxOpt(condition)).then((response) => {
                         window.console.info(response);
                         SampleObject.set('isShowProgress', true);
+                        SampleObject.set('calcYearsProgress', true);
                         return resolve({ resule: response });
                     },
                         () => {
@@ -75,6 +76,8 @@ export default Controller.extend({
                     this.getAjaxOpt(condition)).then((response) => {
                         window.console.info(response);
                         SampleObject.set('fileParsingSuccess', false);
+                        SampleObject.set('calcYearsProgress', false);
+                        SampleObject.set('calcPanelProgress', true);
                         return resolve({ resule: response });
                     },
                         () => {

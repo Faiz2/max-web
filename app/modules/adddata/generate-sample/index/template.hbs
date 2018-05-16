@@ -14,7 +14,13 @@
                 </div>
             </div>
         {{else }}
-            {{circle-progress option=circleProgressOption eid="circle-progress"}}
+            {{#if SampleObject.calcYearsProgress}}
+              {{circle-progress option=SampleObject.calcYearsProgressOption eid="circle-years-progress"}}
+            {{/if}}
+            {{#if SampleObject.calcPanelProgress}}
+                {{circle-progress option=SampleObject.calcPanelProgressOption eid="circle-panel-progress"}}
+            {{/if}}
+            {{!-- {{circle-progress option=circleProgressOption eid="circle-progress"}} --}}
         {{/unless}}
         {{#unless SampleObject.isShowProgress}}
             <p local-class="reupload">

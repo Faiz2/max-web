@@ -44,10 +44,11 @@ export default Mixin.create({
     ymCalcMsg(conteollInstance, message, services) {
         switch(message.stage) {
             case 'start':
-                // SampleObject.set('isShowProgress', true); // 开启进度条
+                SampleObject.set('isShowProgress', true); // 开启进度条
                 break;
             case 'ing':
                 services.progress.setPercent(message.attributes.progress);
+                SampleObject.set('calcYearsProgressOption', services.progress.getOption())
                 break;
             case 'done':
                 later(conteollInstance, function() {
@@ -56,6 +57,7 @@ export default Mixin.create({
                         .map((elt, i, array) => {
                             return {year: elt,isChecked: false}
                         });
+                    SampleObject.set('calcYearsProgressOption', services.progress.getOption())
                     SampleObject.set('years', years);
                     SampleObject.set('fileParsingSuccess', true); // 解析成功 years modal
                 }, 500);
@@ -70,16 +72,22 @@ export default Mixin.create({
     panelMsg(conteollInstance, message, services) {
         switch(message.stage) {
             case 'start':
-                // SampleObject.set('fileParsingSuccess', false);
+                SampleObject.set('fileParsingSuccess', false);
                 // later(conteollInstance, function() {
                 //     services.progress.setPercent(message.attributes.progress);
                 // }, 500);
                 break;
             case 'ing':
+                SampleObject.set('fileParsingSuccess', false);
+                SampleObject.set('calcYearsProgress', false);
+
                 services.progress.setPercent(message.attributes.progress);
+                SampleObject.set('calcPanelProgressOption', services.progress.getOption())
                 break;
             case 'done':
                 services.progress.setPercent(message.attributes.progress);
+                SampleObject.set('calcPanelProgressOption', services.progress.getOption())
+
                 let panel = message.attributes.content.panel
                 services.cookies.write('panel', panel);
                 later(conteollInstance, function() {
