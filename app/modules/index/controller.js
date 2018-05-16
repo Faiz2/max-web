@@ -29,8 +29,8 @@ export default Controller.extend({
                 return this.get('ajax').request('api/user/login',
                     this.getAjaxOpt(condition)).then((response) => {
                         if (response.status === "ok") {
-                            this.get('cookies').write('uid', response.result.uid);
-                            this.get('cookies').write('user_token', response.result.user_token);
+                            this.get('cookies').write('uid', response.result.uid, {path:'/'});
+                            this.get('cookies').write('user_token', response.result.user_token, {path:'/'});
                             this.get('webIm').login(response.result.uid,'nhwa');
                             later(this, () => {
                                 window.location = 'data-center';

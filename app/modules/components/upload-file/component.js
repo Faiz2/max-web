@@ -38,8 +38,8 @@ export default Component.extend({
                         cpa: result,
                         status
                     }
-                    this.get('cookies').write('cpahash', success.cpa);
-                    this.get('cookies').write('filecpa', this.get('filecpa'));
+                    this.get('cookies').write('cpahash', success.cpa, {path:'/'});
+                    this.get('cookies').write('filecpa', this.get('filecpa'), {path:'/'});
                 } else {
                     this.set('uploadError', true);
                     this.set('errorMessage', error.message);
@@ -66,8 +66,8 @@ export default Component.extend({
                         gycx: result,
                         status
                     }
-                    this.get('cookies').write('gycxhash', success.gycx);
-                    this.get('cookies').write('filegycx', this.get('filegycx'));
+                    this.get('cookies').write('gycxhash', success.gycx, {path:'/'});
+                    this.get('cookies').write('filegycx', this.get('filegycx'), {path:'/'});
                 } else {
                     this.set('uploadError', true);
                     this.set('errorMessage', error.message);
@@ -95,7 +95,7 @@ export default Component.extend({
                         this.set('uploadError', true);
                         this.set('errorMessage', error.message);
                     } else {
-                        this.get('cookies').write('job_id', result.job.job_id);
+                        this.get('cookies').write('job_id', result.job.job_id, {path:'/'});
                         this.attrs.nextAction()
                     }
                 })

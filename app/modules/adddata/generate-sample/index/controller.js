@@ -9,15 +9,19 @@ export default Controller.extend({
     ajax: inject(),
     cookies: inject(),
     progress: inject('circle-progress-serivce'),
-    // circleProgressOption: computed('progress.option', function() {
-    //     return this.get('progress').getOption();
-    // }),
     styles,
+    // isShowProgress: false, // 是否显示进度条
+    // calcYearsProgress: false, // 计算年月的进度条
+    // calcPanelProgress: false, // 计算Panel文件的进度条
+    // cantFindMonth: false, // 未找到月份提示
+    cpafilename: computed( function() {
+        return this.get('cookies').read('filecpa')
+    }),
     SampleObject,
     init() {
         this._super(...arguments);
-        this.set('cpafilename', this.get('cookies').read('filecpa'))
-        this.set('gycxfilename', this.get('cookies').read('filegycx'))
+        // this.set('cpafilename', this.get('cookies').read('filecpa'))
+        // this.set('gycxfilename', this.get('cookies').read('filegycx'))
     },
     getAjaxOpt(data) {
         return {
@@ -56,7 +60,7 @@ export default Controller.extend({
         },
         startGenerateSample: function() {
             // TODO : 未添加异常处理
-            let years = this.get('SampleObject').years.filterBy('isChecked')
+            let years = this.get('SampleObject').yearsArrayData.filterBy('isChecked')
                 .map((elt, i, array) => {
                     return elt.year
                 });
@@ -66,7 +70,7 @@ export default Controller.extend({
                     "args": {
                         "cpa": this.get('cookies').read('cpahash'),
                         "gycx": this.get('cookies').read('gycxhash') || '',
-                        "yms":years.toString().replace(',', '#') // TODO 改成 #分割字符串
+                        "yms":years.toString().replace(',', '#')
                     }
                 }
             };
@@ -88,7 +92,16 @@ export default Controller.extend({
         },
         // 未显示要计算的月份
         cantFindMonth: function() {
-            this.set('SampleObject.cantFindMonth', true);
+            SampleObject.set('cantFindMonth', true);
+        },
+        uploadFileAgain(modal) {
+            modal.close()
+            SampleObject.set('isShowProgress', false);
+            SampleObject.set('fileParsingSuccess', false);
+            SampleObject.set('calcYearsProgress', false);
+            SampleObject.set('calcPanelProgress', false);
+            this.transitionToRoute('adddata.uploadfiles')
+            // window.location = 'uploadfiles'
         }
     }
 });

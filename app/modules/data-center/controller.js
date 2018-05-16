@@ -14,10 +14,11 @@ export default Controller.extend({
     endDate: new Date(),
     outputStartData: new Date('2018-01'),
     outputEndData: new Date(),
-    filterQueryParameters: {
-        page: 'page',
-        pageSize: 'pageSize'
-    },
+    currentPage: 1,
+    // filterQueryParameters: {
+    //     page: 'page',
+    //     pageSize: 'pageSize'
+    // },
     getAjaxOpt(data) {
         return {
             method: 'POST',
@@ -37,9 +38,23 @@ export default Controller.extend({
                 user_id: this.get('cookies').read('uid')
             }
         }
+
         this.get('ajax').request('/api/search/market/all', this.getAjaxOpt(condition)).then(({result, error, status}, reject) => {
             if (status === 'ok') {
                 this.set('markets', result.markets)
+                let startTime = this.get('startDate').getFullYear()+""+this.get('startDate').getMonth()
+                let endTime = this.get('endDate').getFullYear()+""+this.get('endDate').getMonth()
+                this.queryData({
+                    condition: {
+                        user_id: this.get('cookies').read('uid'),
+                        market: 'All',
+        				startTime: '201705',
+        				endTime: '201712',
+        				currentPage: 1,
+        				pageSize: 10
+                    }
+                })
+
             } else {
                 this.set('error', true);
                 this.set('errorMessage', error.message);
@@ -59,16 +74,24 @@ export default Controller.extend({
             { propertyName: 'units','className': 'text-center', useSorting: false }
         ]);
         this.queryMarkets()
-        // this.queryData({})
+
     },
 
     actions: {
         doQueryData(currentPage, pn) {
-            // console.info(this.get('startDate'))
-            // console.info(this.get('endDate'))
             pn.gotoCustomPage(currentPage)
+            this.set('currentPage', currentPage)
             let market = $('select[name="markets"] :selected').val() || "All"
-            this.queryData({})
+            this.queryData({
+                condition: {
+                    user_id: this.get('cookies').read('uid'),
+                    market: 'All',
+                    startTime: '201705',
+                    endTiem: '201712',
+                    currentPage: currentPage,
+                    pageSize: 10
+                }
+            })
         },
         outputDate() {
             this.set('output',true)

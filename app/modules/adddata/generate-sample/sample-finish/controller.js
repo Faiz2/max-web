@@ -4,6 +4,7 @@ import styles from '../styles';
 import { inject } from '@ember/service';
 import { later } from '@ember/runloop';
 
+import SampleObject from '../../../common/xmpp-message-object/SampleObjectMessage'
 import SampleEchartsOption from '../../../components/sample-line-and-bar/getOption';
 
 export default Controller.extend({
@@ -50,6 +51,9 @@ export default Controller.extend({
             if (status === 'ok') {
                 this.set('markets', result.markets);
                 this.set('years', result.years);
+                later(this, () => {
+                    this.queryContentData();
+                }, 1000)
             } else {
                 this.set('sampleCheckError', true);
                 this.set('errorMessage', error.message);
@@ -58,6 +62,7 @@ export default Controller.extend({
     },
     queryContentData() {
         let market = $('select[name="markets"] :selected').val() || '';
+        this.set('selectedMarket', market)
         let years = $('select[name="years"] :selected').val() || '';
         let condition = {
             condition: {
@@ -101,14 +106,20 @@ export default Controller.extend({
             { propertyName: 'cityLevel', 'className': 'text-center', useSorting: false }
         ]);
         this.querySelectArg();
-        later(this, () => {
-            this.queryContentData();
-        }, 1000);
 
     },
     actions: {
         queryAll() {
             this.queryContentData()
+        },
+        uploadFileAgain(modal) {
+            modal.close()
+            SampleObject.set('isShowProgress', false);
+            SampleObject.set('fileParsingSuccess', false);
+            SampleObject.set('calcYearsProgress', false);
+            SampleObject.set('calcPanelProgress', false);
+            this.transitionToRoute('adddata.uploadfiles')
+            // window.location = 'uploadfiles'
         }
     }
 });
