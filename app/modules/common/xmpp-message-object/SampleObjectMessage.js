@@ -78,7 +78,7 @@ export default EmberObject.create({
                 this.set('panelProgressData', services.progress.getOption())
 
                 let panel = message.attributes.content.panel
-                services.cookies.write('panel', panel);
+                services.cookies.write('panel', panel, {path: '/'});
                 later(controllInstance, function() {
                     window.location = 'generate-sample/sample-finish'
                     // controllInstance.transitionToRoute('adddata.generate-sample.sample-finish')

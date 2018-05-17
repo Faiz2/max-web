@@ -89,7 +89,7 @@ export default Component.extend({
                     user_id: this.get('cookies').read('uid')
                 }
             }
-            this.get('ajax').request('api/job/push', this.getAjaxOpt(pushJobIdCondition))
+            this.get('ajax').request('/api/job/push', this.getAjaxOpt(pushJobIdCondition))
                 .then(({result, error, status}, reject) => {
                     if (status === 'error') {
                         this.set('uploadError', true);

@@ -28,39 +28,19 @@ export default Mixin.create({
                 && message.attributes.progress != 100) {
                 this[call](controllInstance, message, services);
                 this.set('record', message.attributes.progress)
-            } else if (message.stage == 'done') {
+            } else if (message.stage == 'done' || message.stage == 'error') {
                 this[call](controllInstance, message, services);
                 this.set('record', 0);
             }
         }
     },
     ymCalcMsg(controllInstance, message, services) {
-         SampleObject._ymCalcMsg(message, services);
+        SampleObject._ymCalcMsg(message, services);
     },
     panelMsg(controllInstance, message, services) {
-        SampleObject._panelMsg(controllInstance, message, services)
+        SampleObject._panelMsg(controllInstance, message, services);
     },
     calcMsg(controllInstance, message, services) {
-        switch(message.stage) {
-            case 'start':
-                // MaxCalculateObject.set('isShowCalcProgress', true);
-                // services.progress.setPercent(message.attributes.progress);
-                break;
-            case 'ing':
-                MaxCalculateObject.set('isShowCalcProgress', true);
-                services.progress.setPercent(message.attributes.progress);
-                break;
-            case 'done':
-                MaxCalculateObject.set('calcHasDone', true);
-                later(controllInstance, function() {
-                    services.progress.setPercent(message.attributes.progress);
-                }, 500);
-                break;
-            case 'error':
-                MaxCalculateObject.set('calculateState', true);
-                break;
-            default:
-                window.console.info('default');
-        }
+        MaxCalculateObject._calcMsg(controllInstance, message, services);
     }
 });

@@ -2,7 +2,23 @@ import EmberObject from '@ember/object';
 
 export default EmberObject.extend({
     getOption(data) {
+        let sortArray = data.map((ele, index, array) => parseFloat(ele.value))
+            .toArray()
+            .sort((p, n) => p - n)
+
+        console.info(sortArray)
         return {
+            visualMap: {
+                min: sortArray.get('firstObject'),
+                max: sortArray.get('lastObject') + 100,
+                left: 'left',
+                top: 'bottom',
+                text: ['高','低'],
+                inRange: {
+                    color: ['#EBF0EF', '#37D1C1']
+                },
+                calculable : true
+            },
             series: [{
                 name: '中国',
                 type: 'map',

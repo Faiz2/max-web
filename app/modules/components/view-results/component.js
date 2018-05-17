@@ -26,7 +26,7 @@ export default Component.extend({
     productSumSales: 0,
     productSumSalesPercentage: 0,
     computeShare: computed('marketSumSales', 'productSumSales', function() {
-        return 0;
+        return (this.get('productSumSales') / this.get('marketSumSales')).toFixed(4) * 100;
     }),
     init() {
         this._super(...arguments);
@@ -65,6 +65,7 @@ export default Component.extend({
     },
     queryContentData() {
         let market = $('select[name="markets"] :selected').val() || '';
+        this.set('selectedMarket', market)
         let year = $('select[name="years"] :selected').val() || '';
         let condition = {
             condition: {

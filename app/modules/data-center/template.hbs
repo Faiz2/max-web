@@ -36,8 +36,11 @@
                     <div local-class="time-selects" class="input-group input-daterange">
                         {{bootstrap-datepicker  changeMonth="changeStartMonth" value=startDate autoclose=true minViewMode=1 format="mm/yyyy" keyboardNavigation=true language="zh-CN"}}
                         <span local-class="middle-text">to</span>
-                        {{bootstrap-datepicker changeMonth="changeEndMonth" value=endDate autoclose=true minViewMode=1 format="mm/yyyy" language="zh-CN"}}
+                        {{bootstrap-datepicker name='endDate' changeMonth="changeEndMonth" value=endDate autoclose=true minViewMode=1 format="mm/yyyy" language="zh-CN"}}
                     </div>
+                    <span>
+                        <button {{action 'search'}} local-class="btn-output" class="btn" type="button" name="btn-output">查询</button>
+                    </span>
                     <span>
                         <button {{action 'outputDate'}} local-class="btn-output" class="btn" type="button" name="btn-output">导出</button>
                     </span>
@@ -78,9 +81,9 @@
                               {{!-- {{log pn}} --}}
                               {{#each pn.visiblePageNumbers as |page|}}
                                   {{#if page.isLink}}
-                                    <button class="{{if page.isActive 'active' ''}} btn btn-default" {{action 'doQueryData' page.label pn}}>{{page.label}}</button>
+                                    <button class="{{if page.isActive 'active' ''}} btn btn-default" {{action 'doPageSearch' page.label pn}}>{{page.label}}</button>
                                   {{else}}
-                                    <button class="btn btn-default " disabled="disabled" {{action 'doQueryData' page.label pn}}>{{page.label}}</button>
+                                    <button class="btn btn-default " disabled="disabled" {{action 'doPageSearch' page.label pn}}>{{page.label}}</button>
                                   {{/if}}
                               {{/each}}
                           </div>
@@ -101,7 +104,7 @@
         </h4>
     {{/modal.header}}
     {{#modal.body}}
-        <p local-class="modal-content-line">
+        {{!-- <p local-class="modal-content-line">
             <span>市场</span>
             <select local-class="choose-market" name="">
                 <option value="all">全部</option>
@@ -123,15 +126,15 @@
                 <option value="all">全部</option>
                 <option value="a">a market</option>
                 <option value="b">b market</option>
-            </select> </p>
+            </select> </p> --}}
         <p local-class="modal-content-line">
             <span>文件格式</span>
                 {{input type="radio" id="filecsv" name="fileformat" }}
                 <label for="filecsv"> <span></span> CSV</label>
-                {{input type="radio" id="fileexcel" name="fileformat" }}
+                {{!-- {{input type="radio" id="fileexcel" name="fileformat" }}
                 <label for="fileexcel"><span></span>Excel</label>
                 {{input type="radio" id="filetxt" name="fileformat" }}
-                <label for="filetxt"><span></span>txt</label>
+                <label for="filetxt"><span></span>txt</label> --}}
         </p>
     {{/modal.body}}
     {{#modal.footer}}

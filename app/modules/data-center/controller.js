@@ -19,6 +19,9 @@ export default Controller.extend({
     //     page: 'page',
     //     pageSize: 'pageSize'
     // },
+    formatDateyyyymm(date) {
+        return date.getFullYear() + "" + (date.getMonth() + 1 < 10 ? '0' + (date.getMonth() + 1) : date.getMonth() + 1)
+    },
     getAjaxOpt(data) {
         return {
             method: 'POST',
@@ -42,16 +45,19 @@ export default Controller.extend({
         this.get('ajax').request('/api/search/market/all', this.getAjaxOpt(condition)).then(({result, error, status}, reject) => {
             if (status === 'ok') {
                 this.set('markets', result.markets)
-                let startTime = this.get('startDate').getFullYear()+""+this.get('startDate').getMonth()
-                let endTime = this.get('endDate').getFullYear()+""+this.get('endDate').getMonth()
+                this.set('currentPage', 1)
+                let startTime = this.formatDateyyyymm(this.get('startDate'))
+                let endTime = this.formatDateyyyymm(this.get('endDate'))
+
                 this.queryData({
                     condition: {
                         user_id: this.get('cookies').read('uid'),
                         market: 'All',
-        				startTime: '201705',
-        				endTime: '201712',
+        				startTime: startTime,
+        				endTime: endTime,
         				currentPage: 1,
-        				pageSize: 10
+        				pageSize: 10,
+                        mode: 'search'
                     }
                 })
 
@@ -78,18 +84,41 @@ export default Controller.extend({
     },
 
     actions: {
-        doQueryData(currentPage, pn) {
-            pn.gotoCustomPage(currentPage)
-            this.set('currentPage', currentPage)
+        
+        search() {
             let market = $('select[name="markets"] :selected').val() || "All"
+            let startTime = this.formatDateyyyymm(this.get('startDate'))
+            let endTime = this.formatDateyyyymm(this.get('endDate'))
             this.queryData({
                 condition: {
                     user_id: this.get('cookies').read('uid'),
-                    market: 'All',
-                    startTime: '201705',
-                    endTiem: '201712',
+                    market: market,
+                    startTime: startTime,
+                    endTime: endTime,
+                    currentPage: 1,
+                    pageSize: 10,
+                    mode: 'search'
+                }
+            })
+        },
+        doPageSearch(currentPage, pn) {
+            this.set('currentPage', currentPage)
+            this.set('modalTablePageObj', pn);
+            typeof this.get('modalTablePageObj') === 'undefined'
+                ? '' : this.get('modalTablePageObj').gotoCustomPage(currentPage)
+
+            let market = $('select[name="markets"] :selected').val() || "All"
+            let startTime = this.formatDateyyyymm(this.get('startDate'))
+            let endTime = this.formatDateyyyymm(this.get('endDate'))
+            this.queryData({
+                condition: {
+                    user_id: this.get('cookies').read('uid'),
+                    market: market,
+                    startTime: startTime,
+                    endTime: endTime,
                     currentPage: currentPage,
-                    pageSize: 10
+                    pageSize: 10,
+                    mode: 'page'
                 }
             })
         },
@@ -106,6 +135,7 @@ export default Controller.extend({
                     this.set('endDate',date)
                 }
             }
+            $('input[name="endDate"]').focus(); // 畸形code
         },
         changeEndMonth(date) {
             let start_date = this.get('startDate');

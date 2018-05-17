@@ -21,7 +21,7 @@
         </div>
         <div local-class="market-results">
             <div local-class="market-target">
-                <p local-class="result-title"><span>INF</span>市场指标</p>
+                <p local-class="result-title"><span>{{selectedMarket}}</span> 市场指标</p>
 
                 <div local-class="market-target-content" >
                     <div local-class="target-item">
@@ -31,17 +31,17 @@
                         </div>
                         <div local-class="item-old">
                             <p>同比</p>
-                            <p>+3.01%</p>
+                            <p>{{marketSumSalesPercentage}}%</p>
                         </div>
                     </div>
                     <div local-class="target-item">
                         <div local-class="item-current">
-                            <p>辉瑞产品销售额</p>
+                            <p>产品销售额</p>
                             <p><span>￥{{productSumSales}}</span>&nbsp;&nbsp;&nbsp;<span>Mil</span></p>
                         </div>
                         <div local-class="item-old">
                             <p>同比</p>
-                            <p>+3.01%</p>
+                            <p>{{productSumSalesPercentage}}%</p>
                         </div>
                     </div>
                     <div local-class="target-item">
@@ -54,12 +54,12 @@
             </div>
             <div local-class="market-trend">
                 <p local-class="result-title">
-                    <span>INF</span>市场趋势 <span local-class="trend-legend"> <span></span><span local-class="text">市场销售额</span> <span>——</span><span local-class="text">份额变化趋势</span></span></p>
+                    <span>{{selectedMarket}}</span> 市场趋势 <span local-class="trend-legend"> <span></span><span local-class="text">市场销售额</span> <span>——</span><span local-class="text">份额变化趋势</span></span></p>
                      {{result-trend-line-and-bar eid="result-trend-line-and-bar" option=trendOption}}
             </div>
         </div>
         <div local-class="market-results">
-            <p local-class="result-title"><span>INF</span>地区层面结果</p>
+            <p local-class="result-title"><span>{{selectedMarket}}</span> 地区层面结果</p>
                 <div local-class="china-map-data">
                     <div local-class="china-map">
                         {{result-map eid="result-map" option=regionOption}}
