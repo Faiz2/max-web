@@ -64,31 +64,36 @@ export default Controller.extend({
                 .map((elt, i, array) => {
                     return elt.year
                 });
-            let condition = {
-                "condition": {
-                    "job_id": this.get('cookies').read('job_id'),
-                    "args": {
-                        "cpa": this.get('cookies').read('cpahash'),
-                        "gycx": this.get('cookies').read('gycxhash') || '',
-                        "yms":years.toString().replace(',', '#')
-                    }
-                }
-            };
-
-            new rsvp.Promise((resolve, reject) => {
-                return this.get('ajax').request('api/max/panel',
-                    this.getAjaxOpt(condition)).then((response) => {
-                        window.console.info(response);
-                        SampleObject.set('fileParsingSuccess', false);
-                        SampleObject.set('calcYearsProgress', false);
-                        SampleObject.set('calcPanelProgress', true);
-                        return resolve({ resule: response });
-                    },
-                        () => {
-                            return reject("Access Error");
+            if (years.length === 0) {
+                // alert('未选择时间');
+                this.set('yearsNullError', true);
+            } else {
+                let condition = {
+                    "condition": {
+                        "job_id": this.get('cookies').read('job_id'),
+                        "args": {
+                            "cpa": this.get('cookies').read('cpahash'),
+                            "gycx": this.get('cookies').read('gycxhash') || '',
+                            "yms":years.join('#')
                         }
-                    );
-            });
+                    }
+                };
+                //
+                new rsvp.Promise((resolve, reject) => {
+                    return this.get('ajax').request('api/max/panel',
+                        this.getAjaxOpt(condition)).then((response) => {
+                            window.console.info(response);
+                            SampleObject.set('fileParsingSuccess', false);
+                            SampleObject.set('calcYearsProgress', false);
+                            SampleObject.set('calcPanelProgress', true);
+                            return resolve({ resule: response });
+                        },
+                            () => {
+                                return reject("Access Error");
+                            }
+                        );
+                });
+            }
         },
         // 未显示要计算的月份
         cantFindMonth: function() {

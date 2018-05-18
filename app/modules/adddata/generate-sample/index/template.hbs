@@ -106,3 +106,23 @@
     {{#bs-button onClick=(action 'uploadFileAgain' modal)}}重新上传{{/bs-button}}
     {{/modal.footer}}
 {{/bs-modal}}
+
+{{!-- 未选中时间弹框 --}}
+{{#bs-modal fade=false backdropClose=false open=yearsNullError onHidden=(action (mut yearsNullError) false) as |modal|}}
+    {{#modal.header}}
+        <h4 class="modal-title">
+            提示
+        </h4>
+    {{/modal.header}}
+    {{#modal.body}}
+        <p>未选择时间</p>
+        <p>&nbsp;</p>
+        <p>&nbsp;</p>
+        <p>&nbsp;</p>
+        <p>&nbsp;</p>
+        <p>&nbsp;</p>
+    {{/modal.body}}
+    {{#modal.footer}}
+        {{#bs-button onClick=(action modal.close)}}关闭{{/bs-button}}
+    {{/modal.footer}}
+{{/bs-modal}}

@@ -2,10 +2,11 @@ import Controller from '@ember/controller';
 // import { computed } from '@ember/object';
 import styles from './styles';
 import { inject } from '@ember/service';
-
+import rsvp from 'rsvp';
 
 export default Controller.extend({
     ajax: inject(),
+    // router: inject(),
     cookies: inject(),
     styles,
     title: 'Pharbers 数据平台',
@@ -33,7 +34,19 @@ export default Controller.extend({
         }
     },
     queryData(parameters) {
-        this.set('model', this.store.queryMultipleObject('data-center', parameters))
+        const promise = new rsvp.Promise((resolve, reject) => {
+            this.set('loading', true);
+            resolve(this.store.queryMultipleObject('data-center', parameters))
+        })
+        promise.then((resolve) => {
+            this.set('loading', false);
+            if ( resolve.isLoaded ) {
+                this.set('model', resolve)
+            } else {
+                this.set('model', null)
+            }
+        })
+        // this.set('model', this.store.queryMultipleObject('data-center', parameters))
     },
     queryMarkets() {
         let condition = {
@@ -74,6 +87,7 @@ export default Controller.extend({
             { propertyName: 'id','className': 'text-center', title: '序号', useSorting: false },
             { propertyName: 'date','className': 'text-center', useSorting: false },
             { propertyName: 'province','className': 'text-center', useSorting: false },
+            { propertyName: 'city','className': 'text-center', useSorting: false },
             { propertyName: 'market','className': 'text-center', useSorting: false },
             { propertyName: 'product','className': 'text-center', useSorting: false },
             { propertyName: 'sales','className': 'text-center', useSorting: false },
@@ -84,7 +98,6 @@ export default Controller.extend({
     },
 
     actions: {
-        
         search() {
             let market = $('select[name="markets"] :selected').val() || "All"
             let startTime = this.formatDateyyyymm(this.get('startDate'))
@@ -169,6 +182,6 @@ export default Controller.extend({
             } else if (date.getFullYear()<start_date.getFullYear()) {
                 this.set('outputStartData',date)
             }
-        },
+        }
     }
 });

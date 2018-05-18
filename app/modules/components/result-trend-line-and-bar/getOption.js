@@ -12,7 +12,7 @@ export default EmberObject.extend({
             return ele.marketSales
         });
         let percent = data.map((ele, index, array) => {
-            return parseFloat(ele.percentage) * 100
+            return (parseFloat(ele.percentage) * 100).toFixed(2)
         });
         return {
             xAxis: [

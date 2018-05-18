@@ -74,11 +74,9 @@
                     {{mt.table}}
                     {{#mt.footer as |footer| }}
                       {{footer.summary local-class='footer-summary'}}
-                      {{!-- {{footer.pagination-numeric local-class='footer-num'}} --}}
                       {{#footer.pagination-numeric local-class='footer-num' as |pn|}}
                         <div role="toolbar" class="btn-toolbar pull-right">
                           <div role="group" class="btn-group">
-                              {{!-- {{log pn}} --}}
                               {{#each pn.visiblePageNumbers as |page|}}
                                   {{#if page.isLink}}
                                     <button class="{{if page.isActive 'active' ''}} btn btn-default" {{action 'doPageSearch' page.label pn}}>{{page.label}}</button>
@@ -96,6 +94,12 @@
         </div>
     </div>
 </div>
+{{#if loading}}
+    <div local-class="loading">
+        <h1>Loading ...</h1>
+    </div>
+{{/if}}
+
 
 {{#bs-modal fade=false backdropClose=false open=output onHidden=(action (mut output) false) as |modal|}}
     {{#modal.header}}
@@ -119,14 +123,14 @@
                 <span local-class="middle-text">to</span>
                 {{bootstrap-datepicker changeMonth="changeOutputEndMonth" value=outputEndData autoclose=true minViewMode=1 format="mm/yyyy" language="zh-CN"}}
             </div>
-        </p>
+        </p>--}}
         <p local-class="modal-content-line">
             <span>内容格式</span>
             <select local-class="choose-market" name="">
                 <option value="all">全部</option>
                 <option value="a">a market</option>
                 <option value="b">b market</option>
-            </select> </p> --}}
+            </select> </p>
         <p local-class="modal-content-line">
             <span>文件格式</span>
                 {{input type="radio" id="filecsv" name="fileformat" }}

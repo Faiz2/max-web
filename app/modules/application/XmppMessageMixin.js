@@ -5,6 +5,7 @@ import MaxCalculateObject from '../common/xmpp-message-object/MaxCalculateMessag
 
 // TODO: 第一波结束 重构xmpp
 export default Mixin.create({
+    finish: false,
     record: 0,
     callback(controllInstance, xmppConn, services) {
         let that = this;
@@ -24,13 +25,18 @@ export default Mixin.create({
     Msg(controllInstance, message, services) {
         if (message.target === services.cookies.read('uid')) {
             let call = message.call + "Msg";
-            if (message.attributes.progress >= this.get('record')
-                && message.attributes.progress != 100) {
-                this[call](controllInstance, message, services);
+
+            if (!this.get('finish')
+                || message.attributes.progress >= this.get('record')
+                && message.attributes.progress != 100
+                ) {
+                this.set('finish', true);
                 this.set('record', message.attributes.progress)
-            } else if (message.stage == 'done' || message.stage == 'error') {
                 this[call](controllInstance, message, services);
+            } else if (message.stage == 'done' || message.stage == 'error') {
                 this.set('record', 0);
+                this.set('finish', false)
+                this[call](controllInstance, message, services);
             }
         }
     },

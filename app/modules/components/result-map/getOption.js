@@ -10,7 +10,7 @@ export default EmberObject.extend({
         return {
             visualMap: {
                 min: sortArray.get('firstObject'),
-                max: sortArray.get('lastObject') + 100,
+                max: sortArray.get('lastObject') + 10,
                 left: 'left',
                 top: 'bottom',
                 text: ['高','低'],

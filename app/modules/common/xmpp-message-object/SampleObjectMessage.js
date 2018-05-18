@@ -39,16 +39,6 @@ export default EmberObject.create({
                 this.set('yearsProgressData', services.progress.getOption())
                 break;
             case 'done':
-                // later(this, function() {
-                //     services.progress.setPercent(message.attributes.progress);
-                //     let years = message.attributes.content.ymList.split("#")
-                //         .map((elt, i, array) => {
-                //             return {year: elt,isChecked: false}
-                //         });
-                //     this.set('yearsProgressData', services.progress.getOption())
-                //     this.set('yearsArrayData', years);
-                //     this.set('fileParsingSuccess', true); // 解析成功 years modal
-                // }, 500);
                 services.progress.setPercent(message.attributes.progress);
                 let years = message.attributes.content.ymList.split("#")
                     .map((elt, i, array) => {
@@ -80,7 +70,7 @@ export default EmberObject.create({
                 let panel = message.attributes.content.panel
                 services.cookies.write('panel', panel, {path: '/'});
                 later(controllInstance, function() {
-                    window.location = 'generate-sample/sample-finish'
+                    window.location = '/adddata/generate-sample/sample-finish'
                     // controllInstance.transitionToRoute('adddata.generate-sample.sample-finish')
                 }, 800);
                 break;
