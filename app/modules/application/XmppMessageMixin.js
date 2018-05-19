@@ -9,12 +9,16 @@ export default Mixin.create({
     record: 0,
     callback(controllInstance, xmppConn, services) {
         let that = this;
+        let msg = this._Msg(controllInstance, services);
         xmppConn.listen({
             onOpened: function ( message ) {window.console.log("连接成功")},
             onClosed: function ( message ) {alert("异地登入")},
             onTextMessage: function ( message ) {
                 window.console.info(message)
-                that.Msg(controllInstance, JSON.parse(message.data), services);
+                msg(message);
+                // later(this, function() { // 会造成性能损失
+                //     that.Msg(controllInstance, JSON.parse(message.data), services);
+                // }, 1000);
             },
             onOnline: function () {window.console.info("上线啦")}, //本机网络连接成功
             onOffline: function () {window.console.info("掉线啦")}, //本机网络掉线
@@ -22,24 +26,47 @@ export default Mixin.create({
         });
 
     },
-    Msg(controllInstance, message, services) {
-        if (message.target === services.cookies.read('uid')) {
-            let call = message.call + "Msg";
+    _Msg(controllInstance, services) {
+        let finish = false;
+        let record = 0;
+        let that = this;
+        return function(message) {
+            if (message.target === services.cookies.read('uid')) {
+                let call = message.call + "Msg";
 
-            if (!this.get('finish')
-                || message.attributes.progress >= this.get('record')
-                && message.attributes.progress != 100
-                ) {
-                this.set('finish', true);
-                this.set('record', message.attributes.progress)
-                this[call](controllInstance, message, services);
-            } else if (message.stage == 'done' || message.stage == 'error') {
-                this.set('record', 0);
-                this.set('finish', false)
-                this[call](controllInstance, message, services);
+                if (!finish
+                    || message.attributes.progress > record
+                    // && message.attributes.progress != 100
+                    ) {
+                    finish = true;
+                    record = message.attributes.progress;
+                    that[call](controllInstance, message, services);
+                } else if (message.stage == 'done' || message.stage == 'error') {
+                    record = 0;
+                    finish = false;
+                    that[call](controllInstance, message, services);
+                }
             }
         }
     },
+    // Msg(controllInstance, message, services) {
+    //     if (message.target === services.cookies.read('uid')) {
+    //         let call = message.call + "Msg";
+    //         if (!this.get('finish')
+    //             || message.attributes.progress > this.get('record')
+    //             && message.attributes.progress != 100
+    //             ) {
+    //             this.set('finish', true);
+    //             this.set('record', message.attributes.progress)
+    //             this[call](controllInstance, message, services);
+    //         } else if (message.stage == 'done' || message.stage == 'error') {
+    //             this.set('record', 0);
+    //             this.set('finish', false)
+    //             this[call](controllInstance, message, services);
+    //         }
+    //
+    //     }
+    // },
     ymCalcMsg(controllInstance, message, services) {
         SampleObject._ymCalcMsg(message, services);
     },

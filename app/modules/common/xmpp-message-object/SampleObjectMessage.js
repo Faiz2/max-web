@@ -30,6 +30,8 @@ export default EmberObject.create({
     yearsProgressData: null,
     panelProgressData: null,
 
+
+
     _ymCalcMsg(message, services) {
         switch(message.stage) {
             case 'start':
