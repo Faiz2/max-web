@@ -6,7 +6,6 @@ export default EmberObject.extend({
             .toArray()
             .sort((p, n) => p - n)
 
-        console.info(sortArray)
         return {
             visualMap: {
                 min: sortArray.get('firstObject'),

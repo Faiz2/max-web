@@ -5,8 +5,8 @@ import MaxCalculateObject from '../common/xmpp-message-object/MaxCalculateMessag
 
 // TODO: 第一波结束 重构xmpp
 export default Mixin.create({
-    finish: false,
-    record: 0,
+    // finish: false,
+    // record: 0,
     callback(controllInstance, xmppConn, services) {
         let that = this;
         let msg = this._Msg(controllInstance, services);
@@ -15,7 +15,7 @@ export default Mixin.create({
             onClosed: function ( message ) {alert("异地登入")},
             onTextMessage: function ( message ) {
                 window.console.info(message)
-                msg(message);
+                msg(JSON.parse(message.data));
                 // later(this, function() { // 会造成性能损失
                 //     that.Msg(controllInstance, JSON.parse(message.data), services);
                 // }, 1000);
@@ -33,18 +33,21 @@ export default Mixin.create({
         return function(message) {
             if (message.target === services.cookies.read('uid')) {
                 let call = message.call + "Msg";
-
                 if (!finish
                     || message.attributes.progress > record
-                    // && message.attributes.progress != 100
+                    && message.attributes.progress != 100
                     ) {
+
+                    that[call](controllInstance, message, services);
                     finish = true;
                     record = message.attributes.progress;
-                    that[call](controllInstance, message, services);
                 } else if (message.stage == 'done' || message.stage == 'error') {
-                    record = 0;
-                    finish = false;
                     that[call](controllInstance, message, services);
+                    later(that, () => {
+                        record = 0;
+                        finish = false;
+                    }, 1 * 1000 * 2)
+
                 }
             }
         }
