@@ -5,8 +5,6 @@ import MaxCalculateObject from '../common/xmpp-message-object/MaxCalculateMessag
 
 // TODO: 第一波结束 重构xmpp
 export default Mixin.create({
-    // finish: false,
-    // record: 0,
     callback(controllInstance, xmppConn, services) {
         let that = this;
         let msg = this._Msg(controllInstance, services);
