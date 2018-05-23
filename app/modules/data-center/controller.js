@@ -200,7 +200,7 @@ export default Controller.extend({
             keys(cookies.read()).forEach(item => {
                 cookies.clear(item)
             });
-            window.location = "index";
+            window.location = "/";
         }
     }
 });
