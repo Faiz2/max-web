@@ -13,7 +13,13 @@ export default Component.extend({
                 tooltip: {
                     show: true,
                     trigger: 'axis',
-                    formatter: '{b}<br/>{a}: {c}（Mil）',
+                    formatter: function(v){
+                        let tip_content = '区域：'+ v[0].data.area +'<br/>';
+                        tip_content += '市场销量：'+ v[0].data.value +'(Mil)' +'<br/>';
+                        tip_content += '产品销量：'+ v[0].data.productSales +'(Mil)'  +'<br/>';
+                        tip_content += '份额：'+ (parseFloat(v[0].data.percentage) * 100).toFixed(2) +'%';
+                        return tip_content;
+                    },
                     axisPointer: {
                         type: 'shadow',
                     }

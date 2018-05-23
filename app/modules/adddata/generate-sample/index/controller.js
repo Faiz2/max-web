@@ -10,18 +10,11 @@ export default Controller.extend({
     cookies: inject(),
     progress: inject('circle-progress-serivce'),
     styles,
-    // isShowProgress: false, // 是否显示进度条
-    // calcYearsProgress: false, // 计算年月的进度条
-    // calcPanelProgress: false, // 计算Panel文件的进度条
-    // cantFindMonth: false, // 未找到月份提示
-    cpafilename: computed( function() {
-        return this.get('cookies').read('filecpa')
-    }),
     SampleObject,
     init() {
         this._super(...arguments);
-        // this.set('cpafilename', this.get('cookies').read('filecpa'))
-        // this.set('gycxfilename', this.get('cookies').read('filegycx'))
+        this.set('cpafilename', this.get('cookies').read('filecpa'))
+        this.set('gycxfilename', this.get('cookies').read('filegycx'))
     },
     getAjaxOpt(data) {
         return {

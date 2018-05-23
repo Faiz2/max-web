@@ -31,9 +31,7 @@ export default Component.extend({
     init() {
         this._super(...arguments);
         this.querySelectArg();
-        later(this, () => {
-            this.queryContentData()
-        }, 1000)
+
     },
     getAjaxOpt(data) {
         return {
@@ -56,6 +54,9 @@ export default Component.extend({
                 if (status === 'ok') {
                     this.set('markets', result.markets);
                     this.set('years', result.years);
+                    later(this, () => {
+                        this.queryContentData()
+                    }, 500)
                 } else {
                     this.set('error', true);
                     this.set('errorMessage', error.message);

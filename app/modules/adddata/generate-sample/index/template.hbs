@@ -32,8 +32,13 @@
 </div>
 
 {{!-- 重新上传文件弹框 --}}
-{{#bs-modal fade=false backdropClose=false open=uploadAgain onHidden=(action (mut uploadAgain) false) as |modal|}}
-    {{#modal.header}}
+{{#bs-modal
+        fade=false
+        backdropClose=false
+        keyboard=false
+        open=uploadAgain
+        onHidden=(action (mut uploadAgain) false) as |modal|}}
+    {{#modal.header closeButton=false}}
         <h4 class="modal-title">
             提示
         </h4>
@@ -48,8 +53,13 @@
 {{/bs-modal}}
 
 {{!-- 选择月份弹框 --}}
-{{#bs-modal fade=false open=SampleObject.fileParsingSuccess backdropClose=false onHidden=(action (mut SampleObject.fileParsingSuccess) false) as |modal|}}
-    {{#modal.header}}
+{{#bs-modal
+        fade=false
+        open=SampleObject.fileParsingSuccess
+        keyboard=false
+        backdropClose=false
+        onHidden=(action (mut SampleObject.fileParsingSuccess) false) as |modal|}}
+    {{#modal.header closeButton=false}}
         <h4 class="modal-title">
             选择月份
         </h4>
@@ -71,8 +81,13 @@
 {{/bs-modal}}
 
 {{!-- 文件解析错误弹框 --}}
-{{#bs-modal fade=false backdropClose=false open=SampleObject.fileParsingError onHidden=(action (mut SampleObject.fileParsingError) false) as |modal|}}
-    {{#modal.header}}
+{{#bs-modal
+        fade=false
+        backdropClose=false
+        keyboard=false
+        open=SampleObject.fileParsingError
+        onHidden=(action (mut SampleObject.fileParsingError) false) as |modal|}}
+    {{#modal.header closeButton=false}}
         <h4 class="modal-title">
             提示
         </h4>
@@ -91,8 +106,14 @@
 {{/bs-modal}}
 
 {{!-- 缺少数据弹框 --}}
-{{#bs-modal fade=false backdropClose=false open=SampleObject.cantFindMonth onHidden=(action (mut SampleObject.cantFindMonth) false) as |modal|}}
-    {{#modal.header}}
+{{#bs-modal
+        fade=false
+        backdropClose=false
+        closeTitle=false
+        keyboard=false
+        open=SampleObject.cantFindMonth
+        onHidden=(action (mut SampleObject.cantFindMonth) false) as |modal|}}
+    {{#modal.header closeButton=false}}
         <h4 class="modal-title">
             未显示要计算的月份？
         </h4>
@@ -100,6 +121,11 @@
     {{#modal.body}}
         <p>您上传的文件可能月份有缺失，请重新检查文件，</p>
         <p>并重新上传。</p>
+        <p>&nbsp;</p>
+        <p>&nbsp;</p>
+        <p>&nbsp;</p>
+        <p>&nbsp;</p>
+        <p>&nbsp;</p>
     {{/modal.body}}
     {{#modal.footer}}
     {{#bs-button onClick=(action modal.close)}}返回选择{{/bs-button}}
@@ -108,14 +134,20 @@
 {{/bs-modal}}
 
 {{!-- 未选中时间弹框 --}}
-{{#bs-modal fade=false backdropClose=false open=yearsNullError onHidden=(action (mut yearsNullError) false) as |modal|}}
-    {{#modal.header}}
+{{#bs-modal
+        fade=false
+        backdropClose=false
+        keyboard=false
+        open=yearsNullError
+        onHidden=(action (mut yearsNullError) false) as |modal|}}
+    {{#modal.header closeButton=false}}
         <h4 class="modal-title">
             提示
         </h4>
     {{/modal.header}}
     {{#modal.body}}
-        <p>未选择时间</p>
+        <div >未选择时间</div>
+        <p>&nbsp;</p>
         <p>&nbsp;</p>
         <p>&nbsp;</p>
         <p>&nbsp;</p>

@@ -28,8 +28,13 @@
     </div>
 </div>
 {{!-- 计算时出现错误 --}}
-{{#bs-modal fade=false backdropClose=false open=MaxCalculateObject.calculateState onHidden=(action (mut MaxCalculateObject.calculateState) false) as |modal|}}
-    {{#modal.header}}
+{{#bs-modal
+        fade=false
+        backdropClose=false
+        keyboard=false
+        open=MaxCalculateObject.calculateState
+        onHidden=(action (mut MaxCalculateObject.calculateState) false) as |modal|}}
+    {{#modal.header closeButton=false}}
         <h4 class="modal-title">
             提示
         </h4>

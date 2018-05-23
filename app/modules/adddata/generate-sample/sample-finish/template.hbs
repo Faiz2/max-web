@@ -118,8 +118,13 @@
 </div>
 
 {{!-- 重新上传文件 --}}
-{{#bs-modal fade=false backdropClose=false open=uploadAgain onHidden=(action (mut uploadAgain) false) as |modal|}}
-    {{#modal.header}}
+{{#bs-modal
+        fade=false
+        backdropClose=false
+        keyboard=false
+        open=uploadAgain
+        onHidden=(action (mut uploadAgain) false) as |modal|}}
+    {{#modal.header closeButton=false}}
         <h4 class="modal-title">
             提示
         </h4>
@@ -137,8 +142,13 @@
 {{/bs-modal}}
 
 {{!-- 查询时出现错误 --}}
-{{#bs-modal fade=false backdropClose=false open=sampleCheckError onHidden=(action (mut sampleCheckError) false) as |modal|}}
-    {{#modal.header}}
+{{#bs-modal
+        fade=false
+        backdropClose=false
+        keyboard=false
+        open=sampleCheckError
+        onHidden=(action (mut sampleCheckError) false) as |modal|}}
+    {{#modal.header closeButton=false}}
         <h4 class="modal-title">
             提示
         </h4>

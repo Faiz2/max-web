@@ -89,6 +89,8 @@ export default Component.extend({
                     user_id: this.get('cookies').read('uid')
                 }
             }
+            this.get('cookies').write('filecpa', this.get('filecpa'), {path:'/'});
+            this.get('cookies').write('filegycx', this.get('filegycx'), {path:'/'});
             this.get('ajax').request('/api/job/push', this.getAjaxOpt(pushJobIdCondition))
                 .then(({result, error, status}, reject) => {
                     if (status === 'error') {
@@ -96,7 +98,7 @@ export default Component.extend({
                         this.set('errorMessage', error.message);
                     } else {
                         this.get('cookies').write('job_id', result.job.job_id, {path:'/'});
-                        this.attrs.nextAction()
+                        window.location = "/adddata/generate-sample";
                     }
                 })
         }

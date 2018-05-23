@@ -3,9 +3,10 @@ import Controller from '@ember/controller';
 
 export default Controller.extend({
     // styles,
-    actions: {
-        next() {
-            this.transitionToRoute('adddata.generate-sample')
-        }
-    }
+    // actions: {
+    //     next() {
+    //         // this.transitionToRoute('adddata.generate-sample')
+    //         // window.location = "/adddata/generate-sample";
+    //     }
+    // }
 });
