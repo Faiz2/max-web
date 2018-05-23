@@ -50,6 +50,8 @@ export default Component.extend({
         deleteCpaFile() {
             this.set('filecpa', "");
             this.set('isDisabled', true);
+            this.get('cookies').write('cpahash', "", {path:'/'});
+            this.get('cookies').write('filecpa', "", {path:'/'});
         },
         //  上传gycx文件
         uploadGycxFile(file) {
@@ -77,6 +79,8 @@ export default Component.extend({
         //  删除gycx 文件 （伪）只是将名字置为“”空。
         deleteGycxFile() {
             this.set('filegycx', "");
+            this.get('cookies').write('gycxhash', "", {path:'/'});
+            this.get('cookies').write('filegycx', "", {path:'/'});
             if (this.get('filecpa') !== '') {
                 this.set('isDisabled', false)
             } else {

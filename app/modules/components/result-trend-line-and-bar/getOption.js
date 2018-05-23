@@ -26,7 +26,7 @@ export default EmberObject.extend({
                     {
                         name:'市场销量',
                         type:'bar',
-                        barWidth: '80%',
+                        barWidth: '50%',
                         yAxisIndex: 0,
                         data: marketSales,
                     },

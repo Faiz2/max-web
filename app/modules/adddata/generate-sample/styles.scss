@@ -237,13 +237,29 @@
             line-height: 25px;
             text-align: center;
 
-            p:first-child {
+            // p:first-child {
+            //     margin: 0;
+            //     height: 25px;
+            //     border-radius: 4px;
+            //     font-size: 14px;
+            //     color: #fff;
+            //     background-color: $btn-bgcolor;
+            // }
+            & .success {
                 margin: 0;
                 height: 25px;
                 border-radius: 4px;
                 font-size: 14px;
                 color: #fff;
                 background-color: $btn-bgcolor;
+            }
+            & .error {
+                margin: 0;
+                height: 25px;
+                border-radius: 4px;
+                font-size: 14px;
+                color: #fff;
+                background-color: $btn-error-bgcolor;
             }
 
             p:last-child {

@@ -108,12 +108,20 @@
         padding-left: 50px;
 
         p:first-child {
-            font-size: 1.4rem;
+            font-size: 1.2rem;
         }
 
-        p:last-child {
+        // p:last-child {
+        //     font-size: 1.6rem;
+        //     color: $btn-bgcolor;
+        // }
+        & .success {
             font-size: 1.6rem;
             color: $btn-bgcolor;
+        }
+        & .error {
+            font-size: 1.6rem;
+            color: $btn-error-bgcolor;
         }
     }
 }
