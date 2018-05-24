@@ -33,7 +33,7 @@
                 </div>
                 <div local-class="legend-right">
                     <div local-class="legend-right-left">
-                        <p>{{computeHospitalNumber}}%</p>
+                        <p local-class={{if (or (gt computeHospitalNumber 5) (lt computeHospitalNumber -5)) "error" "success"}}>{{computeHospitalNumber}}%</p>
                         <p>样本误差率</p>
                     </div>
                     <div local-class="legend-right-center">
@@ -58,7 +58,7 @@
                 </div>
                 <div local-class="legend-right">
                     <div local-class="legend-right-left">
-                        <p>{{computeProductNumber}}%</p>
+                        <p local-class={{if (or (gt computeProductNumber 5) (lt computeProductNumber -5)) "error" "success"}}>{{computeProductNumber}}%</p>
                         <p>样本误差率</p>
                     </div>
                     <div local-class="legend-right-center">
@@ -83,7 +83,7 @@
                 </div>
                 <div local-class="legend-right">
                     <div local-class="legend-right-left">
-                        <p>{{computeSalesNumber}}%</p>
+                        <p local-class={{if (or (gt computeSalesNumber 5) (lt computeSalesNumber -5)) "error" "success"}}>{{computeSalesNumber}}%</p>
                         <p>样本误差率</p>
                     </div>
                     <div local-class="legend-right-center">
@@ -118,8 +118,13 @@
 </div>
 
 {{!-- 重新上传文件 --}}
-{{#bs-modal fade=false backdropClose=false open=uploadAgain onHidden=(action (mut uploadAgain) false) as |modal|}}
-    {{#modal.header}}
+{{#bs-modal
+        fade=false
+        backdropClose=false
+        keyboard=false
+        open=uploadAgain
+        onHidden=(action (mut uploadAgain) false) as |modal|}}
+    {{#modal.header closeButton=false}}
         <h4 class="modal-title">
             提示
         </h4>
@@ -137,8 +142,13 @@
 {{/bs-modal}}
 
 {{!-- 查询时出现错误 --}}
-{{#bs-modal fade=false backdropClose=false open=sampleCheckError onHidden=(action (mut sampleCheckError) false) as |modal|}}
-    {{#modal.header}}
+{{#bs-modal
+        fade=false
+        backdropClose=false
+        keyboard=false
+        open=sampleCheckError
+        onHidden=(action (mut sampleCheckError) false) as |modal|}}
+    {{#modal.header closeButton=false}}
         <h4 class="modal-title">
             提示
         </h4>

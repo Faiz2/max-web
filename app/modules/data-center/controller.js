@@ -1,12 +1,11 @@
 import Controller from '@ember/controller';
-// import { computed } from '@ember/object';
 import styles from './styles';
 import { inject } from '@ember/service';
 import rsvp from 'rsvp';
+const { keys } = Object;
 
 export default Controller.extend({
     ajax: inject(),
-    // router: inject(),
     cookies: inject(),
     styles,
     title: 'Pharbers 数据平台',
@@ -16,10 +15,8 @@ export default Controller.extend({
     outputStartData: new Date('2018-01'),
     outputEndData: new Date(),
     currentPage: 1,
-    // filterQueryParameters: {
-    //     page: 'page',
-    //     pageSize: 'pageSize'
-    // },
+    fullName: '', // 这应该后端返回firstName与lastName 有前端计算出来
+    account: '',
     formatDateyyyymm(date) {
         return date.getFullYear() + "" + (date.getMonth() + 1 < 10 ? '0' + (date.getMonth() + 1) : date.getMonth() + 1)
     },
@@ -81,20 +78,35 @@ export default Controller.extend({
         })
 
     },
+    queryUserInfo() {
+        let condition = {
+            condition: {
+                user_id: this.get('cookies').read('uid')
+            }
+        }
+        this.get('ajax').request('/api/user/detail', this.getAjaxOpt(condition)).
+            then(({status, result, error}) =>{
+                if (status === 'ok') {
+                    let {user: {screen_name, email}} = result
+                    this.set('fullName', screen_name)
+                    this.set('account', email)
+                }
+            }, () => {})
+    },
     init() {
         this._super(...arguments);
         this.set('columns', [
             { propertyName: 'id','className': 'text-center', title: '序号', useSorting: false },
-            { propertyName: 'date','className': 'text-center', useSorting: false },
-            { propertyName: 'province','className': 'text-center', useSorting: false },
-            { propertyName: 'city','className': 'text-center', useSorting: false },
-            { propertyName: 'market','className': 'text-center', useSorting: false },
-            { propertyName: 'product','className': 'text-center', useSorting: false },
-            { propertyName: 'sales','className': 'text-center', useSorting: false },
-            { propertyName: 'units','className': 'text-center', useSorting: false }
+            { propertyName: 'date','className': 'text-center', title: '日期', useSorting: false },
+            { propertyName: 'province','className': 'text-center', title: '省份', useSorting: false },
+            { propertyName: 'city','className': 'text-center', title: '城市', useSorting: false },
+            { propertyName: 'market','className': 'text-center', title: '市场', useSorting: false },
+            { propertyName: 'product','className': 'text-center', title: '最小产品单位', useSorting: false },
+            { propertyName: 'sales','className': 'text-center', title: '销售额', useSorting: false },
+            { propertyName: 'units','className': 'text-center', title: '销售量', useSorting: false }
         ]);
-        this.queryMarkets()
-
+        this.queryMarkets();
+        this.queryUserInfo();
     },
 
     actions: {
@@ -182,6 +194,13 @@ export default Controller.extend({
             } else if (date.getFullYear()<start_date.getFullYear()) {
                 this.set('outputStartData',date)
             }
+        },
+        logut() {
+            let cookies = this.get('cookies')
+            keys(cookies.read()).forEach(item => {
+                cookies.clear(item)
+            });
+            window.location = "/";
         }
     }
 });

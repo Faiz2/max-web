@@ -16,19 +16,19 @@ export default Controller.extend({
     lastYearHospitalNumber: 0,
     computeHospitalNumber: computed('hospitalNumber', 'lastYearHospitalNumber', function() {
         let number = (this.get('hospitalNumber') - this.get('lastYearHospitalNumber')) / this.get('lastYearHospitalNumber');
-        return parseFloat(number).toFixed(2);
+        return (parseFloat(number) * 100).toFixed(2);
     }),
     productNumber: 0,
     lastYearProductNumber: 0,
     computeProductNumber: computed('productNumber', 'lastYearProductNumber', function() {
         let number = (this.get('productNumber') - this.get('lastYearProductNumber')) / this.get('lastYearProductNumber');
-        return parseFloat(number).toFixed(2);
+        return (parseFloat(number) * 100).toFixed(2);
     }),
     salesNumber: 0,
     lastYearSalesNumber: 0,
     computeSalesNumber: computed('salesNumber', 'lastYearSalesNumber', function() {
         let number = (this.get('salesNumber') - this.get('lastYearSalesNumber')) / this.get('lastYearSalesNumber');
-        return parseFloat(number).toFixed(2);
+        return (parseFloat(number) * 100).toFixed(2);
     }),
     getAjaxOpt(data) {
         return {

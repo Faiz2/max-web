@@ -50,6 +50,8 @@ export default Component.extend({
         deleteCpaFile() {
             this.set('filecpa', "");
             this.set('isDisabled', true);
+            this.get('cookies').write('cpahash', "", {path:'/'});
+            this.get('cookies').write('filecpa', "", {path:'/'});
         },
         //  上传gycx文件
         uploadGycxFile(file) {
@@ -77,6 +79,8 @@ export default Component.extend({
         //  删除gycx 文件 （伪）只是将名字置为“”空。
         deleteGycxFile() {
             this.set('filegycx', "");
+            this.get('cookies').write('gycxhash', "", {path:'/'});
+            this.get('cookies').write('filegycx', "", {path:'/'});
             if (this.get('filecpa') !== '') {
                 this.set('isDisabled', false)
             } else {
@@ -89,6 +93,8 @@ export default Component.extend({
                     user_id: this.get('cookies').read('uid')
                 }
             }
+            this.get('cookies').write('filecpa', this.get('filecpa'), {path:'/'});
+            this.get('cookies').write('filegycx', this.get('filegycx'), {path:'/'});
             this.get('ajax').request('/api/job/push', this.getAjaxOpt(pushJobIdCondition))
                 .then(({result, error, status}, reject) => {
                     if (status === 'error') {
@@ -96,7 +102,7 @@ export default Component.extend({
                         this.set('errorMessage', error.message);
                     } else {
                         this.get('cookies').write('job_id', result.job.job_id, {path:'/'});
-                        this.attrs.nextAction()
+                        window.location = "/adddata/generate-sample";
                     }
                 })
         }

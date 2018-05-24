@@ -28,7 +28,7 @@ export default Component.extend({
                 formatter: function (v) {
                     let tip_content = '省份：'+ v.data.name +'<br/>';
                     tip_content += '市场销量：'+ v.data.value +'(Mil)' +'<br/>';
-                    tip_content += '产品销量：'+ v.data.prodcutSales +'(Mil)'  +'<br/>';
+                    tip_content += '产品销量：'+ v.data.productSales +'(Mil)'  +'<br/>';
                     tip_content += '份额：'+ (parseFloat(v.data.percentage) * 100).toFixed(2) +'%';
                     return tip_content;
                 }

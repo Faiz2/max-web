@@ -15,9 +15,9 @@
                     {{/each}}
                 </select>
             </div>
-            <div local-class="choosebar-content choosebar-right">
+            {{!-- <div local-class="choosebar-content choosebar-right">
                 <button {{action 'saveData'}} local-class="btn-default-max" type="button" name="button">保存</button>
-            </div>
+            </div> --}}
         </div>
         <div local-class="market-results">
             <div local-class="market-target">
@@ -31,7 +31,12 @@
                         </div>
                         <div local-class="item-old">
                             <p>同比</p>
-                            <p>{{marketSumSalesPercentage}}%</p>
+                            {{#if (gte marketSumSalesPercentage 0)}}
+                              <p local-class="success">+{{marketSumSalesPercentage}}%</p>
+                            {{else}}
+                              <p local-class="error">-{{marketSumSalesPercentage}}%</p>
+                            {{/if}}
+
                         </div>
                     </div>
                     <div local-class="target-item">
@@ -41,7 +46,11 @@
                         </div>
                         <div local-class="item-old">
                             <p>同比</p>
-                            <p>{{productSumSalesPercentage}}%</p>
+                            {{#if (gte productSumSalesPercentage 0)}}
+                              <p local-class="success">+{{productSumSalesPercentage}}%</p>
+                            {{else}}
+                              <p local-class="error">-{{productSumSalesPercentage}}%</p>
+                            {{/if}}
                         </div>
                     </div>
                     <div local-class="target-item">
@@ -119,7 +128,13 @@
     </div>
 </div>
 {{/if}}
-{{#bs-modal-simple fade=false open=error title="提示" closeTitle="确定" onHidden=(action (mut error) false)}}
+{{#bs-modal-simple
+        fade=false
+        open=error
+        keyboard=false
+        closeButton=false
+        title="提示"
+        closeTitle="确定" onHidden=(action (mut error) false)}}
   <p>{{errorMessage}}</p>
 {{/bs-modal-simple}}
 {{yield}}

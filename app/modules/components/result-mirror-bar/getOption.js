@@ -10,11 +10,11 @@ export default EmberObject.extend({
         });
 
         let lastYear = data.lastyear.map((ele, index, array) => {
-            return ele.marketSales;
+            return {value: ele.marketSales, area: ele.area, percentage: ele.percentage, productSales: ele.productSales}
         });
 
         let currentYear = data.current.map((ele, index, array) => {
-            return ele.marketSales
+            return {value: ele.marketSales, area: ele.area, percentage: ele.percentage, productSales: ele.productSales}
         });
         return {
             baseOption: {

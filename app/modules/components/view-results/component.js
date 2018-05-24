@@ -26,14 +26,14 @@ export default Component.extend({
     productSumSales: 0,
     productSumSalesPercentage: 0,
     computeShare: computed('marketSumSales', 'productSumSales', function() {
-        return (this.get('productSumSales') / this.get('marketSumSales')).toFixed(4) * 100;
+        let psales = parseFloat(this.get('productSumSales'))
+        let msales = parseFloat(this.get('marketSumSales'))
+        return ((psales / msales)* 100).toFixed(2);
     }),
     init() {
         this._super(...arguments);
         this.querySelectArg();
-        later(this, () => {
-            this.queryContentData()
-        }, 1000)
+
     },
     getAjaxOpt(data) {
         return {
@@ -56,6 +56,9 @@ export default Component.extend({
                 if (status === 'ok') {
                     this.set('markets', result.markets);
                     this.set('years', result.years);
+                    later(this, () => {
+                        this.queryContentData()
+                    }, 500)
                 } else {
                     this.set('error', true);
                     this.set('errorMessage', error.message);
