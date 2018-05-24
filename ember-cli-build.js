@@ -15,7 +15,11 @@ module.exports = function(defaults) {
         //   enabled: false
         // },
         sassOptions: {
-            includePaths: ['node_modules/ember-power-select/app/styles']
+            includePaths: [
+                'node_modules/bootstrap-sass/assets/stylesheets',
+                'node_modules/ember-power-select/app/styles',
+                'node_modules/ember-basic-dropdown/app/styles'
+            ]
         },
         // cssModules: {
         //     plugins: [
@@ -48,11 +52,11 @@ module.exports = function(defaults) {
     app.import("vendor/webim/strophe-1.2.8.min.js")
     app.import("vendor/webim/websdk-1.4.13.js")
     // 应该是插件冲突导致的字体文件导入失败
-    app.import('node_modules/bootstrap/fonts/glyphicons-halflings-regular.eot', { destDir: '/fonts' });
-    app.import('node_modules/bootstrap/fonts/glyphicons-halflings-regular.svg', { destDir: '/fonts' });
-    app.import('node_modules/bootstrap/fonts/glyphicons-halflings-regular.ttf', { destDir: '/fonts' });
-    app.import('node_modules/bootstrap/fonts/glyphicons-halflings-regular.woff', { destDir: '/fonts' });
-    app.import('node_modules/bootstrap/fonts/glyphicons-halflings-regular.woff2', { destDir: '/fonts' });
+    // app.import('node_modules/bootstrap/fonts/glyphicons-halflings-regular.eot', { destDir: '/fonts' });
+    // app.import('node_modules/bootstrap/fonts/glyphicons-halflings-regular.svg', { destDir: '/fonts' });
+    // app.import('node_modules/bootstrap/fonts/glyphicons-halflings-regular.ttf', { destDir: '/fonts' });
+    // app.import('node_modules/bootstrap/fonts/glyphicons-halflings-regular.woff', { destDir: '/fonts' });
+    // app.import('node_modules/bootstrap/fonts/glyphicons-halflings-regular.woff2', { destDir: '/fonts' });
     // 为日历插件添加中文
     app.import("vendor/datepicker/datepicker.zh-CN.min.js")
       // Use `app.import` to add additional libraries to the generated
