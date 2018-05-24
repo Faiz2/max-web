@@ -14,27 +14,33 @@ module.exports = function(defaults) {
         // minifyJS: {
         //   enabled: false
         // },
-        cssModules: {
-            plugins: [
-                require('postcss-import'),
-                require('postcss-extend'),
-                require('postcss-cssnext'),
-                require('rucksack-css') ({
-                    alias: false,
-                    hexRGBA: false,
-                    fallbacks: true
-                })
-
-            ]
+        sassOptions: {
+            includePaths: ['node_modules/ember-power-select/app/styles']
         },
+        // cssModules: {
+        //     plugins: [
+        //         require('postcss-import'),
+        //         require('postcss-extend'),
+        //         require('postcss-cssnext'),
+        //         require('rucksack-css') ({
+        //             alias: false,
+        //             hexRGBA: false,
+        //             fallbacks: true
+        //         })
+        //
+        //     ]
+        // },
         'ember-bootstrap': { // 由于使用了cssmodel 导致这个配置可能没多大用处
-          'bootstrapVsesion': 3,
-          'importBootstrapFont': true,
-          'importBootstrapCSS': false
+            'bootstrapVsesion': 3,
+            'importBootstrapFont': true,
+            'importBootstrapCSS': false
+        },
+        'ember-power-select': {
+            theme: 'bootstrap'
         },
         babel: {
             sourceMaps: sourceMap
-        },
+        }
     });
     app.import("vendor/echarts/echarts.js")
     app.import("vendor/echarts/china.js")
