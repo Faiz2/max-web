@@ -52,25 +52,41 @@
 
 .generate-sample-content {
     margin: 0 auto;
-    padding-top: 80px;
+    // padding-top: 80px;
     width: 50%;
 
-    p.explain {
-        margin: 0;
+    p.explain-text {
+        margin-left: -50%;
+        margin-bottom: 30px;
+        padding-top: 30px;
+        padding-left: 35px;
         font-size: 1.4rem;
     }
 
     p.file-name {
-        margin: 15px 0;
-        height: 20px;
+        margin: 15px -30% 0;
+        height: 40px;
         line-height: 20px;
         font-size: 1.8rem;
         letter-spacing: 2px;
-        span {
-            float: left;
-            width: 50%;
-            text-align: left;
+        .tip-text {
+            display: inline-block;
+            width: 80px;
+            text-align: right;
         }
+        .txt {
+            display: inline-block;
+            width: 500px;
+            line-height: 40px;
+            // height: 40px;
+            background-color: #DEDEDE;
+            border-radius: 5px;
+        }
+        // span {
+        //     // float: left;
+        //     // width: 50%;
+        //     text-align: left;
+        // }
     }
     .btn-start {
         position: relative;

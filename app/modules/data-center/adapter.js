@@ -1,7 +1,7 @@
 import DS from 'ember-data';
 
 export default DS.RESTAdapter.extend({
-    host: 'http://localhost:8080/',
+    // host: 'http://localhost:8080/',
     headOpt: function(query) {
         return {
             dataType: 'json',
@@ -12,6 +12,7 @@ export default DS.RESTAdapter.extend({
     },
     defaultSerializer: '-default',
     queryMultipleObject(store, type, jsonObject) {
-        return this.ajax(`${this.get('host')}api/search/history`,'POST',this.get('headOpt')(jsonObject));
+        // return this.ajax(`${this.get('host')}api/search/history`,'POST',this.get('headOpt')(jsonObject));
+        return this.ajax(`/api/search/history`,'POST',this.get('headOpt')(jsonObject));
     },
 });

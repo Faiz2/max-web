@@ -12,7 +12,6 @@ export default Mixin.create({
             onOpened: function ( message ) {window.console.log("连接成功")},
             onClosed: function ( message ) {alert("异地登入")},
             onTextMessage: function ( message ) {
-                window.console.info(message)
                 msg(JSON.parse(message.data));
                 // later(this, function() { // 会造成性能损失
                 //     that.Msg(controllInstance, JSON.parse(message.data), services);
@@ -30,6 +29,7 @@ export default Mixin.create({
         let that = this;
         return function(message) {
             if (message.target === services.cookies.read('uid')) {
+                window.console.info(message)
                 let call = message.call + "Msg";
                 if (!finish
                     || message.attributes.progress > record
