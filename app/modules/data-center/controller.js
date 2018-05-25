@@ -32,18 +32,17 @@ export default Controller.extend({
         }
     },
     queryData(parameters) {
-        const promise = new rsvp.Promise((resolve, reject) => {
-            this.set('loading', true);
-            resolve(this.store.queryMultipleObject('data-center', parameters))
-        })
-        promise.then((resolve) => {
-            this.set('loading', false);
-            if ( resolve.isLoaded ) {
-                this.set('model', resolve)
-            } else {
-                this.set('model', null)
-            }
-        })
+        this.set('loading', true);
+        this.store.queryMultipleObject('data-center', parameters).
+            then((resolve) => {
+                this.set('loading', false);
+                this.set('model', resolve);
+            }, (reject) => {
+                this.set('loading', false);
+                this.set('model', null);
+                this.set('error', true);
+                this.set('errorMessage', '查询超时，请重新查询！');
+            })
         // this.set('model', this.store.queryMultipleObject('data-center', parameters))
     },
     queryMarkets() {
@@ -64,10 +63,10 @@ export default Controller.extend({
                     condition: {
                         user_id: this.get('cookies').read('uid'),
                         market: 'All',
-        				startTime: startTime,
-        				endTime: endTime,
-        				currentPage: 1,
-        				pageSize: 10,
+                        startTime: startTime,
+                        endTime: endTime,
+                        currentPage: 1,
+                        pageSize: 10,
                         mode: 'search'
                     }
                 })
@@ -108,6 +107,7 @@ export default Controller.extend({
         ]);
         this.queryMarkets();
         this.queryUserInfo();
+
     },
 
     actions: {
