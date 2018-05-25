@@ -1,6 +1,7 @@
 import Controller from '@ember/controller';
 import styles from './styles';
 import { inject } from '@ember/service';
+import { later } from '@ember/runloop';
 import rsvp from 'rsvp';
 const { keys } = Object;
 
@@ -200,7 +201,9 @@ export default Controller.extend({
             keys(cookies.read()).forEach(item => {
                 cookies.clear(item)
             });
-            window.location = "/";
+            later(this, () => {
+                window.location = "/";
+            }, 500)
         }
     }
 });
