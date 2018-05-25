@@ -51,14 +51,13 @@ module.exports = function(defaults) {
     app.import("vendor/webim/config.js")
     app.import("vendor/webim/strophe-1.2.8.min.js")
     app.import("vendor/webim/websdk-1.4.13.js")
+    app.import("vendor/datepicker/datepicker.zh-CN.min.js")
     // 应该是插件冲突导致的字体文件导入失败
     // app.import('node_modules/bootstrap/fonts/glyphicons-halflings-regular.eot', { destDir: '/fonts' });
     // app.import('node_modules/bootstrap/fonts/glyphicons-halflings-regular.svg', { destDir: '/fonts' });
     // app.import('node_modules/bootstrap/fonts/glyphicons-halflings-regular.ttf', { destDir: '/fonts' });
     // app.import('node_modules/bootstrap/fonts/glyphicons-halflings-regular.woff', { destDir: '/fonts' });
     // app.import('node_modules/bootstrap/fonts/glyphicons-halflings-regular.woff2', { destDir: '/fonts' });
-    // 为日历插件添加中文
-    app.import("vendor/datepicker/datepicker.zh-CN.min.js")
       // Use `app.import` to add additional libraries to the generated
       // output files.
       //

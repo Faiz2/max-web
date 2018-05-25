@@ -23,6 +23,7 @@
     "ember-ajax": "^3.0.0",
     "ember-basic-dropdown": "^1.0.0",
     "ember-bootstrap": "^1.2.2",
+    "ember-browserify": "^1.2.2",
     "ember-cli": "~2.18.2",
     "ember-cli-app-version": "^3.0.0",
     "ember-cli-babel": "^6.6.0",
@@ -55,6 +56,8 @@
     "ember-truth-helpers": "^2.0.0",
     "eslint-plugin-ember": "^5.0.0",
     "hack": "^0.8.1",
+    "javascript-state-machine": "^3.0.1",
+    "layui-laydate": "^5.0.9",
     "loader.js": "^4.2.3"
   },
   "engines": {
