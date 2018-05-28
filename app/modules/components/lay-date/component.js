@@ -1,13 +1,13 @@
 import Component from '@ember/component';
-import laydate from 'npm:layui-laydate';
+// import laydate from 'npm:layui-laydate';
 // import StateMachine from 'npm:javascript-state-machine';
 
 export default Component.extend({
     init() {
         this._super(...arguments);
-        laydate.render({
-          elem: '#test1' //指定元素
-        });
+        // laydate.render({
+        //   elem: '#test1' //指定元素
+        // });
       //   var fsm = new StateMachine({
       //   init: 'solid',
       //   transitions: [

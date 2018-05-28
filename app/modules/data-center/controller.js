@@ -198,12 +198,13 @@ export default Controller.extend({
         },
         logut() {
             let cookies = this.get('cookies')
-            keys(cookies.read()).forEach(item => {
-                cookies.clear(item)
+            keys(this.get('cookies').read()).forEach(item => {
+                window.console.info(item);
+                this.get('cookies').clear(item, {path:'/'})
             });
             later(this, () => {
                 window.location = "/";
-            }, 500)
+            }, 1000)
         }
     }
 });
