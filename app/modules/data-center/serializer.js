@@ -7,7 +7,7 @@ export default PharbersSerializer.extend({
     primaryKey: 'id',
     normalizeResponse(store, model, payload, id, requestType) {
         this._super(...arguments);
-        let issuesCount = payload.result.page.itemsCount //this.get('issuesCount');
+        let issuesCount = parseInt(payload.result.page.itemsCount) //this.get('issuesCount');
         let pageSize = 10 //payload.result.page.pagesCount
         const newPayLoad = payload.result;
         newPayLoad.meta = {

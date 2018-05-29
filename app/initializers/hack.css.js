@@ -1,5 +1,5 @@
 export function initialize(/* appInstance */) {
-  document.body.classList = 'standard';
+  document.body.classList.add('standard');
   // document.body.classList = 'application';
 }
 

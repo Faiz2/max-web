@@ -1,12 +1,15 @@
 {{outlet}}
 <div local-class="step-content-wrapper">
     <div local-class="generate-sample-content">
-        <p local-class="explain-text">将对你本次上传的源文件</p>
+        <p local-class="explain-text">将对你本次上传的原文件，进行清洗、过滤后，生成本次计算的样本。</p>
         <p local-class="file-name">
-            <span>CAP：{{cpafilename}}</span>
-            <span>GYCX： {{gycxfilename}}</span>
+            <span local-class="tip-text">CAP : </span>
+            <span local-class="txt">&nbsp;&nbsp;{{cpafilename}}</span>
         </p>
-        <p local-class="explain-text">进行清洗、过滤后，生成本次计算的样本</p>
+        <p local-class="file-name">
+            <span local-class="tip-text">GYCX : </span>
+            <span local-class="txt">&nbsp;&nbsp;{{gycxfilename}}</span>
+        </p>
         {{#unless SampleObject.isShowProgress}}
             <div local-class="btn-start" {{action "startParsingFile"}}>
                 <div local-class="btn-start-content">

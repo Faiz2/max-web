@@ -28,13 +28,25 @@ export function _bind(fn, ...args) {
 
 export function _guard(promise, test) {
   // heimdall.increment(__guard);
-  let guarded = promise['finally'](function() {
-    if (!test()) {
-      guarded._subscribers.length = 0;
-    }
-  });
+  try {
+      let guarded = promise['finally'](function() {
+        if (!test()) {
+          guarded._subscribers.length = 0;
+        }
+      });
+      
+      return guarded;
+  } catch(e) {
+      return promise;
+  }
 
-  return guarded;
+  // let guarded = promise['finally'](function() {
+  //   if (!test()) {
+  //     guarded._subscribers.length = 0;
+  //   }
+  // });
+  //
+  // return guarded;
 }
 
 export function _objectIsAlive(object) {
