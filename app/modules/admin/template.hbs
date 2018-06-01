@@ -1,0 +1,43 @@
+{{nav-bar title=title isCenter=false isShow=false }}
+<div local-class="wrapper-container">
+    <div local-class="wrapper-menu">
+        <div local-class="menu-user">
+            <div local-class="user-name">
+                <span local-class="name-span">{{fullName}}</span>&nbsp;
+                {{#bs-dropdown tagName="span" as |dd|}}
+                    {{#dd.toggle}}
+                        <span local-class="chevron-down" class="glyphicon glyphicon-chevron-down"></span>
+                    {{/dd.toggle}}
+                    {{#dd.menu as |menu|}}
+                        {{#menu.item}}
+                            <a href="#" {{action 'logut' }}>登出</a>
+                            {{!-- {{#menu.link-to "index"}}登出{{/menu.link-to}} --}}
+                        {{/menu.item}}
+                        {{!-- {{menu.divider}}
+                        {{#menu.item}}
+                            {{#menu.link-to "index"}}Home{{/menu.link-to}}
+                        {{/menu.item}} --}}
+                    {{/dd.menu}}
+                {{/bs-dropdown}}
+                {{!-- <span class="glyphicon glyphicon-bell"> </span> --}}
+            </div>
+            <div local-class="user-status">
+                <span local-class="status-span"></span>
+                <span>{{account}}</span>
+            </div>
+        </div>
+        <ul local-class="menu-tabs">
+            <li local-class="item-tab active">
+                {{#link-to "admin.data-center"}}
+                    <span class="glyphicon glyphicon-th"></span>&nbsp;数据工具<br>
+                {{/link-to}}
+            </li>
+            <li local-class="item-tab">
+                {{#link-to "admin.miantain-center"}}
+                    <span class="glyphicon glyphicon-th"></span>&nbsp;运维中心
+                {{/link-to}}
+            </li>
+        </ul>
+    </div>
+    {{outlet}}
+</div>

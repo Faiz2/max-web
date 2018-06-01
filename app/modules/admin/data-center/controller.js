@@ -119,8 +119,8 @@ export default Controller.extend({
             { propertyName: 'sales','className': 'text-center', title: '销售额', useSorting: false },
             { propertyName: 'units','className': 'text-center', title: '销售量', useSorting: false }
         ]);
-        this.queryMarkets();
-        this.queryUserInfo();
+        // this.queryMarkets();
+        // this.queryUserInfo();
 
     },
 

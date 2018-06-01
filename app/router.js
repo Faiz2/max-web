@@ -18,6 +18,10 @@ Router.map(function() {
   });
   this.route('data-center');
   this.route('demo');
+  this.route('admin', function() {
+      this.route('data-center');
+    this.route('miantain-center');
+  });
 });
 
 export default Router;
