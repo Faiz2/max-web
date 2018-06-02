@@ -1,14 +1,11 @@
 import Controller from '@ember/controller';
-import styles from './styles';
 import { inject } from '@ember/service';
 import { later } from '@ember/runloop';
 import rsvp from 'rsvp';
-const { keys } = Object;
 
 export default Controller.extend({
     ajax: inject(),
     cookies: inject(),
-    styles,
     title: 'Pharbers 数据平台',
     output: false,
     startDate: new Date('2018-01'),
@@ -34,20 +31,6 @@ export default Controller.extend({
     queryData(parameters) {
         this.set('loading', true);
         this.store.queryMultipleObject('data-center', parameters).
-            then((resolve) => {
-                this.set('loading', false);
-                this.set('model', resolve);
-            }, (reject) => {
-                this.set('loading', false);
-                this.set('model', null);
-                this.set('error', true);
-                this.set('errorMessage', '查询超时，请重新查询！');
-            })
-        // this.set('model', this.store.queryMultipleObject('data-center', parameters))
-    },
-    queryData(parameters) {
-        this.set('loading', true);
-        this.store.queryMultipleObject('maintain-center', parameters).
             then((resolve) => {
                 this.set('loading', false);
                 this.set('model', resolve);
@@ -123,7 +106,6 @@ export default Controller.extend({
         // this.queryUserInfo();
 
     },
-
     actions: {
         search() {
             let market = $('select[name="markets"] :selected').val() || "All"
@@ -209,16 +191,6 @@ export default Controller.extend({
             } else if (date.getFullYear()<start_date.getFullYear()) {
                 this.set('outputStartData',date)
             }
-        },
-        logut() {
-            let cookies = this.get('cookies')
-            keys(this.get('cookies').read()).forEach(item => {
-                window.console.info(item);
-                this.get('cookies').clear(item, {path:'/'})
-            });
-            later(this, () => {
-                window.location = "/";
-            }, 1000)
         }
     }
 });

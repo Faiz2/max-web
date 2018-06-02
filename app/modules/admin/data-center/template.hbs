@@ -1,59 +1,79 @@
 <div local-class="wrapper-content">
     <p local-class="content-title">
         <p>
-            <span class="glyphicon glyphicon-th"></span>&nbsp;运维中心</p>
+            <span class="glyphicon glyphicon-th"></span>&nbsp;数据工具</p>
     </p>
     <div local-class="content-detail">
         <div local-class="detail-choosebar">
             <div local-class="choosebar-content choosebar-left">
-                <span local-class="select-title">搜索</span>
-                <input type="text" name="" value="" placeholder="请输入用户名">
-            </div>
-
-        </div>
-
-        <div local-class="detail-choosebar tain">
-            <div local-class="choosebar-content choosebar-left">
-                <span local-class="select-title">company A</span>
-                <div class="tain-act" style="width:12px;height:80px;border:1px solid #60b3ad; border-radius:3px 0 0 3px; background: #60b3ad; position:absolute; left:2%;"></div>
-                <div local-class="tain-right">
-                    <p class="mode">当前模式</p>
-                    <p class="set">设定</p>
+                <span local-class="select-title">市场</span>
+                <select local-class="choose-market" name="markets">
+                    <option value="All">全部</option>
+                    {{#each markets as |item|}}
+                        <option value={{item}}>{{item}}</option>
+                    {{/each}}
+                </select>
+                <span local-class="select-title">时间选择</span>
+                <div local-class="time-selects" class="input-group input-daterange">
+                    {{bootstrap-datepicker  changeMonth="changeStartMonth" value=startDate autoclose=true minViewMode=1 format="mm/yyyy" keyboardNavigation=true language="zh-CN"}}
+                    <span local-class="middle-text">to</span>
+                    {{bootstrap-datepicker name='endDate' changeMonth="changeEndMonth" value=endDate autoclose=true minViewMode=1 format="mm/yyyy" language="zh-CN"}}
                 </div>
+                <span>
+                    <button {{action 'search'}} local-class="btn-output" class="btn" type="button" name="btn-output">查询</button>
+                </span>
+                {{!-- <span>
+                    <button {{action 'outputDate'}} local-class="btn-output" class="btn" type="button" name="btn-output">导出</button>
+                </span> --}}
             </div>
-        </div>
-        <div local-class="detail-choosebar tain">
-            <div local-class="choosebar-content choosebar-left">
-                <span local-class="select-title">company B</span>
-                <div local-class="tain-right">
-                    <p class="mode">当前模式</p>
-                    <p class="set">设定</p>
-                </div>
-            </div>
-        </div>
-        <div local-class="detail-choosebar tain">
-            <div local-class="choosebar-content choosebar-left">
-                <span local-class="select-title">company C</span>
-                <div local-class="tain-right">
-                    <p class="mode">当前模式</p>
-                    <p class="set">设定</p>
-                </div>
-            </div>
-        </div>
-        <div local-class="detail-choosebar tain">
-            <div local-class="choosebar-content choosebar-left">
-                <span local-class="select-title">company D</span>
-                <div local-class="tain-right">
-                    <p class="mode">当前模式</p>
-                    <p class="set">设定</p>
-                </div>
+            <div local-class="choosebar-content choosebar-right">
+                {{#link-to "adddata.uploadfiles" }}
+                    <div local-class="btn-add-data">
+                        <div local-class="add-data-content left-section">
+                            +
+                        </div>
+                        <div local-class="add-data-content right-section">
+                            添加数据
+                        </div>
+                    </div>
+                {{/link-to}}
             </div>
         </div>
 
+        <div local-class="detail-list">
+            {{#models-table-server-paginated
+                data=model
+                columns=columns
+                filterQueryParameters=filterQueryParameters
+                useFilteringByColumns=false
+                useNumericPagination=true
+                showComponentFooter=false
+                showColumnsDropdown=false
+                showGlobalFilter=false
+                showPageSize=false as |mt|}}
 
+                {{mt.table}}
+                {{#mt.footer as |footer| }}
+                  {{footer.summary local-class='footer-summary'}}
+                  {{#footer.pagination-numeric local-class='footer-num' as |pn|}}
+                    <div role="toolbar" class="btn-toolbar pull-right">
+                      <div role="group" class="btn-group">
+                          {{#each pn.visiblePageNumbers as |page|}}
+                              {{#if page.isLink}}
+                                <button class="{{if page.isActive 'active' ''}} btn btn-default" {{action 'doPageSearch' page.label pn}}>{{page.label}}</button>
+                              {{else}}
+                                <button class="btn btn-default " disabled="disabled" {{action 'doPageSearch' page.label pn}}>{{page.label}}</button>
+                              {{/if}}
+                          {{/each}}
+                      </div>
+                    </div>
+                  {{/footer.pagination-numeric}}
+                {{/mt.footer}}
+            {{/models-table-server-paginated}}
+
+        </div>
     </div>
 </div>
-
 {{#if loading}}
     <div local-class="loading">
         <div local-class="loading-mask">&nbsp;</div>
