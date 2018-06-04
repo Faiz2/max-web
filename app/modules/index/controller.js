@@ -33,6 +33,7 @@ export default Controller.extend({
                             this.get('cookies').write('user_token', response.result.user_token, {path:'/'});
                             this.get('webIm').login(response.result.uid, this.get('password'));
                             later(this, () => {
+                                // this.transitionToRoute('data-center');
                                 window.location = 'data-center';
                             }, 1000)
                         } else {
