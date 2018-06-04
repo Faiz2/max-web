@@ -1,4 +1,4 @@
-{{nav-bar title=title isCenter=false isShow=false }}
+{{nav-bar title="Pharbers 数据平台" isCenter=false isShow=false }}
 <div local-class="wrapper-container">
     <div local-class="wrapper-menu">
         <div local-class="menu-user">
@@ -11,15 +11,9 @@
                     {{#dd.menu as |menu|}}
                         {{#menu.item}}
                             <a href="#" {{action 'logut' }}>登出</a>
-                            {{!-- {{#menu.link-to "index"}}登出{{/menu.link-to}} --}}
                         {{/menu.item}}
-                        {{!-- {{menu.divider}}
-                        {{#menu.item}}
-                            {{#menu.link-to "index"}}Home{{/menu.link-to}}
-                        {{/menu.item}} --}}
                     {{/dd.menu}}
                 {{/bs-dropdown}}
-                {{!-- <span class="glyphicon glyphicon-bell"> </span> --}}
             </div>
             <div local-class="user-status">
                 <span local-class="status-span"></span>
@@ -27,16 +21,28 @@
             </div>
         </div>
         <ul local-class="menu-tabs">
-            <li local-class="item-tab active">
+            {{!-- 第一种解决方案（临时）没有语义化，不好不好 --}}
+            {{#link-to "admin.data-center" local-class="item-tab active" tagName='li'}}
                 {{#link-to "admin.data-center"}}
-                    <span class="glyphicon glyphicon-th"></span>&nbsp;数据工具<br>
+                    <span class="glyphicon glyphicon-th"></span>&nbsp;数据工具
                 {{/link-to}}
-            </li>
-            <li local-class="item-tab">
-                {{#link-to "admin.miantain-center"}}
+            {{/link-to}}
+            {{#link-to "admin.maintain-center" local-class="item-tab" tagName='li'}}
+                {{#link-to "admin.maintain-center"}}
                     <span class="glyphicon glyphicon-th"></span>&nbsp;运维中心
                 {{/link-to}}
+            {{/link-to}}
+            {{!-- 第二种根据Ember的特性封装成组件 --}}
+            {{!-- <li local-class="item-tab active" {{action 'switchChoice' this}}>
+                {{#link-to "admin.data-center"}}
+                    <span class="glyphicon glyphicon-th"></span>&nbsp;数据工具
+                {{/link-to}}
             </li>
+            <li local-class="item-tab " {{action 'switchChoice' this}}>
+                {{#link-to "admin.maintain-center"}}
+                    <span class="glyphicon glyphicon-th"></span>&nbsp;运维中心
+                {{/link-to}}
+            </li> --}}
         </ul>
     </div>
     {{outlet}}
