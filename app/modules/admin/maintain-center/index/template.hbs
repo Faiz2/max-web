@@ -1,0 +1,61 @@
+
+<div local-class="wrapper-content">
+    <p local-class="content-title">
+        <p><span class="glyphicon glyphicon-th"></span>&nbsp;运维中心</p>
+    </p>
+    <div local-class="content-detail">
+        <div local-class="detail-choosebar">
+            <div local-class="choosebar-content choosebar-left">
+                <span local-class="select-title">搜索</span>
+                <input type="text" name="" value="" placeholder="请输入用户名">
+            </div>
+
+        </div>
+
+        <div local-class="detail-choosebar tain">
+            <div local-class="choosebar-content choosebar-left">
+            <span local-class="select-title"> company A</span>
+                <div class="tain-act" style="width:12px;height:80px;border:1px solid #60b3ad; border-radius:3px 0 0 3px; background: #60b3ad; position:absolute; left:2%;"></div>
+                <div local-class="tain-right">
+                    <p class="mode">当前模式</p>
+                    {{#link-to "admin.maintain-center.cleaning"}} <p class="set">设定</p> {{/link-to}} 
+                </div>
+            </div>
+        </div>
+        <div local-class="detail-choosebar tain">
+            <div local-class="choosebar-content choosebar-left">
+                <span local-class="select-title">company B</span>
+                <div local-class="tain-right">
+                    <p class="mode">当前模式</p>
+                    <p class="set">设定</p>
+                </div>
+            </div>
+        </div>
+        <div local-class="detail-choosebar tain">
+            <div local-class="choosebar-content choosebar-left">
+                <span local-class="select-title">company C</span>
+                <div local-class="tain-right">
+                    <p class="mode">当前模式</p>
+                    <p class="set">设定</p>
+                </div>
+            </div>
+        </div>
+        <div local-class="detail-choosebar tain">
+            <div local-class="choosebar-content choosebar-left">
+                <span local-class="select-title">company D</span>
+                <div local-class="tain-right">
+                    <p class="mode">当前模式</p>
+                    <p class="set">设定</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+{{outlet}}

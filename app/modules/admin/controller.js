@@ -5,6 +5,36 @@ const { keys } = Object;
 
 export default Controller.extend({
     cookies: inject(),
+    ajax: inject(),
+    queryUserInfo() {
+        let condition = {
+            condition: {
+                user_id: this.get('cookies').read('uid')
+            }
+        }
+        this.get('ajax').request('/api/user/detail', this.getAjaxOpt(condition)).
+            then(({status, result, error}) =>{
+                if (status === 'ok') {
+                    let {user: {screen_name, email}} = result
+                    this.set('fullName', screen_name)
+                    this.set('account', email)
+                }
+            }, () => {})
+    },
+    getAjaxOpt(data) {
+        return {
+            method: 'POST',
+            dataType: "json",
+            cache: false,
+            data: JSON.stringify(data),
+            contentType: "application/json,charset=utf-8",
+            Accpt: "application/json,charset=utf-8",
+        }
+    },
+    init() {
+        this._super(...arguments);
+        this.queryUserInfo();
+    },
     actions: {
         logut() {
             let cookies = this.get('cookies')
