@@ -45,6 +45,22 @@ export default Controller.extend({
             later(this, () => {
                 window.location = "/";
             }, 1000)
-        }
+        },
+        search() {
+            let market = $('select[name="markets"] :selected').val() || "All"
+            let startTime = this.formatDateyyyymm(this.get('startDate'))
+            let endTime = this.formatDateyyyymm(this.get('endDate'))
+            this.queryData({
+                condition: {
+                    user_id: this.get('cookies').read('uid'),
+                    market: market,
+                    startTime: startTime,
+                    endTime: endTime,
+                    currentPage: 1,
+                    pageSize: 10,
+                    mode: 'search'
+                }
+            })
+        },
     }
 });

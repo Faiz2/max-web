@@ -11,43 +11,59 @@
 
         </div>
 
-        <div local-class="detail-choosebar tain">
-            <div local-class="choosebar-content choosebar-left">
-                <span local-class="select-title">恩华（Nhwa）</span>
-                <div local-class="tain-act"></div>
-            </div>
-            <div local-class="tain-tab">
-                <p style="left:0;background:#ddd;color:#666;">清洗模块</p>
-                <p style="left:25%;">生成样本模块</p>
-                <p style="background:#ddd;color:#666;left:50%;">放大模块</p>
-                <p style="background:#ddd;left:75%;color:#666;">最终输出</p>
-                <form>
-
-                    <div class="">
-                        <span>生成模型：</span>
-                        <input type="text" name="" placeholder="恩华交付方法">
-                    </div>
-                    <div class="">
-                        <span>产品匹配表：</span>
-                        <input type="text" name="" placeholder="">
-                        <button type="button" name="button">替换</button>
-                    </div>
-                    <div class="">
-                        <span>医院匹配表：</span>
-                        <input type="text" name="" placeholder="">
-                        <button type="button" name="button">替换</button>
-                    </div>
 
 
-                </form>
-                <div local-class="tain-foot">
-                    <button type="button" name="button" local-class="cancel">取消</button>
-                    <button type="button" name="button" local-class="save">保存</button>
-                </div>
-            </div>
 
-        </div>
 
+<div local-class="detail-choosebar tain">
+    <div local-class="choosebar-content choosebar-left">
+        <span local-class="select-title">恩华（Nhwa）</span>
+        <div local-class="tain-act"></div>
     </div>
 </div>
+<div local-class="tain-tab">
+    {{#link-to "admin.maintain-center.cleaning"}}<p style="background:#ddd;color:#666;left:0;">清洗模块</p>{{/link-to}}
+    {{#link-to "admin.maintain-center.sample"}}<p style="background:#ddd;color:#666;left:25%;">生成样本模块</p>{{/link-to}}
+    {{#link-to "admin.maintain-center.enlarge"}}<p style="background:#ddd;color:#666;left:50%;">放大模块</p>{{/link-to}}
+    {{#link-to "admin.maintain-center.output"}}<p style="left:75%;">最终输出</p>{{/link-to}}
+    <form>
+        <div class="">
+            <span>生成模型：</span>
+            <input type="text" name="" placeholder="恩华交付方法">
+        </div>
+        <div class="">
+            <span>产品匹配表：</span>
+            <input type="text" name="" placeholder="">
+            <button type="button" name="button">替换</button>
+        </div>
+        <div class="">
+            <span>医院匹配表：</span>
+            <input type="text" name="" placeholder="">
+            <button type="button" name="button">替换</button>
+        </div>
+    </form>
+    <div local-class="tain-foot">
+        <button type="button" name="button" local-class="cancel">取消</button>
+        {{#bs-button local-class="save" onClick=(action (mut modal3) true)}}保存{{/bs-button}}
+    </div>
+</div>
+</div>
+</div>
+
+{{#bs-modal fade=false open=modal3 onHidden=(action (mut modal3) false) as |modal|}}
+{{#modal.header}}
+<h4 class="modal-title">
+提示
+</h4>
+{{/modal.header}}
+{{#modal.body}}
+<p>xxxxx,将会对xxxx产生影响，</p>
+<p>是否确认修改？</p>
+{{/modal.body}}
+{{#modal.footer}}
+{{#bs-button onClick=(action modal.close)}}取消{{/bs-button}}
+{{!-- {{#bs-button type="danger"}}Delete{{/bs-button}} --}}
+{{#bs-button type="success" onClick=(action modal.submit)}}确认{{/bs-button}}
+{{/modal.footer}}
+{{/bs-modal}}
 {{outlet}}
