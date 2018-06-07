@@ -1,4 +1,4 @@
-<div local-class="wrapper-content">
+<div local-class="wrapper-content" >
     <p local-class="content-title">
         <p><span class="glyphicon glyphicon-th"></span>&nbsp;运维中心</p>
     </p>
@@ -18,23 +18,68 @@
             </div>
         </div>
         <div local-class="tain-tab">
-            <p style="left:0;">清洗模块</p>
-            {{#link-to "admin.maintain-center.sample"}}<p style="background:#ddd;color:#666;left:25%;">生成样本模块</p>{{/link-to}}
-            {{#link-to "admin.maintain-center.enlarge"}}<p style="background:#ddd;color:#666;left:50%;">放大模块</p>{{/link-to}}
-            {{#link-to "admin.maintain-center.output"}}<p style="background:#ddd;left:75%;color:#666;">最终输出</p>{{/link-to}}
+                <div class="tain-tab-two">
+                    <p style="left:0;">清洗模块</p>
+                    {{#link-to "admin.maintain-center.sample"}}<p style="background:#ddd;color:#666;left:25%;">生成样本模块</p>{{/link-to}}
+                    {{#link-to "admin.maintain-center.enlarge"}}<p style="background:#ddd;color:#666;left:50%;">放大模块</p>{{/link-to}}
+                    {{#link-to "admin.maintain-center.output"}}<p style="background:#ddd;left:75%;color:#666;">最终输出</p>{{/link-to}}
+                </div>
+
             <form>
                 <div class="">
                     <span>清洗模型：</span>
                     <input type="text" name="" placeholder="nhwa清洗方法">
                 </div>
                 <div class="">
-                    <span>匹&nbsp;配&nbsp;表&nbsp;</span>
+                    <span>匹&nbsp;配&nbsp;表&nbsp;：</span>
                     <input type="text" name="" placeholder="Nhwa_ProductMatchTable_20180502.xlsx">
-                    <button type="button" name="button" {{action 'switch'}} >替换</button>
+                    <button type="button" name="button" {{action 'switch'}} >替换1</button>
                 </div>
+                <div class="">
+                    <span>匹&nbsp;配&nbsp;表&nbsp;：</span>
+                    <input type="text" name="" placeholder="Nhwa_ProductMatchTable_20180502.xlsx">
+                    <button type="button" name="button" {{action 'switch'}} >替换2</button>
+                </div>
+                <div class="">
+                    <span>匹&nbsp;配&nbsp;表&nbsp;：</span>
+                    <input type="text" name="" placeholder="Nhwa_ProductMatchTable_20180502.xlsx">
+                    <button type="button" name="button" {{action 'switch'}} >替换3</button>
+                </div>
+                <div class="">
+                    <span>匹&nbsp;配&nbsp;表&nbsp;：</span>
+                    <input type="text" name="" placeholder="Nhwa_ProductMatchTable_20180502.xlsx">
+                    <button type="button" name="button" {{action 'switch'}} >替换1</button>
+                </div>
+                <div class="">
+                    <span>匹&nbsp;配&nbsp;表&nbsp;：</span>
+                    <input type="text" name="" placeholder="Nhwa_ProductMatchTable_20180502.xlsx">
+                    <button type="button" name="button" {{action 'switch'}} >替换2</button>
+                </div>
+                <div class="">
+                    <span>匹&nbsp;配&nbsp;表&nbsp;：</span>
+                    <input type="text" name="" placeholder="Nhwa_ProductMatchTable_20180502.xlsx">
+                    <button type="button" name="button" {{action 'switch'}} >替换3</button>
+                </div>
+                <div class="">
+                    <span>匹&nbsp;配&nbsp;表&nbsp;：</span>
+                    <input type="text" name="" placeholder="Nhwa_ProductMatchTable_20180502.xlsx">
+                    <button type="button" name="button" {{action 'switch'}} >替换1</button>
+                </div>
+                <div class="">
+                    <span>匹&nbsp;配&nbsp;表&nbsp;：</span>
+                    <input type="text" name="" placeholder="Nhwa_ProductMatchTable_20180502.xlsx">
+                    <button type="button" name="button" {{action 'switch'}} >替换2</button>
+                </div>
+                <div class="">
+                    <span>匹&nbsp;配&nbsp;表&nbsp;：</span>
+                    <input type="text" name="" placeholder="Nhwa_ProductMatchTable_20180502.xlsx">
+                    <button type="button" name="button" {{action 'switch'}} >替换3</button>
+                </div>
+
+
             </form>
             <div local-class="tain-foot">
-                <button type="button" name="button" local-class="cancel">取消</button>
+                <button type="button" name="button" local-class="cancel" style="color:#666;">{{#link-to "admin.maintain-center.index"}}取消{{/link-to}}</button>
                 {{#bs-button local-class="save" onClick=(action (mut modal3) true)}}保存{{/bs-button}}
             </div>
         </div>
