@@ -9,5 +9,10 @@ export default Controller.extend({
                 this.set('isShow', false);
             }, 3000)
         },
+    },
+    willRender(){
+        $getJSON('/drafts').then(data => {
+            this.set('drafts',data);
+        });
     }
 });
