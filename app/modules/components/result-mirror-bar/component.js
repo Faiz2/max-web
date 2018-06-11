@@ -13,7 +13,13 @@ export default Component.extend({
                 tooltip: {
                     show: true,
                     trigger: 'axis',
-                    formatter: '{b}<br/>{a}: {c}（Mil）',
+                    formatter: function(v){
+                        let tip_content = '区域：'+ v[0].data.area +'<br/>';
+                        tip_content += '市场销量：'+ v[0].data.value +'(Mil)' +'<br/>';
+                        tip_content += '产品销量：'+ v[0].data.productSales +'(Mil)'  +'<br/>';
+                        tip_content += '份额：'+ (parseFloat(v[0].data.percentage) * 100).toFixed(2) +'%';
+                        return tip_content;
+                    },
                     axisPointer: {
                         type: 'shadow',
                     }
@@ -121,7 +127,7 @@ export default Component.extend({
                             },
 
                         },
-                        data: ["北京","上海","深圳","广州","南京","湖南", "河北", "白城", "泰州", "武汉"],//areaData,
+                        data: [],//areaData,
                     },
                     {
                         gridIndex: 1,
@@ -143,7 +149,7 @@ export default Component.extend({
                             },
 
                         },
-                        data: ["北京","上海","深圳","广州","南京","湖南", "河北", "白城", "泰州", "武汉"],//areaData//
+                        data: [],//areaData//
                     },
                     {
                         gridIndex: 2,
@@ -164,7 +170,7 @@ export default Component.extend({
                             },
 
                         },
-                        data: ["北京","上海","深圳","广州","南京","湖南", "河北", "白城", "泰州", "武汉"]//areaData,
+                        data: []//areaData,
                     }
                 ]
             },
@@ -198,7 +204,7 @@ export default Component.extend({
                                     color: '#08C7AE',
                                 },
                             },
-                            data: [102, 201, 301, 40, 502, 153, 70, 85, 90, 100]//lastData,
+                            data: []//lastData,
                         },
                         {
                             name: '本期',
@@ -229,7 +235,7 @@ export default Component.extend({
                                     color: '#08C7AE',
                                 },
                             },
-                            data: [320, 50, 32, 402, 506, 321, 750, 80, 625, 103]//curData,
+                            data: []//curData,
                         }
                     ]
                 }

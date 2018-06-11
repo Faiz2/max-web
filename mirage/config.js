@@ -121,4 +121,139 @@ export default function() {
             status: "ok"
         }
     })
+
+    this.post('/query/sample/finish', (schema, request) => {
+        let result = {
+            result: [
+                {
+                    'date': '2018-01',
+                    'province': '北京',
+                    'market': '降压药',
+                    'product': '巴拉巴拉巴拉',
+                    'sales': '100',
+                    'units': '20'
+                },
+                {
+                    'date': '2018-02',
+                    'province': '北京',
+                    'market': '降压药',
+                    'product': '巴拉巴拉巴拉',
+                    'sales': '100',
+                    'units': '20'
+                },
+                {
+                    'date': '2018-03',
+                    'province': '北京',
+                    'market': '降压药',
+                    'product': '巴拉巴拉巴拉',
+                    'sales': '100',
+                    'units': '20'
+                },
+                {
+                    'date': '2018-04',
+                    'province': '北京',
+                    'market': '降压药',
+                    'product': '巴拉巴拉巴拉',
+                    'sales': '100',
+                    'units': '20'
+                },
+                {
+                    'date': '2018-05',
+                    'province': '北京',
+                    'market': '降压药',
+                    'product': '巴拉巴拉巴拉',
+                    'sales': '100',
+                    'units': '20'
+                },
+                {
+                    'date': '2018-06',
+                    'province': '北京',
+                    'market': '降压药',
+                    'product': '巴拉巴拉巴拉',
+                    'sales': '100',
+                    'units': '20'
+                },
+                {
+                    'date': '2018-07',
+                    'province': '北京',
+                    'market': '降压药',
+                    'product': '巴拉巴拉巴拉',
+                    'sales': '100',
+                    'units': '20'
+                },
+                {
+                    'date': '2018-08',
+                    'province': '北京',
+                    'market': '降压药',
+                    'product': '巴拉巴拉巴拉',
+                    'sales': '100',
+                    'units': '20'
+                },
+                {
+                    'date': '2018-09',
+                    'province': '北京',
+                    'market': '降压药',
+                    'product': '巴拉巴拉巴拉',
+                    'sales': '100',
+                    'units': '20'
+                },
+                {
+                    'date': '2018-10',
+                    'province': '北京',
+                    'market': '降压药',
+                    'product': '巴拉巴拉巴拉',
+                    'sales': '100',
+                    'units': '20'
+                },
+                {
+                    'date': '2018-11',
+                    'province': '北京',
+                    'market': '降压药',
+                    'product': '巴拉巴拉巴拉',
+                    'sales': '100',
+                    'units': '20'
+                },
+                {
+                    'date': '2018-12',
+                    'province': '北京',
+                    'market': '降压药',
+                    'product': '巴拉巴拉巴拉',
+                    'sales': '100',
+                    'units': '20'
+                }
+
+            ],
+            status: 'ok'
+        }
+        return result
+    });
+
+    this.post('query/history', (schema, request) => {
+        let ids = Array.from(new Array(10),(val,index)=>index + 1);
+        let r = ids.map((ele, index, array) => {
+            return {
+                'id': ele,
+                'type': 'dataCenter',
+                'attributes': {
+                    'date': '2018-0' + ele,
+                    'province': '北京',
+                    'market': '降压药',
+                    'product': '巴拉巴拉巴拉',
+                    'sales': '100',
+                    'units': '20'
+                }
+            }
+        });
+        let result = {
+            result: {
+                data: r,
+                page: {
+                    itemsCount: 100,
+                    pagesCount: 10
+                }
+            },
+            status: 'ok'
+        }
+        return result;
+    });
 }

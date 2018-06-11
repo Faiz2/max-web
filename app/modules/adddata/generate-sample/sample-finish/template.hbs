@@ -5,16 +5,16 @@
         <div local-class="result-choosebar">
             <div local-class="choosebar-content choosebar-left">
                 <span local-class="select-title">市场</span>
-                <select local-class="choose-select choose-market" name="">
-                    <option>Markone</option>
-                    <option>Mark2</option>
-                    <option>Mark3</option>
+                <select local-class="choose-select choose-market" name="markets" {{action 'queryAll' on='change'}}>
+                    {{#each markets as |item|}}
+                        <option value={{item}}>{{item}}</option>
+                    {{/each}}
                 </select>
                 <span local-class="select-title">月份</span>
-                <select local-class="choose-select choose-month" name="">
-                    <option>04/2017</option>
-                    <option>05/2017</option>
-                    <option>06/2017</option>
+                <select local-class="choose-select choose-month" name="years" {{action 'queryAll' on='change'}}>
+                    {{#each years as |item|}}
+                        <option value={{item}}>{{item}}</option>
+                    {{/each}}
                 </select>
                 <button local-class="btn-default-max" type="button" name="button">导出</button>
             </div>
@@ -26,98 +26,82 @@
             </div>
         </div>
         <div local-class="result-item hospital-sample">
-            <p local-class="item-title">INF 市场 医院样本数量</p>
+            <p local-class="item-title">{{selectedMarket}} 市场 医院样本数量</p>
             <div local-class="item-legend">
                 <div local-class="legend-left">
                     <span></span><span local-class="text">本月样本数</span><span>---</span><span local-class="text">去年各月样本数趋势</span>
                 </div>
                 <div local-class="legend-right">
                     <div local-class="legend-right-left">
-                        <p>-5%</p>
+                        <p local-class={{if (or (gt computeHospitalNumber 5) (lt computeHospitalNumber -5)) "error" "success"}}>{{computeHospitalNumber}}%</p>
                         <p>样本误差率</p>
                     </div>
                     <div local-class="legend-right-center">
-                        <p>912个</p>
+                        <p>{{hospitalNumber}}个</p>
                         <p>本月样本数</p>
                     </div>
                     <div local-class="legend-right-right">
-                        <p>960个</p>
+                        <p>{{lastYearHospitalNumber}}个</p>
                         <p>去年同月样本数</p>
                     </div>
                 </div>
             </div>
             <div local-class="item-chart">
-             {{sample-line-and-bar chartsName="医院样本" eid="sample-hospital-number-line-and-bar"}}
+             {{sample-line-and-bar chartsName="医院样本" eid="sample-hospital-number-line-and-bar" option=hospitalOption}}
             </div>
         </div>
         <div local-class="result-item prod-sample">
-            <p local-class="item-title">INF 市场 产品样本数量</p>
+            <p local-class="item-title">{{selectedMarket}} 市场 产品样本数量</p>
             <div local-class="item-legend">
                 <div local-class="legend-left">
                     <span></span><span local-class="text">本月样本数</span><span>---</span><span local-class="text">去年各月样本数趋势</span>
                 </div>
                 <div local-class="legend-right">
                     <div local-class="legend-right-left">
-                        <p>-5%</p>
+                        <p local-class={{if (or (gt computeProductNumber 5) (lt computeProductNumber -5)) "error" "success"}}>{{computeProductNumber}}%</p>
                         <p>样本误差率</p>
                     </div>
                     <div local-class="legend-right-center">
-                        <p>912个</p>
+                        <p>{{productNumber}}个</p>
                         <p>本月样本数</p>
                     </div>
                     <div local-class="legend-right-right">
-                        <p>960个</p>
+                        <p>{{lastYearProductNumber}}个</p>
                         <p>去年同月样本数</p>
                     </div>
                 </div>
             </div>
             <div local-class="item-chart">
-             {{sample-line-and-bar eid="sample-product-number-line-and-bar"}}
+             {{sample-line-and-bar eid="sample-product-number-line-and-bar" option=productOption}}
             </div>
         </div>
         <div local-class="result-item sample-sales">
-            <p local-class="item-title">INF 市场 样本销售额</p>
+            <p local-class="item-title">{{selectedMarket}} 市场 样本销售额</p>
             <div local-class="item-legend">
                 <div local-class="legend-left">
                     <span></span><span local-class="text">本月样本数</span><span>---</span><span local-class="text">去年各月样本数趋势</span>
                 </div>
                 <div local-class="legend-right">
                     <div local-class="legend-right-left">
-                        <p>-5%</p>
+                        <p local-class={{if (or (gt computeSalesNumber 5) (lt computeSalesNumber -5)) "error" "success"}}>{{computeSalesNumber}}%</p>
                         <p>样本误差率</p>
                     </div>
                     <div local-class="legend-right-center">
-                        <p>912个</p>
+                        <p>{{salesNumber}}(Mil)</p>
                         <p>本月样本数</p>
                     </div>
                     <div local-class="legend-right-right">
-                        <p>960个</p>
+                        <p>{{lastYearSalesNumber}}(Mil)</p>
                         <p>去年同月样本数</p>
                     </div>
                 </div>
             </div>
             <div local-class="item-chart">
-             {{sample-line-and-bar eid="sample-sales-number-line-and-bar"}}
+             {{sample-line-and-bar eid="sample-sales-number-line-and-bar" option=salesOption}}
             </div>
         </div>
         <div local-class="result-item hospital-list">
-            <p local-class="item-title">INF 市场 样本销售额</p>
-            <div local-class="item-legend">
-                <div local-class="legend-right">
-                    <div local-class="legend-right-left">
-                        <p>-5%</p>
-                        <p>样本误差率</p>
-                    </div>
-                    <div local-class="legend-right-center">
-                        <p>912个</p>
-                        <p>本月样本数</p>
-                    </div>
-                    <div local-class="legend-right-right">
-                        <p>960个</p>
-                        <p>去年同月样本数</p>
-                    </div>
-                </div>
-            </div>
+            <p local-class="item-title">样本医院列表</p>
             <div local-class="detail-list">
                 {{#models-table data=model columns=columns useFilteringByColumns=false showGlobalFilter=false filterQueryParameters=false
                 showComponentFooter=true showColumnsDropdown=false useFilteringByColumns=false showGlobalFilter=false useNumericPagination=true
@@ -133,8 +117,14 @@
     </div>
 </div>
 
-{{#bs-modal fade=false backdropClose=false open=uploadAgain onHidden=(action (mut uploadAgain) false) as |modal|}}
-    {{#modal.header}}
+{{!-- 重新上传文件 --}}
+{{#bs-modal
+        fade=false
+        backdropClose=false
+        keyboard=false
+        open=uploadAgain
+        onHidden=(action (mut uploadAgain) false) as |modal|}}
+    {{#modal.header closeButton=false}}
         <h4 class="modal-title">
             提示
         </h4>
@@ -144,8 +134,29 @@
     {{/modal.body}}
     {{#modal.footer}}
         {{#bs-button onClick=(action modal.close)}}取消{{/bs-button}}
-        {{#link-to "adddata.uploadfiles"}}
+        {{#bs-button onClick=(action 'uploadFileAgain' modal)}}重新上传{{/bs-button}}
+        {{!-- {{#link-to "adddata.uploadfiles"}}
             {{#bs-button}}重新上传{{/bs-button}}
-        {{/link-to}}
+        {{/link-to}} --}}
+    {{/modal.footer}}
+{{/bs-modal}}
+
+{{!-- 查询时出现错误 --}}
+{{#bs-modal
+        fade=false
+        backdropClose=false
+        keyboard=false
+        open=sampleCheckError
+        onHidden=(action (mut sampleCheckError) false) as |modal|}}
+    {{#modal.header closeButton=false}}
+        <h4 class="modal-title">
+            提示
+        </h4>
+    {{/modal.header}}
+    {{#modal.body}}
+        <p>{{errorMessage}}</p>
+    {{/modal.body}}
+    {{#modal.footer}}
+        {{#bs-button onClick=(action modal.close)}}关闭{{/bs-button}}
     {{/modal.footer}}
 {{/bs-modal}}

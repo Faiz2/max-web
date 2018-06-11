@@ -26,8 +26,8 @@ export default Service.extend({
             user: name,
             pwd: password,
             success: function(token) {
-              that.get('cookies').write('webim_token', token.access_token);
-              that.get('cookies').write('webim_user', token.user.username);
+              that.get('cookies').write('webim_token', token.access_token, {path:'/'});
+              that.get('cookies').write('webim_user', token.user.username, {path:'/'});
             },
             error: function(m){window.console.error("Error = " + m)}
         };

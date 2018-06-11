@@ -6,6 +6,7 @@ import MaxCalculateObject from '../../common/xmpp-message-object/MaxCalculateMes
 
 export default Component.extend({
     ajax: inject(),
+    cookies: inject(),
     MaxCalculateObject,
     progress: inject('circle-progress-serivce'),
     circleProgressOption: computed('progress.option', function() {
@@ -22,22 +23,21 @@ export default Component.extend({
         }
     },
     actions: {
-        // calc-max 中的开始计算按钮
         startCalcMAX() {
             let condition = {
                 "condition": {
-                    "job_id": "5adfeb4b52d78f67585c9d84",
-                    "user_id": "5ad871fe52d78f494e56e772",
-                    "company_id": "5ad871fd52d78f494e56e771",
+                    "job_id": this.get('cookies').read('job_id'),
+                    "user_id": this.get('cookies').read('uid'),
                     "args": {
-                        "panel": "asdsadas"
+                        "panel": this.get('cookies').read('panel')
                     }
                 }
             };
             new rsvp.Promise((resolve, reject) => {
-                return this.get('ajax').request('api/job/calc',
+                return this.get('ajax').request('api/max/calc',
                     this.getAjaxOpt(condition)).then((response) => {
                         window.console.info(response);
+                        MaxCalculateObject.set('isShowCalcProgress', true);
                         return resolve({ resule: response });
                     },
                         () => {

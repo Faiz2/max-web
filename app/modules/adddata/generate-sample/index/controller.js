@@ -7,12 +7,15 @@ import styles from '../styles';
 
 export default Controller.extend({
     ajax: inject(),
+    cookies: inject(),
     progress: inject('circle-progress-serivce'),
-    circleProgressOption: computed('progress.option', function() {
-        return this.get('progress').getOption();
-    }),
     styles,
     SampleObject,
+    init() {
+        this._super(...arguments);
+        this.set('cpafilename', this.get('cookies').read('filecpa'))
+        this.set('gycxfilename', this.get('cookies').read('filegycx'))
+    },
     getAjaxOpt(data) {
         return {
             method: 'POST',
@@ -27,20 +30,19 @@ export default Controller.extend({
         startParsingFile: function() {
             let condition = {
                 "condition": {
-                    "job_id": "5adfeb4b52d78f67585c9d84",
-                    "user_id": "5ad871fe52d78f494e56e772",
-                    "company_id": "5ad871fd52d78f494e56e771",
+                    "job_id": this.get('cookies').read('job_id'),
                     "args": {
-                        "company": "nhwa",
-                        "cpa": "cpa.xlsx",
-                        "gycx": "gycx.xlsx"
+                        "cpa": this.get('cookies').read('cpahash'),
+                        "gycx": this.get('cookies').read('gycxhash') || ''
                     }
                 }
             };
             new rsvp.Promise((resolve, reject) => {
-                return this.get('ajax').request('api/job/ymCalc',
+                return this.get('ajax').request('api/max/ymCalc',
                     this.getAjaxOpt(condition)).then((response) => {
                         window.console.info(response);
+                        SampleObject.set('isShowProgress', true);
+                        SampleObject.set('calcYearsProgress', true);
                         return resolve({ resule: response });
                     },
                         () => {
@@ -51,39 +53,53 @@ export default Controller.extend({
         },
         startGenerateSample: function() {
             // TODO : 未添加异常处理
-            let years = this.get('SampleObject').years.filterBy('isChecked')
+            let years = this.get('SampleObject').yearsArrayData.filterBy('isChecked')
                 .map((elt, i, array) => {
                     return elt.year
                 });
-            let condition = {
-                "condition": {
-                    "job_id": "5adfeb4b52d78f67585c9d84",
-                    "user_id": "5ad871fe52d78f494e56e772",
-                    "company_id": "5ad871fd52d78f494e56e771",
-                    "args": {
-                        "company": "nhwa",
-                        "cpa": "cpa.xlsx",
-                        "gycx": "gycx.xlsx",
-                        "ym":years.toString()
-                    }
-                }
-            };
-
-            new rsvp.Promise((resolve, reject) => {
-                return this.get('ajax').request('api/job/panel',
-                    this.getAjaxOpt(condition)).then((response) => {
-                        window.console.info(response);
-                        return resolve({ resule: response });
-                    },
-                        () => {
-                            return reject("Access Error");
+            if (years.length === 0) {
+                // alert('未选择时间');
+                this.set('yearsNullError', true);
+            } else {
+                let condition = {
+                    "condition": {
+                        "job_id": this.get('cookies').read('job_id'),
+                        "args": {
+                            "cpa": this.get('cookies').read('cpahash'),
+                            "gycx": this.get('cookies').read('gycxhash') || '',
+                            "yms":years.join('#')
                         }
-                    );
-            });
+                    }
+                };
+                //
+                new rsvp.Promise((resolve, reject) => {
+                    return this.get('ajax').request('api/max/panel',
+                        this.getAjaxOpt(condition)).then((response) => {
+                            window.console.info(response);
+                            SampleObject.set('fileParsingSuccess', false);
+                            SampleObject.set('calcYearsProgress', false);
+                            SampleObject.set('calcPanelProgress', true);
+                            return resolve({ resule: response });
+                        },
+                            () => {
+                                return reject("Access Error");
+                            }
+                        );
+                });
+            }
         },
         // 未显示要计算的月份
         cantFindMonth: function() {
-            this.set('SampleObject.cantFindMonth', true);
+            SampleObject.set('cantFindMonth', true);
+        },
+        uploadFileAgain(modal) {
+            modal.close()
+            SampleObject.set('isShowProgress', false);
+            SampleObject.set('fileParsingSuccess', false);
+            SampleObject.set('calcYearsProgress', false);
+            SampleObject.set('calcPanelProgress', false);
+            this.transitionToRoute('adddata.uploadfiles')
+            // window.location = 'uploadfiles'
         }
     }
 });

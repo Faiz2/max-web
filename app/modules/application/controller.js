@@ -20,7 +20,11 @@ export default Controller.extend(XmppMessageMixin, {
         } else {
             later(this, function() {
                 this.set('webImErrorMessage', message);
-                // this.transitionToRoute('/');
+                let cookies = this.get('cookies')
+                keys(cookies.read()).forEach(item => {
+                    cookies.clear(item)
+                });
+                this.transitionToRoute('/');
             }, 500);
         }
     },

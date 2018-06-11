@@ -1,12 +1,15 @@
 {{outlet}}
 <div local-class="step-content-wrapper">
     <div local-class="generate-sample-content">
-        <p local-class="explain-text">将对你本次上传的源文件</p>
+        <p local-class="explain-text">将对你本次上传的原文件，进行清洗、过滤后，生成本次计算的样本。</p>
         <p local-class="file-name">
-            <span>CAP：{{if filenameone filenameone "文件名"}}{{filenameone}}</span>
-            <span>GYCX： {{if filenametwo filenametwo "文件名"}}</span>
+            <span local-class="tip-text">CAP : </span>
+            <span local-class="txt">&nbsp;&nbsp;{{cpafilename}}</span>
         </p>
-        <p local-class="explain-text">进行清洗、过滤后，生成本次计算的样本</p>
+        <p local-class="file-name">
+            <span local-class="tip-text">GYCX : </span>
+            <span local-class="txt">&nbsp;&nbsp;{{gycxfilename}}</span>
+        </p>
         {{#unless SampleObject.isShowProgress}}
             <div local-class="btn-start" {{action "startParsingFile"}}>
                 <div local-class="btn-start-content">
@@ -14,7 +17,12 @@
                 </div>
             </div>
         {{else }}
-            {{circle-progress option=circleProgressOption eid="circle-progress"}}
+            {{#if SampleObject.calcYearsProgress}}
+                {{circle-progress option=SampleObject.yearsProgressData eid="circle-years-progress"}}
+            {{/if}}
+            {{#if SampleObject.calcPanelProgress}}
+                {{circle-progress option=SampleObject.panelProgressData eid="circle-panel-progress"}}
+            {{/if}}
         {{/unless}}
         {{#unless SampleObject.isShowProgress}}
             <p local-class="reupload">
@@ -26,8 +34,14 @@
     </div>
 </div>
 
-{{#bs-modal fade=false backdropClose=false open=uploadAgain onHidden=(action (mut uploadAgain) false) as |modal|}}
-    {{#modal.header}}
+{{!-- 重新上传文件弹框 --}}
+{{#bs-modal
+        fade=false
+        backdropClose=false
+        keyboard=false
+        open=uploadAgain
+        onHidden=(action (mut uploadAgain) false) as |modal|}}
+    {{#modal.header closeButton=false}}
         <h4 class="modal-title">
             提示
         </h4>
@@ -37,14 +51,18 @@
     {{/modal.body}}
     {{#modal.footer}}
         {{#bs-button onClick=(action modal.close)}}取消{{/bs-button}}
-        {{#link-to "adddata.uploadfiles"}}
-            {{#bs-button}}重新上传{{/bs-button}}
-        {{/link-to}}
+        {{#bs-button onClick=(action 'uploadFileAgain' modal)}}重新上传{{/bs-button}}
     {{/modal.footer}}
 {{/bs-modal}}
 
-{{#bs-modal fade=false open=SampleObject.progressRight backdropClose=false onHidden=(action (mut SampleObject.progressRight) false) as |modal|}}
-    {{#modal.header}}
+{{!-- 选择月份弹框 --}}
+{{#bs-modal
+        fade=false
+        open=SampleObject.fileParsingSuccess
+        keyboard=false
+        backdropClose=false
+        onHidden=(action (mut SampleObject.fileParsingSuccess) false) as |modal|}}
+    {{#modal.header closeButton=false}}
         <h4 class="modal-title">
             选择月份
         </h4>
@@ -52,7 +70,7 @@
     {{#modal.body}}
         <p>本次上传件中含以下几个月份，</p>
         <p>请选择要进行计算的月份：（可多选）</p>
-        {{#each SampleObject.years as |item|}}
+        {{#each SampleObject.yearsArrayData as |item|}}
             <label class="data-checkbox" for="{{item.year}}">
                 {{input type="checkbox" id=item.year name="year" checked=item.isChecked}}
                 <span class="checkbox-span"></span>{{item.year}}
@@ -65,8 +83,14 @@
     {{/modal.footer}}
 {{/bs-modal}}
 
-{{#bs-modal fade=false backdropClose=false open=SampleObject.progressWrong onHidden=(action (mut SampleObject.progressWrong) false) as |modal|}}
-    {{#modal.header}}
+{{!-- 文件解析错误弹框 --}}
+{{#bs-modal
+        fade=false
+        backdropClose=false
+        keyboard=false
+        open=SampleObject.fileParsingError
+        onHidden=(action (mut SampleObject.fileParsingError) false) as |modal|}}
+    {{#modal.header closeButton=false}}
         <h4 class="modal-title">
             提示
         </h4>
@@ -80,14 +104,19 @@
         <p>请检查原文件，并重新上传正确的原文件。</p>
     {{/modal.body}}
     {{#modal.footer}}
-        {{#link-to "adddata.uploadfiles"}}
-            {{#bs-button }}重新上传{{/bs-button}}
-        {{/link-to}}
+        {{#bs-button onClick=(action 'uploadFileAgain' modal)}}重新上传{{/bs-button}}
     {{/modal.footer}}
 {{/bs-modal}}
 
-{{#bs-modal fade=false backdropClose=false open=SampleObject.cantFindMonth onHidden=(action (mut SampleObject.cantFindMonth) false) as |modal|}}
-    {{#modal.header}}
+{{!-- 缺少数据弹框 --}}
+{{#bs-modal
+        fade=false
+        backdropClose=false
+        closeTitle=false
+        keyboard=false
+        open=SampleObject.cantFindMonth
+        onHidden=(action (mut SampleObject.cantFindMonth) false) as |modal|}}
+    {{#modal.header closeButton=false}}
         <h4 class="modal-title">
             未显示要计算的月份？
         </h4>
@@ -95,11 +124,40 @@
     {{#modal.body}}
         <p>您上传的文件可能月份有缺失，请重新检查文件，</p>
         <p>并重新上传。</p>
+        <p>&nbsp;</p>
+        <p>&nbsp;</p>
+        <p>&nbsp;</p>
+        <p>&nbsp;</p>
+        <p>&nbsp;</p>
     {{/modal.body}}
     {{#modal.footer}}
     {{#bs-button onClick=(action modal.close)}}返回选择{{/bs-button}}
-        {{#link-to "adddata.uploadfiles"}}
-            {{#bs-button }}重新上传{{/bs-button}}
-        {{/link-to}}
+    {{#bs-button onClick=(action 'uploadFileAgain' modal)}}重新上传{{/bs-button}}
+    {{/modal.footer}}
+{{/bs-modal}}
+
+{{!-- 未选中时间弹框 --}}
+{{#bs-modal
+        fade=false
+        backdropClose=false
+        keyboard=false
+        open=yearsNullError
+        onHidden=(action (mut yearsNullError) false) as |modal|}}
+    {{#modal.header closeButton=false}}
+        <h4 class="modal-title">
+            提示
+        </h4>
+    {{/modal.header}}
+    {{#modal.body}}
+        <div >未选择时间</div>
+        <p>&nbsp;</p>
+        <p>&nbsp;</p>
+        <p>&nbsp;</p>
+        <p>&nbsp;</p>
+        <p>&nbsp;</p>
+        <p>&nbsp;</p>
+    {{/modal.body}}
+    {{#modal.footer}}
+        {{#bs-button onClick=(action modal.close)}}关闭{{/bs-button}}
     {{/modal.footer}}
 {{/bs-modal}}
