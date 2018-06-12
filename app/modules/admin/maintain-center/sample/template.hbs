@@ -28,9 +28,25 @@
     <form>
         <div class="">
             <span>生成模型：</span>
-            <input type="text" name="" placeholder="恩华生成panel方法">
+            <input type="text" disabled="true" name="" placeholder="恩华生成panel方法">
         </div>
-        <div class="">
+        {{#each sample_sheets as |sheet|}}
+            <div class="">
+                <span style="display:inline-block;width:150px;overflow:hidden;height: 35px;">{{sheet.title}}</span>
+                {{!-- <input type="text" name="" placeholder={{}}> --}}
+                {{input type="text" disabled="true" name="" value="" placeholder=sheet.file_name}}
+                <button type="button" name="button">替换</button>
+            </div>
+        {{/each}}
+        {{#each sample_universe as |universe|}}
+            <div class="">
+                <span style="display:inline-block;width:150px;overflow:hidden;height: 35px;">{{universe.title}}</span>
+                {{!-- <input type="text" name="" placeholder={{}}> --}}
+                {{input type="text" disabled="true" name="" value="" placeholder=universe.file_name}}
+                <button type="button" name="button">替换</button>
+            </div>
+        {{/each}}
+        {{!-- <div class="">
             <span>市场定义表：</span>
             <input type="text" name="" placeholder="Nhwa_ProductMatchTable_20180502.xlsx">
             <button type="button" name="button">替换</button>
@@ -45,7 +61,7 @@
             <span>补充医院：</span>
             <input type="text" name="" placeholder="Nhwa_ProductMatchTable_20180502.xlsx">
             <button type="button" name="button">替换</button>
-        </div>
+        </div> --}}
 
     </form>
     <div local-class="tain-foot">

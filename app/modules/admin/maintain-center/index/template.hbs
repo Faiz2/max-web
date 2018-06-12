@@ -12,7 +12,19 @@
 
         </div>
 
+        {{#each model as |company| }}
         <div local-class="detail-choosebar tain">
+            <div local-class="choosebar-content choosebar-left">
+            <span local-class="select-title">{{company.company_name}}</span>
+                <div class="tain-act" style="width:12px;height:80px;border:1px solid #60b3ad; border-radius:3px 0 0 3px; background: #60b3ad; position:absolute; left:2%;"></div>
+                <div local-class="tain-right">
+                    <p class="mode" style="background:none; border:none;">当前模式</p>
+                    {{#link-to "admin.maintain-center.cleaning" }} <p class="set btn" style="color:#666;">设定</p> {{/link-to}}
+                </div>
+            </div>
+        </div>
+        {{/each}}
+        {{!--<div local-class="detail-choosebar tain">
             <div local-class="choosebar-content choosebar-left">
             <span local-class="select-title"> company A</span>
                 <div class="tain-act" style="width:12px;height:80px;border:1px solid #60b3ad; border-radius:3px 0 0 3px; background: #60b3ad; position:absolute; left:2%;"></div>
@@ -48,7 +60,7 @@
                     <p class="set">设定</p>
                 </div>
             </div>
-        </div>
+        </div> --}}
     </div>
 </div>
 {{#if isShow}}

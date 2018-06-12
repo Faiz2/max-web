@@ -27,13 +27,23 @@
     <form>
         <div class="">
             <span>生成模型：</span>
-            <input type="text" name="" placeholder="通用方法MAX1.0">
+            {{!-- <input type="text" name="" placeholder="通用方法MAX1.0"> --}}
+            {{input type="text" disabled="true" name="" value="" placeholder="通用方法MAX1.0"}}
         </div>
+        {{#each max_universe as |universe|}}
         <div class="">
+            <span>{{universe.title}}</span>
+            {{input type="text" disabled="true" name="" value="" placeholder=universe.file_name}}
+
+                {{!-- <input type="text" name="" placeholder="Nhwa_UniverseMatchTable_20180502.xlsx"> --}}
+            <button type="button" name="button">替换</button>
+        </div>
+        {{/each}}
+        {{!-- <div class="">
             <span>universe表：</span>
                 <input type="text" name="" placeholder="Nhwa_UniverseMatchTable_20180502.xlsx">
             <button type="button" name="button">替换</button>
-        </div>
+        </div> --}}
     </form>
     <div local-class="tain-foot">
         <button type="button" name="button" local-class="cancel">取消</button>

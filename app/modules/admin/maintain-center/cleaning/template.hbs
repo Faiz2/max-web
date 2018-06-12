@@ -13,7 +13,7 @@
 
         <div local-class="detail-choosebar tain">
             <div local-class="choosebar-content choosebar-left">
-                <span local-class="select-title">恩华（Nhwa）</span>
+                <span local-class="select-title">恩华（Nhwa）{{model.company_name}}</span>
                 <div local-class="tain-act"></div>
             </div>
         </div>
@@ -28,14 +28,22 @@
             <form>
                 <div class="">
                     <span>清洗模型：</span>
-                    <input type="text" name="" placeholder="nhwa清洗方法">
+                    <input type="text" name="" disabled="true" placeholder="nhwa清洗方法">
                 </div>
-                <div class="">
+                {{!-- <div class="">
                     <span>匹&nbsp;配&nbsp;表&nbsp;：</span>
                     <input type="text" name="" placeholder="Nhwa_ProductMatchTable_20180502.xlsx">
                     <button type="button" name="button" {{action 'switch'}} >替换1</button>
-                </div>
-                <div class="">
+                </div> --}}
+                {{#each match_tabels as |table|}}
+                    <div class="">
+                        <span>匹&nbsp;配&nbsp;表&nbsp;：</span>
+                        {{!-- <input type="text" name="" placeholder="Nhwa_ProductMatchTable_20180502.xlsx"> --}}
+                        {{input type="text" placeholder=table.file_name }}
+                        <button type="button" name="button" {{action 'switch'}} >替换</button>
+                    </div>
+                {{/each}}
+                {{!-- <div class="">
                     <span>匹&nbsp;配&nbsp;表&nbsp;：</span>
                     <input type="text" name="" placeholder="Nhwa_ProductMatchTable_20180502.xlsx">
                     <button type="button" name="button" {{action 'switch'}} >替换2</button>
@@ -74,7 +82,7 @@
                     <span>匹&nbsp;配&nbsp;表&nbsp;：</span>
                     <input type="text" name="" placeholder="Nhwa_ProductMatchTable_20180502.xlsx">
                     <button type="button" name="button" {{action 'switch'}} >替换3</button>
-                </div>
+                </div> --}}
 
 
             </form>

@@ -29,9 +29,18 @@
     <form>
         <div class="">
             <span>生成模型：</span>
-            <input type="text" name="" placeholder="恩华交付方法">
+            {{!-- <input type="text" name="" placeholder="恩华交付方法"> --}}
+            {{input type="text" disabled="true" placeholder="恩华交付方法"}}
         </div>
-        <div class="">
+        {{#each output_tabels as |output_tabel|}}
+            <div>
+                <span style="display:inline-block;width:150px;overflow:hidden;height: 35px;">{{output_tabel.title}}</span>
+                {{!-- <input type="text" name="" placeholder=""> --}}
+                {{input type="text" placeholder=output_tabel.file_name disabled="true"}}
+                <button type="button" name="button">替换</button>
+            </div>
+        {{/each}}
+        {{!-- <div class="">
             <span>产品匹配表：</span>
             <input type="text" name="" placeholder="">
             <button type="button" name="button">替换</button>
@@ -40,7 +49,7 @@
             <span>医院匹配表：</span>
             <input type="text" name="" placeholder="">
             <button type="button" name="button">替换</button>
-        </div>
+        </div> --}}
     </form>
     <div local-class="tain-foot">
         <button type="button" name="button" local-class="cancel">取消</button>
