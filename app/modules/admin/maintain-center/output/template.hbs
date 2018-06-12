@@ -1,7 +1,9 @@
 <div local-class="wrapper-content">
+
     <p local-class="content-title">
         <p><span class="glyphicon glyphicon-th"></span>&nbsp;运维中心</p>
     </p>
+
     <div local-class="content-detail">
         <div local-class="detail-choosebar">
             <div local-class="choosebar-content choosebar-left">
@@ -11,68 +13,73 @@
 
         </div>
 
-
-
-
-
-<div local-class="detail-choosebar tain">
-    <div local-class="choosebar-content choosebar-left">
-        <span local-class="select-title">恩华（Nhwa）</span>
-        <div local-class="tain-act"></div>
-    </div>
-</div>
-<div local-class="tain-tab">
-    {{#link-to "admin.maintain-center.cleaning"}}<p style="background:#ddd;color:#666;left:0;">清洗模块</p>{{/link-to}}
-    {{#link-to "admin.maintain-center.sample"}}<p style="background:#ddd;color:#666;left:25%;">生成样本模块</p>{{/link-to}}
-    {{#link-to "admin.maintain-center.enlarge"}}<p style="background:#ddd;color:#666;left:50%;">放大模块</p>{{/link-to}}
-    {{#link-to "admin.maintain-center.output"}}<p style="left:75%;">最终输出</p>{{/link-to}}
-    <form>
-        <div class="">
-            <span>生成模型：</span>
-            {{!-- <input type="text" name="" placeholder="恩华交付方法"> --}}
-            {{input type="text" disabled="true" placeholder="恩华交付方法"}}
+        <div local-class="detail-choosebar tain">
+        <div local-class="choosebar-content choosebar-left">
+            <span local-class="select-title">{{coname}}</span>
+            <div local-class="tain-act"></div>
         </div>
-        {{#each output_tabels as |output_tabel|}}
-            <div>
-                <span style="display:inline-block;width:150px;overflow:hidden;height: 35px;">{{output_tabel.title}}</span>
-                {{!-- <input type="text" name="" placeholder=""> --}}
-                {{input type="text" placeholder=output_tabel.file_name disabled="true"}}
-                <button type="button" name="button">替换</button>
+    </div>
+
+        <div local-class="tain-tab">
+
+            {{#link-to "admin.maintain-center.cleaning" (query-params coid=coid coname=coname)}}<p style="background:#ddd;color:#666;left:0;">清洗模块</p>{{/link-to}}
+            {{#link-to "admin.maintain-center.sample" (query-params coid=coid coname=coname)}}<p style="background:#ddd;color:#666;left:25%;">生成样本模块</p>{{/link-to}}
+            {{#link-to "admin.maintain-center.enlarge" (query-params coid=coid coname=coname)}}<p style="background:#ddd;color:#666;left:50%;">放大模块</p>{{/link-to}}
+            {{#link-to "admin.maintain-center.output" (query-params coid=coid coname=coname)}}<p style="left:75%;">最终输出</p>{{/link-to}}
+
+            <form>
+                <div class="">
+                    <span>输出模型：</span>
+                    <input type="text" disabled="true" placeholder="{{coname}}交付方法">
+                </div>
+                {{#each output_tabels as |output_tabel|}}
+                    <div local-class="sheet-container">
+                        <span style="display:inline-block;width:150px;overflow:hidden;height: 35px;">{{output_tabel.title}}</span>
+                        {{input type="text" disabled="true" value='' placeholder=output_tabel.file_name}}
+                        {{#file-upload name=output_tabel.file_key data-fname=output_tabel.file_name onfileadd=(action "replaceFile" output_tabel) accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" as |queue|}}
+                          <a class="button" local-class="btn btn-replace" data-fkey={{output_tabel.file_key}}>
+                              {{#if queue.files.length}}
+                                替换中...
+                              {{else}}
+                                替换
+                              {{/if}}
+                          </a>
+                        {{/file-upload}}
+                    </div>
+                {{/each}}
+            </form>
+
+            <div local-class="tain-foot">
+                <button type="button" name="button" local-class="cancel">{{#link-to "admin.maintain-center.index"}}返回{{/link-to}}</button>
+                {{!-- {{#bs-button local-class="save" onClick=(action (mut modal3) true)}}保存{{/bs-button}} --}}
             </div>
-        {{/each}}
-        {{!-- <div class="">
-            <span>产品匹配表：</span>
-            <input type="text" name="" placeholder="">
-            <button type="button" name="button">替换</button>
         </div>
-        <div class="">
-            <span>医院匹配表：</span>
-            <input type="text" name="" placeholder="">
-            <button type="button" name="button">替换</button>
-        </div> --}}
-    </form>
-    <div local-class="tain-foot">
-        <button type="button" name="button" local-class="cancel">取消</button>
-        {{#bs-button local-class="save" onClick=(action (mut modal3) true)}}保存{{/bs-button}}
     </div>
 </div>
-</div>
-</div>
+
+{{#if isShow}}
+  <div local-class="loading">
+    <section>
+      <div local-class="loader loader-1">
+        <div local-class="loader-outter"></div>
+        <p style="position:absolute;color:#fff; top:150px; width:100px; margin:0 auto;">替换文件中...</p>
+      </div>
+    </section>
+  </div>
+{{/if}}
 
 {{#bs-modal fade=false open=modal3 onHidden=(action (mut modal3) false) as |modal|}}
-{{#modal.header}}
-<h4 class="modal-title">
-提示
-</h4>
-{{/modal.header}}
-{{#modal.body}}
-<p>xxxxx,将会对xxxx产生影响，</p>
-<p>是否确认修改？</p>
-{{/modal.body}}
-{{#modal.footer}}
-{{#bs-button onClick=(action modal.close)}}取消{{/bs-button}}
-{{!-- {{#bs-button type="danger"}}Delete{{/bs-button}} --}}
-{{#bs-button type="success" onClick=(action modal.submit)}}确认{{/bs-button}}
-{{/modal.footer}}
+    {{#modal.header}}
+        <h4 class="modal-title">提示</h4>
+    {{/modal.header}}
+    {{#modal.body}}
+        <p>xxxxx,将会对xxxx产生影响，</p>
+        <p>是否确认修改？</p>
+    {{/modal.body}}
+    {{#modal.footer}}
+        {{#bs-button onClick=(action modal.close)}}取消{{/bs-button}}
+        {{#bs-button type="success" onClick=(action modal.submit)}}确认{{/bs-button}}
+    {{/modal.footer}}
 {{/bs-modal}}
+
 {{outlet}}

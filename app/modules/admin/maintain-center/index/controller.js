@@ -31,7 +31,6 @@ export default Controller.extend({
 			result,
 			error
 		}) => {
-			console.log("ojbk");
 			console.log(result);
 			this.set('isShow', false);
 			this.set('model', result.companies);
