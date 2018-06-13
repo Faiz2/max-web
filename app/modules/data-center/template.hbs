@@ -149,7 +149,7 @@
         <p local-class="modal-content-line">
             <span>内容格式</span>
             <select local-class="choose-market" name="" onchange={{action 'getType' value="target.value"}}>
-                <option  value="none" disabled selected>请选择格式</option>
+                {{!-- <option  value="none" disabled selected>请选择格式</option> --}}
                 {{#each outputType as |type|}}
                   <option value={{type}}>{{type}}</option>
                 {{/each}}

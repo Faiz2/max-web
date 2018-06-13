@@ -65,21 +65,9 @@ export default Controller.extend({
 	/**
 	 * save file
 	 */
-	saveOutputFile() {
-		let condition = {
-			"condition": {
-				"user_id": this.get('cookies').read('uid'),
-			}
-		}
-		this.get('ajax').request('/api/', this.getAjaxOpt(condition))
-			.then(({
-				status,
-				result,
-				error,
-			}) => {
-				this.set('outputType', result.export_data_type);
-				this.set('output', true);
-			}, () => {})
+	saveOutputFile(filename) {
+
+		this.get('ajax').request('/api/files/' + filename)
 	},
 
 	/**
@@ -104,9 +92,15 @@ export default Controller.extend({
 				error,
 			}) => {
 				console.log(result);
+				this.set('loading', false);
+				// this.set('output', false);
+
 				let export_file_name = result.export_file_name;
 				if (export_file_name === "") {
-					alert("null")
+					// alert("null")
+					let error = "未找到筛选条件内的数据，请修改“筛选条件” 或点击“添加数据”进行添加。"
+					this.set('error', true);
+					this.set('errorMessage', error);
 				} else {
 					window.location =
 						// 	'http://192.168.100.174:9000' +
@@ -141,18 +135,21 @@ export default Controller.extend({
 				error,
 			}) => {
 				console.log(result);
+				this.set('loading', false);
+				// this.set('output', false);
 				let export_file_name = result.export_file_name;
 				if (export_file_name === "") {
-					alert("null")
+					// alert("null");
+					let error = "未找到筛选条件内的数据，请修改“筛选条件” 或点击“添加数据”进行添加。"
+					this.set('error', true);
+					this.set('errorMessage', error);
 				} else {
-					this.get('ajax').get('/api/files/' + export_file_name)
-						.then(({
-							status,
-							result,
-							error,
-						}) => {
-							console.log(result);
-						}, () => {})
+					// this.get('ajax').get('/api/files/' + export_file_name);
+					window.location =
+						// 	'http://192.168.100.174:9000' +
+						'/api/files/' +
+						export_file_name;
+
 				}
 			}, () => {})
 	},
@@ -336,16 +333,16 @@ export default Controller.extend({
 			this.set('outputTypeValue', value);
 		},
 		outputFile() {
+			this.set('output', false);
 			// console.log("output file is running");
 			console.log(this.get('outputTypeValue'));
 			let type = this.get('outputTypeValue')
-			if (type === '') {
-
-			} else if (type === "Max格式") {
-				console.log("Max");
+			this.set('loading', true);
+			if (type === "Max格式" || type === "") {
+				// console.log("Max");
 				this.exportMax();
 			} else {
-				console.log('company formatt');
+				// console.log('company formatt');
 				this.exportOther();
 			}
 		},
