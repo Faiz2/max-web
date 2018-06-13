@@ -279,7 +279,16 @@
     }
   }
 }
-
+@media (min-width:1200px) {
+    .tain-act {
+        left:2%;
+    }
+}
+@media (max-width:1200px) {
+    .tain-act {
+        left:1%;
+    }
+}
 .tain-act {
   width: 12px;
   height: 80px;
@@ -287,7 +296,7 @@
   border-radius: 3px 0 0 3px;
   background: #60b3ad;
   position: absolute;
-  left: 2%;
+
 }
 
 .tain-tab {
@@ -297,7 +306,7 @@
   margin: 0 auto;
   // top:100%;
   background: #fff;
-  overflow-y: scroll;
+  overflow-y: auto;
 
   .tain-tab-two {
     // position: fixed;
@@ -365,7 +374,7 @@
       height: 35px;
       line-height: 35px;
       border-radius: 3px;
-      right: 40px;
+      right: 2.5%;
       background: #60b3ad;
       color: #fff;
     }
@@ -373,15 +382,16 @@
 }
 
 .tain-foot {
-  width: 83.3%;
+  width:100%;
   height: 50px;
   line-height: 50px;
   background: #ddd;
-  position: fixed;
-  bottom: 0;
+  position: relative;
+  bottom: 20px;
+  top: 10px;
   border-radius: 3px;
 
-  .save {
+  .cancel {
     border: none;
     position: absolute;
     top: 10px;
@@ -389,22 +399,23 @@
     float: left;
     width: 80px;
     height: 30px;
+    line-height: 30px;
     border-radius: 3px;
     background: #60b3ad;
     color: #fff;
   }
 
-  .cancel {
-    border: none;
-    position: absolute;
-    top: 10px;
-    right: 110px;
-    float: left;
-    width: 80px;
-    height: 30px;
-    line-height: 30px;
-    color: #666;
-  }
+  // .cancel {
+  //   border: none;
+  //   position: absolute;
+  //   top: 10px;
+  //   right: 110px;
+  //   float: left;
+  //   width: 80px;
+  //   height: 30px;
+  //   line-height: 30px;
+  //   color: #666;
+  // }
 }
 
 .loading {
@@ -477,7 +488,7 @@
   .btn-replace {
     position: absolute;
     top: 50%;
-    right: 27px;
+    right: 2%;
     transform: translateY(-50%);
     width: 100px;
     height: 35px;
