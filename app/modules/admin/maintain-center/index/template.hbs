@@ -1,9 +1,11 @@
-
 <div local-class="wrapper-content">
+
     <p local-class="content-title">
         <p><span class="glyphicon glyphicon-th"></span>&nbsp;运维中心</p>
     </p>
+
     <div local-class="content-detail">
+
         <div local-class="detail-choosebar">
             <div local-class="choosebar-content choosebar-left">
                 <span local-class="select-title">搜索</span>
@@ -12,45 +14,23 @@
 
         </div>
 
-        <div local-class="detail-choosebar tain">
-            <div local-class="choosebar-content choosebar-left">
-            <span local-class="select-title"> company A</span>
-                <div class="tain-act" style="width:12px;height:80px;border:1px solid #60b3ad; border-radius:3px 0 0 3px; background: #60b3ad; position:absolute; left:2%;"></div>
-                <div local-class="tain-right">
-                    <p class="mode" style="background:none; border:none;">当前模式</p>
-                    {{#link-to "admin.maintain-center.cleaning"}} <p class="set btn" style="color:#666;">设定</p> {{/link-to}}
+        {{#each model as |company| }}
+            <div local-class="detail-choosebar tain">
+                <div local-class="choosebar-content choosebar-left">
+                <span local-class="select-title">{{company.company_name}}</span>
+                    <div class="tain-act" style="width:12px;height:80px;border:1px solid #60b3ad; border-radius:3px 0 0 3px; background: #60b3ad; position:absolute; left:2%;"></div>
+                    <div local-class="tain-right">
+                        <p class="mode" style="display: none;background:none; border:none;">当前模式</p>
+                        {{#link-to "admin.maintain-center.cleaning" (query-params coid=company.company_id coname=company.company_name)}} <p class="set btn" style="color:#666;">设定</p> {{/link-to}}
+                    </div>
                 </div>
             </div>
-        </div>
-        <div local-class="detail-choosebar tain">
-            <div local-class="choosebar-content choosebar-left">
-                <span local-class="select-title">company B</span>
-                <div local-class="tain-right">
-                    <p class="mode" {{action 'switch'}} class="btn">切换模式</p>
-                    <p class="set">设定</p>
-                </div>
-            </div>
-        </div>
-        <div local-class="detail-choosebar tain">
-            <div local-class="choosebar-content choosebar-left">
-                <span local-class="select-title">company C</span>
-                <div local-class="tain-right">
-                    <p class="mode">切换模式</p>
-                    <p class="set">设定</p>
-                </div>
-            </div>
-        </div>
-        <div local-class="detail-choosebar tain">
-            <div local-class="choosebar-content choosebar-left">
-                <span local-class="select-title">company D</span>
-                <div local-class="tain-right">
-                    <p class="mode">切换模式</p>
-                    <p class="set">设定</p>
-                </div>
-            </div>
-        </div>
+        {{/each}}
+
     </div>
+
 </div>
+
 {{#if isShow}}
     <div local-class="loading">
         <section>
@@ -61,11 +41,5 @@
         </section>
     </div>
 {{/if}}
-
-
-
-
-
-
 
 {{outlet}}

@@ -1,33 +1,22 @@
 import Controller from '@ember/controller';
 import {
-	later
-} from '@ember/runloop';
-import {
 	inject
 } from '@ember/service';
 import {
-	computed,
 	observer
 } from '@ember/object';
 
 export default Controller.extend({
-	// queryParams: ['companyid'],
-	// companyid: null,
-	queryParams: ['coid', 'coname'],
-	coid: null,
-	// coname: null,
-	isShow: false,
 	ajax: inject(),
 	cookies: inject(),
+	isShow: false,
+	queryParams: ['coid', 'coname'],
 	checkCompany: observer('coid', function() {
-		console.log('computed has started');
+		// console.log('computed has started');
 		let companyid = this.get('coid');
-		console.log(companyid)
 
 		if (companyid) {
-			this.queryCleanFiles(companyid)
-		} else {
-			// return articles;
+			this.querySampleFile(companyid)
 		}
 	}),
 	getAjaxOpt(data) {
@@ -40,7 +29,7 @@ export default Controller.extend({
 			Accpt: "application/json,charset=utf-8",
 		}
 	},
-	queryCleanFiles(id) {
+	querySampleFile(id) {
 		let condition = {
 			"condition": {
 				"user_id": this.get('cookies').read('uid'),
@@ -49,22 +38,24 @@ export default Controller.extend({
 				}
 			}
 		}
-		// console.log(condition)
-		this.get('ajax').request('/api/maintenance/dataclean/allfiles', this.getAjaxOpt(condition))
+		this.get('ajax').request('/api/maintenance/simple/allfiles', this.getAjaxOpt(condition))
 			.then(({
 				status,
 				result,
-				error,
+				error
 			}) => {
-				console.log("match tables and universe_files is ok");
-				console.log(result);
-				this.set('match_tabels', result.match_tables);
-				this.set('universe_files', result.universe_files);
+				if (status === 'ok') {
+					console.log("sample");
+					console.log(result);
+					this.set('sample_sheets', result.match_tables);
+					this.set('sample_universe', result.universe_files);
+
+				}
 			}, () => {})
 	},
-	replaceCleanFile(originkey, originname, uuid, fname) {
-		console.log('replaceCleanFile');
-		console.log(this.get('coid'))
+	replaceSampleFile(originkey, originname, uuid, cname) {
+		console.log('replaceSampleFile');
+		console.log(this.get('coid'));
 		let condition = {
 			"condition": {
 				"user_id": this.get('cookies').read('uid'),
@@ -78,13 +69,13 @@ export default Controller.extend({
 				"current_file": {
 					"file_uuid": uuid,
 					"file_key": originkey,
-					"file_name": fname
+					"file_name": cname
 				}
 			}
 		}
 		console.log('condition is');
 		console.log(condition);
-		this.get('ajax').request('/api/maintenance/dataclean/replacefile', this.getAjaxOpt(condition))
+		this.get('ajax').request('/api/maintenance/simple/replacefile', this.getAjaxOpt(condition))
 			.then(({
 				status,
 				result,
@@ -97,6 +88,7 @@ export default Controller.extend({
 	},
 	init() {
 		this._super(...arguments);
+		// this.querySampleFile();
 	},
 	actions: {
 		replaceFile(originfile, file) {
@@ -117,15 +109,8 @@ export default Controller.extend({
 					this.set('isShow', false);
 					console.log(file);
 					let fname = file.get('name');
-					this.replaceCleanFile(originkey, originname, result, fname);
+					this.replaceSampleFile(originkey, originname, result, fname);
 					console.log(result); // file_uuid
-					// this.set('filecpa', file.get('name'));
-					// this.set('isDisabled', false);
-					// let success = {
-					// 	cpa: result,
-					// 	status
-					// }
-					// this.get('cookies').write('filecpa', this.get('filecpa'), {path:'/'});
 				} else {
 					console.log('status !=== ok')
 					// this.set('uploadError', true);
