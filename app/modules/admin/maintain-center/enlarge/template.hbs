@@ -29,13 +29,13 @@
             <form>
 
                 <div class="">
-                    <span>放大模型：</span>
+                    <span local-class="sheet-title">放大模型：</span>
                     {{input type="text" disabled="true" name="" value="" placeholder="通用方法MAX1.0"}}
                 </div>
 
                 {{#each max_universe as |universe|}}
                     <div class="" local-class="sheet-container">
-                        <span>{{universe.title}}</span>
+                        <span local-class="sheet-title">{{universe.title}}</span>
                         {{!-- {{input type="text" disabled="true" name="" value="" placeholder=universe.file_name}}
                         <button type="button" name="button">替换</button> --}}
                         {{input type="text" disabled="true" value='' placeholder=universe.file_name}}

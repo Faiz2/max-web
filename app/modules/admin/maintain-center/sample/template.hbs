@@ -38,13 +38,13 @@
             <form>
 
                 <div class="">
-                    <span>生成模型：</span>
+                    <span local-class="sheet-title">生成模型：</span>
                     <input type="text" disabled="true" name="" placeholder="{{coname}}生成panel方法">
                 </div>
 
                 {{#each sample_sheets as |sheet|}}
                     <div class="" local-class="sheet-container">
-                        <span style="display:inline-block;width:150px;overflow:hidden;height: 35px;">{{sheet.title}}</span>
+                        <span local-class="sheet-title">{{sheet.title}}</span>
                         {{input type="text" disabled="true" value='' placeholder=sheet.file_name}}
                         {{#file-upload name=sheet.file_key data-fname=sheet.file_name onfileadd=(action "replaceFile" sheet) accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" as |queue|}}
                           <a class="button" local-class="btn btn-replace" data-fkey={{sheet.file_key}}>
@@ -60,7 +60,7 @@
 
                 {{#each sample_universe as |universe|}}
                     <div class="" local-class="sheet-container">
-                        <span style="display:inline-block;width:150px;overflow:hidden;height: 35px;">{{universe.title}}</span>
+                        <span local-class="sheet-title">{{universe.title}}</span>
                         {{input type="text" disabled="true" value='' placeholder=universe.file_name}}
                         {{#file-upload name=universe.file_key data-fname=universe.file_name onfileadd=(action "replaceFile" universe) accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" as |queue|}}
                           <a class="button" local-class="btn btn-replace" data-fkey={{universe.file_key}}>

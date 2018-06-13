@@ -29,12 +29,12 @@
 
             <form>
                 <div class="">
-                    <span>输出模型：</span>
+                    <span local-class="sheet-title">输出模型：</span>
                     <input type="text" disabled="true" placeholder="{{coname}}交付方法">
                 </div>
                 {{#each output_tabels as |output_tabel|}}
                     <div local-class="sheet-container">
-                        <span style="display:inline-block;width:150px;overflow:hidden;height: 35px;">{{output_tabel.title}}</span>
+                        <span local-class="sheet-title">{{output_tabel.title}}</span>
                         {{input type="text" disabled="true" value='' placeholder=output_tabel.file_name}}
                         {{#file-upload name=output_tabel.file_key data-fname=output_tabel.file_name onfileadd=(action "replaceFile" output_tabel) accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" as |queue|}}
                           <a class="button" local-class="btn btn-replace" data-fkey={{output_tabel.file_key}}>
