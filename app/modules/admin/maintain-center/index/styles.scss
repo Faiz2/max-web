@@ -55,130 +55,130 @@
         }
 
     .choose-market {
-      width: 160px;
-      height: 40px;
-      text-align: center;
-      text-align-last: center;
-      border: 1px solid $border-color;
-      border-radius: 5px;
-      background-color: #fff;
+            width: 160px;
+            height: 40px;
+            text-align: center;
+            text-align-last: center;
+            border: 1px solid $border-color;
+            border-radius: 5px;
+            background-color: #fff;
 
-      option {
-        font-size: 20px;
-        text-align: center;
-      }
-    }
-  }
-
-  .choosebar-left {
-    float: left;
-    margin-left: 20px;
-
-    .time-selects {
-      display: inline-block;
-      height: 40px;
-      line-height: 40px;
-      text-align: center;
-      border: 1px solid $border-color;
-      border-radius: 4px;
-      font-size: 0;
-
-      & input {
-        width: 100px;
-        height: 34px;
-        text-align: center;
-        border: 0;
-        font-size: 1.4rem;
-        letter-spacing: 1.2px;
-      }
-
-      & .middle-text {
-        display: inline-block;
-        padding: 0 5px;
-        height: 38px;
-        line-height: 38px;
-        font-size: 1.4rem;
-        background-color: $btn-bgcolor;
-      }
+            option {
+                font-size: 20px;
+                text-align: center;
+            }
+        }
     }
 
-    button[name="btn-output"] {
-      margin-top: -4px;
-      margin-left: 40px;
-      padding: 0;
-      width: 100px;
-      height: 40px;
-      line-height: 40px;
-      text-align: center;
-      vertical-align: middle;
-      font-size: 18px;
-      color: #fff;
-      background-color: $btn-bgcolor;
-    }
-  }
+    .choosebar-left {
+        float: left;
+        margin-left: 20px;
 
-  .choosebar-right {
-    float: right;
-    margin-right: 40px;
-    padding-top: 20px;
-    width: 120px;
+        .time-selects {
+            display: inline-block;
+            height: 40px;
+            line-height: 40px;
+            text-align: center;
+            border: 1px solid $border-color;
+            border-radius: 4px;
+            font-size: 0;
 
-    .btn-add-data {
-      height: 42px;
-      border: 1px solid #eee;
-      border-radius: 4px;
-      cursor: pointer;
-      background-color: gray;
+            & input {
+                width: 100px;
+                height: 34px;
+                text-align: center;
+                border: 0;
+                font-size: 1.4rem;
+                letter-spacing: 1.2px;
+            }
+
+            & .middle-text {
+                display: inline-block;
+                padding: 0 5px;
+                height: 38px;
+                line-height: 38px;
+                font-size: 1.4rem;
+                background-color: $btn-bgcolor;
+            }
+        }
+
+        button[name="btn-output"] {
+            margin-top: -4px;
+            margin-left: 40px;
+            padding: 0;
+            width: 100px;
+            height: 40px;
+            line-height: 40px;
+            text-align: center;
+            vertical-align: middle;
+            font-size: 18px;
+            color: #fff;
+            background-color: $btn-bgcolor;
+        }
     }
 
-    .add-data-content {
-      display: inline-block;
-      height: 40px;
-      line-height: 40px;
-      vertical-align: top;
-      font-size: 1.8rem;
-      color: #fff;
-    }
+    .choosebar-right {
+        float: right;
+        margin-right: 40px;
+        padding-top: 20px;
+        width: 120px;
 
-    .left-section {
-      padding-left: 8px;
-      width: 30px;
-      border-radius: 0 20px 20px 0;
-      background-color: $btn-bgcolor;
+        .btn-add-data {
+            height: 42px;
+            border: 1px solid #eee;
+            border-radius: 4px;
+            cursor: pointer;
+            background-color: gray;
+        }
+
+        .add-data-content {
+            display: inline-block;
+            height: 40px;
+            line-height: 40px;
+            vertical-align: top;
+            font-size: 1.8rem;
+            color: #fff;
+        }
+
+        .left-section {
+            padding-left: 8px;
+            width: 30px;
+            border-radius: 0 20px 20px 0;
+            background-color: $btn-bgcolor;
+        }
     }
-  }
 }
 
 .loading {
-  .loading-mask {
-    width: 100%;
-    height: 100%;
-    position: fixed;
-    top: 0;
-    left: 0;
-    z-index: 1024;
-    opacity: 0.2;
-    background-color: black;
-  }
-
-  .spinner {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    z-index: 2000;
-    width: 50px;
-    height: 60px;
-    text-align: center;
-    font-size: 10px;
-
-    & div {
-      background-color: #4DABA3;
-      height: 100%;
-      width: 6px;
-      display: inline-block;
-      -webkit-animation: stretchdelay 1.2s infinite ease-in-out;
-      animation: stretchdelay 1.2s infinite ease-in-out;
+    .loading-mask {
+        width: 100%;
+        height: 100%;
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: 1024;
+        opacity: 0.2;
+        background-color: black;
     }
+
+    .spinner {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        z-index: 2000;
+        width: 50px;
+        height: 60px;
+        text-align: center;
+        font-size: 10px;
+
+        & div {
+            background-color: #4DABA3;
+            height: 100%;
+            width: 6px;
+            display: inline-block;
+            -webkit-animation: stretchdelay 1.2s infinite ease-in-out;
+            animation: stretchdelay 1.2s infinite ease-in-out;
+        }
 
     & .rect2 {
       -webkit-animation-delay: -1.1s;
