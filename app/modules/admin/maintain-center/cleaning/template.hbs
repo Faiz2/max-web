@@ -32,20 +32,24 @@
             </div>
 
             <form>
-                <div class=""> <span local-class="sheet-title">清洗模型：</span> <input type="text" name="" disabled="true" placeholder="{{coname}}清洗方法"> </div>
+                <div class=""> <span local-class="sheet-title">清洗模型:</span> <input type="text" name="" disabled="true" placeholder={{clean_method}}> </div>
                 {{#each match_tabels as |table|}}
-                    <div class="" local-class="sheet-container"> <span local-class="sheet-title">匹&nbsp;配&nbsp;表&nbsp;：</span> {{input type="text" disabled="true" value='' placeholder=table.file_name}}
-                        {{#file-upload name=table.file_key data-fname=table.file_name onfileadd=(action "replaceFile" table) accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
-                            as |queue|}} <a class="button" local-class="btn btn-replace" data-fkey= {{table.file_key}}>
-                            {{#if queue.files.length}} 替换中... {{else}}替换 {{/if}}
-                          </a> {{/file-upload}}
+                    <div class="" local-class="sheet-container">
+                        <span local-class="sheet-title">{{table.file_des}}:</span>
+                        {{input type="text" disabled="true" value='' placeholder=(concat "最后修改时间：" table.update_date)}}
+                        {{#file-upload name=table.file_key onfileadd=(action "replaceFile" table) accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+                            as |queue|}}
+                            <a class="button" local-class="btn btn-replace" data-fkey= {{table.file_key}}>
+                                {{#if queue.files.length}} 替换中... {{else}}替换 {{/if}}
+                            </a>
+                         {{/file-upload}}
                     </div>
                 {{/each}}
             </form>
         </div>
 
         <div local-class="tain-foot">
-            <button type="button" name="button" local-class="cancel">{{#link-to "admin.maintain-center.index"}}返回{{/link-to}}</button>
+            <button type="button" name="button" local-class="cancel">{{#link-to "admin.maintain-center.index" local-class="btn-reback"}}返回{{/link-to}}</button>
             {{!-- {{#bs-button local-class="save" onClick=(action (mut modal3) true)}}保存{{/bs-button}} --}}
         </div>
     </div>

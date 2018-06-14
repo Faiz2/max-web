@@ -14,9 +14,10 @@ export default Controller.extend({
 		let companyid = this.get('coid');
 
 		if (companyid) {
-			this.queryOutputFiles(companyid)
+			this.queryDeliveryFile(companyid)
 		}
 	}),
+
 	getAjaxOpt(data) {
 		return {
 			method: 'POST',
@@ -27,56 +28,60 @@ export default Controller.extend({
 			Accpt: "application/json,charset=utf-8",
 		}
 	},
-	queryOutputFiles(id) {
+
+	queryDeliveryFile(id) {
 		let condition = {
 			"condition": {
 				"user_id": this.get('cookies').read('uid'),
 				"maintenance": {
-					"company_id": id
+					"company_id": id,
+					"module_tag": "delivery"
 				}
 			}
-		}
-		this.get('ajax').request('/api/maintenance/delivery/allfiles', this.getAjaxOpt(condition))
+		};
+
+		this.get('ajax').request('/api/maintenance/module/matchfiles', this.getAjaxOpt(condition))
 			.then(({
 				status,
 				result,
 				error,
 			}) => {
-				console.log("output files ");
 				console.log(result);
-				this.set('output_tabels', result.match_tables);
-				this.set('output_universe', result.universe_files);
+				this.set('output_tabels', result.match_files);
+				this.set('output_model', result.module_title);
+				// this.set('output_universe', result.universe_files);
 			}, () => {})
 	},
-	replaceDeliveryFile(originkey, originname, uuid, fname) {
+
+	replaceDeliveryFile(originkey, uuid) {
 		// console.log('replaceMaxFile');
 		// console.log(this.get('coid'))
 		let condition = {
 			"condition": {
 				"user_id": this.get('cookies').read('uid'),
 				"maintenance": {
-					"company_id": this.get('coid')
+					"company_id": this.get('coid'),
+					"module_tag": "delivery"
 				},
 				"origin_file": {
 					"file_key": originkey,
-					"file_name": originname
 				},
 				"current_file": {
 					"file_uuid": uuid,
-					"file_key": originkey,
-					"file_name": fname
 				}
 			}
-		}
+		};
 		// console.log('condition is');
 		// console.log(condition);
-		this.get('ajax').request('/api/maintenance/delivery/replacefile', this.getAjaxOpt(condition))
+		this.get('ajax').request('/api/maintenance/matchfile/replace', this.getAjaxOpt(condition))
 			.then(({
 				status,
 				result,
 				error,
 			}) => {
 				console.log(result);
+				let coid = this.get('coid');
+				this.queryDeliveryFile(coid);
 				// result:{"file_key":"","file_name":""}
 			}, () => {})
 	},
@@ -84,15 +89,9 @@ export default Controller.extend({
 		this._super(...arguments);
 	},
 	actions: {
-		switch () {
-			this.set('isShow', true);
-			later(this, () => {
-				this.set('isShow', false);
-			}, 3000)
-		},
+
 		replaceFile(originfile, file) {
 			this.set('isShow', true);
-			let originname = originfile.file_name;
 			let originkey = originfile.file_key;
 
 			return file.upload('/api/file/upload').then(({
@@ -104,10 +103,8 @@ export default Controller.extend({
 			}) => {
 				if (status === 'ok') {
 					this.set('isShow', false);
-					let fname = file.get('name');
-					this.replaceDeliveryFile(originkey, originname, result, fname);
-				} else {
-					console.log('status !=== ok')
+					let uuid = result;
+					this.replaceDeliveryFile(originkey, uuid);
 				}
 			}, () => {});
 		}

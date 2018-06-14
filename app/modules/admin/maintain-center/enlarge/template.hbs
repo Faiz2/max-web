@@ -29,18 +29,17 @@
             <form>
 
                 <div class="">
-                    <span local-class="sheet-title">放大模型：</span>
-                    {{input type="text" disabled="true" name="" value="" placeholder="通用方法MAX1.0"}}
+                    <span local-class="sheet-title">放大模型:</span>
+                    {{input type="text" disabled="true" name="" value="" placeholder=max_model}}
                 </div>
 
-                {{#each max_universe as |universe|}}
+                {{#each max_tabels as |max_table|}}
                     <div class="" local-class="sheet-container">
-                        <span local-class="sheet-title">{{universe.title}}</span>
-                        {{!-- {{input type="text" disabled="true" name="" value="" placeholder=universe.file_name}}
-                        <button type="button" name="button">替换</button> --}}
-                        {{input type="text" disabled="true" value='' placeholder=universe.file_name}}
-                        {{#file-upload name=universe.file_key data-fname=universe.file_name onfileadd=(action "replaceFile" universe) accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" as |queue|}}
-                          <a class="button" local-class="btn btn-replace" data-fkey={{universe.file_key}}>
+                        <span local-class="sheet-title">{{max_table.file_des}}:</span>
+
+                        {{input type="text" disabled="true" value='' placeholder=(concat "最后修改时间：" max_table.update_date)}}
+                        {{#file-upload name=max_table.file_key onfileadd=(action "replaceFile" max_table) accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" as |queue|}}
+                          <a class="button" local-class="btn btn-replace" data-fkey={{max_table.file_key}}>
                               {{#if queue.files.length}}
                                 替换中...
                               {{else}}
@@ -54,7 +53,7 @@
 
         </div>
         <div local-class="tain-foot">
-            <button type="button" name="button" local-class="cancel">{{#link-to "admin.maintain-center.index"}}返回{{/link-to}}</button>
+            <button type="button" name="button" local-class="cancel">{{#link-to "admin.maintain-center.index" local-class="btn-reback"}}返回{{/link-to}}</button>
             {{!-- {{#bs-button local-class="save" onClick=(action (mut modal3) true)}}保存{{/bs-button}} --}}
         </div>
     </div>

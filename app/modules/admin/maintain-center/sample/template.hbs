@@ -38,15 +38,15 @@
             <form>
 
                 <div class="">
-                    <span local-class="sheet-title">生成模型：</span>
-                    <input type="text" disabled="true" name="" placeholder="{{coname}}生成panel方法">
+                    <span local-class="sheet-title">生成模型:</span>
+                    <input type="text" disabled="true" name="" placeholder={{gen_model}}>
                 </div>
 
                 {{#each sample_sheets as |sheet|}}
                     <div class="" local-class="sheet-container">
-                        <span local-class="sheet-title">{{sheet.title}}</span>
-                        {{input type="text" disabled="true" value='' placeholder=sheet.file_name}}
-                        {{#file-upload name=sheet.file_key data-fname=sheet.file_name onfileadd=(action "replaceFile" sheet) accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" as |queue|}}
+                        <span local-class="sheet-title">{{sheet.file_des}}:</span>
+                        {{input type="text" disabled="true" value='' placeholder=(concat "最后修改时间：" sheet.update_date)}}
+                        {{#file-upload name=sheet.file_key  onfileadd=(action "replaceFile" sheet) accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" as |queue|}}
                           <a class="button" local-class="btn btn-replace" data-fkey={{sheet.file_key}}>
                               {{#if queue.files.length}}
                                 替换中...
@@ -80,7 +80,7 @@
 
         </div>
         <div local-class="tain-foot">
-            <button type="button" name="button" local-class="cancel">{{#link-to "admin.maintain-center.index"}}返回{{/link-to}}</button>
+            <button type="button" name="button" local-class="cancel">{{#link-to "admin.maintain-center.index" local-class="btn-reback"}}返回{{/link-to}}</button>
             {{!-- {{#bs-button local-class="save" onClick=(action (mut modal3) true)}}保存{{/bs-button}} --}}
         </div>
     </div>
