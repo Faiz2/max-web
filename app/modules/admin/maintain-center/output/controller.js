@@ -53,7 +53,7 @@ export default Controller.extend({
 			}, () => {})
 	},
 
-	replaceDeliveryFile(originkey, uuid) {
+	replaceDeliveryFile(origindes, uuid) {
 		// console.log('replaceMaxFile');
 		// console.log(this.get('coid'))
 		let condition = {
@@ -64,7 +64,7 @@ export default Controller.extend({
 					"module_tag": "delivery"
 				},
 				"origin_file": {
-					"file_key": originkey,
+					"file_des": origindes,
 				},
 				"current_file": {
 					"file_uuid": uuid,
@@ -92,7 +92,7 @@ export default Controller.extend({
 
 		replaceFile(originfile, file) {
 			this.set('isShow', true);
-			let originkey = originfile.file_key;
+			let origindes= originfile.file_des;
 
 			return file.upload('/api/file/upload').then(({
 				body: {
@@ -104,7 +104,7 @@ export default Controller.extend({
 				if (status === 'ok') {
 					this.set('isShow', false);
 					let uuid = result;
-					this.replaceDeliveryFile(originkey, uuid);
+					this.replaceDeliveryFile(origindes, uuid);
 				}
 			}, () => {});
 		}

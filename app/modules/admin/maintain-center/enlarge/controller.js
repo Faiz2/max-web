@@ -46,7 +46,7 @@ export default Controller.extend({
 				result,
 				error,
 			}) => {
-				console.log("from enlarge ");
+				// console.log("from enlarge ");
 				console.log(result);
 				this.set('max_tabels', result.match_files);
 				this.set('max_model', result.module_title);
@@ -54,7 +54,7 @@ export default Controller.extend({
 			}, () => {})
 	},
 
-	replaceMaxFile(originkey, uuid) {
+	replaceMaxFile(origindes, uuid) {
 		// console.log('replaceMaxFile');
 		// console.log(this.get('coid'))
 		let condition = {
@@ -65,7 +65,7 @@ export default Controller.extend({
 					"module_tag": "max",
 				},
 				"origin_file": {
-					"file_key": originkey,
+					"file_des": origindes,
 				},
 				"current_file": {
 					"file_uuid": uuid,
@@ -80,7 +80,7 @@ export default Controller.extend({
 				result,
 				error,
 			}) => {
-				console.log(result);
+				// console.log(result);
 				let coid = this.get('coid');
 				this.queryMaxFiles(coid);
 				// result:{"file_key":"","file_name":""}
@@ -95,7 +95,7 @@ export default Controller.extend({
 
 		replaceFile(originfile, file) {
 			this.set('isShow', true);
-			let originkey = originfile.file_key;
+			let origindes= originfile.file_des
 
 			return file.upload('/api/file/upload').then(({
 				body: {
@@ -107,9 +107,9 @@ export default Controller.extend({
 				if (status === 'ok') {
 					this.set('isShow', false);
 					let uuid = result;
-					this.replaceMaxFile(originkey, uuid);
+					this.replaceMaxFile(origindes, uuid);
 				} else {
-					console.log('status !=== ok')
+					// console.log('status !=== ok');
 				}
 			}, () => {});
 		}

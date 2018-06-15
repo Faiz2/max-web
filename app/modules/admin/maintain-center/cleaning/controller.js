@@ -11,19 +11,16 @@ import {
 } from '@ember/object';
 
 export default Controller.extend({
-	// queryParams: ['companyid'],
-	// companyid: null,
 	queryParams: ['coid', 'coname'],
 	coid: null,
-	// coname: null,
 	isShow: false,
 	ajax: inject(),
 	cookies: inject(),
 	checkCompany: observer('coid', function() {
-		console.log('computed has started');
+		// console.log('computed has started');
 		let companyid = this.get('coid');
 
-		console.log(companyid)
+		// console.log(companyid)
 
 		if (companyid) {
 			this.queryCleanFiles(companyid)
@@ -65,7 +62,7 @@ export default Controller.extend({
 			}, () => {})
 	},
 
-	replaceCleanFile(originkey, uuid) {
+	replaceCleanFile(origindes, uuid) {
 		console.log('replaceCleanFile');
 		console.log(this.get('coid'))
 		let condition = {
@@ -76,7 +73,7 @@ export default Controller.extend({
 					"module_tag": "clean",
 				},
 				"origin_file": {
-					"file_key": originkey,
+                    "file_des": origindes
 				},
 				"current_file": {
 					"file_uuid": uuid,
@@ -100,13 +97,13 @@ export default Controller.extend({
 	init() {
 		this._super(...arguments);
 	},
+
 	actions: {
 		replaceFile(originfile, file) {
 			this.set('isShow', true);
 			console.log(originfile);
 			console.log('replaceFile');
-			// let originname = originfile.file_name;
-			let originkey = originfile.file_key;
+            let origindes = originfile.file_des;
 
 			return file.upload('/api/file/upload').then(({
 				body: {
@@ -120,7 +117,7 @@ export default Controller.extend({
 					let uuid = result;
 					// console.log(file);
 					// let fname = file.get('name');
-					this.replaceCleanFile(originkey, uuid);
+					this.replaceCleanFile(origindes, uuid);
 					// console.log(result); // file_uuid
 					// this.set('filecpa', file.get('name'));
 					// this.set('isDisabled', false);

@@ -12,7 +12,6 @@ export default Controller.extend({
 	isShow: false,
 	queryParams: ['coid', 'coname'],
 	checkCompany: observer('coid', function() {
-		// console.log('computed has started');
 		let companyid = this.get('coid');
 
 		if (companyid) {
@@ -49,7 +48,7 @@ export default Controller.extend({
 				error
 			}) => {
 				if (status === 'ok') {
-					console.log("sample");
+					// console.log("sample");
 					console.log(result);
 					this.set('sample_sheets', result.match_files);
 					this.set('gen_model', result.module_title);
@@ -58,7 +57,7 @@ export default Controller.extend({
 			}, () => {})
 	},
 
-	replaceSampleFile(originkey, uuid) {
+	replaceSampleFile(origindes, uuid) {
 		// console.log('replaceSampleFile');
 		// console.log(this.get('coid'));
 		let condition = {
@@ -69,7 +68,7 @@ export default Controller.extend({
 					"module_tag": "panel"
 				},
 				"origin_file": {
-					"file_key": originkey,
+					"file_des": origindes,
 				},
 				"current_file": {
 					"file_uuid": uuid,
@@ -84,7 +83,7 @@ export default Controller.extend({
 				result,
 				error,
 			}) => {
-				console.log(result);
+				// console.log(result);
 				let coid = this.get('coid');
 				this.querySampleFile(coid);
 				// result:{"file_key":"","file_name":""}
@@ -99,9 +98,9 @@ export default Controller.extend({
 	actions: {
 		replaceFile(originfile, file) {
 			this.set('isShow', true);
-			console.log(originfile);
+			// console.log(originfile);
 			// let originname = originfile.file_name;
-			let originkey = originfile.file_key;
+			let origindes = originfile.file_des;
 
 			return file.upload('/api/file/upload').then(({
 				body: {
@@ -112,14 +111,13 @@ export default Controller.extend({
 			}) => {
 				if (status === 'ok') {
 					this.set('isShow', false);
-					console.log(file);
+					// console.log(file);
 					let uuid = result;
 					// let fname = file.get('name');
-					this.replaceSampleFile(originkey, uuid);
+					this.replaceSampleFile(origindes, uuid);
 					// console.log(result); // file_uuid
 				} else {
-					console.log('status !=== ok');
-
+					// console.log('status !=== ok');
 					// this.set('uploadError', true);
 					// this.set('errorMessage', error.message);
 				}

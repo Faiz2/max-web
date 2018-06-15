@@ -1,6 +1,6 @@
 <div local-class="wrapper-content">
 
-    <p local-class="content-title">
+<p local-class="content-title">
         <p><span class="glyphicon glyphicon-th"></span>&nbsp;运维中心</p>
     </p>
 
@@ -45,9 +45,9 @@
                 {{#each sample_sheets as |sheet|}}
                     <div class="" local-class="sheet-container">
                         <span local-class="sheet-title">{{sheet.file_des}}:</span>
-                        {{input type="text" disabled="true" value='' placeholder=(concat "最后修改时间：" sheet.update_date)}}
-                        {{#file-upload name=sheet.file_key  onfileadd=(action "replaceFile" sheet) accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" as |queue|}}
-                          <a class="button" local-class="btn btn-replace" data-fkey={{sheet.file_key}}>
+                        {{input type="text" disabled="true" placeholder=(concat "上次修改时间：" sheet.update_date)}}
+                        {{#file-upload name=sheet.file_des onfileadd=(action "replaceFile" sheet) accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" as |queue|}}
+                          <a class="button" local-class="btn btn-replace">
                               {{#if queue.files.length}}
                                 替换中...
                               {{else}}
@@ -58,7 +58,7 @@
                     </div>
                 {{/each}}
 
-                {{#each sample_universe as |universe|}}
+                {{!-- {{#each sample_universe as |universe|}}
                     <div class="" local-class="sheet-container">
                         <span local-class="sheet-title">{{universe.title}}</span>
                         {{input type="text" disabled="true" value='' placeholder=universe.file_name}}
@@ -72,7 +72,7 @@
                           </a>
                         {{/file-upload}}
                     </div>
-                {{/each}}
+                {{/each}} --}}
 
             </form>
 
@@ -80,7 +80,9 @@
 
         </div>
         <div local-class="tain-foot">
-            <button type="button" name="button" local-class="cancel">{{#link-to "admin.maintain-center.index" local-class="btn-reback"}}返回{{/link-to}}</button>
+            {{!-- <button type="button" name="button" local-class="cancel">{{#link-to "admin.maintain-center.index" local-class="btn-reback"}}返回{{/link-to}}</button> --}}
+            {{#link-to "admin.maintain-center.index" local-class="btn-reback"}}<button type="button" name="button" local-class="cancel">返回</button>{{/link-to}}
+
             {{!-- {{#bs-button local-class="save" onClick=(action (mut modal3) true)}}保存{{/bs-button}} --}}
         </div>
     </div>
