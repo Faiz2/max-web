@@ -11,10 +11,10 @@ export default Controller.extend({
 	cookies: inject(),
 	title: 'Pharbers 数据平台',
 	output: false,
-	startDate: new Date('2018-01'),
-	endDate: new Date(),
-	outputStartData: new Date('2018-01'),
-	outputEndData: new Date(),
+	// startDate: new Date('2018-01'),
+	// endDate: new Date(),
+	// outputStartData: new Date('2018-01'),
+	// outputEndData: new Date(),
 	currentPage: 1,
 	fullName: '', // 这应该后端返回firstName与lastName 有前端计算出来
 	account: '',
@@ -159,7 +159,10 @@ export default Controller.extend({
 		]);
 		// this.queryMarkets();
 		this.queryUserInfo();
-
+		this.startDate = new Date('2018-01');
+		this.endDate = new Date();
+		this.outputStartData = new Date('2018-01');
+		this.outputEndData = new Date();
 	},
 	actions: {
 		search() {

@@ -21,27 +21,27 @@ export default Component.extend({
 	allMonths: false,
 	chooseTrueNums: 0,
 	selectedArea: 0,
-	months: [{
-			year: '04/2018',
-			isChecked: false
-		},
-		{
-			year: '05/2018',
-			isChecked: false
-		},
-		{
-			year: '06/2018',
-			isChecked: false
-		},
-		{
-			year: '07/2018',
-			isChecked: false
-		},
-		{
-			year: '08/2018',
-			isChecked: false
-		},
-	],
+	// months: [{
+	// 		year: '04/2018',
+	// 		isChecked: false
+	// 	},
+	// 	{
+	// 		year: '05/2018',
+	// 		isChecked: false
+	// 	},
+	// 	{
+	// 		year: '06/2018',
+	// 		isChecked: false
+	// 	},
+	// 	{
+	// 		year: '07/2018',
+	// 		isChecked: false
+	// 	},
+	// 	{
+	// 		year: '08/2018',
+	// 		isChecked: false
+	// 	},
+	// ],
 	marketSumSales: 0,
 	marketSumSalesPercentage: 0,
 	productSumSales: 0,
@@ -54,7 +54,27 @@ export default Component.extend({
 	init() {
 		this._super(...arguments);
 		this.querySelectArg();
-
+		this.months = [{
+				year: '04/2018',
+				isChecked: false
+			},
+			{
+				year: '05/2018',
+				isChecked: false
+			},
+			{
+				year: '06/2018',
+				isChecked: false
+			},
+			{
+				year: '07/2018',
+				isChecked: false
+			},
+			{
+				year: '08/2018',
+				isChecked: false
+			},
+		];
 	},
 	getAjaxOpt(data) {
 		return {
