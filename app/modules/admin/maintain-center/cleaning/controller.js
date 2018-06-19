@@ -1,12 +1,9 @@
 import Controller from '@ember/controller';
-import {
-	later
-} from '@ember/runloop';
+// import { later } from '@ember/runloop';
 import {
 	inject
 } from '@ember/service';
 import {
-	computed,
 	observer
 } from '@ember/object';
 
@@ -19,8 +16,6 @@ export default Controller.extend({
 	checkCompany: observer('coid', function() {
 		// console.log('computed has started');
 		let companyid = this.get('coid');
-
-		// console.log(companyid)
 
 		if (companyid) {
 			this.queryCleanFiles(companyid)
@@ -56,15 +51,22 @@ export default Controller.extend({
 				result,
 				error,
 			}) => {
-				console.log(result);
-				this.set('match_tabels', result.match_files);
-				this.set('clean_method', result.module_title);
+				if (status === "ok") {
+					// console.log(result);
+					this.set('match_tabels', result.match_files);
+					this.set('clean_method', result.module_title);
+				} else {
+					this.set('errorMessage', error.message);
+				}
+				// console.log(result);
+				// this.set('match_tabels', result.match_files);
+				// this.set('clean_method', result.module_title);
 			}, () => {})
 	},
 
 	replaceCleanFile(origindes, uuid) {
-		console.log('replaceCleanFile');
-		console.log(this.get('coid'))
+		// console.log('replaceCleanFile');
+		// console.log(this.get('coid'))
 		let condition = {
 			"condition": {
 				"user_id": this.get('cookies').read('uid'),
@@ -73,7 +75,7 @@ export default Controller.extend({
 					"module_tag": "clean",
 				},
 				"origin_file": {
-                    "file_des": origindes
+					"file_des": origindes
 				},
 				"current_file": {
 					"file_uuid": uuid,
@@ -85,12 +87,20 @@ export default Controller.extend({
 		this.get('ajax').request('/api/maintenance/matchfile/replace', this.getAjaxOpt(condition))
 			.then(({
 				status,
-				result,
+				// result,
 				error,
 			}) => {
-				console.log(result);
-				let coid = this.get('coid');
-				this.queryCleanFiles(coid);
+				if (status === "ok") {
+					// console.log('from cleaning / controller.js/ line 96')
+					// console.log(result);
+					let coid = this.get('coid');
+					this.queryCleanFiles(coid);
+				} else {
+					this.set('errorMessage', error.message);
+				}
+				// console.log(result);
+				// let coid = this.get('coid');
+				// this.queryCleanFiles(coid);
 				// result:{"file_key":"","file_name":""}
 			}, () => {})
 	},
@@ -101,15 +111,15 @@ export default Controller.extend({
 	actions: {
 		replaceFile(originfile, file) {
 			this.set('isShow', true);
-			console.log(originfile);
-			console.log('replaceFile');
-            let origindes = originfile.file_des;
+			// console.log(originfile);
+			// console.log('replaceFile');
+			let origindes = originfile.file_des;
 
 			return file.upload('/api/file/upload').then(({
 				body: {
+					status,
 					result,
 					error,
-					status
 				}
 			}) => {
 				if (status === 'ok') {
@@ -127,7 +137,7 @@ export default Controller.extend({
 					// }
 					// this.get('cookies').write('filecpa', this.get('filecpa'), {path:'/'});
 				} else {
-					console.log('status !=== ok')
+					this.set('errorMessage', error.message);
 					// this.set('uploadError', true);
 					// this.set('errorMessage', error.message);
 				}

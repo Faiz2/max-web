@@ -49,10 +49,12 @@ export default Controller.extend({
 			}) => {
 				if (status === 'ok') {
 					// console.log("sample");
-					console.log(result);
+					// console.log(result);
 					this.set('sample_sheets', result.match_files);
 					this.set('gen_model', result.module_title);
 					// this.set('sample_universe', result.universe_files);
+				} else {
+					this.set('errorMessage', error.message);
 				}
 			}, () => {})
 	},
@@ -80,13 +82,18 @@ export default Controller.extend({
 		this.get('ajax').request('/api/maintenance/matchfile/replace', this.getAjaxOpt(condition))
 			.then(({
 				status,
-				result,
+				// result,
 				error,
 			}) => {
+				if (status === "ok") {
+					let coid = this.get('coid');
+					this.querySampleFile(coid);
+				} else {
+					this.set('errorMessage', error.message);
+				}
 				// console.log(result);
-				let coid = this.get('coid');
-				this.querySampleFile(coid);
-				// result:{"file_key":"","file_name":""}
+				// let coid = this.get('coid');
+				// this.querySampleFile(coid);
 			}, () => {})
 	},
 
@@ -117,9 +124,7 @@ export default Controller.extend({
 					this.replaceSampleFile(origindes, uuid);
 					// console.log(result); // file_uuid
 				} else {
-					// console.log('status !=== ok');
-					// this.set('uploadError', true);
-					// this.set('errorMessage', error.message);
+					this.set('errorMessage', error.message);
 				}
 			}, () => {});
 		}

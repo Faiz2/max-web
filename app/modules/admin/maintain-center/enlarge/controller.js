@@ -46,11 +46,16 @@ export default Controller.extend({
 				result,
 				error,
 			}) => {
-				// console.log("from enlarge ");
-				console.log(result);
-				this.set('max_tabels', result.match_files);
-				this.set('max_model', result.module_title);
-				// this.set('max_universe', result.universe_files);
+				if (status === "ok") {
+					// console.log(result);
+					this.set('max_tabels', result.match_files);
+					this.set('max_model', result.module_title);
+				} else {
+					this.set('errorMessage', error.message);
+				}
+				// console.log(result);
+				// this.set('max_tabels', result.match_files);
+				// this.set('max_model', result.module_title);
 			}, () => {})
 	},
 
@@ -77,13 +82,19 @@ export default Controller.extend({
 		this.get('ajax').request('/api/maintenance/matchfile/replace', this.getAjaxOpt(condition))
 			.then(({
 				status,
-				result,
+				// result,
 				error,
 			}) => {
-				// console.log(result);
-				let coid = this.get('coid');
-				this.queryMaxFiles(coid);
-				// result:{"file_key":"","file_name":""}
+				if (status === "ok") {
+					// console.log(" from enlarge / controller.js / line 89");
+					// console.log(result);
+					let coid = this.get('coid');
+					this.queryMaxFiles(coid);
+				} else {
+					this.set('errorMessage', error.message);
+				}
+				// let coid = this.get('coid');
+				// this.queryMaxFiles(coid);
 			}, () => {})
 	},
 
@@ -95,7 +106,7 @@ export default Controller.extend({
 
 		replaceFile(originfile, file) {
 			this.set('isShow', true);
-			let origindes= originfile.file_des
+			let origindes = originfile.file_des
 
 			return file.upload('/api/file/upload').then(({
 				body: {
@@ -109,7 +120,7 @@ export default Controller.extend({
 					let uuid = result;
 					this.replaceMaxFile(origindes, uuid);
 				} else {
-					// console.log('status !=== ok');
+					this.set('errorMessage', error.message);
 				}
 			}, () => {});
 		}

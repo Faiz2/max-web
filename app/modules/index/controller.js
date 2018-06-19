@@ -34,8 +34,7 @@ export default Controller.extend({
 				return this.get('ajax').request('api/user/login',
 					this.getAjaxOpt(condition)).then((response) => {
 						if (response.status === "ok") {
-							// debugger;
-							console.log(response);
+							// console.log(response);
 							this.get('cookies').write('uid', response.result.uid, {
 								path: '/'
 							});

@@ -11,16 +11,5 @@ export default Route.extend({
 	//         this.transitionTo('index');
 	//     }
 	// },
-	beforeModel(transition) {
-		// console.log(transition);
-		// let url = transition.intent.url;
-		// console.log(url);
-		// console.log(this.get('cookies').read('user_role'));
-		// let role = this.get('cookies').read('user_role')
-		// if (role === 1) {
-		// }
-		// this._super(controller, model);
-
-	},
 
 });

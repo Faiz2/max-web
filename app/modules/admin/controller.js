@@ -1,3 +1,4 @@
+import $ from 'jquery';
 import Controller from '@ember/controller';
 import {
 	inject
@@ -8,7 +9,6 @@ import {
 const {
 	keys
 } = Object;
-
 export default Controller.extend({
 	cookies: inject(),
 	ajax: inject(),
@@ -21,8 +21,7 @@ export default Controller.extend({
 		this.get('ajax').request('/api/user/detail', this.getAjaxOpt(condition)).
 		then(({
 			status,
-			result,
-			error
+			result
 		}) => {
 			if (status === 'ok') {
 				let {
@@ -52,7 +51,7 @@ export default Controller.extend({
 	},
 	actions: {
 		logut() {
-			let cookies = this.get('cookies')
+			// let cookies = this.get('cookies');
 			keys(this.get('cookies').read()).forEach(item => {
 				window.console.info(item);
 				this.get('cookies').clear(item, {

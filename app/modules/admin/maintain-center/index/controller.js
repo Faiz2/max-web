@@ -31,9 +31,16 @@ export default Controller.extend({
 			result,
 			error
 		}) => {
-			console.log(result);
-			this.set('isShow', false);
-			this.set('model', result.companies);
+			if (status === "ok") {
+				// console.log(result);
+				this.set('isShow', false);
+				this.set('model', result.companies);
+			} else {
+				this.set('errorMessage', error.message);
+			}
+			// console.log(result);
+			// this.set('isShow', false);
+			// this.set('model', result.companies);
 		}, () => {})
 	},
 	init() {

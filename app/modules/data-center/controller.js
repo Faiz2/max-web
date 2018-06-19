@@ -6,10 +6,11 @@ import {
 import {
 	later
 } from '@ember/runloop';
-import rsvp from 'rsvp';
+// import rsvp from 'rsvp';
 const {
 	keys
 } = Object;
+import $ from 'jquery';
 
 export default Controller.extend({
 	ajax: inject(),
@@ -57,8 +58,14 @@ export default Controller.extend({
 				result,
 				error,
 			}) => {
-				this.set('outputType', result.export_data_type);
-				this.set('output', true);
+				if (status === "ok") {
+					this.set('outputType', result.export_data_type);
+					this.set('output', true);
+				} else {
+					this.set('errorMessage', error.message);
+				}
+				// this.set('outputType', result.export_data_type);
+				// this.set('output', true);
 			}, () => {})
 	},
 
@@ -91,25 +98,26 @@ export default Controller.extend({
 				result,
 				error,
 			}) => {
-				console.log(result);
-				this.set('loading', false);
-				// this.set('output', false);
-
-				let export_file_name = result.export_file_name;
-				if (export_file_name === "") {
-					// alert("null")
-					let error = "未找到筛选条件内的数据，请修改“筛选条件” 或点击“添加数据”进行添加。"
-					this.set('error', true);
-					this.set('errorMessage', error);
+				if (status === "ok") {
+					// console.log(result);
+					this.set('loading', false);
+					let export_file_name = result.export_file_name;
+					if (export_file_name === "") {
+						let error = "未找到筛选条件内的数据，请修改“筛选条件” 或点击“添加数据”进行添加。"
+						this.set('error', true);
+						this.set('errorMessage', error);
+					} else {
+						window.location =
+							// 	'http://192.168.100.174:9000' +
+							'/api/files/' +
+							export_file_name;
+						// this.get('ajax').request('/api/files/' + export_file_name)
+						// .then(() => {}, () => {})
+					}
 				} else {
-					window.location =
-						// 	'http://192.168.100.174:9000' +
-						'/api/files/' +
-						export_file_name;
-					// this.get('ajax').request('/api/files/' + export_file_name)
-					// .then(() => {}, () => {})
+					// console.log(error);
+					this.set('errorMessage', error.message);
 				}
-
 			}, () => {})
 	},
 
@@ -134,23 +142,28 @@ export default Controller.extend({
 				result,
 				error,
 			}) => {
-				console.log(result);
-				this.set('loading', false);
-				// this.set('output', false);
-				let export_file_name = result.export_file_name;
-				if (export_file_name === "") {
-					// alert("null");
-					let error = "未找到筛选条件内的数据，请修改“筛选条件” 或点击“添加数据”进行添加。"
-					this.set('error', true);
-					this.set('errorMessage', error);
+				if (status === "ok") {
+					// console.log(result);
+					this.set('loading', false);
+					// this.set('output', false);
+					let export_file_name = result.export_file_name;
+					if (export_file_name === "") {
+						// alert("null");
+						let error = "未找到筛选条件内的数据，请修改“筛选条件” 或点击“添加数据”进行添加。"
+						this.set('error', true);
+						this.set('errorMessage', error);
+					} else {
+						// this.get('ajax').get('/api/files/' + export_file_name);
+						window.location =
+							// 	'http://192.168.100.174:9000' +
+							'/api/files/' +
+							export_file_name;
+					}
 				} else {
-					// this.get('ajax').get('/api/files/' + export_file_name);
-					window.location =
-						// 	'http://192.168.100.174:9000' +
-						'/api/files/' +
-						export_file_name;
-
+					// console.log(error);
+					this.set('errorMessage', error.message);
 				}
+
 			}, () => {})
 	},
 
@@ -160,7 +173,7 @@ export default Controller.extend({
 		then((resolve) => {
 			this.set('loading', false);
 			this.set('model', resolve);
-		}, (reject) => {
+		}, () => {
 			this.set('loading', false);
 			this.set('model', null);
 			this.set('error', true);
@@ -180,12 +193,12 @@ export default Controller.extend({
 			result,
 			error,
 			status
-		}, reject) => {
+		}) => {
 			if (status === 'ok') {
 				this.set('markets', result.markets)
 				this.set('currentPage', 1)
-				let startTime = this.formatDateyyyymm(this.get('startDate'))
-				let endTime = this.formatDateyyyymm(this.get('endDate'))
+				// let startTime = this.formatDateyyyymm(this.get('startDate'))
+				// let endTime = this.formatDateyyyymm(this.get('endDate'))
 
 				// this.queryData({
 				//     condition: {
@@ -228,6 +241,8 @@ export default Controller.extend({
 				} = result
 				this.set('fullName', screen_name)
 				this.set('account', email)
+			} else {
+				this.set('errorMessage', error.message);
 			}
 		}, () => {})
 	},
@@ -335,7 +350,7 @@ export default Controller.extend({
 		outputFile() {
 			this.set('output', false);
 			// console.log("output file is running");
-			console.log(this.get('outputTypeValue'));
+			// console.log(this.get('outputTypeValue'));
 			let type = this.get('outputTypeValue')
 			this.set('loading', true);
 			if (type === "Max格式" || type === "") {
@@ -401,7 +416,7 @@ export default Controller.extend({
 		},
 
 		logut() {
-			let cookies = this.get('cookies')
+			// let cookies = this.get('cookies');
 			keys(this.get('cookies').read()).forEach(item => {
 				window.console.info(item);
 				this.get('cookies').clear(item, {

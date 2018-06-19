@@ -6,7 +6,9 @@ import XmppMessageMixin from './XmppMessageMixin';
 import {
 	later
 } from '@ember/runloop';
-
+const {
+	keys
+} = Object;
 export default Controller.extend(XmppMessageMixin, {
 	webIm: inject('xmpp-service'),
 	progress: inject('circle-progress-serivce'),
@@ -22,6 +24,7 @@ export default Controller.extend(XmppMessageMixin, {
 			'progress': this.get('progress'),
 			'cookies': this.get('cookies')
 		};
+
 		if (status === 'yes') {
 			let conn = result;
 			this.callback(this, conn, services);

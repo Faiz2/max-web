@@ -6,14 +6,12 @@ import {
 export default Route.extend({
 	cookies: inject(),
 
-	beforeModel(transition) {
+	beforeModel() {
 		let role = this.get('cookies').read('user_role');
-		console.log(transition);
-		if (role === "1") {
-			// this.transitionTo('admin.data-center');
-		} else if (role === "0") {
+
+		if (role === "0") {
 			this.transitionTo('data-center');
-		} else {
+		} else if (role === undefined) {
 			this.transitionTo('/');
 		}
 	},

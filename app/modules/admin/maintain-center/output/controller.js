@@ -46,10 +46,16 @@ export default Controller.extend({
 				result,
 				error,
 			}) => {
-				console.log(result);
-				this.set('output_tabels', result.match_files);
-				this.set('output_model', result.module_title);
-				// this.set('output_universe', result.universe_files);
+				if (status === "ok") {
+					// console.log(result);
+					this.set('output_tabels', result.match_files);
+					this.set('output_model', result.module_title);
+				} else {
+					this.set('errorMessage', error.message);
+				}
+				// console.log(result);
+				// this.set('output_tabels', result.match_files);
+				// this.set('output_model', result.module_title);
 			}, () => {})
 	},
 
@@ -76,13 +82,19 @@ export default Controller.extend({
 		this.get('ajax').request('/api/maintenance/matchfile/replace', this.getAjaxOpt(condition))
 			.then(({
 				status,
-				result,
+				// result,
 				error,
 			}) => {
-				console.log(result);
-				let coid = this.get('coid');
-				this.queryDeliveryFile(coid);
-				// result:{"file_key":"","file_name":""}
+				if (status === "ok") {
+					// console.log(result);
+					let coid = this.get('coid');
+					this.queryDeliveryFile(coid);
+				} else {
+					this.set('errorMessage', error.message);
+				}
+				// console.log(result);
+				// let coid = this.get('coid');
+				// this.queryDeliveryFile(coid);
 			}, () => {})
 	},
 	init() {
@@ -92,7 +104,7 @@ export default Controller.extend({
 
 		replaceFile(originfile, file) {
 			this.set('isShow', true);
-			let origindes= originfile.file_des;
+			let origindes = originfile.file_des;
 
 			return file.upload('/api/file/upload').then(({
 				body: {
@@ -105,6 +117,8 @@ export default Controller.extend({
 					this.set('isShow', false);
 					let uuid = result;
 					this.replaceDeliveryFile(origindes, uuid);
+				} else {
+					this.set('errorMessage', error.message);
 				}
 			}, () => {});
 		}

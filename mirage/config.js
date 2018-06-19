@@ -236,7 +236,9 @@ export default function() {
 		}
 	})
 
-	this.post('/query/sample/finish', (schema, request) => {
+	// this.post('/query/sample/finish', (schema, request) => {
+	this.post('/query/sample/finish', () => {
+
 		let result = {
 			result: [{
 					'date': '2018-01',
@@ -340,10 +342,11 @@ export default function() {
 		}
 		return result
 	});
-
-	this.post('query/history', (schema, request) => {
+	// this.post('query/history', (schema, request) => {
+	this.post('query/history', () => {
 		let ids = Array.from(new Array(10), (val, index) => index + 1);
-		let r = ids.map((ele, index, array) => {
+		// let r = ids.map((ele, index, array) => {
+		let r = ids.map((ele) => {
 			return {
 				'id': ele,
 				'type': 'dataCenter',
