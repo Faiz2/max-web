@@ -7,7 +7,9 @@ const Router = EmberRouter.extend({
 });
 
 Router.map(function() {
-	this.route('page-not-found', { path: '/*path' });
+	this.route('page-not-found', {
+		path: '/*path'
+	});
 	this.route('adddata', function() {
 		this.route('uploadfiles');
 		this.route('calcmax');
@@ -20,8 +22,15 @@ Router.map(function() {
 	this.route('demo');
 	this.route('admin', function() {
 		this.route('data-center');
-		this.route('maintain-center');
+		this.route('maintain-center', function() {
+			this.route('cleaning');
+			this.route('sample');
+			this.route('enlarge');
+			this.route('output');
+		});
+		this.route('cleaning');
 	});
+
 });
 
 export default Router;
